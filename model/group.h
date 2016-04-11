@@ -3,6 +3,7 @@
 #include <vector>
 #include "groupadmin.h"
 #include "feed.h"
+#include "tweetpost.h"
 
 class GroupAdmin;
 class Account;

@@ -1,23 +1,24 @@
 #ifndef GROUPADMIN_H
 #define GROUPADMIN_H
-#include "currentguest.h"
-#include "group.h"
+//#include "currentguest.h"
+//#include "group.h"
 
-class Account;
-class Group;
+//class Account;
+//class Group;
 
-class GroupAdmin : public CurrentGuest
+class GroupAdmin
+//        : public CurrentGuest
 {
 
-    Group* myGroup;
+//    Group* myGroup;
 
-public:
+//public:
     GroupAdmin();
 
-    Group* getGroup();
-    void addMember(Account* newMember);
-    void removeMember(Account* oldMember);
-    void editGroupName(std::string name);
+//    Group* getGroup();
+//    void addMember(Account* newMember);
+//    void removeMember(Account* oldMember);
+//    void editGroupName(std::string name);
 };
 
 #endif // GROUPADMIN_H

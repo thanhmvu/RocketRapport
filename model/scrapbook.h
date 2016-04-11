@@ -1,7 +1,7 @@
 #ifndef SCRAPBOOK_H
 #define SCRAPBOOK_H
 #include "scrapbookpost.h"
-
+#include <vector>
 
 class Scrapbook
 {
