@@ -2,23 +2,24 @@
 #define POST_H
 #include <string>
 #include <iostream>
+#include <ctime>
 
 class Post
 {
 private:
+    static int id_cnt;
+    int id;
     std::string text;
-    std::string date;
-    int time;
-    int postID;
+    time_t time;
 
 public:
     Post();
     std::string getText();
+    time_t getTime();
+    int getID();
+
     bool setText(std::string new_text);
-    std::string getDate();
-    bool setDate(std::string new_date);
-    int getTime();
-    bool setTime(int new_time);
+    bool setTime(time_t new_time);
 };
 
 #endif // POST_H
