@@ -62,7 +62,7 @@ void System::login() {
 void System::createAccount() {
     // NEED TO ADD TO DATABASE LOGIC ONCE THE METHODS ARE FINALIZED.
     Account* newAccount = new Account;
-    accountList.push_back(newAccount);
+    this->addAccount(newAccount);
 
     std::string tempString;
     int tempInt;
@@ -142,6 +142,48 @@ void System::createAccount() {
 
 
 /**
+ * @brief Adds a group to the System's list of groups.
+ */
+void System::addGroup(Group* newGroup) {
+    this->getGroups().push_back(newGroup);
+}
+
+
+/**
+ * @brief Removes a group from the System's list of groups.
+ */
+void System::removeGroup(Group* oldGroup) {
+    for (int i = 0; i < this->getGroups().size(); i++) {
+        if (&(*oldGroup) == &(*(this->getGroups()[i]))) {
+            this->getGroups().erase(this->getGroups().begin() + i);
+            break;
+        }
+    }
+}
+
+
+/**
+ * @brief Adds an account to the System's list of accounts.
+ */
+void System::addAccount(Account* newAccount) {
+    this->getAccountList().push_back(newAccount);
+}
+
+
+/**
+ * @brief Removes an account from the System's list of accounts.
+ */
+void System::removeAccount(Account* oldAccount) {
+    for (int i = 0; i < this->getAccountList().size(); i++) {
+        if (&(*oldAccount) == &(*(this->getAccountList()[i]))) {
+            this->getAccountList().erase(this->getAccountList().begin() + i);
+            break;
+        }
+    }
+}
+
+
+/**
  * @brief Getter for the current user.
  */
 Account* System::getCurrentUser() {
@@ -214,5 +256,13 @@ void System::removeUsername(std::string uName) {
             break;
         }
     }
+}
+
+
+/**
+ * @brief Getter than returns the list of groups the System contains.
+ */
+std::vector<Group*> System::getGroups() {
+    return this->groups;
 }
 

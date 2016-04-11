@@ -5,6 +5,9 @@
 #include "scrapbook.h"
 #include "chat.h"
 #include "group.h"
+
+class Group;
+
 /**
  * @brief The Account class will be used to store user data. The account will be inherited by children classes such as system admins, current guests, and past guests.
  */
