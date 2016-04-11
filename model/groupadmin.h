@@ -12,13 +12,6 @@ class GroupAdmin
 
 //    Group* myGroup;
 
-
-
-
-
-
-
-
 //public:
     GroupAdmin();
 
