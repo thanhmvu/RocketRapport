@@ -35,11 +35,11 @@ public:
 
 //    // An overloaded method to generate a new
 //    // create command for your child class.
-    virtual void store_create_sql(std::__cxx11::string scriptName);
+    virtual void store_create_sql(std::string scriptName);
 
 //    // An overloaded method to generate a new
 //    // insert command for your child class.
-    virtual void store_template_sql(std::__cxx11::string location, std::__cxx11::string scriptName, std::__cxx11::string dataEntered);
+    virtual void store_template_sql(std::string location, std::string scriptName, std::string dataEntered);
 
 };
 
