@@ -2,4 +2,5 @@ TEMPLATE = subdirs
 
 SUBDIRS += \
     model \
-    unittest
+    unittest \
+    GUI
