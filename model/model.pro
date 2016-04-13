@@ -52,3 +52,5 @@ HEADERS += \
     dbmanager.h
 
 LIBS += -l sqlite3
+
+DISTFILES +=
