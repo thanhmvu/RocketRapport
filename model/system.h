@@ -19,7 +19,7 @@ class System
     Account* currentUser;
     std::vector<Account*> accountList;
     std::vector<Group*> groups;
-    std::vector<std::string> usernames;
+//    std::vector<std::string> usernames;
     DBTool dTool;
     DBTableRRanch dbtr;
     bool gui;
@@ -32,7 +32,7 @@ public:
     ~System();
 
     void login();
-    void createAccount();
+    bool createAccount(std::string username, std::string password, std::string firstname, std::string lastname);
 
     void addUsername(std::string uName);
     void removeUsername(std::string uName);

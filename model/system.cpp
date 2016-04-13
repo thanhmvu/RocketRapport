@@ -58,86 +58,34 @@ void System::login() {
 
 /**
  * @brief If the user has not created an account they will be allowed to in this function.
+ *
+ * @return false if username is in use, true otherwise
  */
-void System::createAccount() {
-    // NEED TO ADD TO DATABASE LOGIC ONCE THE METHODS ARE FINALIZED.
-    Account* newAccount = new Account;
-    this->addAccount(newAccount);
-
-    std::string tempString;
-    int tempInt;
-
-    std::cout << "Enter your new account information below." << std::endl;
-
-    // User inputs username.
-    bool uniqueUName = false;
-    while (!uniqueUName) {
-        bool inUse = false;
-        std::cout << "Username: ";
-        std::cin >> tempString;
-        for (int i = 0; i < this->getUsernames().size(); i++) {
-            if (tempString == this->getUsernames()[i]) {
-                inUse = true;
-            }
-        }
-        if (!inUse) {
-            uniqueUName = true;
-            (*newAccount).setUsername(tempString);
-            this->addUsername(tempString);
-        } else {
-            std::cout << std::endl << "Username already in use. Enter a new one." << std::endl;
+bool System::createAccount(std::string username, std::string password, std::string firstname, std::string lastname) {
+    // check if username is in use
+    for (int i = 0; i < accountList.size(); i++) {
+        if (username == accountList[i]->getUsername()) {
+            std::cout << "Username already exists!" << std::endl;
+            return false;
         }
     }
 
-    // User inputs password.
-    std::cout << std::endl << "Password: ";
-    std::cin >> tempString;
-    (*newAccount).setPassword(tempString);
+    // create new account
+    Account* newAccount = new Account;
+    newAccount->setUsername(username);
+    newAccount->setPassword(password);
+    newAccount->setFirstName(firstname);
+    newAccount->setLastName(lastname);
 
-    // User inputs first name.
-    std::cout << std::endl << "First Name: ";
-    std::cin >> tempString;
-    (*newAccount).setFirstName(tempString);
+    // add account to the system
+    accountList.push_back(newAccount);
 
-    // User inputs last name.
-    std::cout << std::endl << "Last Name: ";
-    std::cin >> tempString;
-    (*newAccount).setLastName(tempString);
+    // add account to the database
+    // NEED TO BE IMPLEMENTED !!
+    // ...
+    // ...
 
-    // User inputs gender.
-    std::cout << std::endl << "Gender: ";
-    std::cin >> tempString;
-    (*newAccount).setGender(tempString);
-
-    // User inputs about yourself information.
-    std::cout << std::endl << "About Yourself: ";
-    std::getline(std::cin, tempString);
-    (*newAccount).setAbout(tempString);
-
-    // User enters home address.
-    std::cout << std::endl << "Home Address: ";
-    std::getline(std::cin, tempString);
-    (*newAccount).setAddress(tempString);
-
-    // User enters profile picture.
-    std::cout << std::endl << "Profile Picture: ";
-    std::cin >> tempString;
-    (*newAccount).setProfilePicture(tempString);
-
-    // User enters most recent employer.
-    std::cout << std::endl << "Most Recent Employer: ";
-    std::getline(std::cin, tempString);
-    (*newAccount).setMostRecentEmployer(tempString);
-
-    // User enters age.
-    std::cout << std::endl << "Age: ";
-    std::cin >> tempInt;
-    (*newAccount).setAge(tempInt);
-
-    // User enters phone number.
-    std::cout << std::endl << "Phone Number: ";
-    std::cin >> tempInt;
-    (*newAccount).setPhoneNumber(tempInt);
+    return true;
 }
 
 
