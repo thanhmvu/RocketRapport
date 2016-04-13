@@ -1,5 +1,10 @@
 #include "dbmanager.h"
 
+/**
+ * @brief DbManager::DbManager Class used to "communicate" between the program and the database.
+ * @param path String used to specify where the program will be accessing a database file.
+ * For now, I'm going to go with the approach where we create 10 different add methods with different sets of parameters
+ */
 DbManager::DbManager(const QString &path)
 {
     m_db = QSqlDatabase::addDatabase("QSQLITE");
@@ -30,7 +35,7 @@ bool DbManager::addUser(const QVariant &AcntID, const QVariant &FrstName,
 
 
     bool success = false;
-    if(!find(AcntID)){
+    if(!find(AcntID, "accounts")){
 
         QSqlQuery query; //Prepares a new QSqlQuery
         query.prepare("INSERT INTO accounts VALUES (:AcntID, :FrstName, :LstName, :GrpID, :ScrpBkID, :BlogID, :TweetID)");
@@ -67,7 +72,74 @@ bool DbManager::addUser(const QVariant &AcntID, const QVariant &FrstName,
  */
 bool DbManager::addGroup(const QVariant &GrpID, const QVariant &GrpAdmnId, \
                          bool actStatus, const QVariant GrpName, const QVariant FeedID){
+    bool success = false;
+    QSqlQuery query;
+    query.prepare("INSERT INTO TABLE groups VALUES(:GrpID, :GrpAdmnId, :actStatus, :GrpName, :FeedID");
+    query.bindValue(":GrpID",GrpID);
+    query.bindValue(":GrpAdmnId",GrpAdmnId);
+    query.bindValue(":actStatus",actStatus);
+    query.bindValue(":GrpName",GrpName);
+    query.bindValue(":FeedID",FeedID);
+    if(query.exec()){
+        success = true;
+    }
+    else{
+        //Need some kind of print statement to signify that the method didn't work
+    }
+}
 
+/**
+ * @brief DbManager::addChat Add a new chat object associated with a patrticular user
+ * @param AccountID
+ * @param ChatID
+ * @param sender
+ * @return
+ */
+bool DbManager::addChat(const QVariant &AccountID, const QVariant &ChatID, const QVariant &sender){
+    bool success = false;
+    QSqlQuery query;
+    query.prepare("INSERT INTO TABLE chats VALUES(:AccountID, :ChatID, :sender)");
+    query.bindValue(":AccountID", AccountID);
+    query.bindValue(":ChatID", ChatID);
+    query.bindValue(":sender", sender);
+    if(query.exec()){
+        success = true;
+    }
+    else{
+        //Print statement
+    }
+    return success;
+}
+
+/**
+ * @brief DbManager::addMessage Add messae information to the database
+ * @param ChatID
+ * @param MessageID
+ * @param DateTime
+ * @param text
+ * @param imageURL  URL directing the program to a directory containing the image it wants to load
+ * @param receiver  Name of the user being sent the message
+ * @return
+ */
+bool DbManager::addMessage(const QVariant &ChatID, const QVariant &MessageID, const QVariant &DateTime,
+                           const QVariant text, const QVariant imageURL, const QVariant receiver){
+    bool success = false;
+    QSqlQuery query;
+    query.prepare("INSERT INTO messages VALUES(:ChatID, :MessageID, :DateTime, :text, :imageURL, :receiver");
+    query.bindValue(":ChatID", ChatID);
+    query.bindValue(":MessageID",MessageID);
+    query.bindValue(":DateTime",DateTime);
+    query.bindValue(":text",text);
+    query.bindValue(":imageURL",imageURL);
+    query.bindValue(":receiver",receiver);
+    if(query.exec()){
+        success = true;
+    }
+    else{
+        //Print Statement
+    }
+
+    return success;
 }
 
 /**
@@ -76,7 +148,7 @@ bool DbManager::addGroup(const QVariant &GrpID, const QVariant &GrpAdmnId, \
  * @param type  Type of data stored in the new column
  * @return  Returns true if we're able to add a new column
  */
-bool AccountDatabaseManager::addColumn(const QString name, const QString type){
+bool DbManager::addColumn(const QString name, const QString type){
     QSqlQuery query;
     const QString command = "ALTER TABLE accounts ADD COLUMN " + name + " " + type;
     query.prepare(command);
@@ -86,17 +158,18 @@ bool AccountDatabaseManager::addColumn(const QString name, const QString type){
 /**
  * @brief DbManager::find Method used to return a FirstName and LastName given their associated UserID
  * @param UsrID User ID of the account we are searching for.
- * @return
+ * @return  Returns true if the program is able to find the given information
  */
-bool DbManager::find(const QVariant &UsrID){
+bool DbManager::find(const QVariant &UsrID, const QVariant &table){
     bool found = false;
     QSqlQuery query;
-    query.prepare("SELECT firstName,lastName FROM accounts WHERE AccountId = (:UsrID)");
+    const QString command = "SELECT firstName,lastName FROM " + table.toString() + " WHERE AccountId = (:UsrID)";
+    query.prepare(command);
     query.bindValue(":UsrID",UsrID);
     if (query.exec()){
         if(query.next()){
             found = true;
-            std::cout<< "Account has been found" << std::endl;
+            std::cout<< "Value has been found" << std::endl;
         }
         else{
             std::cout << "Value has not been found" << std::endl;
@@ -129,7 +202,7 @@ bool DbManager::printAllRows(const QString &column){
  */
 bool DbManager::deleteName(const QVariant &UsrID){
     bool deleted = false;
-    if(find(UsrID) ){
+    if(find(UsrID, "accounts") ){
         //Carry on with deleton process
         QSqlQuery query;
         query.prepare("DELETE FROM accounts WHERE name = (:UsrID)"); //Deletes every instance of the name
