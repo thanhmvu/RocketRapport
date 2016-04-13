@@ -10,28 +10,10 @@ Group::Group()
  * @brief Adds a new TweetPost to the group feed.
  */
 void Group::updateFeed(Account* userPosted, TweetPost* latestPost) {
+    this->getFeed()->addPost(latestPost);
+    this->getFeed()->displayFeed();
 
-
-
-
-
-
-
-
-
-
-    // DO THIS
-
-
-
-
-
-
-
-
-
-
-
+    // Add Account to Post.
 }
 
 /**
