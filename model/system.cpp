@@ -177,36 +177,6 @@ void System::setLoggedIn(bool logged) {
     this->loggedIn = logged;
 }
 
-
-/**
- * @brief Getter for the list of usernames.
- */
-std::vector<std::string> System::getUsernames() {
-    return this->getUsernames();
-}
-
-
-/**
- * @brief Adds a username to the list of usernames.
- */
-void System::addUsername(std::string uName) {
-    this->getUsernames().push_back(uName);
-}
-
-
-/**
- * @brief Removes a username from the list of usernames.
- */
-void System::removeUsername(std::string uName) {
-    for (int i = 0; i < this->getUsernames().size(); i++) {
-        if (this->getUsernames()[i] == uName) {
-            this->getUsernames().erase(this->getUsernames().begin() + i);
-            break;
-        }
-    }
-}
-
-
 /**
  * @brief Getter than returns the list of groups the System contains.
  */

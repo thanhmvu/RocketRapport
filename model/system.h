@@ -19,7 +19,6 @@ class System
     Account* currentUser;
     std::vector<Account*> accountList;
     std::vector<Group*> groups;
-//    std::vector<std::string> usernames;
     DBTool dTool;
     DBTableRRanch dbtr;
     bool gui;
@@ -34,18 +33,15 @@ public:
     void login();
     bool createAccount(std::string username, std::string password, std::string firstname, std::string lastname);
 
-    void addUsername(std::string uName);
-    void removeUsername(std::string uName);
     void addGroup(Group* newGroup);
     void removeGroup(Group* oldGroup);
     void addAccount(Account* newAccount);
     void removeAccount(Account* oldAccount);
 
     Account* getCurrentUser();
-    void setCurrentUser(Account* cUser);
     std::vector<Account*> getAccountList();
+    void setCurrentUser(Account* cUser);
     void setAccountList(std::vector<Account*> aList);
-    std::vector<std::string> getUsernames();
     bool getLoggedIn();
     void setLoggedIn(bool logged);
     std::vector<Group*> getGroups();
