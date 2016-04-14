@@ -8,6 +8,7 @@ class Scrapbook
 
     std::vector<ScrapbookPost*> myPosts;
     std::string tweetText;
+    int scrpBookID;
 
 public:
     Scrapbook();
@@ -18,6 +19,7 @@ public:
     void concastPosts();
 
     std::vector<ScrapbookPost*> getMyPosts();
+    int getScrpbkID();
 };
 
 #endif // SCRAPBOOK_H

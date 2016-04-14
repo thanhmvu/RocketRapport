@@ -48,3 +48,7 @@ void Blog::concastPosts() {
 std::vector<BlogPost*> Blog::getMyPosts() {
     return this->myPosts;
 }
+
+int Blog::getBlogID(){
+    return blogID;
+}

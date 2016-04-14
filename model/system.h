@@ -3,10 +3,13 @@
 #include "account.h"
 #include "dbtool.h"
 #include "dbtablerranch.h"
+#include "dbmanager.h"
 #include <string>
 #include <vector>
 #include <iostream>
 class DBTableRRanch;
+class DbManager;
+
 /**
  * @brief The System class will be used to store information to and retrive information from the database, operating much like the PlayerGameHistory class did in the lab
  * assignments.
@@ -19,8 +22,7 @@ class System
     Account* currentUser;
     std::vector<Account*> accountList;
     std::vector<Group*> groups;
-    DBTool dTool;
-    DBTableRRanch dbtr;
+    //DbManager* dbm = new DbManager("./gProjectDB.db"); //Make sure this line works
     bool gui;
     bool textUi;
     bool loggedIn;

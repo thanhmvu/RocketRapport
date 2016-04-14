@@ -8,6 +8,7 @@ class Tweet
 
     std::vector<TweetPost*> myPosts;
     std::string tweetText;
+    int tweetID;
 
 public:
     Tweet();
@@ -18,6 +19,8 @@ public:
     void concastPosts();
 
     std::vector<TweetPost*> getMyPosts();
+
+    int getTweetID();
 };
 
 #endif // TWEET_H

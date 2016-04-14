@@ -48,3 +48,7 @@ void Scrapbook::concastPosts() {
 std::vector<ScrapbookPost*> Scrapbook::getMyPosts() {
     return this->myPosts;
 }
+
+int Scrapbook::getScrpbkID(){
+    return scrpBookID;
+}

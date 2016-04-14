@@ -8,6 +8,7 @@ class Blog
 
     std::vector<BlogPost*> myPosts;
     std::string blogText;
+    int blogID;
 
 public:
     Blog();
@@ -18,6 +19,8 @@ public:
     void concastPosts();
 
     std::vector<BlogPost*> getMyPosts();
+
+    int getBlogID();
 };
 
 #endif // BLOG_H

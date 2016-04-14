@@ -1,6 +1,10 @@
 #include "system.h"
 
-
+/**
+ * @brief System::System Constructing a new system should access the Database, creating a
+ * new Account for each AccountID found in the database. This means we'll also have to store the
+ * usernames in the DB as well.
+ */
 System::System()
 {
     loggedIn = false;
@@ -12,9 +16,16 @@ System::System()
 
 /**
  * @brief System::~System Destructor will store information currently in the system to the databse for the system
+ * Remember that this methods parameters must match those in the DbManager class
  */
 System::~System(){
-
+    //For every Account in the System, store Account with associated values into the database
+    for (int i = 0; i < this->getAccountList().size(); i++) {
+        Account *a = accountList.at(i);
+//        dbm->addUser(a->getAccountID(),a->getFirstName(),a->getLastName(),a->getGroupID(),    //
+//                    a->getMyScrapbook()->getScrpbkID(),a->getUserBlog()->getBlogID(),
+//                    a->getUserTweet()->getTweetID());
+    }
 }
 
 

@@ -48,3 +48,7 @@ void Tweet::concastPosts() {
 std::vector<TweetPost*> Tweet::getMyPosts() {
     return this->myPosts;
 }
+
+int Tweet::getTweetID(){
+    return tweetID;
+}

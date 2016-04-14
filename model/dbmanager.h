@@ -10,6 +10,8 @@
 #include <QString>
 #include <stdio.h>
 #include <iostream>
+#include "system.h"
+class System;
 
 class DbManager
 {

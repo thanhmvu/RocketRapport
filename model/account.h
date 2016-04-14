@@ -5,6 +5,8 @@
 #include "scrapbook.h"
 #include "chat.h"
 #include "group.h"
+#include "blog.h"
+#include "tweet.h"
 
 class Group;
 
@@ -15,10 +17,10 @@ class Account
 {
     Scrapbook* myScrapbook;
     std::vector<Chat*> myChats;
-
+    Tweet* t = new Tweet();
     std::vector<Account*> friendList;
     std::vector<Group*> groups;
-
+    Blog* userBlog = new Blog();
     // The follwing "block" is used to store the user's personal information
     std::string username;
     std::string password;
@@ -32,6 +34,8 @@ class Account
     int age;
     int phoneNumber;
     int accountID;
+    int groupID;
+
 
 public:
     Account();
@@ -74,8 +78,11 @@ public:
     int getAge();
     void setAge(int age);
     int getPhoneNumber();
+    int getAccountID();
+    int getGroupID();
     void setPhoneNumber(int number);
-
+    Blog* getUserBlog();
+    Tweet* getUserTweet();
 };
 
 #endif // ACCOUNT_H

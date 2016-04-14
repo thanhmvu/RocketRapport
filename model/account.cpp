@@ -286,10 +286,31 @@ int Account::getPhoneNumber() {
     return this->phoneNumber;
 }
 
+/**
+ * @brief Account::getAccountID Used to obtain accountID value.
+ */
+int Account::getAccountID(){
+    return accountID;
+}
+
+/**
+ * @brief Account::getGroupID Returns the ID number of the group this Account belongs to
+ */
+int Account::getGroupID(){
+    return groupID;
+}
 
 /**
  * @brief Setter for the user's phone number.
  */
 void Account::setPhoneNumber(int number) {
     this->phoneNumber = number;
+}
+
+Blog *Account::getUserBlog(){
+    return userBlog;
+}
+
+Tweet *Account::getUserTweet(){
+    return t;
 }
