@@ -5,12 +5,12 @@ GroupAdmin::GroupAdmin()
 
 }
 
-///**
-// * @brief Getter that returns the group that this group admin is in charge of.
-// */
-//Group* GroupAdmin::getGroup() {
-//    return this->myGroup;
-//}
+/**
+ * @brief Getter that returns the group that this group admin is in charge of.
+ */
+Group* GroupAdmin::getGroup() {
+    return this->myGroup;
+}
 
 
 ///**
@@ -29,9 +29,9 @@ GroupAdmin::GroupAdmin()
 //}
 
 
-///**
-// * @brief Changes the name of the group that this admin is in charge of.
-// */
-//void GroupAdmin::editGroupName(std::string name) {
-//    this->getGroup()->setGroupName(name);
-//}
+/**
+ * @brief Changes the name of the group that this admin is in charge of.
+ */
+void GroupAdmin::editGroupName(std::string name) {
+    this->getGroup()->setGroupName(name);
+}
