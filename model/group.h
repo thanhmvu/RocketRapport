@@ -4,6 +4,7 @@
 #include "groupadmin.h"
 #include "feed.h"
 #include "tweetpost.h"
+#include "account.h"
 
 class GroupAdmin;
 class Account;
