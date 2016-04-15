@@ -1,13 +1,25 @@
 #include <iostream>
 #include "gtest/gtest.h"
+#include "../model/system.h"
 
 using namespace std;
 
-TEST(FUNNYTEST, FORNUMBERS) {
+TEST(TestSystem, usernameExist) {
+    System sys;
+    Account acc("user1");
+    Account acc2("user2");
 
-  ASSERT_EQ(1, 2) << "1 and 2 are not equal!!!";
+    EXPECT_EQ(false, sys.usernameExist("user1"));
 
+    sys.addAccount(&acc);
+    EXPECT_EQ(true, sys.usernameExist("user1"));
+    EXPECT_EQ(false, sys.usernameExist("user2"));
+
+    sys.addAccount(&acc2);
+    EXPECT_EQ(true, sys.usernameExist("user1"));
+    EXPECT_EQ(true, sys.usernameExist("user2"));
 }
+
 
 
 int main(int argc, char **argv)

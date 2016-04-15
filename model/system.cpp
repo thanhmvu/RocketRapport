@@ -195,3 +195,13 @@ std::vector<Group*> System::getGroups() {
     return this->groups;
 }
 
+bool System::usernameExist(std::string username){
+    for (int i = 0; i < accountList.size(); i++) {
+        if (username == accountList[i]->getUsername()) {
+            return true;
+        }
+    }
+    return false;
+}
+
+

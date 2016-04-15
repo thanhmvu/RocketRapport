@@ -39,6 +39,7 @@ public:
     void removeGroup(Group* oldGroup);
     void addAccount(Account* newAccount);
     void removeAccount(Account* oldAccount);
+    bool usernameExist(std::string username);
 
     Account* getCurrentUser();
     std::vector<Account*> getAccountList();

@@ -3,6 +3,7 @@ CONFIG += console c++11
 CONFIG -= app_bundle
 QT += sql
 
+
 INCLUDEPATH += googletest                       \
                googletest/src                   \
                googletest/src/gtest             \
@@ -27,15 +28,21 @@ LIBS += -l sqlite3
 HEADERS += \
     ../model/system.h \
     ../model/dbtool.h \
-    ../model/dbtable.h
-
+    ../model/dbtable.h \
+    ../model/system.h \
+    ../model/account.h \
+    ../model/tweet.h \
+    ../model/blog.h
 
 SOURCES += main.cpp \
     testscripting.cpp \
     systemunittest.cpp \
     dbtoolunittest.cpp \
-    dbtabletest.cpp \
     ../model/dbtool.cpp \
     ../model/dbtablerranch.cpp \
-    ../model/dbtable.cpp
-
+    ../model/dbtable.cpp \
+    dbtabletest.cpp \
+    ../model/system.cpp \
+    ../model/account.cpp \
+    ../model/tweet.cpp \
+    ../model/blog.cpp
