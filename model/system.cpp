@@ -131,8 +131,8 @@ void System::addAccount(Account* newAccount) {
     const QVariant lstNme(y);
     const QVariant GrpID = newAccount->getGroupID();
     const QVariant ScrpBkID = newAccount->getMyScrapbook()->getScrpbkID();
-    const QVariant BlgID = newAccount->getUserBlog()->getBlogID();
-    const QVariant TweetID = newAccount->getUserTweet()->getTweetID();
+    const QVariant BlgID = newAccount->getMyBlog()->getBlogID();
+    const QVariant TweetID = newAccount->getMyTweet()->getTweetID();
     dbm->addUser(accntD,frstName,lstNme,GrpID,
                 ScrpBkID,BlgID,TweetID);
 }

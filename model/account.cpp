@@ -6,6 +6,11 @@ Account::Account()
 {
     this->accountID = id_cnt;
     id_cnt++;
+
+    isCurrentGuest = false;
+    isPastGuest = false;
+    isSystemAdmin = false;
+    isGroupAdmin = false;
 }
 
 Account::Account(std::string usrName){
@@ -13,6 +18,112 @@ Account::Account(std::string usrName){
     id_cnt++;
 
     username = usrName;
+}
+
+
+/**
+ * @brief Getter for the current guest boolean.
+ */
+bool Account::getIsCurrentGuest() {
+    return this->isCurrentGuest;
+}
+
+
+/**
+ * @brief Getter for the past guest boolean.
+ */
+bool Account::getIsPastGuest() {
+    return this->isPastGuest;
+}
+
+
+/**
+ * @brief Getter for the system admin boolean.
+ */
+bool Account::getIsSystemAdmin() {
+    return this->isSystemAdmin;
+}
+
+
+/**
+ * @brief Getter for the group admin boolean.
+ */
+bool Account::getIsGroupAdmin() {
+    return this->isGroupAdmin;
+}
+
+
+/**
+ * @brief Setter for the current guest boolean.
+ */
+void Account::setIsCurrentGuest(bool cGuest) {
+    this->isCurrentGuest = cGuest;
+}
+
+
+/**
+ * @brief Setter for the past guest boolean.
+ */
+void Account::setIsPastGuest(bool pGuest) {
+    this->isPastGuest = pGuest;
+}
+
+
+/**
+ * @brief Setter for the system admin boolean.
+ */
+void Account::setIsSystemAdmin(bool sAdmin) {
+    this->isSystemAdmin = sAdmin;
+}
+
+
+/**
+ * @brief Setter for the group admin boolean.
+ */
+void Account::setIsGroupAdmin(bool gAdmin) {
+    this->isGroupAdmin = gAdmin;
+}
+
+
+/**
+ * @brief Changes the user to a current guest.
+ */
+void Account::promoteToCurrentGuest() {
+    this->setIsCurrentGuest(true);
+    this->setIsPastGuest(false);
+    this->setIsGroupAdmin(false);
+    this->setIsSystemAdmin(false);
+}
+
+
+/**
+ * @brief Changes the user to a past guest.
+ */
+void Account::promoteToPastGuest() {
+    this->setIsCurrentGuest(false);
+    this->setIsPastGuest(true);
+    this->setIsGroupAdmin(false);
+    this->setIsSystemAdmin(false);
+}
+
+
+/**
+ * @brief Changes the user to a system admin.
+ */
+void Account::promoteToSystemAdmin() {
+    this->setIsCurrentGuest(true);
+    this->setIsPastGuest(false);
+    this->setIsSystemAdmin(true);
+}
+
+
+/**
+ * @brief Changes the user to a group admin.
+ */
+void Account::promoteToGroupAdmin() {
+    this->setIsCurrentGuest(true);
+    this->setIsPastGuest(false);
+    this->setIsGroupAdmin(true);
 }
 
 
@@ -307,10 +418,155 @@ void Account::setPhoneNumber(int number) {
     this->phoneNumber = number;
 }
 
-Blog *Account::getUserBlog(){
-    return userBlog;
+
+/**
+ * @brief Sets the depart boolen to true indicating that the user is leaving the ranch.
+ */
+void Account::departRanch() {
+    if (this->getIsCurrentGuest() == true) {
+        this->promoteToPastGuest();
+
+        time_t currentTime;
+        struct tm *localTime;
+        time(&currentTime);
+        localTime = localtime(&currentTime);
+        this->setDayDeparted(localTime->tm_mday);
+        this->setMonthDeparted(localTime->tm_mon + 1);
+        this->setYearDeparted(localTime->tm_year + 1900);
+    }
 }
 
-Tweet *Account::getUserTweet(){
-    return t;
+
+/**
+ * @brief Getter for the Blog pointer.
+ */
+Blog* Account::getMyBlog() {
+    if (this->getIsCurrentGuest() == true) {
+        return this->myBlog;
+    }
+}
+
+
+/**
+ * @brief Setter for the Blog pointer.
+ */
+void Account::setMyBlog(Blog* myBlog) {
+    if (this->getIsCurrentGuest() == true) {
+        this->myBlog = myBlog;
+    }
+}
+
+
+/**
+ * @brief Getter for the Tweet pointer.
+ */
+Tweet* Account::getMyTweet() {
+    if (this->getIsCurrentGuest() == true) {
+        return this->myTweet;
+    }
+}
+
+
+/**
+ * @brief Setter for the Tweet pointer.
+ */
+void Account::setMyTweet(Tweet* myTweet) {
+    if (this->getIsCurrentGuest() == true) {
+        this->myTweet = myTweet;
+    }
+}
+
+
+/**
+ * @brief Setter for the current guest's month departed from the ranch.
+ */
+void Account::setMonthDeparted(int month) {
+    if (this->getIsCurrentGuest() == true) {
+        this->monthDeparted = month;
+    }
+}
+
+
+/**
+ * @brief Setter for the current guest's day departed from the ranch.
+ */
+void Account::setDayDeparted(int day) {
+    if (this->getIsCurrentGuest() == true) {
+        this->dayDeparted = day;
+    }
+}
+
+
+/**
+ * @brief Setter for the current guest's year departed from the ranch.
+ */
+void Account::setYearDeparted(int year) {
+    if (this->getIsCurrentGuest() == true) {
+        this->yearDeparted = year;
+    }
+}
+
+
+/**
+ * @brief Getter for the past guest's list of projects worked on.
+ */
+std::vector<std::string> Account::getProjectsWorkedOn() {
+    if (this->getIsPastGuest() == true) {
+        return this->projectsWorkedOn;
+    }
+}
+
+
+/**
+ * @brief Adds a project to the past guest's list of projects.
+ */
+void Account::addProject(std::string projectName) {
+    if (this->getIsPastGuest() == true) {
+        this->getProjectsWorkedOn().push_back(projectName);
+    }
+}
+
+
+/**
+ * @brief Adds a project to the past guest's list of projects.
+ */
+void Account::removeProject(std::string projectName) {
+    if (this->getIsPastGuest() == true) {
+        for (int i = 0; i < this->getProjectsWorkedOn().size(); i++) {
+            if (projectName == this->getProjectsWorkedOn()[i]) {
+                this->getProjectsWorkedOn().erase(this->getProjectsWorkedOn().begin() + i);
+                break;
+            }
+        }
+    }
+}
+
+
+/**
+ * @brief Getter for the past guest's month departed from the ranch.
+ */
+int Account::getMonthDeparted() {
+    if (this->getIsPastGuest() == true) {
+        return this->monthDeparted;
+    }
+}
+
+
+/**
+ * @brief Getter for the past guest's day departed from the ranch.
+ */
+int Account::getDayDeparted() {
+    if (this->getIsPastGuest() == true) {
+        return this->dayDeparted;
+    }
+}
+
+
+/**
+ * @brief Getter for the past guest's year departed from the ranch.
+ */
+int Account::getYearDeparted() {
+    if (this->getIsPastGuest() == true) {
+        return this->yearDeparted;
+    }
 }

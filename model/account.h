@@ -2,6 +2,7 @@
 #define ACCOUNT_H
 #include <string>
 #include <vector>
+#include <ctime>
 #include "scrapbook.h"
 #include "chat.h"
 #include "group.h"
@@ -15,13 +16,16 @@ class Group;
  */
 class Account
 {
-    Scrapbook* myScrapbook;
+    bool isCurrentGuest;
+    bool isPastGuest;
+    bool isSystemAdmin;
+    bool isGroupAdmin;
+
+    // Private members specific to a general account
+    Scrapbook* myScrapbook = new Scrapbook();
     std::vector<Chat*> myChats;
-    Tweet* t = new Tweet();
     std::vector<Account*> friendList;
     std::vector<Group*> groups;
-    Blog* userBlog = new Blog();
-    // The follwing "block" is used to store the user's personal information
     std::string username;
     std::string password;
     std::string firstName;
@@ -36,6 +40,22 @@ class Account
     int accountID;
     int groupID;
 
+    // Private members specific to a current guest.
+    Blog* myBlog = new Blog();
+    Tweet* myTweet = new Tweet();
+
+    // Private members specific to a past guest.
+    std::vector<std::string> projectsWorkedOn;
+    int monthDeparted;
+    int dayDeparted;
+    int yearDeparted;
+
+    // Private members specific to a system admin.
+
+
+    // Private members specific to a group admin.
+
+
 
 public:
     Account();
@@ -43,15 +63,27 @@ public:
 
     static int id_cnt;
 
-    // Functions to be used to manipulate the vectors that each account contains.
+    bool getIsCurrentGuest();
+    bool getIsPastGuest();
+    bool getIsSystemAdmin();
+    bool getIsGroupAdmin();
+    void setIsCurrentGuest(bool cGuest);
+    void setIsPastGuest(bool pGuest);
+    void setIsSystemAdmin(bool sAdmin);
+    void setIsGroupAdmin(bool gAdmin);
+
+    void promoteToCurrentGuest();
+    void promoteToPastGuest();
+    void promoteToSystemAdmin();
+    void promoteToGroupAdmin();
+
+    // Functions specific to a general account.
     void addChat(Chat* newChat);
     void removeChat(Chat* badChat);
     void addFriend(Account* newFriend);
     void removeFriend(Account* badFriend);
     void joinGroup(Group* newGroup);
     void leaveGroup(Group* badGroup);
-
-    // Getter and Setters for the Account private members
     std::string getUsername();
     void setUsername(std::string uName);
     std::string getPassword();
@@ -78,11 +110,33 @@ public:
     int getAge();
     void setAge(int age);
     int getPhoneNumber();
+    void setPhoneNumber(int number);
     int getAccountID();
     int getGroupID();
-    void setPhoneNumber(int number);
-    Blog* getUserBlog();
-    Tweet* getUserTweet();
+
+    // Functions specific to a current guest.
+    void departRanch();
+    Blog* getMyBlog();
+    void setMyBlog(Blog* myBlog);
+    Tweet* getMyTweet();
+    void setMyTweet(Tweet* myTweet);
+    void setMonthDeparted(int month);
+    void setDayDeparted(int day);
+    void setYearDeparted(int year);
+
+    // Functions specific to a past guest.
+    std::vector<std::string> getProjectsWorkedOn();
+    void addProject(std::string projectName);
+    void removeProject(std::string projectName);
+    int getMonthDeparted();
+    int getDayDeparted();
+    int getYearDeparted();
+
+    // Functions specific to a system admin.
+
+
+    // Functions specific to a group admin.
+
 };
 
 #endif // ACCOUNT_H
