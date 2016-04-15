@@ -34,19 +34,30 @@ System::~System(){
 bool System::login(std::string username, std::string password) {
     if (usernameExist(username)) {
         // If valid, check password
-        // FLAUT HERE !!! IF USER HAS NOT LOG IN< CURRENTUSER WILL BE NULL
-        if (password == currentUser->getPassword()) {
+        Account* queryAcc = accounts[username];
+        if (password == queryAcc->getPassword()) {
             std::cout << std::endl << "Successful login!" << std::endl;
             // Proceed to the main menu of the program.
+            currentUser = queryAcc;
             this->setLoggedIn(true);
+
+            return true;
         }
-    } else {
-        // If invalid, prompt username again and ask if they want to create a new account
-        std::cout << std::endl << "Invalid credentials" << std::endl << "Please try again or create a new account." << std::endl;
-        // After a short delay,
-        // clear the window, and
-        // return to beginning.
     }
+
+    // If invalid, prompt username again and ask if they want to create a new account
+    /* @From Thanh:
+     * Perhaps we have a "run" method
+     * with the flow of the app,
+     * including this kind of loop,
+     * instead of having a loop explicitly in this method
+     */
+    std::cout << std::endl << "Invalid credentials" << std::endl << "Please try again or create a new account." << std::endl;
+    // After a short delay,
+    // clear the window, and
+    // return to beginning.
+
+    return false;
 }
 
 
