@@ -1,19 +1,17 @@
 #ifndef GROUP_H
 #define GROUP_H
 #include <vector>
-#include "groupadmin.h"
 #include "feed.h"
 #include "tweetpost.h"
 #include "account.h"
 
-class GroupAdmin;
 class Account;
 
 class Group
 {
 
     Feed* groupFeed;
-    GroupAdmin* admin;
+    Account* admin;
 
     std::vector<Account*> groupMembers;
     std::vector<std::string> pastProjects;
@@ -34,8 +32,8 @@ public:
     bool getIsActive();
     void setIsActive(bool active);
     std::vector<Account*> getGroupMembers();
-    GroupAdmin* getAdmin();
-    void changeAdmin(GroupAdmin* newAdmin);
+    Account* getAdmin();
+    void changeAdmin(Account* newAdmin);
     std::string getGroupName();
     void setGroupName(std::string name);
     std::string getCurrentProject();

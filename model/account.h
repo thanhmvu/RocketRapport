@@ -56,7 +56,7 @@ class Account
     System* theSystem;
 
     // Private members specific to a group admin.
-
+    Group* myGroup;
 
 
 public:
@@ -145,7 +145,10 @@ public:
     void setSystem(System* newSystem);
 
     // Functions specific to a group admin.
-
+    Group* getGroup();
+    void addMember(Account* newMember);
+    void removeMember(Account* oldMember);
+    void editGroupName(std::string name);
 };
 
 #endif // ACCOUNT_H

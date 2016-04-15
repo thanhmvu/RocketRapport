@@ -79,7 +79,7 @@ std::vector<Account*> Group::getGroupMembers() {
 /**
  * @brief Getter that returns the admin of this group.
  */
-GroupAdmin* Group::getAdmin() {
+Account* Group::getAdmin() {
     return this->admin;
 }
 
@@ -87,7 +87,7 @@ GroupAdmin* Group::getAdmin() {
 /**
  * @brief Changes the group admin to the given user.
  */
-void Group::changeAdmin(GroupAdmin* newAdmin) {
+void Group::changeAdmin(Account* newAdmin) {
     this->admin = newAdmin;
 }
 

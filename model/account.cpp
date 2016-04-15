@@ -667,3 +667,44 @@ void Account::setSystem(System* newSystem) {
         this->theSystem = newSystem;
     }
 }
+
+// GROUP ADMIN
+
+/**
+ * @brief Getter that returns the group that this group admin is in charge of.
+ */
+Group* Account::getGroup() {
+    if (this->getIsGroupAdmin() == true) {
+        return this->myGroup;
+    }
+}
+
+
+/**
+ * @brief Adds a new account/user to the group that this admin is in charge of.
+ */
+void Account::addMember(Account* newMember) {
+//    if (this->getIsGroupAdmin() == true) {
+//        this->getGroup()->addGroupMember(newMember);
+//    }
+}
+
+
+/**
+ * @brief Removes an account/user from the group that this admin is in charge of.
+ */
+void Account::removeMember(Account* oldMember) {
+//    if (this->getIsGroupAdmin() == true) {
+//        this->getGroup()->removeGroupMember(oldMember);
+//    }
+}
+
+
+/**
+ * @brief Changes the name of the group that this admin is in charge of.
+ */
+void Account::editGroupName(std::string name) {
+//    if (this->getIsGroupAdmin() == true) {
+//        this->getGroup()->setGroupName(name);
+//    }
+}
