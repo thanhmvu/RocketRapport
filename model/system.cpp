@@ -125,7 +125,7 @@ void System::removeGroup(Group* oldGroup) {
  * @brief Adds an account to the System's list of accounts.
  */
 void System::addAccount(Account* newAccount) {
-    this->getAccountList().push_back(newAccount);
+    accountList.push_back(newAccount);
 }
 
 
@@ -160,6 +160,8 @@ void System::setCurrentUser(Account* cUser) {
 
 /**
  * @brief Getter for the account list.
+ *
+ * @return a copy of current account list (with pointers to actual accounts)
  */
 std::vector<Account*> System::getAccountList() {
     return this->accountList;
