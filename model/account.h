@@ -71,7 +71,6 @@ public:
     void setIsPastGuest(bool pGuest);
     void setIsSystemAdmin(bool sAdmin);
     void setIsGroupAdmin(bool gAdmin);
-
     void promoteToCurrentGuest();
     void promoteToPastGuest();
     void promoteToSystemAdmin();
