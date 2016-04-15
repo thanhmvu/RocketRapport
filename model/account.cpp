@@ -418,6 +418,7 @@ void Account::setPhoneNumber(int number) {
     this->phoneNumber = number;
 }
 
+// CURRENT GUEST
 
 /**
  * @brief Sets the depart boolen to true indicating that the user is leaving the ranch.
@@ -506,6 +507,7 @@ void Account::setYearDeparted(int year) {
     }
 }
 
+// PAST GUEST
 
 /**
  * @brief Getter for the past guest's list of projects worked on.
@@ -568,5 +570,100 @@ int Account::getDayDeparted() {
 int Account::getYearDeparted() {
     if (this->getIsPastGuest() == true) {
         return this->yearDeparted;
+    }
+}
+
+// SYSTEM ADMIN
+
+/**
+ * @brief Adds a group to the System's list of groups.
+ */
+void Account::addGroup(Group* newGroup) {
+    if (this->getIsSystemAdmin() == true) {
+        this->getSystem()->addGroup(newGroup);
+    }
+}
+
+
+/**
+ * @brief Removes a group from the System's list of groups.
+ */
+void Account::deleteGroup(Group* oldGroup) {
+    if (this->getIsSystemAdmin() == true) {
+        this->getSystem()->removeGroup(oldGroup);
+    }
+}
+
+
+/**
+ * @brief Adds an account to the System's list of accounts.
+ */
+void Account::addAccount(Account* newAccount, std::string username, std::string firstName, std::string lastName) {
+    if (this->getIsSystemAdmin() == true) {
+        (*newAccount).setFirstName(firstName);
+        (*newAccount).setLastName(lastName);
+        (*newAccount).setUsername(username);
+
+        this->getSystem()->addAccount(newAccount);
+    }
+}
+
+
+/**
+ * @brief Removes an account from the System's list of accounts.
+ */
+void Account::deleteAccount(Account* oldAccount) {
+    if (this->getIsSystemAdmin() == true) {
+        this->getSystem()->removeAccount(oldAccount);
+    }
+}
+
+
+/**
+ * @brief Removes a blog post from the Blog in question.
+ */
+void Account::deleteBlogPost(Blog* targetBlog, BlogPost* badPost) {
+    if (this->getIsSystemAdmin() == true) {
+        (*targetBlog).deletePost(badPost);
+    }
+}
+
+
+/**
+ * @brief Removes a tweet post from the Tweet in question.
+ */
+void Account::deleteTweetPost(Tweet* targetTweet, TweetPost* badPost) {
+    if (this->getIsSystemAdmin() == true) {
+        (*targetTweet).deletePost(badPost);
+    }
+}
+
+
+/**
+ * @brief Removes a scracpbook post from the Scrapbook in question.
+ */
+void Account::deleteScrapbookPost(Scrapbook* targetScrapbook, ScrapbookPost* badPost) {
+    if (this->getIsSystemAdmin() == true) {
+        (*targetScrapbook).deletePost(badPost);
+    }
+}
+
+
+/**
+ * @brief Getter that returns the System object.
+ */
+System* Account::getSystem() {
+    if (this->getIsSystemAdmin() == true) {
+        return this->theSystem;
+    }
+}
+
+
+/**
+ * @brief Setter that sets the System object.
+ */
+void Account::setSystem(System* newSystem) {
+    if (this->getIsSystemAdmin() == true) {
+        this->theSystem = newSystem;
     }
 }

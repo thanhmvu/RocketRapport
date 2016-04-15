@@ -7,6 +7,8 @@
 #include <vector>
 #include <map>
 #include <iostream>
+
+class Group;
 class Account;
 
 /**

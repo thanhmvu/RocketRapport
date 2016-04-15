@@ -8,7 +8,9 @@
 #include "group.h"
 #include "blog.h"
 #include "tweet.h"
+#include "system.h"
 
+class System;
 class Group;
 
 /**
@@ -51,7 +53,7 @@ class Account
     int yearDeparted;
 
     // Private members specific to a system admin.
-
+    System* theSystem;
 
     // Private members specific to a group admin.
 
@@ -132,7 +134,15 @@ public:
     int getYearDeparted();
 
     // Functions specific to a system admin.
-
+    void addGroup(Group* newGroup);
+    void deleteGroup(Group* oldGroup);
+    void addAccount(Account* newAccount, std::string username, std::string firstName, std::string lastName);
+    void deleteAccount(Account* oldAccount);
+    void deleteBlogPost(Blog* targetBlog, BlogPost* badPost);
+    void deleteTweetPost(Tweet* targetTweet, TweetPost* badPost);
+    void deleteScrapbookPost(Scrapbook* targetScrapbook, ScrapbookPost* badPost);
+    System* getSystem();
+    void setSystem(System* newSystem);
 
     // Functions specific to a group admin.
 
