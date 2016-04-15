@@ -10,8 +10,6 @@
 #include <QString>
 #include <stdio.h>
 #include <iostream>
-#include "system.h"
-class System;
 
 class DbManager
 {
@@ -34,6 +32,7 @@ public:
     bool printAllRows(const QString &column);
     bool deleteName(const QVariant &UsrID);
     bool rmAll();
+    //We also need some kind of means of pulling information from the database one row at a time
 
 };
 

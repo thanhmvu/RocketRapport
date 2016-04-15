@@ -4,11 +4,14 @@
  * @brief System::System Constructing a new system should access the Database, creating a
  * new Account for each AccountID found in the database. This means we'll also have to store the
  * usernames in the DB as well.
+ * Constructing a system needs to load all accounts from the Database to the system
+ * Need to create some kind of a method that retrieves each account from the database sequentially and adds their corresponding info IDs
  */
 System::System()
 {
     loggedIn = false;
     std::cout<< "New system created" << std::endl;
+
 }
 
 /**
@@ -20,10 +23,23 @@ System::~System(){
 
     // For more on looping through map, look at the link:
     // http://stackoverflow.com/questions/26281979/c-loop-through-map
+    //Note that 'first' is used at the first value in the pair, and 'second' is the second value in the pair
+    //In our case, the first value is a string, and the second is the actual account value (The map stores a pointer to the account object)
     for(auto acc: accounts) {
-//        dbm->addUser(a->getAccountID(),a->getFirstName(),a->getLastName(),a->getGroupID(),    //
-//                    a->getMyScrapbook()->getScrpbkID(),a->getUserBlog()->getBlogID(),
-//                    a->getUserTweet()->getTweetID());
+        Account* a = acc.second;
+        const QString &x = QString::fromStdString(a->getFirstName());
+        const QString &y = QString::fromStdString(a->getLastName());
+        const QVariant accntD = a->getAccountID();
+        const QVariant frstName(x);
+        const QVariant lstNme(y);
+        const QVariant GrpID = a->getGroupID();
+        const QVariant ScrpBkID = a->getMyScrapbook()->getScrpbkID();
+        const QVariant BlgID = a->getUserBlog()->getBlogID();
+        const QVariant TweetID = a->getUserTweet()->getTweetID();
+        //Phew... now, with that out of the way...
+
+        dbm->addUser(accntD,frstName,lstNme,GrpID,    //
+                    ScrpBkID,BlgID,TweetID);
     }
 }
 
@@ -65,6 +81,7 @@ bool System::login(std::string username, std::string password) {
  * @brief If the user has not created an account they will be allowed to in this function.
  *
  * @return false if username is in use, true otherwise
+ * This method is also used to create a randomly generated ID for each of the User's fields that requires an ID (such as the Blog, Tweet, etc)
  */
 bool System::createAccount(std::string username, std::string password, std::string firstname, std::string lastname) {
     // check if username is in use
@@ -80,7 +97,7 @@ bool System::createAccount(std::string username, std::string password, std::stri
     newAccount->setFirstName(firstname);
     newAccount->setLastName(lastname);
 
-    // add account to the system
+    // add account to the system account map
     accounts[username] = newAccount;
 
     // add account to the database
@@ -88,6 +105,7 @@ bool System::createAccount(std::string username, std::string password, std::stri
     // ...
     // ...
 
+    addAccount(newAccount); //Add account to the database
     return true;
 }
 
@@ -114,10 +132,20 @@ void System::removeGroup(Group* oldGroup) {
 
 
 /**
- * @brief Adds an account to the System's map of accounts.
+ * @brief Adds an account to the Program's database
  */
 void System::addAccount(Account* newAccount) {
-    accounts[newAccount->getUsername()] = newAccount;
+    const QString &x = QString::fromStdString(newAccount->getFirstName());
+    const QString &y = QString::fromStdString(newAccount->getLastName());
+    const QVariant accntD = newAccount->getAccountID();
+    const QVariant frstName(x);
+    const QVariant lstNme(y);
+    const QVariant GrpID = newAccount->getGroupID();
+    const QVariant ScrpBkID = newAccount->getMyScrapbook()->getScrpbkID();
+    const QVariant BlgID = newAccount->getUserBlog()->getBlogID();
+    const QVariant TweetID = newAccount->getUserTweet()->getTweetID();
+    dbm->addUser(accntD,frstName,lstNme,GrpID,
+                ScrpBkID,BlgID,TweetID);
 }
 
 

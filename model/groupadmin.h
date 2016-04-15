@@ -1,5 +1,6 @@
 #ifndef GROUPADMIN_H
 #define GROUPADMIN_H
+#include <string>
 //#include "currentguest.h"
 #include "group.h"
 

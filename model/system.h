@@ -2,28 +2,26 @@
 #define SYSTEM_H
 #include "account.h"
 #include "dbtool.h"
-#include "dbtablerranch.h"
 #include "dbmanager.h"
 #include <string>
 #include <vector>
 #include <map>
 #include <iostream>
-class DBTableRRanch;
-class DbManager;
+class Account;
 
 /**
  * @brief The System class will be used to store information to and retrive information from the database, operating much like the PlayerGameHistory class did in the lab
  * assignments.
  * I'm going to be reusing a lot of functionality from the PGH in this class.
  * The flow will work like this:
- * User starts program ->
+ * User starts program -> Accounts are loaded to the system from database
  */
 class System
 {
     Account* currentUser;
     std::map<std::string, Account*> accounts;
     std::vector<Group*> groups;
-    //DbManager* dbm = new DbManager("./gProjectDB.db"); //Make sure this line works
+    DbManager* dbm = new DbManager("./gProjectDB.db"); //Make sure this line works
     bool gui;
     bool textUi;
     bool loggedIn;
