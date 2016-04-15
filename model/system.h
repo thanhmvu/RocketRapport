@@ -6,6 +6,7 @@
 #include "dbmanager.h"
 #include <string>
 #include <vector>
+#include <map>
 #include <iostream>
 class DBTableRRanch;
 class DbManager;
@@ -20,7 +21,7 @@ class DbManager;
 class System
 {
     Account* currentUser;
-    std::vector<Account*> accountList;
+    std::map<std::string, Account*> accounts;
     std::vector<Group*> groups;
     //DbManager* dbm = new DbManager("./gProjectDB.db"); //Make sure this line works
     bool gui;
@@ -32,7 +33,7 @@ public:
     System();
     ~System();
 
-    void login();
+    bool login(std::string username, std::string password);
     bool createAccount(std::string username, std::string password, std::string firstname, std::string lastname);
 
     void addGroup(Group* newGroup);
@@ -42,12 +43,13 @@ public:
     bool usernameExist(std::string username);
 
     Account* getCurrentUser();
-    std::vector<Account*> getAccountList();
-    void setCurrentUser(Account* cUser);
-    void setAccountList(std::vector<Account*> aList);
     bool getLoggedIn();
-    void setLoggedIn(bool logged);
     std::vector<Group*> getGroups();
+    std::map <std::string, Account*> getAllAccounts();
+
+    void setCurrentUser(Account* cUser);
+    void setLoggedIn(bool logged);
+    void setAccountMap(std::map<std::string, Account*> aMap);
 
 };
 

@@ -9,9 +9,6 @@ System::System()
 {
     loggedIn = false;
     std::cout<< "New system created" << std::endl;
-    for (int i = 0; i < this->getAccountList().size(); i++) {
-
-    }
 }
 
 /**
@@ -20,8 +17,10 @@ System::System()
  */
 System::~System(){
     //For every Account in the System, store Account with associated values into the database
-    for (int i = 0; i < this->getAccountList().size(); i++) {
-        Account *a = accountList.at(i);
+
+    // For more on looping through map, look at the link:
+    // http://stackoverflow.com/questions/26281979/c-loop-through-map
+    for(auto acc: accounts) {
 //        dbm->addUser(a->getAccountID(),a->getFirstName(),a->getLastName(),a->getGroupID(),    //
 //                    a->getMyScrapbook()->getScrpbkID(),a->getUserBlog()->getBlogID(),
 //                    a->getUserTweet()->getTweetID());
@@ -32,37 +31,21 @@ System::~System(){
 /**
  * @brief Will allow the user to log into their account.
  */
-void System::login() {
-    std::string temp;
-    bool validUsername = false;
-
-    while (this->getLoggedIn() == false) {
-        std::cout << "UserName: ";
-        std::cin >> temp;
-
-        for (int i = 0; i < this->getAccountList().size(); i++) {
-            if (temp == (*((this->getAccountList())[i])).getUsername()) {
-                validUsername = true;
-                this->setCurrentUser((this->getAccountList())[i]);
-            }
+bool System::login(std::string username, std::string password) {
+    if (usernameExist(username)) {
+        // If valid, check password
+        // FLAUT HERE !!! IF USER HAS NOT LOG IN< CURRENTUSER WILL BE NULL
+        if (password == currentUser->getPassword()) {
+            std::cout << std::endl << "Successful login!" << std::endl;
+            // Proceed to the main menu of the program.
+            this->setLoggedIn(true);
         }
-
-        if (validUsername) {
-            // If valid, prompt password
-            std::cout << std::endl << "Password: ";
-            std::cin >> temp;
-            if (temp == (*(this->getCurrentUser())).getPassword()) {
-                std::cout << std::endl << "Successful login!" << std::endl;
-                // Proceed to the main menu of the program.
-                this->setLoggedIn(true);
-            }
-        } else {
-            // If invalid, prompt username again and ask if they want to create a new account
-            std::cout << std::endl << "Invalid credentials" << std::endl << "Please try again or create a new account." << std::endl;
-            // After a short delay,
-            // clear the window, and
-            // return to beginning.
-        }
+    } else {
+        // If invalid, prompt username again and ask if they want to create a new account
+        std::cout << std::endl << "Invalid credentials" << std::endl << "Please try again or create a new account." << std::endl;
+        // After a short delay,
+        // clear the window, and
+        // return to beginning.
     }
 }
 
@@ -74,11 +57,9 @@ void System::login() {
  */
 bool System::createAccount(std::string username, std::string password, std::string firstname, std::string lastname) {
     // check if username is in use
-    for (int i = 0; i < accountList.size(); i++) {
-        if (username == accountList[i]->getUsername()) {
-            std::cout << "Username already exists!" << std::endl;
-            return false;
-        }
+    if (usernameExist(username)) {
+        std::cout << "Username already exists!" << std::endl;
+        return false;
     }
 
     // create new account
@@ -89,7 +70,7 @@ bool System::createAccount(std::string username, std::string password, std::stri
     newAccount->setLastName(lastname);
 
     // add account to the system
-    accountList.push_back(newAccount);
+    accounts[username] = newAccount;
 
     // add account to the database
     // NEED TO BE IMPLEMENTED !!
@@ -122,10 +103,10 @@ void System::removeGroup(Group* oldGroup) {
 
 
 /**
- * @brief Adds an account to the System's list of accounts.
+ * @brief Adds an account to the System's map of accounts.
  */
 void System::addAccount(Account* newAccount) {
-    accountList.push_back(newAccount);
+    accounts[newAccount->getUsername()] = newAccount;
 }
 
 
@@ -133,12 +114,7 @@ void System::addAccount(Account* newAccount) {
  * @brief Removes an account from the System's list of accounts.
  */
 void System::removeAccount(Account* oldAccount) {
-    for (int i = 0; i < this->getAccountList().size(); i++) {
-        if (&(*oldAccount) == &(*(this->getAccountList()[i]))) {
-            this->getAccountList().erase(this->getAccountList().begin() + i);
-            break;
-        }
-    }
+    accounts.erase(oldAccount->getUsername());
 }
 
 
@@ -161,17 +137,17 @@ void System::setCurrentUser(Account* cUser) {
 /**
  * @brief Getter for the account list.
  *
- * @return a copy of current account list (with pointers to actual accounts)
+ * @return a copy of current account map (with pointers to actual accounts)
  */
-std::vector<Account*> System::getAccountList() {
-    return this->accountList;
+std::map<std::string, Account*> System::getAllAccounts() {
+    return this->accounts;
 }
 
 /**
  * @brief Setter for the account list.
  */
-void System::setAccountList(std::vector<Account*> aList) {
-    this->accountList = aList;
+void System::setAccountMap(std::map<std::string, Account*> aMap) {
+    this->accounts = aMap;
 }
 
 
@@ -197,13 +173,19 @@ std::vector<Group*> System::getGroups() {
     return this->groups;
 }
 
+/**
+ * @brief check if an account is exists in the system
+ * @param the username of the account
+ * @return true if the account exists
+ */
 bool System::usernameExist(std::string username){
-    for (int i = 0; i < accountList.size(); i++) {
-        if (username == accountList[i]->getUsername()) {
-            return true;
-        }
+    // for more on map::find, look at the link below
+    // http://www.cplusplus.com/reference/map/map/find/
+    if(accounts.find(username) == accounts.end()){
+        return false;
+    }else{
+        return true;
     }
-    return false;
 }
 
 
