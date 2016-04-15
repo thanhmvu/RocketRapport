@@ -31,6 +31,9 @@ public:
     bool find(const QVariant &UsrID, const QVariant &table);
     bool printAllRows(const QString &column);
     bool deleteName(const QVariant &UsrID);
+
+    bool saveAccountInfo();
+
     bool rmAll();
     //We also need some kind of means of pulling information from the database one row at a time
 
