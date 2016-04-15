@@ -27,19 +27,7 @@ System::~System(){
     //In our case, the first value is a string, and the second is the actual account value (The map stores a pointer to the account object)
     for(auto acc: accounts) {
         Account* a = acc.second;
-        const QString &x = QString::fromStdString(a->getFirstName());
-        const QString &y = QString::fromStdString(a->getLastName());
-        const QVariant accntD = a->getAccountID();
-        const QVariant frstName(x);
-        const QVariant lstNme(y);
-        const QVariant GrpID = a->getGroupID();
-        const QVariant ScrpBkID = a->getMyScrapbook()->getScrpbkID();
-        const QVariant BlgID = a->getUserBlog()->getBlogID();
-        const QVariant TweetID = a->getUserTweet()->getTweetID();
-        //Phew... now, with that out of the way...
-
-        dbm->addUser(accntD,frstName,lstNme,GrpID,    //
-                    ScrpBkID,BlgID,TweetID);
+        addAccount(a);     //Pass in a pointer to an account object stored in each pair of the map to the method that stores the accounts in the database
     }
 }
 
@@ -132,7 +120,8 @@ void System::removeGroup(Group* oldGroup) {
 
 
 /**
- * @brief Adds an account to the Program's database
+ * @brief Adds an account to the Program's database.
+ * @param Takes in a pointer to a new account object that we want to store
  */
 void System::addAccount(Account* newAccount) {
     const QString &x = QString::fromStdString(newAccount->getFirstName());
@@ -156,6 +145,9 @@ void System::removeAccount(Account* oldAccount) {
     accounts.erase(oldAccount->getUsername());
 }
 
+void System::printAllUsernames(){
+    dbm->printAllRows("Usernames");
+}
 
 /**
  * @brief Getter for the current user.

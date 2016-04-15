@@ -49,6 +49,9 @@ public:
     void setLoggedIn(bool logged);
     void setAccountMap(std::map<std::string, Account*> aMap);
 
+    //Used for testing purposes
+    void printAllUsernames();
+
 };
 
 #endif // SYSTEM_H
