@@ -36,5 +36,3 @@ HEADERS += \
 
 LIBS += -l sqlite3
 
-DISTFILES += \
-    ../model/tweetpost.o

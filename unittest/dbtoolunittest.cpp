@@ -8,8 +8,8 @@ using namespace std;
 /**
  * @brief TEST This test is used to see if the tool can close a designated
  */
-TEST(dbToolTest, testOpenExistingDataBase){
-    DBTool dtool("testDBInfo","testDB");
-    ASSERT_TRUE(dtool.getAcessState());
-}
+//TEST(dbToolTest, testOpenExistingDataBase){
+//    DBTool dtool("testDBInfo","testDB");
+//    ASSERT_TRUE(dtool.getAcessState());
+//}
 
