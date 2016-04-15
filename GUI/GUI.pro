@@ -13,8 +13,21 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        login.cpp
+        login.cpp\
+    ../model/system.cpp \
+    ../model/account.cpp \
+    ../model/dbmanager.cpp \
+    ../model/blog.cpp \
+    ../model/tweet.cpp \
+    ../model/scrapbook.cpp \
+    mainmenu.cpp
 
-HEADERS  += login.h
+HEADERS  += login.h\
+    ../model/system.h \
+    ../model/account.h \
+    ../model/dbmanager.h \
+    ../model/*.h \
+    mainmenu.h
 
-FORMS    += login.ui
+FORMS    += login.ui \
+    mainmenu.ui
