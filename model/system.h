@@ -53,6 +53,7 @@ public:
     void setLoggedIn(bool logged);
     void setAccountMap(std::map<std::string, Account*> aMap);
 
+    int numberOfAccount();
     //Used for testing purposes
     void printAllUsernames();
 

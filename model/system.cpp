@@ -219,6 +219,11 @@ bool System::usernameExist(std::string username){
     }
 }
 
+
+int System::numberOfAccount(){
+    return accounts.size();
+}
+
 /**
  * @brief System::loadAccounts This method will be called in the constructor.
  * Will be used to load every account, and its associated IDs into the system.
@@ -226,3 +231,4 @@ bool System::usernameExist(std::string username){
 void System::loadAccounts(){
 
 }
+
