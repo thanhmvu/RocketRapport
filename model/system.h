@@ -42,6 +42,8 @@ public:
     void removeAccount(Account* oldAccount);
     bool usernameExist(std::string username);
 
+    void loadAccounts(); //Method called in the constructor that will be used to create a list of accounts accessible to the user.
+
     Account* getCurrentUser();
     bool getLoggedIn();
     std::vector<Group*> getGroups();

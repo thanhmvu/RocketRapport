@@ -223,6 +223,43 @@ bool DbManager::deleteName(const QVariant &UsrID){
 }
 
 /**
+ * @brief DbManager::retrieveIntInfo Supposed to work as a generic method that can retrieve any integer value stored in any table and any field
+ * @param ID
+ * @param location
+ * @param fieldName
+ * @param checkName
+ * @return
+ */
+int DbManager::retrieveIntInfo(QString fieldName, QString tableName, QString checkName, QVariant &ID){
+    QSqlQuery query;
+    QString command = "SELECT " + fieldName + " FROM " + tableName + " WHERE " + checkName + "= :ID";
+    query.prepare(command);
+    query.bindValue(":ID", ID);
+
+    if(query.exec() ){
+        std::cout << "Query Executed Successfully" << std::endl;
+        query.first();
+    }
+    else{
+        qDebug() << "removePerson error: "
+                 << query.lastError();
+    }
+    int i = query.value(0).toInt();
+    return i;
+}
+
+/**
+ * @brief DbManager::retrieveStringInfo
+ * @param field
+ * @return
+ */
+std::string DbManager::retrieveStringInfo(QString location, QVariant &field){
+
+}
+
+
+
+/**
  * @brief DbManager::rmAll Remove all information from the database.
  * @return Boolean signaling that the database has been deleted.
  */
@@ -230,4 +267,12 @@ bool DbManager::rmAll(){
     QSqlQuery query;
     query.prepare("DELETE FROM accounts");
     query.exec();
+}
+
+/**
+ * @brief DbManager::retrieveAllAccounts This method will be used to add every available Account to the given map
+ * @param list
+ */
+void DbManager::retrieveAllAccounts(){
+
 }

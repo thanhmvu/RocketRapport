@@ -10,6 +10,7 @@
 #include <QString>
 #include <stdio.h>
 #include <iostream>
+#include <map>
 
 class DbManager
 {
@@ -31,6 +32,10 @@ public:
     bool find(const QVariant &UsrID, const QVariant &table);
     bool printAllRows(const QString &column);
     bool deleteName(const QVariant &UsrID);
+
+    int retrieveIntInfo(QString fieldName, QString tableName, QString checkName, QVariant &ID);                     //I'm going to be using two different overloaded methods that can obtain information from the database given a query.
+    std::string retrieveStringInfo(QString location, QVariant &field);       //These methods will be used in pulling information from the database.
+    void retrieveAllAccounts();
 
     bool saveAccountInfo();
 
