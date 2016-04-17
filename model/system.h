@@ -10,7 +10,7 @@
 
 class Group;
 class Account;
-
+class DbManager;
 /**
  * @brief The System class will be used to store information to and retrive information from the database, operating much like the PlayerGameHistory class did in the lab
  * assignments.
@@ -22,6 +22,8 @@ class System
 {
     Account* currentUser;
     std::map<std::string, Account*> accounts;
+    //std::map<int, std::__cxx11::string> *usernameList = new std::map<int, std::__cxx11::string>;
+    std::map<int, std::__cxx11::string> *usernameList;
     std::vector<Group*> groups;
     DbManager* dbm = new DbManager("./gProjectDB.db"); //Make sure this line works
     bool gui;
@@ -42,7 +44,7 @@ public:
     void removeAccount(Account* oldAccount);
     bool usernameExist(std::string username);
 
-    void loadAccounts(); //Method called in the constructor that will be used to create a list of accounts accessible to the user.
+    void loadAccounts(std::map<int, std::__cxx11::string> one); //Method called in the constructor that will be used to create a list of accounts accessible to the user.
 
     Account* getCurrentUser();
     bool getLoggedIn();

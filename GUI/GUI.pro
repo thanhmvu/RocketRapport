@@ -3,7 +3,7 @@
 # Project created by QtCreator 2016-04-13T01:16:39
 #
 #-------------------------------------------------
-
+CONFIG += console C++11
 QT       += core gui
 QT       += sql
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets

@@ -4,13 +4,16 @@
  * @brief System::System Constructing a new system should access the Database, creating a
  * new Account for each AccountID found in the database. This means we'll also have to store the
  * usernames in the DB as well.
+ * Creates a new usernameList map object (Private field from this class)
  * Constructing a system needs to load all accounts from the Database to the system
  * Need to create some kind of a method that retrieves each account from the database sequentially and adds their corresponding info IDs
  */
 System::System()
 {
     loggedIn = false;
+    usernameList = new std::map<int, std::__cxx11::string>; //Initializes the userNameList
     std::cout<< "New system created" << std::endl;
+
 
 }
 
@@ -230,8 +233,9 @@ int System::numberOfAccount(){
 /**
  * @brief System::loadAccounts This method will be called in the constructor.
  * Will be used to load every account, and its associated IDs into the system.
+ * @param one Map of usernames passed into the
  */
-void System::loadAccounts(){
-
+void System::loadAccounts(std::map<int, std::__cxx11::string> one){
+    dbm->retrieveAllAccounts(usernameList);                         //Adds all usernames with their corresponding userIDs into the system
 }
 

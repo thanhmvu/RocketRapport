@@ -10,6 +10,7 @@ DbManager::DbManager(const QString &path)
     m_db = QSqlDatabase::addDatabase("QSQLITE");
     m_db.setDatabaseName(path);
 
+
     if (!m_db.open()){
         std::cout << "Error: Connection with database failure" << std::endl;
     }
@@ -272,7 +273,29 @@ bool DbManager::rmAll(){
 /**
  * @brief DbManager::retrieveAllAccounts This method will be used to add every available Account to the given map
  * @param list
+ * Note to self: test this in the qSqlTest classes (The ones for experimentation)
  */
-void DbManager::retrieveAllAccounts(){
+void DbManager::retrieveAllAccounts(std::map<int, std::__cxx11::string> *one){
+    QSqlQuery query;
+    query.prepare("SELECT * FROM accounts");        //Choose all elements from the table
+    query.exec();
+    if( query.first() ){
 
+        QString name1 = query.value(1).toString();
+        std::pair<int, std::string> insert0 = {query.value(0).toInt(),name1.toStdString()};
+        //std::cout << insert0.first << " " << insert0.second << std::endl;
+        one->insert(insert0);
+        while(query.next() ){
+            qDebug() << "Found another row";
+            QString name = query.value(1).toString();
+            std::pair<int, std::string> insert1 = {query.value(0).toInt(),name.toStdString()};
+            //std::cout << insert1.first << " " << insert1.second << std::endl;
+            one->insert(insert1);
+        }
+        std::cout << "All rows of table exhausted " << std::endl;
+
+    }
+    else{
+        qDebug() << "No first row found";
+    }
 }
