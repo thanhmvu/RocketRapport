@@ -34,6 +34,8 @@ System::~System(){
 
 /**
  * @brief Will allow the user to log into their account.
+ * @return false if username does not exist
+ * or password is incorect, true if both are correct.
  */
 bool System::login(std::string username, std::string password) {
     if (usernameExist(username)) {
@@ -50,6 +52,7 @@ bool System::login(std::string username, std::string password) {
     }
 
     // If invalid, prompt username again and ask if they want to create a new account
+
     /* @From Thanh:
      * Perhaps we have a "run" method
      * with the flow of the app,

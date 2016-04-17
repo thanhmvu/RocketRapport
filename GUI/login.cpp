@@ -6,7 +6,7 @@ Login::Login(QWidget *parent) :
     ui(new Ui::Login)
 {
     ui->setupUi(this);
-//    main_system = new System();
+    main_system = new System();
 }
 
 Login::~Login()
@@ -24,7 +24,7 @@ void Login::on_pushButton_signin_clicked()
     bool accountCreated = main_system->createAccount(username,password,firstname,lastname);
 
     if(accountCreated){
-        // sign in successful, proceed to menu screen
+        // sign in successfully, proceed to menu screen
         openMainScreen();
     }else{
         // username already exists.
@@ -35,4 +35,22 @@ void Login::on_pushButton_signin_clicked()
 
 void Login::openMainScreen(){
 
+}
+
+void Login::on_pushButton_login_clicked()
+{
+    std::string username = ui->lineEdit_login_user->text().toStdString();
+    std::string password = ui->lineEdit_login_pw->text().toStdString();
+
+    bool accountLoggedIn = main_system->login(username,password);
+
+    if(accountLoggedIn){
+        // log in successfully, proceed to menu screen
+        openMainScreen();
+    }else{
+        // no username found.
+        // show warning message and prompt for another username.
+        ui->lineEdit_login_user->setText("WARNING: Username or Password is incorrect");
+        ui->lineEdit_login_pw->setText("WARNING: Try again or create new account");
+    }
 }
