@@ -9,10 +9,6 @@ SOURCES += main.cpp \
     dbtable.cpp \
     dbtool.cpp \
     scrapbook.cpp \
-    pastguest.cpp \
-    currentguest.cpp \
-    groupadmin.cpp \
-    systemadmin.cpp \
     group.cpp \
     feed.cpp \
     chat.cpp \
@@ -33,10 +29,6 @@ HEADERS += \
     dbtable.h \
     dbtool.h \
     scrapbook.h \
-    pastguest.h \
-    currentguest.h \
-    groupadmin.h \
-    systemadmin.h \
     group.h \
     feed.h \
     chat.h \
