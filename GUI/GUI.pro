@@ -20,17 +20,32 @@ SOURCES += main.cpp\
     ../model/blog.cpp \
     ../model/tweet.cpp \
     ../model/scrapbook.cpp \
-    mainmenu.cpp
+    mainmenu.cpp \
+    profilegui.cpp \
+    bloggui.cpp \
+    tweetgui.cpp \
+    chatgui.cpp \
+    scrapbookgui.cpp
 
 HEADERS  += login.h\
     ../model/system.h \
     ../model/account.h \
     ../model/dbmanager.h \
     ../model/*.h \
-    mainmenu.h
+    mainmenu.h \
+    profilegui.h \
+    bloggui.h \
+    tweetgui.h \
+    chatgui.h \
+    scrapbookgui.h
 
 FORMS    += login.ui \
-    mainmenu.ui
+    mainmenu.ui \
+    profilegui.ui \
+    bloggui.ui \
+    tweetgui.ui \
+    chatgui.ui \
+    scrapbookgui.ui
 
 RESOURCES += \
     images.qrc

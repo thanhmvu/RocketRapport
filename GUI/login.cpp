@@ -6,12 +6,30 @@ Login::Login(QWidget *parent) :
     ui(new Ui::Login)
 {
     ui->setupUi(this);
-    main_system = new System();
+//    main_system = new System();
+//    main_menu = new MainMenu();
 }
+
+//Login::Login(QWidget *parent = 0, System * sys, MainMenu * mm):
+//    QWidget(parent),
+//    ui(new Ui::Login)
+//{
+//    ui->setupUi(this);
+//    main_system = sys;
+//    main_menu = mm;
+//}
 
 Login::~Login()
 {
     delete ui;
+}
+
+void Login::setMainSystem(System * sys){
+    main_system = sys;
+}
+
+void Login::setMainMenu(MainMenu * mm){
+    main_menu = mm;
 }
 
 void Login::on_pushButton_signin_clicked()
@@ -34,7 +52,7 @@ void Login::on_pushButton_signin_clicked()
 }
 
 void Login::openMainScreen(){
-
+    main_menu->show();
 }
 
 void Login::on_pushButton_login_clicked()
