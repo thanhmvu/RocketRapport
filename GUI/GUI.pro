@@ -31,3 +31,6 @@ HEADERS  += login.h\
 
 FORMS    += login.ui \
     mainmenu.ui
+
+RESOURCES += \
+    images.qrc

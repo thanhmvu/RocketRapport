@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>rocketicon.png</file>
+        <file>rocketicon_300x166.png</file>
+    </qresource>
+</RCC>
