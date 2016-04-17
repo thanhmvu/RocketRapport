@@ -12,3 +12,13 @@ ProfileGUI::~ProfileGUI()
 {
     delete ui;
 }
+
+void ProfileGUI::setMainMenu(MainMenu* mm){
+    main_menu = mm;
+}
+
+void ProfileGUI::on_pushButton_back_to_menu_clicked()
+{
+    main_menu->show();
+    this->close();
+}
