@@ -44,7 +44,7 @@ public:
     void removeAccount(Account* oldAccount);
     bool usernameExist(std::string username);
 
-    void loadAccounts(std::map<int, std::__cxx11::string> one); //Method called in the constructor that will be used to create a list of accounts accessible to the user.
+    void loadAccounts(std::map<int, std::__cxx11::string> *one); //Method called in the constructor that will be used to create a list of accounts accessible to the user.
 
     Account* getCurrentUser();
     bool getLoggedIn();

@@ -11,10 +11,9 @@
 System::System()
 {
     loggedIn = false;
-    usernameList = new std::map<int, std::__cxx11::string>; //Initializes the userNameList
+    usernameList = new std::map<int, std::__cxx11::string>; //Initializes the userNameList pointer
     std::cout<< "New system created" << std::endl;
-
-
+    loadAccounts(usernameList);
 }
 
 /**
@@ -139,8 +138,13 @@ void System::addAccount(Account* newAccount) {
     const QVariant ScrpBkID = newAccount->getMyScrapbook()->getScrpbkID();
     const QVariant BlgID = newAccount->getMyBlog()->getBlogID();
     const QVariant TweetID = newAccount->getMyTweet()->getTweetID();
+    const QString &a = QString::fromStdString(newAccount->getUsername() );
+    const QString &b = QString::fromStdString(newAccount->getPassword() );
+    const QVariant usrName(a);
+    const QVariant passWord(b);
     dbm->addUser(accntD,frstName,lstNme,GrpID,
-                ScrpBkID,BlgID,TweetID);
+                ScrpBkID,BlgID,TweetID,usrName,
+                 passWord);
 }
 
 
@@ -235,7 +239,7 @@ int System::numberOfAccount(){
  * Will be used to load every account, and its associated IDs into the system.
  * @param one Map of usernames passed into the
  */
-void System::loadAccounts(std::map<int, std::__cxx11::string> one){
-    dbm->retrieveAllAccounts(usernameList);                         //Adds all usernames with their corresponding userIDs into the system
+void System::loadAccounts(std::map<int, std::__cxx11::string> *one){
+    dbm->retrieveAllAccounts(one);                         //Adds all usernames with their corresponding userIDs into the system
 }
 

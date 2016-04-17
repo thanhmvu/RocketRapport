@@ -7,9 +7,7 @@
  */
 TEST(SystemTest, testAddUser){
     System *one = new System();
-    Account Harvey("hSwizzle79");
-    one->addAccount(&Harvey);
-    one->printAllUsernames();
+    one->createAccount("hSwizzle79","Oblivion0722&","Jefferey","Pfaffmann");
 }
 
 
