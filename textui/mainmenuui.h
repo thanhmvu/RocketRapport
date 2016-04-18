@@ -6,6 +6,9 @@ class MainMenuUI : public ScreenUI
 {
 public:
     MainMenuUI();
+
+    void displayScreen();
+    void runScreen();
 };
 
 #endif // MAINMENUUI_H

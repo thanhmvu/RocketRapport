@@ -4,3 +4,11 @@ MainMenuUI::MainMenuUI()
 {
 
 }
+
+void MainMenuUI::displayScreen() {
+
+}
+
+void MainMenuUI::runScreen() {
+
+}

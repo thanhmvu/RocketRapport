@@ -4,3 +4,11 @@ ChoiceUI::ChoiceUI()
 {
 
 }
+
+void ChoiceUI::displayScreen() {
+
+}
+
+void ChoiceUI::runScreen() {
+
+}

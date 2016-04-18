@@ -6,6 +6,9 @@ class ScrapbookUI : public ScreenUI
 {
 public:
     ScrapbookUI();
+
+    void displayScreen();
+    void runScreen();
 };
 
 #endif // SCRAPBOOKUI_H

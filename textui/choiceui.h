@@ -6,6 +6,9 @@ class ChoiceUI : public ScreenUI
 {
 public:
     ChoiceUI();
+
+    void displayScreen();
+    void runScreen();
 };
 
 #endif // CHOICEUI_H

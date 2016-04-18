@@ -6,6 +6,9 @@ class BlogUI : public ScreenUI
 {
 public:
     BlogUI();
+
+    void displayScreen();
+    void runScreen();
 };
 
 #endif // BLOGUI_H

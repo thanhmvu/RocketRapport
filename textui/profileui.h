@@ -6,6 +6,9 @@ class ProfileUI : public ScreenUI
 {
 public:
     ProfileUI();
+
+    void displayScreen();
+    void runScreen();
 };
 
 #endif // PROFILEUI_H

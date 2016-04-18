@@ -6,6 +6,9 @@ class LoginUI : public ScreenUI
 {
 public:
     LoginUI();
+
+    void displayScreen();
+    void runScreen();
 };
 
 #endif // LOGINUI_H

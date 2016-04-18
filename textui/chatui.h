@@ -6,6 +6,9 @@ class ChatUI : public ScreenUI
 {
 public:
     ChatUI();
+
+    void displayScreen();
+    void runScreen();
 };
 
 #endif // CHATUI_H
