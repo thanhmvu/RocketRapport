@@ -21,7 +21,7 @@ DbManager::DbManager(const QString &path)
 
 /**
  * @brief DbManager::addUser Method used to add user objects with associated object IDs to
- * @param AcntID       ID number used to associate a User object with a name and a series of other ID's
+ * @param AcntID   ID number used to associate a User object with a name and a series of other ID's
  * @param FrstName
  * @param LstName
  * @param GrpID
@@ -153,6 +153,7 @@ bool DbManager::addMessage(const QVariant &ChatID, const QVariant &MessageID, co
  * @param name  Name of the new created column
  * @param type  Type of data stored in the new column
  * @return  Returns true if we're able to add a new column
+ * THIS METHOD SHOULD NOT BE USED
  */
 bool DbManager::addColumn(const QString name, const QString type){
     QSqlQuery query;

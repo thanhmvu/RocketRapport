@@ -29,6 +29,8 @@ TEST(DbManagerTest, testStringRetrieve){
     DbManager *test1 = new DbManager("./testDb.db");
 }
 
+TEST(DbManagerTest, )
+
 TEST(DbManagerTest, testRemoveAllMethod){
     DbManager *test1 = new DbManager("./testDb.db");
     test1->printAllRows("FirstName");
