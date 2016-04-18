@@ -1,6 +1,6 @@
 #ifndef TWEETUI_H
 #define TWEETUI_H
-
+#include "screenui.h"
 
 class TweetUI : public ScreenUI
 {

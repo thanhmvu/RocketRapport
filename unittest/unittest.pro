@@ -16,7 +16,8 @@ SOURCES += main.cpp \
     ../model/account.cpp\
     ../model/scrapbook.cpp\
     ../model/tweet.cpp\
-    ../model/blog.cpp
+    ../model/blog.cpp \
+    dbmanagertest.cpp
 
 INCLUDEPATH += googletest                       \
                googletest/src                   \

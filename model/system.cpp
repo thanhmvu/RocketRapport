@@ -99,6 +99,7 @@ bool System::createAccount(std::string username, std::string password, std::stri
     // ...
 
     addAccount(newAccount); //Add account to the database
+    std::cout<< "New Account Created" << std::endl;
     return true;
 }
 

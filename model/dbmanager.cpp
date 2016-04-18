@@ -32,7 +32,8 @@ DbManager::DbManager(const QString &path)
  */
 bool DbManager::addUser(const QVariant &AcntID, const QVariant &FrstName,
                         const QVariant &LstName, const QVariant &GrpID, const
-                        QVariant &ScrpBkID, const QVariant &BlogID, const QVariant &TweetID, const QVariant &UserName, const QVariant &passWord){
+                        QVariant &ScrpBkID, const QVariant &BlogID, const QVariant &TweetID,
+                        const QVariant &UserName, const QVariant &passWord){
 
 
     bool success = false;
