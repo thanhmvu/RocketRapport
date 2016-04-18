@@ -28,7 +28,6 @@ void BlogGUI::setMainMenu(MainMenu* mm){
 }
 
 void BlogGUI::init(){
-    this->setWindowTitle("=== Rocket Rapport Blog ===");
     ui->textEdit_newPost->setVisible(false);
     ui->pushButton_savePost->setVisible(false);
     ui->pushButton_cancel->setVisible(false);

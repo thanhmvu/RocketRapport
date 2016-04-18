@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Blog</string>
   </property>
   <widget class="QPushButton" name="pushButton_back_to_menu">
    <property name="geometry">
@@ -63,7 +63,7 @@
     <string>Cancel</string>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>12</x>
@@ -89,7 +89,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>128</x>
@@ -136,7 +136,7 @@ p, li { white-space: pre-wrap; }
          <x>0</x>
          <y>0</y>
          <width>441</width>
-         <height>212</height>
+         <height>170</height>
         </rect>
        </property>
       </widget>
@@ -144,13 +144,13 @@ p, li { white-space: pre-wrap; }
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>10</x>
      <y>295</y>
      <width>110</width>
-     <height>51</height>
+     <height>62</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -194,15 +194,9 @@ p, li { white-space: pre-wrap; }
     </item>
    </layout>
   </widget>
-  <zorder>label</zorder>
-  <zorder>scrollArea</zorder>
-  <zorder>frame</zorder>
-  <zorder>textEdit_newPost</zorder>
-  <zorder>pushButton_savePost</zorder>
-  <zorder></zorder>
-  <zorder>pushButton_savePost</zorder>
-  <zorder>pushButton_back_to_menu</zorder>
-  <zorder>pushButton_cancel</zorder>
+  <zorder>layoutWidget</zorder>
+  <zorder>layoutWidget</zorder>
+  <zorder>layoutWidget</zorder>
   <zorder>pushButton_back_to_menu</zorder>
   <zorder>pushButton_cancel</zorder>
  </widget>
