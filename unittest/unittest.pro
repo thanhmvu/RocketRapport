@@ -17,7 +17,9 @@ SOURCES += main.cpp \
     ../model/scrapbook.cpp\
     ../model/tweet.cpp\
     ../model/blog.cpp \
-    dbmanagertest.cpp
+    ../model/chat.cpp \
+    dbmanagertest.cpp \
+    accounttest.cpp
 
 INCLUDEPATH += googletest                       \
                googletest/src                   \
@@ -48,6 +50,7 @@ HEADERS += \
     ../model/account.h\
     ../model/scrapbook.h\
     ../model/tweet.h\
-    ../model/blog.h
+    ../model/blog.h\
+    ../model/chat.h
 
 

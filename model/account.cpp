@@ -7,7 +7,7 @@ Account::Account()
     this->accountID = id_cnt;
     id_cnt++;
 
-    isCurrentGuest = false;
+    isCurrentGuest = true;
     isPastGuest = false;
     isSystemAdmin = false;
     isGroupAdmin = false;
@@ -16,6 +16,11 @@ Account::Account()
 Account::Account(std::string usrName){
     this->accountID = id_cnt;
     id_cnt++;
+
+    isCurrentGuest = true;
+    isPastGuest = false;
+    isSystemAdmin = false;
+    isGroupAdmin = false;
 
     username = usrName;
 }
