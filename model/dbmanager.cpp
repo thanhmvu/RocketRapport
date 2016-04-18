@@ -34,13 +34,12 @@ bool DbManager::addUser(const QVariant &AcntID, const QVariant &FrstName,
                         const QVariant &LstName, const QVariant &GrpID, const
                         QVariant &ScrpBkID, const QVariant &BlogID, const QVariant &TweetID,
                         const QVariant &UserName, const QVariant &passWord){
-
-
     bool success = false;
-    if(!find(AcntID, "accounts")){
+    QSqlQuery query(m_db); //Prepares a new QSqlQuery
 
-        QSqlQuery query; //Prepares a new QSqlQuery
-        query.prepare("INSERT INTO accounts VALUES (:AcntID, :FrstName, :LstName, :GrpID, :ScrpBkID, :BlogID, :TweetID, :UserName, :PassWord)");
+    if(!find(AcntID, "accounts") ){
+        std::cout << "Value not found" << std::endl;
+        query.prepare("INSERT INTO accounts VALUES ( (:AcntID),(:FrstName),(:LstName),(:GrpID),(:ScrpBkID),(:BlogID),(:TweetID),(:UserName),(:PassWord) )");
         query.bindValue(":AcntID", AcntID);
         query.bindValue(":FrstName", FrstName);
         query.bindValue(":LstName", LstName);
@@ -50,6 +49,8 @@ bool DbManager::addUser(const QVariant &AcntID, const QVariant &FrstName,
         query.bindValue(":TweetID", TweetID);
         query.bindValue(":UserName",UserName);
         query.bindValue(":PassWord",passWord);
+        qDebug() << query.boundValue(0) << query.boundValue(1) << query.boundValue(2) << query.boundValue(3) << query.boundValue(4) <<
+                            query.boundValue(5) << query.boundValue(6) << query.boundValue(7) << query.boundValue(8);
 
         if(query.exec()){
             success = true;
@@ -63,6 +64,7 @@ bool DbManager::addUser(const QVariant &AcntID, const QVariant &FrstName,
         std::cout << "Element already contained in database" << std::endl;
         return success;
     }
+    return success;
 }
 
 /**
@@ -228,13 +230,13 @@ bool DbManager::deleteName(const QVariant &UsrID){
 
 /**
  * @brief DbManager::retrieveIntInfo Supposed to work as a generic method that can retrieve any integer value stored in any table and any field
- * @param ID
+ * @param ID    The value we use to find an associated integer value in the given table
  * @param location
  * @param fieldName
  * @param checkName
  * @return
  */
-int DbManager::retrieveIntInfo(QString fieldName, QString tableName, QString checkName, QVariant &ID){
+int DbManager::retrieveIntInfo(const QString &fieldName, const QString &tableName, const QString &checkName, const QVariant &ID){
     QSqlQuery query;
     QString command = "SELECT " + fieldName + " FROM " + tableName + " WHERE " + checkName + "= :ID";
     query.prepare(command);
