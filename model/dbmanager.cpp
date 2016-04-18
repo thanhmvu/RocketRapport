@@ -278,7 +278,7 @@ bool DbManager::rmAll(){
  * @param list
  * Note to self: test this in the qSqlTest classes (The ones for experimentation)
  */
-void DbManager::retrieveAllAccounts(std::map<int, std::__cxx11::string> *one){
+void DbManager::retrieveAllAccounts(std::map<int, std::string> *one){
     QSqlQuery query;
     query.prepare("SELECT * FROM accounts");        //Choose all elements from the table
     query.exec();

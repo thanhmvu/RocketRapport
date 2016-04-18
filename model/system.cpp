@@ -11,7 +11,7 @@
 System::System()
 {
     loggedIn = false;
-    usernameList = new std::map<int, std::__cxx11::string>; //Initializes the userNameList pointer
+    usernameList = new std::map<int, std::string>; //Initializes the userNameList pointer
     std::cout<< "New system created" << std::endl;
     loadAccounts(usernameList);
 }
@@ -240,7 +240,7 @@ int System::numberOfAccount(){
  * Will be used to load every account, and its associated IDs into the system.
  * @param one Map of usernames passed into the
  */
-void System::loadAccounts(std::map<int, std::__cxx11::string> *one){
+void System::loadAccounts(std::map<int, std::string> *one){
     dbm->retrieveAllAccounts(one);                         //Adds all usernames with their corresponding userIDs into the system
 }
 

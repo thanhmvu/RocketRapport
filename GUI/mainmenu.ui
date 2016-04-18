@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>190</x>
@@ -31,13 +31,6 @@
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="pushButton_chat">
-      <property name="text">
-       <string>Chat</string>
-      </property>
-     </widget>
-    </item>
-    <item>
      <widget class="QPushButton" name="pushButton_blog">
       <property name="text">
        <string>My Blog</string>
@@ -48,6 +41,13 @@
      <widget class="QPushButton" name="pushButton_tweet">
       <property name="text">
        <string>My Tweets</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="pushButton_chat">
+      <property name="text">
+       <string>Chat</string>
       </property>
      </widget>
     </item>
