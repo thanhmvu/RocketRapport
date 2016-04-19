@@ -6,9 +6,11 @@
  * @brief TEST This test should be able to store the Accounts into the database, which can be retrieved in another session.
  */
 TEST(SystemTest, testAddUser){
-    System *one = new System();
+    system("pwd");
+    System *one = new System("./testDb.db");
     one->createAccount("hSwizzle79","Oblivion0722&","Jefferey","Pfaffmann");
-    one->printAllUsernames();
+    EXPECT_FALSE(one->createAccount("hSwizzle79","Oblivion0722&","Jefferey","Pfaffmann"));
+    //one->printAllUsernames();
 }
 
 

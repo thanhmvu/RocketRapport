@@ -10,7 +10,7 @@ int System::id_cnt = 0;
  * Constructing a system needs to load all accounts from the Database to the system
  * Need to create some kind of a method that retrieves each account from the database sequentially and adds their corresponding info IDs
  */
-System::System()
+System::System(const QString &path)
 {
     id = id_cnt;
     id_cnt++;
@@ -19,6 +19,7 @@ System::System()
     usernameList = new std::map<int, std::string>; //Initializes the userNameList pointer
     std::cout<< "New system created" << std::endl;
     loadAccounts(usernameList);
+    dbm = new DbManager(path);
 }
 
 /**
@@ -84,11 +85,12 @@ bool System::login(std::string username, std::string password) {
  */
 bool System::createAccount(std::string username, std::string password, std::string firstname, std::string lastname) {
     // check if username is in use
+    bool success = false;
+    std::cout << "Now entering create account method" << std::endl;
     if (usernameExist(username)) {
         std::cout << "Username already exists!" << std::endl;
-        return false;
     }
-
+    else{
     // create new account
     Account* newAccount = new Account;
     newAccount->setUsername(username);
@@ -102,7 +104,9 @@ bool System::createAccount(std::string username, std::string password, std::stri
     // add account to the database
     addAccount(newAccount);
     std::cout<< "New Account Created" << std::endl;
-    return true;
+    success = true;
+    }
+    return success;
 }
 
 
@@ -132,6 +136,7 @@ void System::removeGroup(Group* oldGroup) {
  * @param Takes in a pointer to a new account object that we want to store
  */
 void System::addAccount(Account* newAccount) {
+    std::cout << "Now entering add account method" << std::endl;
     const QString &x = QString::fromStdString(newAccount->getFirstName());
     const QString &y = QString::fromStdString(newAccount->getLastName());
     const QVariant accntD = newAccount->getAccountID();
@@ -148,7 +153,7 @@ void System::addAccount(Account* newAccount) {
     const QVariant BlgID = newAccount->getMyBlog()->getBlogID();
     const QVariant TweetID = newAccount->getMyTweet()->getTweetID();
 
-    dbm->addUser(accntD,frstName,lstNme,/*GrpID*/ 0, //Testing out a default group ID. When created, each account will not belong to a group
+    dbm->addUser(accntD,frstName,lstNme,GrpID, //Testing out a default group ID. When created, each account will not belong to a group
                 ScrpBkID,BlgID,TweetID,usrName,
                  passWord);
 }

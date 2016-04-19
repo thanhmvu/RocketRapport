@@ -28,14 +28,14 @@ private:
     //std::map<int, std::__cxx11::string> *usernameList = new std::map<int, std::__cxx11::string>;
     std::map<int, std::string> *usernameList; //This is the map being used in the database.
     std::vector<Group*> groups;
-    DbManager* dbm = new DbManager("./gProjectDB.db"); //Make sure this line works
+    DbManager* dbm /*= new DbManager("./gProjectDB.db")*/; //Make sure this line works
     bool gui;
     bool textUi;
     bool loggedIn;
 
     void openDatabase();
 public:
-    System();
+    System(const QString &path);
     ~System();
 
     bool login(std::string username, std::string password);

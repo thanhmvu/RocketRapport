@@ -38,6 +38,7 @@ bool DbManager::addUser(const QVariant &AcntID, const QVariant &FrstName,
                         const QVariant &LstName, const QVariant &GrpID, const
                         QVariant &ScrpBkID, const QVariant &BlogID, const QVariant &TweetID,
                         const QVariant &UserName, const QVariant &passWord){
+    std::cout << "Now entering Add User method in DatabaseManager" << std::endl;
     bool success = false;
     QSqlQuery query(m_db); //Prepares a new QSqlQuery
 
@@ -73,7 +74,7 @@ bool DbManager::addUser(const QVariant &AcntID, const QVariant &FrstName,
     }
     else{
         std::cout << "Element already contained in database" << std::endl;
-        return success;
+        success = false;
     }
     return success;
 }

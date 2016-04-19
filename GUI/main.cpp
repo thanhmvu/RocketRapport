@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
 {
     std::cout<< "Start GUI\n";
     QApplication a(argc, argv);
-    System sys;
+    System sys("./gProjectDB.db");
 
     ProfileGUI profileUI;
     BlogGUI blogUI;
