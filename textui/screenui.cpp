@@ -2,7 +2,7 @@
 
 ScreenUI::ScreenUI()
 {
-
+    getmaxyx(stdscr, this->rows, this->cols);
 }
 
 
@@ -35,4 +35,20 @@ void ScreenUI::moveUpMenuIndex() {
  */
 int ScreenUI::getNumOfOptions() {
     return this->numOfOptions;
+}
+
+
+/**
+ * @brief Getter for the number of rows (the y-coor) of the terminal window.
+ */
+int ScreenUI::getRows() {
+    return this->rows;
+}
+
+
+/**
+ * @brief Getter for the number of cols (the x-coor) of the terminal window.
+ */
+int ScreenUI::getCols() {
+    return this->cols;
 }

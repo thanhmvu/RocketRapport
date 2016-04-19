@@ -10,6 +10,8 @@ class ScreenUI
 
     int menuIndex;
     int numOfOptions;
+    int rows;
+    int cols;
 
 public:
     ScreenUI();
@@ -21,6 +23,8 @@ public:
     void moveDownMenuIndex();
     void moveUpMenuIndex();
     int getNumOfOptions();
+    int getRows();
+    int getCols();
 };
 
 #endif // SCREENUI_H
