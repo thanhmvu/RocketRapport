@@ -6,11 +6,6 @@ QT += sql
 SOURCES += main.cpp \
     testscripting.cpp \
     systemunittest.cpp \
-    dbtoolunittest.cpp \
-    ../model/dbtool.cpp \
-    ../model/dbtablerranch.cpp \
-    ../model/dbtable.cpp \
-    dbtabletest.cpp \
     ../model/system.cpp\
     ../model/dbmanager.cpp\
     ../model/account.cpp\
@@ -44,8 +39,6 @@ LIBS += -l sqlite3
 
 HEADERS += \
     ../model/system.h \
-    ../model/dbtool.h \
-    ../model/dbtable.h \
     ../model/dbmanager.h\
     ../model/account.h\
     ../model/scrapbook.h\

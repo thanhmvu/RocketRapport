@@ -6,8 +6,6 @@ SOURCES += main.cpp \
     system.cpp \
     account.cpp \
     post.cpp \
-    dbtable.cpp \
-    dbtool.cpp \
     scrapbook.cpp \
     group.cpp \
     feed.cpp \
@@ -19,15 +17,12 @@ SOURCES += main.cpp \
     blogpost.cpp \
     tweetpost.cpp \
     scrapbookpost.cpp \
-    dbtablerranch.cpp \
     dbmanager.cpp
 
 HEADERS += \
     system.h \
     account.h \
     post.h \
-    dbtable.h \
-    dbtool.h \
     scrapbook.h \
     group.h \
     feed.h \
@@ -39,7 +34,6 @@ HEADERS += \
     blogpost.h \
     tweetpost.h \
     scrapbookpost.h \
-    dbtablerranch.h \
     dbmanager.h
 
 LIBS += -l sqlite3
