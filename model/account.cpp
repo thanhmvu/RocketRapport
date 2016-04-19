@@ -409,12 +409,12 @@ int Account::getAccountID(){
     return accountID;
 }
 
-/**
- * @brief Account::getGroupID Returns the ID number of the group this Account belongs to
- */
-int Account::getGroupID(){
-    return myGroup->getID();
-}
+///**
+// * @brief Account::getGroupID Returns the ID number of the group this Account belongs to
+// */
+//int Account::getGroupID(){
+//    return myGroup->getID();
+//}
 
 /**
  * @brief Setter for the user's phone number.
@@ -675,41 +675,41 @@ void Account::setSystem(System* newSystem) {
 
 // GROUP ADMIN
 
-/**
- * @brief Getter that returns the group that this group admin is in charge of.
- */
-Group* Account::getGroup() {
-    if (this->getIsGroupAdmin() == true) {
-        return this->myGroup;
-    }
-}
-
-
-/**
- * @brief Adds a new account/user to the group that this admin is in charge of.
- */
-void Account::addMember(Account* newMember) {
+///**
+// * @brief Getter that returns the group that this group admin is in charge of.
+// */
+//Group* Account::getGroup() {
 //    if (this->getIsGroupAdmin() == true) {
-//        this->getGroup()->addGroupMember(newMember);
+//        return this->myGroup;
 //    }
-}
+//}
 
 
-/**
- * @brief Removes an account/user from the group that this admin is in charge of.
- */
-void Account::removeMember(Account* oldMember) {
-//    if (this->getIsGroupAdmin() == true) {
-//        this->getGroup()->removeGroupMember(oldMember);
-//    }
-}
+///**
+// * @brief Adds a new account/user to the group that this admin is in charge of.
+// */
+//void Account::addMember(Account* newMember) {
+////    if (this->getIsGroupAdmin() == true) {
+////        this->getGroup()->addGroupMember(newMember);
+////    }
+//}
 
 
-/**
- * @brief Changes the name of the group that this admin is in charge of.
- */
-void Account::editGroupName(std::string name) {
-//    if (this->getIsGroupAdmin() == true) {
-//        this->getGroup()->setGroupName(name);
-//    }
-}
+///**
+// * @brief Removes an account/user from the group that this admin is in charge of.
+// */
+//void Account::removeMember(Account* oldMember) {
+////    if (this->getIsGroupAdmin() == true) {
+////        this->getGroup()->removeGroupMember(oldMember);
+////    }
+//}
+
+
+///**
+// * @brief Changes the name of the group that this admin is in charge of.
+// */
+//void Account::editGroupName(std::string name) {
+////    if (this->getIsGroupAdmin() == true) {
+////        this->getGroup()->setGroupName(name);
+////    }
+//}

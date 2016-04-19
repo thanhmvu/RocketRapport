@@ -43,7 +43,6 @@ private:
     int age;
     int phoneNumber;
     int accountID;
-//    int groupID;
 
     // Private members specific to a current guest.
     Blog* myBlog = new Blog();
@@ -59,7 +58,7 @@ private:
     System* theSystem;
 
     // Private members specific to a group admin.
-    Group* myGroup;
+//    Group* myGroup; // WARNING: there can be multiple groups
 
 
 public:
@@ -114,7 +113,7 @@ public:
     int getPhoneNumber();
     void setPhoneNumber(int number);
     int getAccountID();
-    int getGroupID();
+//    int getGroupID(); // WARNING: there can be multiple groups
 
     // Functions specific to a current guest.
     void departRanch();
@@ -146,10 +145,10 @@ public:
     void setSystem(System* newSystem);
 
     // Functions specific to a group admin.
-    Group* getGroup();
-    void addMember(Account* newMember);
-    void removeMember(Account* oldMember);
-    void editGroupName(std::string name);
+//    Group* getGroup();
+//    void addMember(Account* newMember);
+//    void removeMember(Account* oldMember);
+//    void editGroupName(std::string name);
 };
 
 #endif // ACCOUNT_H
