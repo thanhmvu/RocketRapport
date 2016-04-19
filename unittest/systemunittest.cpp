@@ -10,7 +10,6 @@ TEST(SystemTest, testAddUser){
     System *one = new System("./testDb.db");
     one->createAccount("hSwizzle79","Oblivion0722&","Jefferey","Pfaffmann");
     EXPECT_FALSE(one->createAccount("hSwizzle79","Oblivion0722&","Jefferey","Pfaffmann"));
-    //one->printAllUsernames();
 }
 
 
@@ -34,6 +33,7 @@ TEST(SystemTest, testAddUser){
  * @brief TEST Closing the current program session, destroying the system, and starting a new system should grant the new system access to  the same information
  * This means that an account added in one session should be able to be retrieved in a later session.
  */
-TEST(SystemTest, testRetrieveInfo){
-
+TEST(SystemTest, testRetrieveAccounts){
+    System *one = new System("./testDb.db");
+    EXPECT_TRUE(one->usernameExist("hSwizzle79"));
 }

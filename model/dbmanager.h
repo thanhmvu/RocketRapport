@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <iostream>
 #include <map>
+#include "account.h"
 
 class DbManager
 {

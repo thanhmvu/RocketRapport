@@ -24,8 +24,7 @@ private:
     static int id_cnt;
     int id;
     Account* currentUser;
-    std::map<std::string, Account*> accounts;
-    //std::map<int, std::__cxx11::string> *usernameList = new std::map<int, std::__cxx11::string>;
+    std::map<std::string, Account*> accounts; //Used to associate stored account objects with their corresponding usernames
     std::map<int, std::string> *usernameList; //This is the map being used in the database.
     std::vector<Group*> groups;
     DbManager* dbm /*= new DbManager("./gProjectDB.db")*/; //Make sure this line works
@@ -48,6 +47,7 @@ public:
     bool usernameExist(std::string username);
 
     void loadAccounts(std::map<int, std::string> *one); //Method called in the constructor that will be used to create a list of accounts accessible to the user.
+    void fillAccountsMap();
 
     Account* getCurrentUser();
     bool getLoggedIn();
@@ -59,6 +59,7 @@ public:
     void setAccountMap(std::map<std::string, Account*> aMap);
 
     int numberOfAccount();
+
     //Used for testing purposes
     void printAllUsernames();
 

@@ -159,7 +159,7 @@ void System::addAccount(Account* newAccount) {
 }
 
 
-/**
+/**hSwizzle79
  * @brief Removes an account from the System's list of accounts.
  */
 void System::removeAccount(Account* oldAccount) {
@@ -255,4 +255,9 @@ void System::loadAccounts(std::map<int, std::string> *one){
     dbm->retrieveAllAccounts(one); //Adds all usernames with their corresponding userIDs into the system
     std::cout<<"All accounts are loaded from the database" << std::endl;
 }
+/**
+ * @brief System::fillAccountsMap Iterate through the map of usernames, storing an account pointer at each.
+ */
+void System::fillAccountsMap(){
 
+}

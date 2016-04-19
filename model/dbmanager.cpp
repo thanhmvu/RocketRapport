@@ -306,6 +306,7 @@ bool DbManager::rmAll(){
  * @brief DbManager::retrieveAllAccounts This method will be used to add every available Account to the given map
  * @param list
  * Note to self: test this in the qSqlTest classes (The ones for experimentation)
+ * Refactor this class to work with the accounts map instead of the username list map
  */
 void DbManager::retrieveAllAccounts(std::map<int, std::string> *one){
     QSqlQuery query;
@@ -313,7 +314,7 @@ void DbManager::retrieveAllAccounts(std::map<int, std::string> *one){
     query.exec();
     if( query.first() ){
 
-        QString name1 = query.value(1).toString();
+        QString name1 = query.value(7).toString();
         std::pair<int, std::string> insert0 = {query.value(0).toInt(),name1.toStdString()};
         //std::cout << insert0.first << " " << insert0.second << std::endl;
         one->insert(insert0);
@@ -331,3 +332,4 @@ void DbManager::retrieveAllAccounts(std::map<int, std::string> *one){
         qDebug() << "No first row found";
     }
 }
+
