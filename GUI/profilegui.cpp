@@ -8,6 +8,13 @@ ProfileGUI::ProfileGUI(QWidget *parent) :
     ui->setupUi(this);
 }
 
+ProfileGUI::ProfileGUI(MainMenu * mm) :
+    ui(new Ui::ProfileGUI)
+{
+    ui->setupUi(this);
+    main_menu = mm;
+}
+
 ProfileGUI::~ProfileGUI()
 {
     delete ui;

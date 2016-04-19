@@ -20,6 +20,7 @@ private:
 
 public:
     explicit ProfileGUI(QWidget *parent = 0);
+    ProfileGUI(MainMenu * mm);
     ~ProfileGUI();
     void setMainMenu(MainMenu* mm);
 

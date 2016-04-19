@@ -2,10 +2,13 @@
 #define TWEETGUI_H
 
 #include <QWidget>
+#include "mainmenu.h"
 
 namespace Ui {
 class TweetGUI;
 }
+
+class MainMenu;
 
 class TweetGUI : public QWidget
 {
@@ -13,10 +16,13 @@ class TweetGUI : public QWidget
 
 public:
     explicit TweetGUI(QWidget *parent = 0);
+    TweetGUI(MainMenu* mm);
     ~TweetGUI();
 
 private:
     Ui::TweetGUI *ui;
+    MainMenu* main_menu;
+    void init();
 };
 
 #endif // TWEETGUI_H

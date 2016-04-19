@@ -8,7 +8,19 @@ ChatGUI::ChatGUI(QWidget *parent) :
     ui->setupUi(this);
 }
 
+ChatGUI::ChatGUI(MainMenu * mm) :
+    ui(new Ui::ChatGUI)
+{
+    ui->setupUi(this);
+    main_menu = mm;
+    init();
+}
+
 ChatGUI::~ChatGUI()
 {
     delete ui;
+}
+
+void ChatGUI::init(){
+
 }

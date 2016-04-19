@@ -8,7 +8,19 @@ ScrapbookGUI::ScrapbookGUI(QWidget *parent) :
     ui->setupUi(this);
 }
 
+ScrapbookGUI::ScrapbookGUI(MainMenu * mm) :
+    ui(new Ui::ScrapbookGUI)
+{
+    ui->setupUi(this);
+    main_menu = mm;
+    init();
+}
+
 ScrapbookGUI::~ScrapbookGUI()
 {
     delete ui;
+}
+
+void ScrapbookGUI::init(){
+
 }

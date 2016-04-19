@@ -6,26 +6,24 @@ Login::Login(QWidget *parent) :
     ui(new Ui::Login)
 {
     ui->setupUi(this);
-//    main_system = new System();
-//    main_menu = new MainMenu();
+    init();
 }
 
-//Login::Login(QWidget *parent = 0, System * sys, MainMenu * mm):
-//    QWidget(parent),
-//    ui(new Ui::Login)
-//{
-//    ui->setupUi(this);
-//    main_system = sys;
-//    main_menu = mm;
-//}
+Login::Login(MainMenu * mm):
+    ui(new Ui::Login)
+{
+    ui->setupUi(this);
+    main_menu = mm;
+    init();
+}
 
 Login::~Login()
 {
     delete ui;
 }
 
-void Login::setMainSystem(System * sys){
-    main_system = sys;
+void Login::init(){
+
 }
 
 void Login::setMainMenu(MainMenu * mm){
@@ -40,8 +38,8 @@ void Login::on_pushButton_signin_clicked()
     std::string firstname = ui->lineEdit_firstname->text().toStdString();
     std::string lastname = ui->lineEdit_lastname->text().toStdString();
 
-    bool accountCreated = main_system->createAccount(username,password,firstname,lastname);
-
+    std::cout<< main_menu->getSystem() <<"\n";
+    bool accountCreated = main_menu->getSystem()->createAccount(username,password,firstname,lastname);
     if(accountCreated){
         std::cout<< "Sign in successfully, proceed to menu screen \n";
         openMainScreen();
@@ -63,7 +61,7 @@ void Login::on_pushButton_login_clicked()
     std::string username = ui->lineEdit_login_user->text().toStdString();
     std::string password = ui->lineEdit_login_pw->text().toStdString();
 
-    bool accountLoggedIn = main_system->login(username,password);
+    bool accountLoggedIn = main_menu->getSystem()->login(username,password);
 
     if(accountLoggedIn){
         // log in successfully, proceed to menu screen
