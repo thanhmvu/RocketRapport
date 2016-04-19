@@ -19,9 +19,11 @@ void MainMenuUI::displayScreen() {
     mvprintw(13, 28, "Logout");
     mvprintw(14, 28, "Exit");
 
-    mvprintw(this->getRows()-4, this->getCols()-28, "Enter - Select Option");
-    mvprintw(this->getRows()-3, this->getCols()-28, "Up - Navigate Up Menu");
-    mvprintw(this->getRows()-2, this->getCols()-28, "Down - Navigate Down Menu");
+    mvprintw(this->getRows()-3, this->getCols()-26, "Enter -      Select Option");
+    mvprintw(this->getRows()-2, this->getCols()-26, "Up    -   Navigate Up Menu");
+    mvprintw(this->getRows()-1, this->getCols()-26, "Down  - Navigate Down Menu");
+
+    mvprintw(this->getRows()-1, 0, "@Average Joe's, Inc.");
 
     refresh();
     getch();
