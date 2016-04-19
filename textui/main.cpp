@@ -29,6 +29,10 @@ int main(int argc, char *argv[])
     while (running) {
         switch(mainMenu.screenNumber) {
         case 0: // Login
+            login.displayScreen();
+            login.runScreen();
+            chat.changeScreens(false);
+            clear();
             break;
         case 1: // Main Menu
             mainMenu.displayScreen();
@@ -38,27 +42,32 @@ int main(int argc, char *argv[])
             clear();
             break;
         case 2: // Messaging
-
+            chat.displayScreen();
+            chat.runScreen();
             chat.changeScreens(false);
             clear();
             break;
         case 3: // Profile
-
+            profile.displayScreen();
+            profile.runScreen();
             profile.changeScreens(false);
             clear();
             break;
         case 4: // Blog
-
+            blog.displayScreen();
+            blog.runScreen();
             blog.changeScreens(false);
             clear();
             break;
         case 5: // Tweet
-
+            tweet.displayScreen();
+            tweet.runScreen();
             tweet.changeScreens(false);
             clear();
             break;
         case 6: // Scrapbook
-
+            scrapbook.displayScreen();
+            scrapbook.runScreen();
             scrapbook.changeScreens(false);
             clear();
             break;
