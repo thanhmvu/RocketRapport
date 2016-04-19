@@ -22,11 +22,18 @@ public:
     bool addUser(const QVariant &AcntID, const QVariant &FrstName,const QVariant &LstName,   //This method is already configured to add in Account objects with their associated data fields
                  const QVariant &GrpID,const QVariant &ScrpBkID,const QVariant &BlogID,
                  const QVariant &TweetID, const QVariant &UserName, const QVariant &passWord);
+    bool addProfile (const QVariant &AcntID, const QVariant &Gender, const QVariant &AbtYslf, const QVariant HmAddress,
+                     const QVariant &MstRcntEmplyr, const QVariant age);                     //The profile is the personalized list of a user's information
     bool addGroup(const QVariant &GrpID, const QVariant &GrpAdmnId, bool actStatus,          //I'm going to skip over some of the add to table methods and move to messages, which I know Mike is about to work on
-                  const QVariant GrpName, const QVariant FeedID);
+                  const QVariant &GrpName, const QVariant &FeedID);
+    bool addFeedPost(const QVariant &FeedID, const QVariant &feedPostID, const QVariant &feedPostText);
+    bool addBlogPost(const QVariant &BlogID, const QVariant &BlogPostID, const QVariant &timeDate, const QVariant &test);
     bool addChat(const QVariant &AccountID, const QVariant &ChatID, const QVariant &sender);
     bool addMessage(const QVariant &ChatID,const QVariant &MessageID, const QVariant &DateTime,
                     const QVariant text,const QVariant imageURL,const QVariant receiver);
+
+
+
     bool addColumn(const QString name, const QString type);
     bool find(const QVariant &UsrID, const QVariant &table);
     bool printAllRows(const QString &column);

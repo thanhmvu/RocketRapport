@@ -84,7 +84,7 @@ bool DbManager::addUser(const QVariant &AcntID, const QVariant &FrstName,
  * @return
  */
 bool DbManager::addGroup(const QVariant &GrpID, const QVariant &GrpAdmnId, \
-                         bool actStatus, const QVariant GrpName, const QVariant FeedID){
+                         bool actStatus, const QVariant &GrpName, const QVariant &FeedID){
     bool success = false;
     QSqlQuery query;
     query.prepare("INSERT INTO TABLE groups VALUES(:GrpID, :GrpAdmnId, :actStatus, :GrpName, :FeedID");
