@@ -17,6 +17,7 @@ class ScreenUI
      * 4  -  My Blog
      * 5  -  My Tweets
      * 6  -  My Scrapbook
+     * 7  -  Exit
      *
      */
 
@@ -37,6 +38,7 @@ public:
     void changeScreens(bool change);
 
     int getMenuIndex();
+    void setMenuIndex(int index);
     void moveDownMenuIndex();
     void moveUpMenuIndex();
     int getNumOfOptions();

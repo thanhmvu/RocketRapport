@@ -18,21 +18,55 @@ int main(int argc, char *argv[])
 
     bool running = true;
 
+    LoginUI login;
     MainMenuUI mainMenu;
+    ChatUI chat;
+    ProfileUI profile;
+    BlogUI blog;
+    TweetUI tweet;
+    ScrapbookUI scrapbook;
 
     while (running) {
         switch(mainMenu.screenNumber) {
-        case 0:
+        case 0: // Login
             break;
-        case 1:
+        case 1: // Main Menu
+            mainMenu.displayScreen();
+            mainMenu.runScreen();
+            mainMenu.setMenuIndex(0);
+            mainMenu.changeScreens(false);
+            clear();
             break;
-        case 2:
+        case 2: // Messaging
+
+            chat.changeScreens(false);
+            clear();
+            break;
+        case 3: // Profile
+
+            profile.changeScreens(false);
+            clear();
+            break;
+        case 4: // Blog
+
+            blog.changeScreens(false);
+            clear();
+            break;
+        case 5: // Tweet
+
+            tweet.changeScreens(false);
+            clear();
+            break;
+        case 6: // Scrapbook
+
+            scrapbook.changeScreens(false);
+            clear();
+            break;
+        case 7: // Exit
+            running = false;
             break;
         }
     }
-
-    mainMenu.displayScreen();
-    mainMenu.runScreen();
 
     endwin();
 

@@ -1,13 +1,12 @@
 #include "screenui.h"
 
-int ScreenUI::screenNumber = 0;
+int ScreenUI::screenNumber = 1;
 
 ScreenUI::ScreenUI()
 {
     getmaxyx(stdscr, this->rows, this->cols);
     this->menuIndex = 0;
     this->changeScreen = false;
-    this->screenNumber = 0;
 }
 
 
@@ -24,6 +23,14 @@ void ScreenUI::changeScreens(bool change) {
  */
 int ScreenUI::getMenuIndex() {
     return this->menuIndex;
+}
+
+
+/**
+ * @brief Sets the menu index to the int passed.
+ */
+void ScreenUI::setMenuIndex(int index) {
+    this->menuIndex = index;
 }
 
 

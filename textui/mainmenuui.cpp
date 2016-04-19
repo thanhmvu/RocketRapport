@@ -25,7 +25,7 @@ void MainMenuUI::displayScreen() {
 
     this->setNumOfOptions(7);
 
-    mvprintw(this->getRows()-3, this->getCols()-26, "Enter -      Select Option");
+    mvprintw(this->getRows()-3, this->getCols()-26, "BckSp -      Select Option");
     mvprintw(this->getRows()-2, this->getCols()-26, "Up    -   Navigate Up Menu");
     mvprintw(this->getRows()-1, this->getCols()-26, "Down  - Navigate Down Menu");
 
@@ -62,8 +62,31 @@ void MainMenuUI::runScreen() {
                 mvprintw(8+(this->getMenuIndex()), 27, ">");
             }
             break;
-        case KEY_ENTER:
+        case KEY_BACKSPACE:
             this->changeScreens(true);
+            switch(this->getMenuIndex()) {
+            case 0: // Messaging
+                this->screenNumber = 2;
+                break;
+            case 1: // Profile
+                this->screenNumber = 3;
+                break;
+            case 2: // Blog
+                this->screenNumber = 4;
+                break;
+            case 3: // Tweets
+                this->screenNumber = 5;
+                break;
+            case 4: // Scrapbook
+                this->screenNumber = 6;
+                break;
+            case 5: // Logout
+                this->screenNumber = 0;
+                break;
+            case 6: // Exit
+                this->screenNumber = 7;
+                break;
+            }
             break;
         }
         refresh();
