@@ -26,7 +26,7 @@ private:
     Account* currentUser;
     std::map<std::string, Account*> accounts;
     //std::map<int, std::__cxx11::string> *usernameList = new std::map<int, std::__cxx11::string>;
-    std::map<int, std::string> *usernameList;
+    std::map<int, std::string> *usernameList; //This is the map being used in the database.
     std::vector<Group*> groups;
     DbManager* dbm = new DbManager("./gProjectDB.db"); //Make sure this line works
     bool gui;
