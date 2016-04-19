@@ -8,22 +8,30 @@
 TEST(SystemTest, testAddUser){
     System *one = new System();
     one->createAccount("hSwizzle79","Oblivion0722&","Jefferey","Pfaffmann");
-    //one->printAllUsernames();
+    one->printAllUsernames();
 }
 
 
-TEST(SystemTest, usernameExist) {
-    System sys;
-    Account acc("user1");
-    Account acc2("user2");
+//TEST(SystemTest, usernameExist) {
+//    System sys;
+//    Account acc("user1");
+//    Account acc2("user2");
 
-    EXPECT_EQ(false, sys.usernameExist("user1"));
+//    EXPECT_EQ(false, sys.usernameExist("user1"));
 
-    sys.addAccount(&acc);
-    EXPECT_EQ(true, sys.usernameExist("user1"));
-    EXPECT_EQ(false, sys.usernameExist("user2"));
+//    sys.addAccount(&acc);
+//    EXPECT_EQ(true, sys.usernameExist("user1"));
+//    EXPECT_EQ(false, sys.usernameExist("user2"));
 
-    sys.addAccount(&acc2);
-    EXPECT_EQ(true, sys.usernameExist("user1"));
-    EXPECT_EQ(true, sys.usernameExist("user2"));
+//    sys.addAccount(&acc2);
+//    EXPECT_EQ(true, sys.usernameExist("user1"));
+//    EXPECT_EQ(true, sys.usernameExist("user2"));
+//}
+
+/**
+ * @brief TEST Closing the current program session, destroying the system, and starting a new system should grant the new system access to  the same information
+ * This means that an account added in one session should be able to be retrieved in a later session.
+ */
+TEST(SystemTest, testRetrieveInfo){
+
 }

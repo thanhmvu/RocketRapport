@@ -26,6 +26,7 @@ System::System()
  * Remember that this methods parameters must match those in the DbManager class
  */
 System::~System(){
+    std::cout << "Now Deleting System object" << std::endl;
     //For every Account in the System, store Account with associated values into the database
 
     // For more on looping through map, look at the link:
@@ -147,7 +148,7 @@ void System::addAccount(Account* newAccount) {
     const QVariant BlgID = newAccount->getMyBlog()->getBlogID();
     const QVariant TweetID = newAccount->getMyTweet()->getTweetID();
 
-    dbm->addUser(accntD,frstName,lstNme,GrpID,
+    dbm->addUser(accntD,frstName,lstNme,/*GrpID*/ 0, //Testing out a default group ID. When created, each account will not belong to a group
                 ScrpBkID,BlgID,TweetID,usrName,
                  passWord);
 }
@@ -162,6 +163,7 @@ void System::removeAccount(Account* oldAccount) {
 
 void System::printAllUsernames(){
     dbm->printAllRows("Usernames");
+    std::cout << "Finished Printing All Usernames" << std::endl;
 }
 
 /**
@@ -246,6 +248,6 @@ int System::numberOfAccount(){
  */
 void System::loadAccounts(std::map<int, std::string> *one){
     dbm->retrieveAllAccounts(one); //Adds all usernames with their corresponding userIDs into the system
-    std::cout<<"All accounts are loaded from the database\n";
+    std::cout<<"All accounts are loaded from the database" << std::endl;
 }
 
