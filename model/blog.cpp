@@ -1,8 +1,11 @@
 #include "blog.h"
 
+int Blog::id_cnt = 0;
+
 Blog::Blog()
 {
-
+    blogID = id_cnt;
+    id_cnt++;
 }
 
 

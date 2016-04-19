@@ -1,8 +1,11 @@
 #include "group.h"
 
+int Group::id_cnt = 0;
+
 Group::Group()
 {
-
+    groupID = id_cnt;
+    id_cnt++;
 }
 
 
@@ -137,4 +140,11 @@ void Group::newProject(std::string project) {
  */
 std::vector<std::string> Group::getPastProjects() {
     return this->pastProjects;
+}
+
+/**
+ * @brief Getter that returns the ID of this group.
+ */
+int Group::getID(){
+    return groupID;
 }

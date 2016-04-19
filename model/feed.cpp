@@ -1,8 +1,11 @@
 #include "feed.h"
 
+int Feed::id_cnt = 0;
+
 Feed::Feed()
 {
-
+    feedID = id_cnt;
+    id_cnt++;
 }
 
 

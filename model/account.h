@@ -18,6 +18,9 @@ class Group;
  */
 class Account
 {
+private:
+    static int id_cnt;
+
     bool isCurrentGuest;
     bool isPastGuest;
     bool isSystemAdmin;
@@ -40,7 +43,7 @@ class Account
     int age;
     int phoneNumber;
     int accountID;
-    int groupID;
+//    int groupID;
 
     // Private members specific to a current guest.
     Blog* myBlog = new Blog();
@@ -62,8 +65,6 @@ class Account
 public:
     Account();
     Account(std::string usrName);
-
-    static int id_cnt;
 
     bool getIsCurrentGuest();
     bool getIsPastGuest();

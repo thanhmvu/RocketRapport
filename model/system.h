@@ -20,6 +20,9 @@ class DbManager;
  */
 class System
 {
+private:
+    static int id_cnt;
+    int id;
     Account* currentUser;
     std::map<std::string, Account*> accounts;
     //std::map<int, std::__cxx11::string> *usernameList = new std::map<int, std::__cxx11::string>;

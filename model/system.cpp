@@ -1,5 +1,7 @@
 #include "system.h"
 
+int System::id_cnt = 0;
+
 /**
  * @brief System::System Constructing a new system should access the Database, creating a
  * new Account for each AccountID found in the database. This means we'll also have to store the
@@ -10,6 +12,9 @@
  */
 System::System()
 {
+    id = id_cnt;
+    id_cnt++;
+
     loggedIn = false;
     usernameList = new std::map<int, std::string>; //Initializes the userNameList pointer
     std::cout<< "New system created" << std::endl;
@@ -94,11 +99,7 @@ bool System::createAccount(std::string username, std::string password, std::stri
     accounts[username] = newAccount;
 
     // add account to the database
-    // NEED TO BE IMPLEMENTED !!
-    // ...
-    // ...
-
-    addAccount(newAccount); //Add account to the database
+    addAccount(newAccount);
     std::cout<< "New Account Created" << std::endl;
     return true;
 }
@@ -135,14 +136,17 @@ void System::addAccount(Account* newAccount) {
     const QVariant accntD = newAccount->getAccountID();
     const QVariant frstName(x);
     const QVariant lstNme(y);
-    const QVariant GrpID = newAccount->getGroupID();
-    const QVariant ScrpBkID = newAccount->getMyScrapbook()->getScrpbkID();
-    const QVariant BlgID = newAccount->getMyBlog()->getBlogID();
-    const QVariant TweetID = newAccount->getMyTweet()->getTweetID();
     const QString &a = QString::fromStdString(newAccount->getUsername() );
     const QString &b = QString::fromStdString(newAccount->getPassword() );
     const QVariant usrName(a);
     const QVariant passWord(b);
+
+//    const QVariant GrpID = newAccount->getGroupID();
+    const QVariant GrpID = -1; // default to -1 since new account does't have a group yet.
+    const QVariant ScrpBkID = newAccount->getMyScrapbook()->getScrpbkID();
+    const QVariant BlgID = newAccount->getMyBlog()->getBlogID();
+    const QVariant TweetID = newAccount->getMyTweet()->getTweetID();
+
     dbm->addUser(accntD,frstName,lstNme,GrpID,
                 ScrpBkID,BlgID,TweetID,usrName,
                  passWord);

@@ -4,6 +4,9 @@
 
 class Message
 {
+private:
+    static int id_cnt;
+    int messID;
 public:
     Message();
 };

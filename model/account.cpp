@@ -413,7 +413,7 @@ int Account::getAccountID(){
  * @brief Account::getGroupID Returns the ID number of the group this Account belongs to
  */
 int Account::getGroupID(){
-    return groupID;
+    return myGroup->getID();
 }
 
 /**

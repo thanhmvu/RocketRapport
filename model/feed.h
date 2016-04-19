@@ -6,7 +6,9 @@
 
 class Feed
 {
-
+private:
+    static int id_cnt;
+    int feedID;
     std::vector<TweetPost*> feedPosts;
     std::string feedText;
 

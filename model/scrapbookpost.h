@@ -5,6 +5,9 @@
 
 class ScrapbookPost : public Post
 {
+private:
+    static int id_cnt;
+    int id;
 public:
     ScrapbookPost();
 };

@@ -1,8 +1,11 @@
 #include "scrapbook.h"
 
+int Scrapbook::id_cnt = 0;
+
 Scrapbook::Scrapbook()
 {
-
+    scrpBookID = id_cnt;
+    id_cnt++;
 }
 
 

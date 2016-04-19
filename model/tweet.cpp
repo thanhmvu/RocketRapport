@@ -1,8 +1,11 @@
 #include "tweet.h"
 
+int Tweet::id_cnt = 0;
+
 Tweet::Tweet()
 {
-
+    tweetID = id_cnt;
+    id_cnt ++;
 }
 
 

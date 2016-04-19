@@ -9,7 +9,9 @@ class Account;
 
 class Group
 {
-
+private:
+    static int id_cnt;
+    int groupID;
     Feed* groupFeed;
     Account* admin;
 
@@ -40,6 +42,9 @@ public:
     void setCurrentProject(std::string project);
     void newProject(std::string project);
     std::vector<std::string> getPastProjects();
+
+    int getID();
+
 };
 
 #endif // GROUP_H

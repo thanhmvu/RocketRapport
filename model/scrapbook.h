@@ -5,10 +5,11 @@
 
 class Scrapbook
 {
-
+private:
+    static int id_cnt;
+    int scrpBookID;
     std::vector<ScrapbookPost*> myPosts;
     std::string tweetText;
-    int scrpBookID;
 
 public:
     Scrapbook();

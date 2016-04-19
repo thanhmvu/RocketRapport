@@ -16,10 +16,13 @@ SOURCES += main.cpp\
         login.cpp\
     ../model/system.cpp \
     ../model/account.cpp \
+    ../model/group.cpp \
     ../model/dbmanager.cpp \
     ../model/blog.cpp \
     ../model/tweet.cpp \
     ../model/scrapbook.cpp \
+    ../model/feed.cpp \
+    ../model/post.cpp \
     mainmenu.cpp \
     profilegui.cpp \
     bloggui.cpp \
@@ -28,9 +31,6 @@ SOURCES += main.cpp\
     scrapbookgui.cpp
 
 HEADERS  += login.h\
-    ../model/system.h \
-    ../model/account.h \
-    ../model/dbmanager.h \
     ../model/*.h \
     mainmenu.h \
     profilegui.h \

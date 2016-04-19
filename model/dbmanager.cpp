@@ -1,5 +1,7 @@
 #include "dbmanager.h"
 
+int DbManager::id_cnt =0;
+
 /**
  * @brief DbManager::DbManager Class used to "communicate" between the program and the database.
  * @param path String used to specify where the program will be accessing a database file.
@@ -7,9 +9,11 @@
  */
 DbManager::DbManager(const QString &path)
 {
+    id = id_cnt;
+    id_cnt++;
+
     m_db = QSqlDatabase::addDatabase("QSQLITE");
     m_db.setDatabaseName(path);
-
 
     if (!m_db.open()){
         std::cout << "Error: Connection with database failure" << std::endl;

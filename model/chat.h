@@ -4,6 +4,9 @@
 
 class Chat
 {
+private:
+    static int id_cnt;
+    int chatID;
 public:
     Chat();
 };

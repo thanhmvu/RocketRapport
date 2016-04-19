@@ -14,6 +14,9 @@
 
 class DbManager
 {
+private:
+    static int id_cnt;
+    int id;
     QSqlDatabase m_db;
 public:
     DbManager(const QString& path);

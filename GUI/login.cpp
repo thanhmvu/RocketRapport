@@ -34,6 +34,7 @@ void Login::setMainMenu(MainMenu * mm){
 
 void Login::on_pushButton_signin_clicked()
 {
+    std::cout<< "Clicked signin button\n";
     std::string username = ui->lineEdit_signin_user->text().toStdString();
     std::string password = ui->lineEdit_signin_pw->text().toStdString();
     std::string firstname = ui->lineEdit_firstname->text().toStdString();
@@ -42,11 +43,12 @@ void Login::on_pushButton_signin_clicked()
     bool accountCreated = main_system->createAccount(username,password,firstname,lastname);
 
     if(accountCreated){
-        // sign in successfully, proceed to menu screen
+        std::cout<< "Sign in successfully, proceed to menu screen \n";
         openMainScreen();
     }else{
         // username already exists.
         // show warning message and prompt for another username.
+        std::cout<< "Failed to log \n";
         ui->lineEdit_signin_user->setText("WARNING: Username already exists. Try again!");
     }
 }
@@ -65,10 +67,12 @@ void Login::on_pushButton_login_clicked()
 
     if(accountLoggedIn){
         // log in successfully, proceed to menu screen
+        std::cout<< "Log in successfully, proceed to menu screen \n";
         openMainScreen();
     }else{
         // no username found.
         // show warning message and prompt for another username.
+        std::cout<< "Failed to log \n";
         ui->lineEdit_login_user->setText("WARNING: Username or Password is incorrect");
         ui->lineEdit_login_pw->setText("WARNING: Try again or create new account");
     }

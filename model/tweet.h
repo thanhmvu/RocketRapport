@@ -5,10 +5,11 @@
 
 class Tweet
 {
-
+private:
+    static int id_cnt;
+    int tweetID;
     std::vector<TweetPost*> myPosts;
     std::string tweetText;
-    int tweetID;
 
 public:
     Tweet();

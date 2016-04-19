@@ -5,10 +5,11 @@
 
 class Blog
 {
-
+private:
+    static int id_cnt;
+    int blogID;
     std::vector<BlogPost*> myPosts;
     std::string blogText;
-    int blogID;
 
 public:
     Blog();

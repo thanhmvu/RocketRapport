@@ -9,10 +9,13 @@ SOURCES += main.cpp \
     ../model/system.cpp\
     ../model/dbmanager.cpp\
     ../model/account.cpp\
+    ../model/group.cpp\
     ../model/scrapbook.cpp\
     ../model/tweet.cpp\
     ../model/blog.cpp \
     ../model/chat.cpp \
+    ../model/feed.cpp \
+    ../model/post.cpp \
     dbmanagertest.cpp \
     accounttest.cpp
 
@@ -38,12 +41,13 @@ LIBS += -l sqlite3
 
 
 HEADERS += \
-    ../model/system.h \
-    ../model/dbmanager.h\
-    ../model/account.h\
-    ../model/scrapbook.h\
-    ../model/tweet.h\
-    ../model/blog.h\
-    ../model/chat.h
+#    ../model/system.h \
+#    ../model/dbmanager.h\
+#    ../model/account.h\
+#    ../model/scrapbook.h\
+#    ../model/tweet.h\
+#    ../model/blog.h\
+#    ../model/chat.h \
+    ../model/*.h \
 
 
