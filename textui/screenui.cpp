@@ -1,9 +1,21 @@
 #include "screenui.h"
 
+int ScreenUI::screenNumber = 0;
+
 ScreenUI::ScreenUI()
 {
     getmaxyx(stdscr, this->rows, this->cols);
     this->menuIndex = 0;
+    this->changeScreen = false;
+    this->screenNumber = 0;
+}
+
+
+/**
+ * @brief Sets the changeScreen variable (usually when the user is switching screens).
+ */
+void ScreenUI::changeScreens(bool change) {
+    this->changeScreen = change;
 }
 
 
@@ -39,6 +51,11 @@ int ScreenUI::getNumOfOptions() {
 }
 
 
+void ScreenUI::setNumOfOptions(int options) {
+    this->numOfOptions = options;
+}
+
+
 /**
  * @brief Getter for the number of rows (the y-coor) of the terminal window.
  */
@@ -52,4 +69,12 @@ int ScreenUI::getRows() {
  */
 int ScreenUI::getCols() {
     return this->cols;
+}
+
+
+/**
+ * @brief Getter for the boolean that keeps track of when the user is switching screens.
+ */
+bool ScreenUI::getChangeScreens() {
+    return this->changeScreen;
 }

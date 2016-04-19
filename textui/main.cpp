@@ -1,5 +1,11 @@
 #include <iostream>
+#include "loginui.h"
 #include "mainmenuui.h"
+#include "chatui.h"
+#include "profileui.h"
+#include "blogui.h"
+#include "tweetui.h"
+#include "scrapbookui.h"
 
 using namespace std;
 
@@ -10,38 +16,25 @@ int main(int argc, char *argv[])
     keypad(stdscr, TRUE);
     curs_set(0);
 
+    bool running = true;
+
     MainMenuUI mainMenu;
+
+    while (running) {
+        switch(mainMenu.screenNumber) {
+        case 0:
+            break;
+        case 1:
+            break;
+        case 2:
+            break;
+        }
+    }
+
     mainMenu.displayScreen();
     mainMenu.runScreen();
 
     endwin();
-
-//    std::cout<< "Start GUI\n";
-//    QApplication a(argc, argv);
-//    System sys;
-
-//    ProfileGUI profileUI;
-//    BlogGUI blogUI;
-//    TweetGUI tweetUI;
-//    ChatGUI chatUI;
-//    ScrapbookGUI sbUI;
-//    Login login;
-//    MainMenu mm(&login, &profileUI, &blogUI, &tweetUI, &chatUI, &sbUI);
-
-//    blogUI.setMainMenu(&mm);
-//    profileUI.setMainMenu(&mm);
-//    login.setMainMenu(&mm);
-
-//    login.setMainSystem(&sys);
-
-//    std::cout<< "Screens initiated\n";
-
-//    login.show();
-//    std::cout<< "Called Login screen\n";
-
-
-//    return a.exec();
-
 
     return 0;
 }
