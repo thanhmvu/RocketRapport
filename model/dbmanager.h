@@ -27,14 +27,13 @@ public:
     bool addChat(const QVariant &AccountID, const QVariant &ChatID, const QVariant &sender);
     bool addMessage(const QVariant &ChatID,const QVariant &MessageID, const QVariant &DateTime,
                     const QVariant text,const QVariant imageURL,const QVariant receiver);
-
     bool addColumn(const QString name, const QString type);
     bool find(const QVariant &UsrID, const QVariant &table);
     bool printAllRows(const QString &column);
     bool deleteName(const QVariant &UsrID);
 
     int retrieveIntInfo(const QString &fieldName, const QString &tableName, const QString &checkName, const QVariant &ID);                     //I'm going to be using two different overloaded methods that can obtain information from the database given a query.
-    std::string retrieveStringInfo(QString location, QVariant &field);       //These methods will be used in pulling information from the database.
+    std::string retrieveStringInfo(const QString &fieldName, const QString &tableName, const QString &checkName, const QVariant &ID);       //These methods will be used in pulling information from the database.
     void retrieveAllAccounts(std::map<int,std::string> *one); //Store each username with its associated user ID. Use this information to obtain the other IDs
     //The above method entails that we may need to change the existing map object in the system or create a new Map entirely.
     bool saveAccountInfo();

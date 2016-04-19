@@ -230,12 +230,12 @@ bool DbManager::deleteName(const QVariant &UsrID){
 }
 
 /**
- * @brief DbManager::retrieveIntInfo Supposed to work as a generic method that can retrieve any integer value stored in any table and any field
- * @param ID    The value we use to find an associated integer value in the given table
- * @param location
- * @param fieldName
- * @param checkName
- * @return
+ * @brief DbManager::retrieveIntInfo
+ * @param fieldName Name of the column we want the program to return
+ * @param tableName Name of the table we want to access from the database
+ * @param checkName Name of the field we want to use as a query
+ * @param ID Value we want to use to return another field of information
+ * @return Return one value from any of the 5 available integer fields
  */
 int DbManager::retrieveIntInfo(const QString &fieldName, const QString &tableName, const QString &checkName, const QVariant &ID){
     QSqlQuery query;
@@ -260,8 +260,22 @@ int DbManager::retrieveIntInfo(const QString &fieldName, const QString &tableNam
  * @param field
  * @return
  */
-std::string DbManager::retrieveStringInfo(QString location, QVariant &field){
+std::string DbManager::retrieveStringInfo(const QString &fieldName, const QString &tableName, const QString &checkName, const QVariant &ID){
+    QSqlQuery query;
+    QString command = "SELECT " + fieldName + " FROM " + tableName + " WHERE " + checkName + "= :ID";
+    query.prepare(command);
+    query.bindValue(":ID", ID);
 
+    if(query.exec() ){
+        std::cout << "Query Executed Successfully" << std::endl;
+        query.first();
+    }
+    else{
+        qDebug() << "removePerson error: "
+                 << query.lastError();
+    }
+    QString rString = query.value(0).toString();
+    return rString.toStdString();
 }
 
 
