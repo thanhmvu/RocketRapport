@@ -3,6 +3,7 @@
 ScreenUI::ScreenUI()
 {
     getmaxyx(stdscr, this->rows, this->cols);
+    this->menuIndex = 0;
 }
 
 

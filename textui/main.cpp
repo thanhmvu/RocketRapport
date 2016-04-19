@@ -8,6 +8,7 @@ int main(int argc, char *argv[])
     initscr();
     echo();
     keypad(stdscr, TRUE);
+    curs_set(0);
 
     MainMenuUI mainMenu;
     mainMenu.displayScreen();
