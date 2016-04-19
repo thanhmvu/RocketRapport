@@ -7,6 +7,7 @@
 #include "profilegui.h"
 #include "scrapbookgui.h"
 #include "tweetgui.h"
+#include "login.h"
 
 namespace Ui {
 class MainMenu;
@@ -16,6 +17,7 @@ class ProfileGUI;
 class BlogGUI;
 class ChatGUI;
 class TweetGUI;
+class Login;
 
 class MainMenu : public QWidget
 {
@@ -28,10 +30,12 @@ private:
     TweetGUI * tweet_screen;
     ChatGUI * chat_screen;
     ScrapbookGUI * sb_screen;
+    Login * login_screen;
+
 
 public:
     explicit MainMenu(QWidget *parent = 0);
-    MainMenu(ProfileGUI * profile, BlogGUI * blog, TweetGUI * tweet,
+    MainMenu(Login * login, ProfileGUI * profile, BlogGUI * blog, TweetGUI * tweet,
               ChatGUI * chat, ScrapbookGUI * scrapbook);
     ~MainMenu();
     void init(ProfileGUI * profile, BlogGUI * blog, TweetGUI * tweet,
@@ -43,6 +47,7 @@ private slots:
     void on_pushButton_blog_clicked();
     void on_pushButton_tweet_clicked();
     void on_pushButton_scrapbook_clicked();
+    void on_pushButton_signout_clicked();
 };
 
 #endif // MAINMENU_H

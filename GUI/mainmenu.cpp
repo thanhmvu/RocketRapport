@@ -13,7 +13,7 @@ MainMenu::~MainMenu()
     delete ui;
 }
 
-MainMenu::MainMenu(ProfileGUI * profile, BlogGUI * blog, TweetGUI * tweet,
+MainMenu::MainMenu(Login * login, ProfileGUI * profile, BlogGUI * blog, TweetGUI * tweet,
           ChatGUI * chat, ScrapbookGUI * scrapbook):
     ui(new Ui::MainMenu)
 {
@@ -22,6 +22,7 @@ MainMenu::MainMenu(ProfileGUI * profile, BlogGUI * blog, TweetGUI * tweet,
     tweet_screen = tweet;
     chat_screen = chat;
     sb_screen = scrapbook;
+    login_screen = login;
 
     ui->setupUi(this);
 }
@@ -62,5 +63,11 @@ void MainMenu::on_pushButton_tweet_clicked()
 void MainMenu::on_pushButton_scrapbook_clicked()
 {
     sb_screen->show();
+    this->close();
+}
+
+void MainMenu::on_pushButton_signout_clicked()
+{
+    login_screen->show();
     this->close();
 }

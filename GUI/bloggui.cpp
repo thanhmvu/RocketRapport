@@ -68,7 +68,7 @@ void BlogGUI::on_pushButton_savePost_clicked()
     ui->pushButton_cancel->setVisible(false);
     ui->pushButton_newPost->setVisible(true);
 
-    // TODO: add new post to the system
+    // TODO: add new post to the system and display
 }
 
 void BlogGUI::on_pushButton_back_to_menu_clicked()

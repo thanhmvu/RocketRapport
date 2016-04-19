@@ -19,7 +19,7 @@
      <x>190</x>
      <y>30</y>
      <width>221</width>
-     <height>301</height>
+     <height>331</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -69,6 +69,13 @@
      <widget class="QPushButton" name="pushButton_allgroups">
       <property name="text">
        <string>All groups</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="pushButton_signout">
+      <property name="text">
+       <string>Sign out</string>
       </property>
      </widget>
     </item>

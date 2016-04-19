@@ -241,6 +241,7 @@ int System::numberOfAccount(){
  * @param one Map of usernames passed into the
  */
 void System::loadAccounts(std::map<int, std::string> *one){
-    dbm->retrieveAllAccounts(one);                         //Adds all usernames with their corresponding userIDs into the system
+    dbm->retrieveAllAccounts(one); //Adds all usernames with their corresponding userIDs into the system
+    std::cout<<"All accounts are loaded from the database\n";
 }
 

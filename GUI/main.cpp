@@ -18,17 +18,17 @@ int main(int argc, char *argv[])
     TweetGUI tweetUI;
     ChatGUI chatUI;
     ScrapbookGUI sbUI;
-
-    MainMenu mm(&profileUI, &blogUI, &tweetUI, &chatUI, &sbUI);
+    Login login;
+    MainMenu mm(&login, &profileUI, &blogUI, &tweetUI, &chatUI, &sbUI);
 
     blogUI.setMainMenu(&mm);
     profileUI.setMainMenu(&mm);
+    login.setMainMenu(&mm);
 
-    Login w;
-    w.setMainSystem(&sys);
-    w.setMainMenu(&mm);
+    login.setMainSystem(&sys);
 
-    w.show();
+
+    login.show();
 
     return a.exec();
 }

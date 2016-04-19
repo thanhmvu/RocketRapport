@@ -49,8 +49,15 @@ bool DbManager::addUser(const QVariant &AcntID, const QVariant &FrstName,
         query.bindValue(":TweetID", TweetID);
         query.bindValue(":UserName",UserName);
         query.bindValue(":PassWord",passWord);
-        qDebug() << query.boundValue(0) << query.boundValue(1) << query.boundValue(2) << query.boundValue(3) << query.boundValue(4) <<
-                            query.boundValue(5) << query.boundValue(6) << query.boundValue(7) << query.boundValue(8);
+        qDebug() << "Account ID: "<< query.boundValue(0) << "\n"
+                 << "First name: "<< query.boundValue(1) << "\n"
+                 << "Lasr name: "<< query.boundValue(2) << "\n"
+                 << "Group ID: "<< query.boundValue(3) << "\n"
+                 << "Scrapbook ID: "<< query.boundValue(4) << "\n"
+                 << "Blog ID: "<< query.boundValue(5) << "\n"
+                 << "Tweet ID: "<< query.boundValue(6) << "\n"
+                 << "Username: "<< query.boundValue(7) << "\n"
+                 << "Password: "<< query.boundValue(8) << "\n";
 
         if(query.exec()){
             success = true;
