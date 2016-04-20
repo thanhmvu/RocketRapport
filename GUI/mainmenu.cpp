@@ -38,18 +38,18 @@ Login * MainMenu::getLoginScreen(){
 
 void MainMenu::on_pushButton_profile_clicked()
 {
-    profile_screen->show();
     this->close();
+    profile_screen->show();
 }
 
 void MainMenu::on_pushButton_chat_clicked()
 {
-    chat_screen->show();
     this->close();
+    chat_screen->show();
 }
 
 void MainMenu::on_pushButton_signout_clicked()
 {
-    login_screen->show();
     this->close();
+    login_screen->show();
 }

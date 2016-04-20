@@ -76,6 +76,6 @@ void BlogGUI::on_pushButton_cancel_clicked()
 
 void BlogGUI::on_pushButton_back_to_profile_clicked()
 {
-    profile_screen->show();
     this->close();
+    profile_screen->show();
 }

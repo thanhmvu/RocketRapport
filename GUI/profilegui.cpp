@@ -33,8 +33,8 @@ void ProfileGUI::setMainMenu(MainMenu* mm){
 
 void ProfileGUI::on_pushButton_back_to_menu_clicked()
 {
-    main_menu->show();
     this->close();
+    main_menu->show();
 }
 
 void ProfileGUI::loadProfile(){
@@ -46,14 +46,14 @@ void ProfileGUI::loadProfile(){
 
 void ProfileGUI::on_pushButton_blog_clicked()
 {
-    blog_screen->show();
     this->close();
+    blog_screen->show();
 }
 
 void ProfileGUI::on_pushButton_tweet_clicked()
 {
-    tweet_screen->show();
     this->close();
+    tweet_screen->show();
 }
 
 void ProfileGUI::on_pushButton_scrapbook_clicked()

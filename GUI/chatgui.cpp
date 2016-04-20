@@ -90,8 +90,8 @@ void ChatGUI::updateChatBox(){
 
 void ChatGUI::on_pushButton_main_menu_clicked()
 {
-    main_menu->show();
     this->close();
+    main_menu->show();
 }
 
 void ChatGUI::on_pushButton_send_mess_clicked()

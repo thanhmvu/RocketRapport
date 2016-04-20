@@ -50,8 +50,8 @@ void Login::on_pushButton_signin_clicked()
 }
 
 void Login::openMainScreen(){
-    main_menu->show();
     this->close();
+    main_menu->show();
 }
 
 void Login::on_pushButton_login_clicked()

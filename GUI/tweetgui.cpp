@@ -74,6 +74,6 @@ void TweetGUI::on_pushButton_newPost_2_clicked()
 
 void TweetGUI::on_pushButton_back_to_profile_clicked()
 {
-    profile_screen->show();
     this->close();
+    profile_screen->show();
 }
