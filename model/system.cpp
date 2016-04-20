@@ -55,6 +55,9 @@ bool System::login(std::string username, std::string password) {
         qDebug() << "Valid username found";
         // If valid, check password
         Account *queryAcc = accounts[username]; //Is most likely causing a bad allocation
+        std::cout << "Entered Value: " << password << std::endl;
+        std::cout << "Expected Value: " << queryAcc->getPassword() << std::endl;
+
         if (password == queryAcc->getPassword()) {
             std::cout << std::endl << "Successful login!" << std::endl;
             // Proceed to the main menu of the program.
