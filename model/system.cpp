@@ -6,6 +6,8 @@ int System::id_cnt = 0;
  * @brief System::System Constructing a new system should access the Database, creating a
  * new Account for each AccountID found in the database. This means we'll also have to store the
  * usernames in the DB as well.
+ * @param &path used to specify the path that the system will use to access a database
+ *
  * Creates a new usernameList map object (Private field from this class)
  * Constructing a system needs to load all accounts from the Database to the system
  * Need to create some kind of a method that retrieves each account from the database sequentially and adds their corresponding info IDs
@@ -19,6 +21,7 @@ System::System(const QString &path)
     usernameList = new std::map<int, std::string>; //Initializes the userNameList pointer
     std::cout<< "New system created" << std::endl;
     loadAccounts(usernameList);
+    fillAccountsMap();
     dbm = new DbManager(path);
 }
 
@@ -47,16 +50,18 @@ System::~System(){
  * or password is incorect, true if both are correct.
  */
 bool System::login(std::string username, std::string password) {
+    bool success = false;
     if (usernameExist(username)) {
+        qDebug() << "Valid username found";
         // If valid, check password
-        Account* queryAcc = accounts[username];
+        Account *queryAcc = accounts[username]; //Is most likely causing a bad allocation
         if (password == queryAcc->getPassword()) {
             std::cout << std::endl << "Successful login!" << std::endl;
             // Proceed to the main menu of the program.
             currentUser = queryAcc;
             this->setLoggedIn(true);
 
-            return true;
+            success = true;
         }
     }
 
@@ -68,12 +73,15 @@ bool System::login(std::string username, std::string password) {
      * including this kind of loop,
      * instead of having a loop explicitly in this method
      */
-    std::cout << std::endl << "Invalid credentials" << std::endl << "Please try again or create a new account." << std::endl;
+    else{
+        std::cout << std::endl << "Invalid credentials" << std::endl << "Please try again or create a new account." << std::endl;
     // After a short delay,
     // clear the window, and
     // return to beginning.
 
-    return false;
+
+    }
+    return success;
 }
 
 
@@ -163,11 +171,11 @@ void System::addAccount(Account* newAccount) {
  * @brief Removes an account from the System's list of accounts.
  */
 void System::removeAccount(Account* oldAccount) {
-    accounts.erase(oldAccount->getUsername());
+    accounts.erase(oldAccount->getUsername()); //Must also remove value from the database
 }
 
 void System::printAllUsernames(){
-    dbm->printAllRows("Usernames");
+    dbm->printAllRows("UserName");
     std::cout << "Finished Printing All Usernames" << std::endl;
 }
 
@@ -257,7 +265,17 @@ void System::loadAccounts(std::map<int, std::string> *one){
 }
 /**
  * @brief System::fillAccountsMap Iterate through the map of usernames, storing an account pointer at each.
- */
+ * User after the system has been constructed, thereby filling the usernameList map.
+ * Taken from http://www.cplusplus.com/reference/map/map/begin/
+ * Right now, the program is generating pointers pointing to the same location in memory
+ * */
 void System::fillAccountsMap(){
-
+    for(std::map<int,std::string>::iterator it=usernameList->begin();it!=usernameList->end();++it ){
+        std::pair<std::string, Account*> insert;
+        Account *acntpntr = new Account();
+        insert.first = it->second;
+        insert.second = acntpntr;
+        accounts.insert(insert);
+        std::cout << insert.first << " " << insert.second << std::endl;
+    }
 }

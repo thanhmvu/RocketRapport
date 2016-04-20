@@ -12,6 +12,25 @@ TEST(SystemTest, testAddUser){
     EXPECT_FALSE(one->createAccount("hSwizzle79","Oblivion0722&","Jefferey","Pfaffmann"));
 }
 
+/**
+ * @brief TEST Closing the current program session, destroying the system, and starting a new system should grant the new system access to  the same information
+ * This means that an account added in one session should be able to be retrieved in a later session.
+ */
+TEST(SystemTest, testRetrieveAccounts){
+    System *one = new System("./testDb.db"); //Creates
+    //one->fillAccountsMap(); //Is now done in the constructor
+    EXPECT_TRUE(one->usernameExist("JSwizzle"));
+}
+
+//Now, test the login system, because it seems to be giving us troubles
+TEST(SystemTest, testLogin){
+    System *one = new System("./testDb.db");
+    one->printAllUsernames();
+    qDebug() << "Value of userNameExists(hSwizzle79): " << one->usernameExist("hSwizzle79");
+    EXPECT_TRUE(one->login("hSwizzle79","Oblivion0722&"));
+}
+
+
 
 //TEST(SystemTest, usernameExist) {
 //    System sys;
@@ -29,11 +48,4 @@ TEST(SystemTest, testAddUser){
 //    EXPECT_EQ(true, sys.usernameExist("user2"));
 //}
 
-/**
- * @brief TEST Closing the current program session, destroying the system, and starting a new system should grant the new system access to  the same information
- * This means that an account added in one session should be able to be retrieved in a later session.
- */
-TEST(SystemTest, testRetrieveAccounts){
-    System *one = new System("./testDb.db");
-    EXPECT_TRUE(one->usernameExist("hSwizzle79"));
-}
+

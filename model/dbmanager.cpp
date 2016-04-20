@@ -313,16 +313,16 @@ void DbManager::retrieveAllAccounts(std::map<int, std::string> *one){
     query.prepare("SELECT * FROM accounts");        //Choose all elements from the table
     query.exec();
     if( query.first() ){
-
+        qDebug() << "Found first element";
         QString name1 = query.value(7).toString();
         std::pair<int, std::string> insert0 = {query.value(0).toInt(),name1.toStdString()};
-        //std::cout << insert0.first << " " << insert0.second << std::endl;
+        std::cout << insert0.first << " " << insert0.second << std::endl;
         one->insert(insert0);
         while(query.next() ){
             qDebug() << "Found another row";
-            QString name = query.value(1).toString();
+            QString name = query.value(7).toString();
             std::pair<int, std::string> insert1 = {query.value(0).toInt(),name.toStdString()};
-            //std::cout << insert1.first << " " << insert1.second << std::endl;
+            std::cout << insert1.first << " " << insert1.second << std::endl;
             one->insert(insert1);
         }
         std::cout << "All rows of table exhausted " << std::endl;
@@ -331,5 +331,6 @@ void DbManager::retrieveAllAccounts(std::map<int, std::string> *one){
     else{
         qDebug() << "No first row found";
     }
+    qDebug() << "Now leaving retrieve all accounts method";
 }
 
