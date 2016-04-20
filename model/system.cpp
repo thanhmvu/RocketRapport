@@ -20,10 +20,10 @@ System::System(const QString &path)
     loggedIn = false;
     usernameList = new std::map<int, std::string>; //Initializes the userNameList pointer
 //    std::cout<< "New system created" << std::endl;
-
+    dbm = new DbManager(path);
     loadAccounts(usernameList);
     fillAccountsMap();
-    dbm = new DbManager(path);
+
 }
 
 /**

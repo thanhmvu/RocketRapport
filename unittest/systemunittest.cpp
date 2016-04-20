@@ -18,6 +18,8 @@ TEST(SystemTest, testAddUser){
  */
 TEST(SystemTest, testRetrieveAccounts){
     System *one = new System("./testDb.db"); //Creates
+    one->printAllUsernames();
+    EXPECT_FALSE(one->usernameExist("BringOutTheGimp") ); //Verify that an account not added cannot be found
     //one->fillAccountsMap(); //Is now done in the constructor
     EXPECT_TRUE(one->usernameExist("JSwizzle"));
 }
@@ -29,6 +31,7 @@ TEST(SystemTest, testLogin){
     qDebug() << "Value of userNameExists(hSwizzle79): " << one->usernameExist("hSwizzle79");
     EXPECT_TRUE(one->login("hSwizzle79","Oblivion0722&"));
 }
+
 
 
 //TEST(SystemTest, usernameExist) {
