@@ -9,11 +9,11 @@ TweetGUI::TweetGUI(QWidget *parent) :
     init();
 }
 
-TweetGUI::TweetGUI(MainMenu * mm) :
+TweetGUI::TweetGUI(ProfileGUI * pf_scrn) :
     ui(new Ui::TweetGUI)
 {
     ui->setupUi(this);
-    main_menu = mm;
+    profile_screen = pf_scrn;
     init();
 }
 

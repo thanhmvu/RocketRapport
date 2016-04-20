@@ -10,21 +10,17 @@ BlogGUI::BlogGUI(QWidget *parent) :
     init();
 }
 
-BlogGUI::BlogGUI(MainMenu * mm) :
+BlogGUI::BlogGUI(ProfileGUI* pfGUI) :
     ui(new Ui::BlogGUI)
 {
     ui->setupUi(this);
-    main_menu = mm;
+    profile_screen = pfGUI;
     init();
 }
 
 BlogGUI::~BlogGUI()
 {
     delete ui;
-}
-
-void BlogGUI::setMainMenu(MainMenu* mm){
-    main_menu = mm;
 }
 
 void BlogGUI::init(){
@@ -36,9 +32,9 @@ void BlogGUI::init(){
     QWidget *scroll_widget = new QWidget();
     QVBoxLayout *layout = new QVBoxLayout();
 
+    // TODO: display actual blog posts pulled from either system class or the database
     for(int i=0;i<6;i++) {
         // randomly generate text for illustration purpose
-        // TODO: display actual blog posts pulled from either system class or the database
         QString text = "blog <b>post</b> ";
         for(int j=0;j<i+2;j++) text += text;
 
@@ -69,12 +65,6 @@ void BlogGUI::on_pushButton_savePost_clicked()
     ui->pushButton_newPost->setVisible(true);
 
     // TODO: add new post to the system and display
-}
-
-void BlogGUI::on_pushButton_back_to_menu_clicked()
-{
-    main_menu->show();
-    this->close();
 }
 
 void BlogGUI::on_pushButton_cancel_clicked()

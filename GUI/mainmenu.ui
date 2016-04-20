@@ -31,30 +31,9 @@
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="pushButton_blog">
-      <property name="text">
-       <string>My Blog</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="pushButton_tweet">
-      <property name="text">
-       <string>My Tweets</string>
-      </property>
-     </widget>
-    </item>
-    <item>
      <widget class="QPushButton" name="pushButton_chat">
       <property name="text">
        <string>Chat</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="pushButton_scrapbook">
-      <property name="text">
-       <string>Scrapbook</string>
       </property>
      </widget>
     </item>

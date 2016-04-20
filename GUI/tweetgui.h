@@ -2,13 +2,13 @@
 #define TWEETGUI_H
 
 #include <QWidget>
-#include "mainmenu.h"
+#include "profilegui.h"
 
 namespace Ui {
 class TweetGUI;
 }
 
-class MainMenu;
+class ProfileGUI;
 
 class TweetGUI : public QWidget
 {
@@ -16,12 +16,12 @@ class TweetGUI : public QWidget
 
 public:
     explicit TweetGUI(QWidget *parent = 0);
-    TweetGUI(MainMenu* mm);
+    TweetGUI(ProfileGUI* pf_scrn);
     ~TweetGUI();
 
 private:
     Ui::TweetGUI *ui;
-    MainMenu* main_menu;
+    ProfileGUI* profile_screen;
     void init();
 };
 
