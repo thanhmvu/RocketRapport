@@ -276,6 +276,8 @@ void System::fillAccountsMap(){
     for(std::map<int,std::string>::iterator it=usernameList->begin();it!=usernameList->end();++it ){
         std::pair<std::string, Account*> insert;
         Account *acntpntr = new Account();
+        QString one = "PassWord"; QString two = "accounts"; QString three = "UserName"; QString four = QString::fromStdString(it->second); //Use this method to attach a password to the given account object
+        acntpntr->setPassword(dbm->retrieveStringInfo(one,two,three,four));
         insert.first = it->second;
         insert.second = acntpntr;
         accounts.insert(insert);
