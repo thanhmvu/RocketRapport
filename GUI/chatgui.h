@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "mainmenu.h"
+#include <QScrollBar>
 
 namespace Ui {
 class ChatGUI;
@@ -18,6 +19,9 @@ public:
     explicit ChatGUI(QWidget *parent = 0);
     ChatGUI(MainMenu * mm);
     ~ChatGUI();
+
+private slots:
+    void on_pushButton_main_menu_clicked();
 
 private:
     Ui::ChatGUI *ui;
