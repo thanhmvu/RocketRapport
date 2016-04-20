@@ -2,6 +2,7 @@
 #define BLOGGUI_H
 
 #include <QWidget>
+#include <QTextBrowser>
 #include "profilegui.h"
 
 namespace Ui {
@@ -23,6 +24,7 @@ private slots:
     void on_pushButton_newPost_clicked();
     void on_pushButton_savePost_clicked();
     void on_pushButton_cancel_clicked();
+    void on_pushButton_back_to_profile_clicked();
 
 private:
     Ui::BlogGUI *ui;

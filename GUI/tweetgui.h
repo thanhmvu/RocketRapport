@@ -2,6 +2,7 @@
 #define TWEETGUI_H
 
 #include <QWidget>
+#include <QTextBrowser>
 #include "profilegui.h"
 
 namespace Ui {
@@ -18,6 +19,12 @@ public:
     explicit TweetGUI(QWidget *parent = 0);
     TweetGUI(ProfileGUI* pf_scrn);
     ~TweetGUI();
+
+private slots:
+    void on_pushButton_cancel_clicked();
+    void on_pushButton_savePost_2_clicked();
+    void on_pushButton_newPost_2_clicked();
+    void on_pushButton_back_to_profile_clicked();
 
 private:
     Ui::TweetGUI *ui;

@@ -13,12 +13,12 @@
   <property name="windowTitle">
    <string>Blog</string>
   </property>
-  <widget class="QPushButton" name="pushButton_back_to_menu">
+  <widget class="QPushButton" name="pushButton_back_to_profile">
    <property name="geometry">
     <rect>
      <x>10</x>
      <y>350</y>
-     <width>110</width>
+     <width>121</width>
      <height>32</height>
     </rect>
    </property>
@@ -35,15 +35,15 @@
     </size>
    </property>
    <property name="text">
-    <string>Main Menu</string>
+    <string>Back to Profile</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_cancel">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>260</y>
-     <width>110</width>
+     <y>250</y>
+     <width>121</width>
      <height>32</height>
     </rect>
    </property>
@@ -68,7 +68,7 @@
     <rect>
      <x>12</x>
      <y>12</y>
-     <width>108</width>
+     <width>121</width>
      <height>71</height>
     </rect>
    </property>
@@ -85,6 +85,9 @@
       <property name="text">
        <string>My Blog</string>
       </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
      </widget>
     </item>
    </layout>
@@ -92,9 +95,9 @@
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>128</x>
+     <x>137</x>
      <y>12</y>
-     <width>460</width>
+     <width>451</width>
      <height>376</height>
     </rect>
    </property>
@@ -135,7 +138,7 @@ p, li { white-space: pre-wrap; }
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>441</width>
+         <width>431</width>
          <height>170</height>
         </rect>
        </property>
@@ -144,35 +147,16 @@ p, li { white-space: pre-wrap; }
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="layoutWidget">
+  <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>295</y>
-     <width>110</width>
+     <y>285</y>
+     <width>121</width>
      <height>62</height>
     </rect>
    </property>
-   <layout class="QVBoxLayout" name="verticalLayout_5">
-    <item>
-     <widget class="QPushButton" name="pushButton_newPost">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>110</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>New Post</string>
-      </property>
-     </widget>
-    </item>
+   <layout class="QVBoxLayout" name="verticalLayout">
     <item>
      <widget class="QPushButton" name="pushButton_savePost">
       <property name="sizePolicy">
@@ -183,7 +167,7 @@ p, li { white-space: pre-wrap; }
       </property>
       <property name="minimumSize">
        <size>
-        <width>110</width>
+        <width>121</width>
         <height>0</height>
        </size>
       </property>
@@ -192,12 +176,31 @@ p, li { white-space: pre-wrap; }
       </property>
      </widget>
     </item>
+    <item>
+     <widget class="QPushButton" name="pushButton_newPost">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>121</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>New Post</string>
+      </property>
+     </widget>
+    </item>
    </layout>
   </widget>
   <zorder>layoutWidget</zorder>
   <zorder>layoutWidget</zorder>
   <zorder>layoutWidget</zorder>
-  <zorder>pushButton_back_to_menu</zorder>
+  <zorder>pushButton_back_to_profile</zorder>
   <zorder>pushButton_cancel</zorder>
  </widget>
  <resources/>

@@ -1,6 +1,5 @@
 #include "bloggui.h"
 #include "ui_bloggui.h"
-#include <QTextBrowser>
 
 BlogGUI::BlogGUI(QWidget *parent) :
     QWidget(parent),
@@ -73,4 +72,10 @@ void BlogGUI::on_pushButton_cancel_clicked()
     ui->textEdit_newPost->setVisible(false);
     ui->pushButton_cancel->setVisible(false);
     ui->pushButton_newPost->setVisible(true);
+}
+
+void BlogGUI::on_pushButton_back_to_profile_clicked()
+{
+    profile_screen->show();
+    this->close();
 }
