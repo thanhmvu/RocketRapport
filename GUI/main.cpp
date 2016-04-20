@@ -14,7 +14,6 @@ int main(int argc, char *argv[])
     std::cout<< "Start GUI\n";
 
     QApplication a(argc, argv);
-    system("pwd");
     System sys("../gProjectDB.db");
     MainMenu mm(&sys); // create the gui
 

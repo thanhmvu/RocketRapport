@@ -31,7 +31,6 @@ TEST(SystemTest, testLogin){
 }
 
 
-
 //TEST(SystemTest, usernameExist) {
 //    System sys;
 //    Account acc("user1");
@@ -47,5 +46,3 @@ TEST(SystemTest, testLogin){
 //    EXPECT_EQ(true, sys.usernameExist("user1"));
 //    EXPECT_EQ(true, sys.usernameExist("user2"));
 //}
-
-

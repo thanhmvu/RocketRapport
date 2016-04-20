@@ -52,6 +52,23 @@ System::~System(){
  */
 bool System::login(std::string username, std::string password) {
     bool success = false;
+
+    std::cout << "size; " << accounts.size() <<"\n";
+    for(const auto &acc: accounts) {
+        std::cout << "helooooooo\n";
+        Account* a = acc.second;
+        std::cout << acc.first << "\n";
+        std::cout << a << "\n";
+        std::cout << a->getPassword() << "\n";
+    }
+
+    std::cout << "size; " << usernameList->size() <<"\n";
+    for(const auto &acc: *usernameList) {
+        std::cout << "helooooooo2\n";
+        std::cout << acc.first << "\n";
+        std::cout << acc.second << "\n";
+    }
+
     if (usernameExist(username)) {
         qDebug() << "Valid username found";
         // If valid, check password
@@ -68,6 +85,7 @@ bool System::login(std::string username, std::string password) {
             success = true;
         }
     }
+
 
     // If invalid, prompt username again and ask if they want to create a new account
 
@@ -264,6 +282,8 @@ int System::numberOfAccount(){
  * @param one Map of usernames passed into the
  */
 void System::loadAccounts(std::map<int, std::string> *one){
+    std::cout<< "Now entering method to load values to usernameList map \n";
+    system("pwd");
     dbm->retrieveAllAccounts(one); //Adds all usernames with their corresponding userIDs into the system
 //    std::cout<<"All accounts are loaded from the database" << std::endl;
 }
@@ -274,6 +294,7 @@ void System::loadAccounts(std::map<int, std::string> *one){
  * Right now, the program is generating pointers pointing to the same location in memory
  * */
 void System::fillAccountsMap(){
+    std::cout << "Now entering fill accounts map method" << std::endl;
     for(std::map<int,std::string>::iterator it=usernameList->begin();it!=usernameList->end();++it ){
         std::pair<std::string, Account*> insert;
         Account *acntpntr = new Account();
@@ -284,4 +305,5 @@ void System::fillAccountsMap(){
         accounts.insert(insert);
         std::cout << insert.first << " " << insert.second << std::endl;
     }
+    std::cout << "Accounts Size: " << accounts.size() << std::endl;
 }

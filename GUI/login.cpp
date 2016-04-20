@@ -59,8 +59,6 @@ void Login::on_pushButton_login_clicked()
     std::string username = ui->lineEdit_login_user->text().toStdString();
     std::string password = ui->lineEdit_login_pw->text().toStdString();
 
-    std::cout << username << " " << password << std::endl;
-
     bool accountLoggedIn = main_menu->getSystem()->login(username,password);
 
     if(accountLoggedIn){
