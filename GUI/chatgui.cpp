@@ -22,7 +22,12 @@ ChatGUI::~ChatGUI()
 }
 
 void ChatGUI::init(){
-    // Set scrollbar to the bottom (solution 1)
+    // load the list of all users to the
+    updateUserList();
+
+    updateChatBox();
+
+    // Set chat_box scrollbar to the bottom (solution 1)
     QTextCursor c = ui->chat_box->textCursor();
     c.movePosition(QTextCursor::End);
     ui->chat_box->setTextCursor(c);

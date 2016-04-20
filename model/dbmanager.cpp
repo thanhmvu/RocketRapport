@@ -23,6 +23,12 @@ DbManager::DbManager(const QString &path)
     }
 }
 
+
+////////////////////////////////////////////////////////////////////
+/// DO WE NEED DESTRUCTOR ???
+//////////////////////////////////////////////////////////////////
+
+
 /**
  * @brief DbManager::addUser Method used to add user objects with associated object IDs to
  * @param AcntID   ID number used to associate a User object with a name and a series of other ID's
@@ -38,10 +44,14 @@ bool DbManager::addUser(const QVariant &AcntID, const QVariant &FrstName,
                         const QVariant &LstName, const QVariant &GrpID, const
                         QVariant &ScrpBkID, const QVariant &BlogID, const QVariant &TweetID,
                         const QVariant &UserName, const QVariant &passWord){
-    std::cout << "Now entering Add User method in DatabaseManager" << std::endl;
+//    std::cout << "Now entering Add User method in DatabaseManager" << std::endl;
     bool success = false;
     QSqlQuery query(m_db); //Prepares a new QSqlQuery
 
+    ////////////////////////////////////////////////////////////////////
+    /// Need to check if input strings are empty.
+    /// They must not be empty, otherwise the QGLite command will be incorrect
+    //////////////////////////////////////////////////////////////////
     if(!find(AcntID, "accounts") ){
         std::cout << "Value not found" << std::endl;
         query.prepare("INSERT INTO accounts VALUES ( (:AcntID),(:FrstName),(:LstName),(:GrpID),(:ScrpBkID),(:BlogID),(:TweetID),(:UserName),(:PassWord) )");
@@ -54,20 +64,19 @@ bool DbManager::addUser(const QVariant &AcntID, const QVariant &FrstName,
         query.bindValue(":TweetID", TweetID);
         query.bindValue(":UserName",UserName);
         query.bindValue(":PassWord",passWord);
-        qDebug() << "Account ID: "<< query.boundValue(0) << "\n"
-                 << "First name: "<< query.boundValue(1) << "\n"
-                 << "Lasr name: "<< query.boundValue(2) << "\n"
-                 << "Group ID: "<< query.boundValue(3) << "\n"
-                 << "Scrapbook ID: "<< query.boundValue(4) << "\n"
-                 << "Blog ID: "<< query.boundValue(5) << "\n"
-                 << "Tweet ID: "<< query.boundValue(6) << "\n"
-                 << "Username: "<< query.boundValue(7) << "\n"
-                 << "Password: "<< query.boundValue(8) << "\n";
+//        qDebug() << "Account ID: "<< query.boundValue(0) << "\n"
+//                 << "First name: "<< query.boundValue(1) << "\n"
+//                 << "Lasr name: "<< query.boundValue(2) << "\n"
+//                 << "Group ID: "<< query.boundValue(3) << "\n"
+//                 << "Scrapbook ID: "<< query.boundValue(4) << "\n"
+//                 << "Blog ID: "<< query.boundValue(5) << "\n"
+//                 << "Tweet ID: "<< query.boundValue(6) << "\n"
+//                 << "Username: "<< query.boundValue(7) << "\n"
+//                 << "Password: "<< query.boundValue(8) << "\n";
 
         if(query.exec()){
             success = true;
-        }
-        else{
+        }else{
             qDebug() << "removePerson error: "
                      << query.lastError();
         }
@@ -76,6 +85,7 @@ bool DbManager::addUser(const QVariant &AcntID, const QVariant &FrstName,
         std::cout << "Element already contained in database" << std::endl;
         success = false;
     }
+
     return success;
 }
 
@@ -180,18 +190,21 @@ bool DbManager::addColumn(const QString name, const QString type){
  * @return  Returns true if the program is able to find the given information
  */
 bool DbManager::find(const QVariant &UsrID, const QVariant &table){
+
     bool found = false;
+
     QSqlQuery query;
     const QString command = "SELECT firstName,lastName FROM " + table.toString() + " WHERE AccountId = (:UsrID)";
     query.prepare(command);
     query.bindValue(":UsrID",UsrID);
+
     if (query.exec()){
         if(query.next()){
             found = true;
-            std::cout<< "Value has been found" << std::endl;
+            std::cout<< "Account has been found" << std::endl;
         }
         else{
-            std::cout << "Value has not been found" << std::endl;
+            std::cout << "Account not found" << std::endl;
         }
     }
     return found;
@@ -313,13 +326,13 @@ void DbManager::retrieveAllAccounts(std::map<int, std::string> *one){
     query.prepare("SELECT * FROM accounts");        //Choose all elements from the table
     query.exec();
     if( query.first() ){
-        qDebug() << "Found first element";
+//        qDebug() << "Found first element";
         QString name1 = query.value(7).toString();
         std::pair<int, std::string> insert0 = {query.value(0).toInt(),name1.toStdString()};
         std::cout << insert0.first << " " << insert0.second << std::endl;
         one->insert(insert0);
         while(query.next() ){
-            qDebug() << "Found another row";
+//            qDebug() << "Found another row";
             QString name = query.value(7).toString();
             std::pair<int, std::string> insert1 = {query.value(0).toInt(),name.toStdString()};
             std::cout << insert1.first << " " << insert1.second << std::endl;

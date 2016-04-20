@@ -2,33 +2,33 @@
 #include <stdio.h>
 #include "../model/system.h"
 
-TEST(DbManagerTest, testConstructor){
-    DbManager *test = new DbManager("./testDb.db");
-    system("pwd");
-    test->addUser(1,"Jeff","Pfaffmann",1,1,1,1,"JSwizzle","IamTheWalrus");
-    test->addUser(2,"Chun Wai","Liew",2,2,2,2,"ChunnieMathews","GreenTea");
-    test->printAllRows("FirstName");
-    qDebug() << "Now deleting first test object";
-    //Destroy, then recreate the database. Call print all rows. Jeff Should still be in the database
-    delete test;
-    DbManager *test2 = new DbManager("./testDb.db");
-    test2->printAllRows("FirstName");
-    //It works!
-}
+//TEST(DbManagerTest, testConstructor){
+//    DbManager *test = new DbManager("./testDb.db");
+//    system("pwd"); // call command "pwd" in the terminal
+//    test->addUser(1,"Jeff","Pfaffmann",1,1,1,1,"JSwizzle","IamTheWalrus");
+//    test->addUser(2,"Chun Wai","Liew",2,2,2,2,"ChunnieMathews","GreenTea");
+//    test->printAllRows("FirstName");
+//    qDebug() << "Now deleting first test object";
+//    //Destroy, then recreate the database. Call print all rows. Jeff Should still be in the database
+//    delete test;
+//    DbManager *test2 = new DbManager("./testDb.db");
+//    test2->printAllRows("FirstName");
+//    //It works!
+//}
 
-TEST(DbManagerTest, testIntRetrieve){
-    DbManager *test1 = new DbManager("./testDb.db");
-    EXPECT_TRUE( test1->retrieveIntInfo("AccountID","accounts","FirstName","Chun Wai") == 2) ;
-    EXPECT_TRUE( test1->retrieveIntInfo("GrpID","accounts","FirstName","Chun Wai") == 2);
-    EXPECT_TRUE( test1->retrieveIntInfo("ScrpBkID","accounts","FirstName","Chun Wai") == 2);
-    EXPECT_TRUE( test1->retrieveIntInfo("BlogID","accounts","FirstName","Chun Wai") == 2);
-    EXPECT_TRUE( test1->retrieveIntInfo("TweetID","accounts","FirstName","Chun Wai") == 2);
-}
+//TEST(DbManagerTest, testIntRetrieve){
+//    DbManager *test1 = new DbManager("./testDb.db");
+//    EXPECT_TRUE( test1->retrieveIntInfo("AccountID","accounts","FirstName","Chun Wai") == 2) ;
+//    EXPECT_TRUE( test1->retrieveIntInfo("GrpID","accounts","FirstName","Chun Wai") == 2);
+//    EXPECT_TRUE( test1->retrieveIntInfo("ScrpBkID","accounts","FirstName","Chun Wai") == 2);
+//    EXPECT_TRUE( test1->retrieveIntInfo("BlogID","accounts","FirstName","Chun Wai") == 2);
+//    EXPECT_TRUE( test1->retrieveIntInfo("TweetID","accounts","FirstName","Chun Wai") == 2);
+//}
 
-TEST(DbManagerTest, testStringRetrieve){
-    DbManager *test1 = new DbManager("./testDb.db");
-    EXPECT_TRUE(test1->retrieveStringInfo("UserName","accounts","AccountID",1) == "JSwizzle");
-}
+//TEST(DbManagerTest, testStringRetrieve){
+//    DbManager *test1 = new DbManager("./testDb.db");
+//    EXPECT_TRUE(test1->retrieveStringInfo("UserName","accounts","AccountID",1) == "JSwizzle");
+//}
 
 //The remove all method works, but I decided to comment it out in the interest of getting a working .db file
 //TEST(DbManagerTest, testRemoveAllMethod){
