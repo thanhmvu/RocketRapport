@@ -21,9 +21,5 @@ int main(int argc, char *argv[])
     mm.getLoginScreen()->show();
     std::cout<< "Called Login screen\n";
 
-    for(int i = 0; i <5; i++){
-        std::cout<< "helloooo\n";
-    }
-
     return a.exec();
 }

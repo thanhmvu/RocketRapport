@@ -32,13 +32,11 @@ void Login::setMainMenu(MainMenu * mm){
 
 void Login::on_pushButton_signin_clicked()
 {
-    std::cout<< "Clicked signin button\n";
     std::string username = ui->lineEdit_signin_user->text().toStdString();
     std::string password = ui->lineEdit_signin_pw->text().toStdString();
     std::string firstname = ui->lineEdit_firstname->text().toStdString();
     std::string lastname = ui->lineEdit_lastname->text().toStdString();
 
-    std::cout<< main_menu->getSystem() <<"\n";
     bool accountCreated = main_menu->getSystem()->createAccount(username,password,firstname,lastname);
     if(accountCreated){
         std::cout<< "Sign in successfully, proceed to menu screen \n";

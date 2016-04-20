@@ -19,9 +19,12 @@ public:
     explicit ChatGUI(QWidget *parent = 0);
     ChatGUI(MainMenu * mm);
     ~ChatGUI();
+    void updateUserList();
+    void updateChatBox();
 
 private slots:
     void on_pushButton_main_menu_clicked();
+    void on_pushButton_send_mess_clicked();
 
 private:
     Ui::ChatGUI *ui;
