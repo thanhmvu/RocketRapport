@@ -3,6 +3,7 @@
 #include "post.h"
 #include "comment.h"
 #include <vector>
+#include <QDateTime>
 
 class BlogPost: public Post
 {
@@ -11,9 +12,12 @@ private:
     int id;
     std::vector<Comment> comments;
     int findComment(int cmt_id);
+    QString text;
+    QDateTime datePosted;
 public:
     BlogPost();
     int getID();
+    bool setText(QString new_text);
     std::vector<Comment> getComments();
     bool addComment(Comment cmt);
     bool deleteComment(int id);

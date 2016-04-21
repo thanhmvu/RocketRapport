@@ -13,6 +13,7 @@ SOURCES += main.cpp \
     ../model/scrapbook.cpp\
     ../model/tweet.cpp\
     ../model/blog.cpp \
+    ../model/blogpost.cpp \
     ../model/chat.cpp \
     ../model/feed.cpp \
     ../model/post.cpp \

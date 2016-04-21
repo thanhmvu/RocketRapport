@@ -332,8 +332,21 @@ void DbManager::retrieveAllAccounts(std::map<int, std::string> *one){
     }
 }
 
+void DbManager::retrieveAllBlogPosts(Blog *userBlog){
+    QSqlQuery query;
+    BlogPost *newBP = new BlogPost;
+    query.prepare("SELECT * FROM blogPosts");
+    while(query.next()){
+        BlogPost *newBP = new BlogPost;
+        QString newText1 = query.value(3).toString();
+        newBP->setText(newText1);
+        newBP->setTime(2); //Should I add a method to blog post that manually sets the blog post ID?
+        userBlog->addPost(newBP);
+    }
+}
+
 ///**
-// * @brief DbManager::retrieveAllAccounts This method will be used to add every available Account to the given map
+// * @brief DbManager::AllAccounts This method will be used to add every available Account to the given map
 // * @param list
 // * Note to self: test this in the qSqlTest classes (The ones for experimentation)
 // * Refactor this class to work with the accounts map instead of the username list map

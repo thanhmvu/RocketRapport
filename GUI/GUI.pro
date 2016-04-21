@@ -20,6 +20,7 @@ SOURCES += main.cpp\
     ../model/group.cpp \
     ../model/dbmanager.cpp \
     ../model/blog.cpp \
+    ../model/blogpost.cpp \
     ../model/tweet.cpp \
     ../model/scrapbook.cpp \
     ../model/feed.cpp \

@@ -11,7 +11,12 @@
 #include <stdio.h>
 #include <iostream>
 #include <map>
+#include <QDateTime>
 #include "account.h"
+#include "blog.h"
+#include "blogpost.h"
+#include "tweet.h"
+#include "tweetpost.h"
 
 class DbManager
 {
@@ -46,6 +51,9 @@ public:
     int retrieveIntInfo(const QString &fieldName, const QString &tableName, const QString &checkName, const QVariant &ID);                     //I'm going to be using two different overloaded methods that can obtain information from the database given a query.
     std::string retrieveStringInfo(const QString &fieldName, const QString &tableName, const QString &checkName, const QVariant &ID);       //These methods will be used in pulling information from the database.
     void retrieveAllAccounts(std::map<int,std::string> *one); //Store each username with its associated user ID. Use this information to obtain the other IDs
+    void retrieveAllBlogPosts(Blog *userBlog);
+    void retrieveAllTweets();
+    void retrieveAllMessages();
 
     bool rmAllAccounts();
 
