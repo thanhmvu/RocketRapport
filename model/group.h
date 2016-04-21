@@ -25,23 +25,32 @@ private:
 public:
     Group();
 
-    void updateFeed(Account* userPosted, TweetPost* latestPost);
-    void addGroupMember(Account* newMember);
-    void removeGroupMember(Account* oldMember);
-    void addToPastProjects(std::string project);
+    ////////////////////////////////////////////////////////////////////
+    /// Some methods may need to check:
+    ///     if an account is member of the group
+    ///     if an account is group admin
+    ///     if an account is system admin
+    //////////////////////////////////////////////////////////////////
 
-    Feed* getFeed();
-    bool getIsActive();
-    void setIsActive(bool active);
-    std::vector<Account*> getGroupMembers();
-    Account* getAdmin();
-    void changeAdmin(Account* newAdmin);
-    std::string getGroupName();
-    void setGroupName(std::string name);
-    std::string getCurrentProject();
-    void setCurrentProject(std::string project);
-    void newProject(std::string project);
-    std::vector<std::string> getPastProjects();
+//    bool isMember(Account * caller);
+
+//    void updateFeed(Account* userPosted, TweetPost* latestPost);
+//    void addGroupMember(Account* newMember);
+//    void removeGroupMember(Account* oldMember);
+//    void addToPastProjects(std::string project);
+
+//    Feed* getFeed();
+//    bool getIsActive();
+//    void setIsActive(bool active);
+//    std::vector<Account*> getGroupMembers();
+//    Account* getAdmin();
+//    void changeAdmin(Account* newAdmin);
+//    std::string getGroupName();
+//    void setGroupName(std::string name);
+//    std::string getCurrentProject();
+//    void setCurrentProject(std::string project);
+//    void newProject(std::string project);
+//    std::vector<std::string> getPastProjects();
 
     int getID();
 

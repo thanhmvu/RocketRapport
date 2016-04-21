@@ -57,9 +57,6 @@ private:
     // Private members specific to a system admin.
     System* theSystem;
 
-    // Private members specific to a group admin.
-//    Group* myGroup; // WARNING: there can be multiple groups
-
 
 public:
     Account();
@@ -113,7 +110,6 @@ public:
     int getPhoneNumber();
     void setPhoneNumber(int number);
     int getAccountID();
-//    int getGroupID(); // WARNING: there can be multiple groups
 
     // Functions specific to a current guest.
     void departRanch();
@@ -143,12 +139,6 @@ public:
     void deleteScrapbookPost(Scrapbook* targetScrapbook, ScrapbookPost* badPost);
     System* getSystem();
     void setSystem(System* newSystem);
-
-    // Functions specific to a group admin.
-//    Group* getGroup();
-//    void addMember(Account* newMember);
-//    void removeMember(Account* oldMember);
-//    void editGroupName(std::string name);
 };
 
 #endif // ACCOUNT_H
