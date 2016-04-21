@@ -1,8 +1,8 @@
 #include "loginui.h"
 
-LoginUI::LoginUI()
+LoginUI::LoginUI(System* mainSystem)
 {
-
+    this->setSystem(mainSystem);
 }
 
 void LoginUI::displayScreen() {

@@ -5,7 +5,7 @@
 class ScrapbookUI : public ScreenUI
 {
 public:
-    ScrapbookUI();
+    ScrapbookUI(System* mainSystem);
 
     void displayScreen();
     void runScreen();

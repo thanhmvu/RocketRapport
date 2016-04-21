@@ -5,7 +5,7 @@
 class ProfileUI : public ScreenUI
 {
 public:
-    ProfileUI();
+    ProfileUI(System* mainSystem);
 
     void displayScreen();
     void runScreen();

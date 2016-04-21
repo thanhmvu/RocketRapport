@@ -5,7 +5,7 @@
 class TweetUI : public ScreenUI
 {
 public:
-    TweetUI();
+    TweetUI(System* mainSystem);
 
     void displayScreen();
     void runScreen();

@@ -1,8 +1,8 @@
 #include "blogui.h"
 
-BlogUI::BlogUI()
+BlogUI::BlogUI(System* mainSystem)
 {
-
+    this->setSystem(mainSystem);
 }
 
 void BlogUI::displayScreen() {

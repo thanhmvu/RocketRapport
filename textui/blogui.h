@@ -5,7 +5,7 @@
 class BlogUI : public ScreenUI
 {
 public:
-    BlogUI();
+    BlogUI(System* mainSystem);
 
     void displayScreen();
     void runScreen();

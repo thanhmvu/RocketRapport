@@ -18,13 +18,15 @@ int main(int argc, char *argv[])
 
     bool running = true;
 
-    LoginUI login;
-    MainMenuUI mainMenu;
-    ChatUI chat;
-    ProfileUI profile;
-    BlogUI blog;
-    TweetUI tweet;
-    ScrapbookUI scrapbook;
+    System mySystem("../gProjectDB.db");
+
+    LoginUI login(&mySystem);
+    MainMenuUI mainMenu(&mySystem);
+    ChatUI chat(&mySystem);
+    ProfileUI profile(&mySystem);
+    BlogUI blog(&mySystem);
+    TweetUI tweet(&mySystem);
+    ScrapbookUI scrapbook(&mySystem);
 
     while (running) {
         switch(mainMenu.screenNumber) {

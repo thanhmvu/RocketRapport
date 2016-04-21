@@ -5,7 +5,7 @@
 class MainMenuUI : public ScreenUI
 {
 public:
-    MainMenuUI();
+    MainMenuUI(System* mainSystem);
 
     void displayScreen();
     void runScreen();

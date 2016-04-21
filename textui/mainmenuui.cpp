@@ -1,8 +1,8 @@
 #include "mainmenuui.h"
 
-MainMenuUI::MainMenuUI()
+MainMenuUI::MainMenuUI(System* mainSystem)
 {
-
+    this->setSystem(mainSystem);
 }
 
 

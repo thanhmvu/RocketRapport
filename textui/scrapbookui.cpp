@@ -1,8 +1,8 @@
 #include "scrapbookui.h"
 
-ScrapbookUI::ScrapbookUI()
+ScrapbookUI::ScrapbookUI(System* mainSystem)
 {
-
+    this->setSystem(mainSystem);
 }
 
 void ScrapbookUI::displayScreen() {

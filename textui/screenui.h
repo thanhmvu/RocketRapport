@@ -3,6 +3,8 @@
 #include <ncurses.h>
 #include <iostream>
 #include <string>
+#include <map>
+#include "../model/system.h"
 
 
 class ScreenUI
@@ -20,6 +22,8 @@ class ScreenUI
      * 7  -  Exit
      *
      */
+
+    System* mySystem;
 
     int menuIndex;
     int numOfOptions;
@@ -46,6 +50,8 @@ public:
     int getRows();
     int getCols();
     bool getChangeScreens();
+    System* getSystem();
+    void setSystem(System* mainSystem);
 };
 
 #endif // SCREENUI_H

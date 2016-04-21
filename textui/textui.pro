@@ -13,7 +13,16 @@ SOURCES += main.cpp \
     chatui.cpp \
     loginui.cpp \
     scrapbookui.cpp \
-    profileui.cpp
+    profileui.cpp \
+    ../model/system.cpp \
+    ../model/account.cpp \
+    ../model/group.cpp \
+    ../model/dbmanager.cpp \
+    ../model/blog.cpp \
+    ../model/tweet.cpp \
+    ../model/scrapbook.cpp \
+    ../model/feed.cpp \
+    ../model/post.cpp
 
 HEADERS += \
     screenui.h \
@@ -24,4 +33,5 @@ HEADERS += \
     chatui.h \
     loginui.h \
     scrapbookui.h \
-    profileui.h
+    profileui.h \
+    ../model/*.h

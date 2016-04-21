@@ -1,8 +1,8 @@
 #include "tweetui.h"
 
-TweetUI::TweetUI()
+TweetUI::TweetUI(System* mainSystem)
 {
-
+    this->setSystem(mainSystem);
 }
 
 void TweetUI::displayScreen() {

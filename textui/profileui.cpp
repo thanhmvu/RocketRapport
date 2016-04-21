@@ -1,8 +1,8 @@
 #include "profileui.h"
 
-ProfileUI::ProfileUI()
+ProfileUI::ProfileUI(System* mainSystem)
 {
-
+    this->setSystem(mainSystem);
 }
 
 void ProfileUI::displayScreen() {

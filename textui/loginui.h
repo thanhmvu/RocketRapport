@@ -5,7 +5,7 @@
 class LoginUI : public ScreenUI
 {
 public:
-    LoginUI();
+    LoginUI(System* mainSystem);
 
     void displayScreen();
     void runScreen();

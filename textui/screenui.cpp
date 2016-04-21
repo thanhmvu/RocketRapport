@@ -85,3 +85,19 @@ int ScreenUI::getCols() {
 bool ScreenUI::getChangeScreens() {
     return this->changeScreen;
 }
+
+
+/**
+ * @brief Getter for the main system.
+ */
+System* ScreenUI::getSystem() {
+    return this->mySystem;
+}
+
+
+/**
+ * @brief Setter for the main system.
+ */
+void ScreenUI::setSystem(System* mainSystem) {
+    this->mySystem = mainSystem;
+}
