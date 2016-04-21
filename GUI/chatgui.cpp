@@ -41,11 +41,12 @@ void ChatGUI::updateUserList(){
 
     // get a list of usernames from DATABASE
     std::vector<QString> userList;
-    userList.push_back("asd");
-    userList.push_back("zxc");
-    userList.push_back("qwe");
+    for(int i = 0; i<20; i++){
+        userList.push_back(QString ("User_%1").arg(i));
+    }
 
     // display the list of users as a list of openChat buttons
+    QWidget *scroll_widget = new QWidget();
     QVBoxLayout *layout = new QVBoxLayout();
     for(QString username: userList){
         QPushButton *button = new QPushButton();
@@ -53,7 +54,8 @@ void ChatGUI::updateUserList(){
         layout->addWidget(button);
         connect(button,SIGNAL(clicked()),this,SLOT(openChat()));
     }
-    ui->scrollArea_userList->setLayout(layout);
+    scroll_widget->setLayout(layout);
+    ui->scrollArea_userList->setWidget(scroll_widget);
 }
 
 void ChatGUI::openChat(){

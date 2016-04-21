@@ -41,11 +41,12 @@ void MainMenu::reload(){
     /// To prevent memory leaks, pay attention to userlist and grouplist
     //////////////////////////////////////////////////////////////////
     std::vector<QString> userList;
-    for(int i = 0; i<10; i++){
+    for(int i = 0; i<20; i++){
         userList.push_back(QString ("User_%1").arg(i));
     }
 
     // display the list of users as a list of user buttons
+    QWidget *scroll_widget = new QWidget();
     QVBoxLayout *layout = new QVBoxLayout();
     for(QString username: userList){
         QPushButton *button = new QPushButton();
@@ -54,7 +55,8 @@ void MainMenu::reload(){
         layout->addWidget(button);
         connect(button,SIGNAL(clicked()),this,SLOT(openUserProfile()));
     }
-    ui->scrollArea_userList->setLayout(layout);
+    scroll_widget->setLayout(layout);
+    ui->scrollArea_userList->setWidget(scroll_widget);
 
     // load grouplist
     ////////////////////////////////////////////////////////////////////
@@ -62,11 +64,12 @@ void MainMenu::reload(){
     /// To prevent memory leaks, pay attention to userlist and grouplist
     //////////////////////////////////////////////////////////////////
     std::vector<QString> groupList;
-    for(int i = 0; i<10; i++){
+    for(int i = 0; i<20; i++){
         groupList.push_back(QString ("Group_%1").arg(i));
     }
 
     // display the list of groups as a list of group buttons
+    QWidget *scroll_widget2 = new QWidget();
     QVBoxLayout *layout2 = new QVBoxLayout();
     for(QString groupname: groupList){
         QPushButton *button = new QPushButton();
@@ -75,7 +78,8 @@ void MainMenu::reload(){
         layout2->addWidget(button);
         connect(button,SIGNAL(clicked()),this,SLOT(openGroupScreen()));
     }
-    ui->scrollArea_groupList->setLayout(layout2);
+    scroll_widget2->setLayout(layout2);
+    ui->scrollArea_groupList->setWidget(scroll_widget2);
 }
 
 void MainMenu::openUserProfile(){
