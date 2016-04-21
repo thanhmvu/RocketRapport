@@ -38,10 +38,10 @@ System::~System(){
     // http://stackoverflow.com/questions/26281979/c-loop-through-map
     //Note that 'first' is used at the first value in the pair, and 'second' is the second value in the pair
     //In our case, the first value is a string, and the second is the actual account value (The map stores a pointer to the account object)
-//    for(const auto &acc: accounts) {
-//        Account* a = acc.second;
-//        addAccount(a);     //Pass in a pointer to an account object stored in each pair of the map to the method that stores the accounts in the database
-//    }
+    for(const auto &acc: accounts) {
+        Account* a = acc.second;
+        addAccount(a);     //Pass in a pointer to an account object stored in each pair of the map to the method that stores the accounts in the database
+    }
 }
 
 
