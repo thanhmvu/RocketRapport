@@ -31,8 +31,7 @@ Account::Account()
     myScrapbook = new Scrapbook();
     myBlog = new Blog();
     myTweet = new Tweet();
-    theSystem = nullptr;
-    dbm = theSystem->getDbm(); //Set the dbm used by the system to the dbm used by the account
+
 }
 
 Account::Account(std::string usrName){
@@ -63,8 +62,7 @@ Account::Account(std::string usrName){
     myScrapbook = new Scrapbook();
     myBlog = new Blog();
     myTweet = new Tweet();
-    theSystem = nullptr;
-    dbm = theSystem->getDbm(); //Set the dbm used by the system to the dbm used by the account
+
 }
 
 
