@@ -7,3 +7,7 @@ Chat::Chat()
     chatID = id_cnt;
     id_cnt++;
 }
+
+int Chat::getID(){
+    return chatID;
+}

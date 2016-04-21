@@ -179,7 +179,7 @@ void Account::promoteToGroupAdmin() {
  */
 void Account::addChat(Chat* newChat) {
     this->getMyChats().push_back(newChat); //Add new chat to list of chats
-    theSystem->addChat(accountID,newChat->getID(),username);
+    //theSystem->addChat(accountID,0,username); //This line is also causing a crash
 }
 
 

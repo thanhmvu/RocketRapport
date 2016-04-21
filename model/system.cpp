@@ -247,9 +247,13 @@ bool System::usernameExist(std::string username){
  * @param sender Name of the initator of this chat
  * @return
  */
-bool System::addChat(const QVariant &AccountID,
-                     const QVariant &ChatID, const QVariant &sender){
-    dbm->addChat(AccountID,ChatID,sender);
+bool System::addChat(const int &AccountID,
+                     const int &ChatID, const std::string &sender){
+    const QVariant AcntID(AccountID);
+    const QVariant ChtID(ChatID);
+    QString convert = QString::fromStdString(sender);
+    const QVariant sndr(convert);
+    dbm->addChat(AcntID,ChtID,sndr);
     return true;
 }
 

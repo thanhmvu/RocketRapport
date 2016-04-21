@@ -45,8 +45,8 @@ public:
     void addAccount(Account* newAccount);
     void removeAccount(Account* oldAccount);
     bool usernameExist(std::string username);
-    bool addChat(const QVariant &AccountID,
-                 const QVariant &ChatID, const QVariant &sender);
+    bool addChat(const int &AccountID,
+                 const int &ChatID, const std::string &sender);
 
     void loadAccounts(std::map<int, std::string> *one); //Method called in the constructor that will be used to create a list of accounts accessible to the user.
     void fillAccountsMap();
