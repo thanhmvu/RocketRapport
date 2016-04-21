@@ -178,7 +178,8 @@ void Account::promoteToGroupAdmin() {
  * @brief Adds a new Chat to the user's list of chats.
  */
 void Account::addChat(Chat* newChat) {
-    this->getMyChats().push_back(newChat);
+    this->getMyChats().push_back(newChat); //Add new chat to list of chats
+    theSystem->addChat(accountID,newChat->getID(),username);
 }
 
 

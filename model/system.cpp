@@ -240,6 +240,19 @@ bool System::usernameExist(std::string username){
     }
 }
 
+/**
+ * @brief System::addChat
+ * @param AccountID ID of the account to whome this chat is initiated by. Used for data retrieval purposes.
+ * @param ChatID ID of this particular chat instance.
+ * @param sender Name of the initator of this chat
+ * @return
+ */
+bool System::addChat(const QVariant &AccountID,
+                     const QVariant &ChatID, const QVariant &sender){
+    dbm->addChat(AccountID,ChatID,sender);
+    return true;
+}
+
 
 int System::numberOfAccount(){
     return accounts.size();
