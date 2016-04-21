@@ -4,6 +4,7 @@
 #include <QWidget>
 #include "mainmenu.h"
 #include <QScrollBar>
+#include <QVBoxLayout>
 
 namespace Ui {
 class ChatGUI;
@@ -25,6 +26,7 @@ public:
 private slots:
     void on_pushButton_main_menu_clicked();
     void on_pushButton_send_mess_clicked();
+    void openChat();
 
 private:
     Ui::ChatGUI *ui;

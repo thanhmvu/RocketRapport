@@ -22,15 +22,18 @@ ChatGUI::~ChatGUI()
 }
 
 void ChatGUI::init(){
-    // load the list of all users to the
+    // load the list of all users
     updateUserList();
 
+    // load all mess
     updateChatBox();
 
     // Set chat_box scrollbar to the bottom (solution 1)
     QTextCursor c = ui->chat_box->textCursor();
     c.movePosition(QTextCursor::End);
     ui->chat_box->setTextCursor(c);
+
+
 }
 
 void ChatGUI::updateUserList(){
@@ -39,36 +42,27 @@ void ChatGUI::updateUserList(){
     /// Display to screen
     //////////////////////////////////////////////////////////////////
 
-//        // display current blog posts
-//        QWidget *scroll_widget = new QWidget();
-//        QVBoxLayout *layout = new QVBoxLayout();
+    // get a list of usernames from DATABASE
+    std::vector<QString> userList;
+    userList.push_back("asd");
+    userList.push_back("zxc");
+    userList.push_back("qwe");
 
-//        // TODO: display actual blog posts pulled from either system class or the database
-//        for(int i=0;i<6;i++) {
-//            // randomly generate text for illustration purpose
-//            QString text = "blog <b>post</b> ";
-//            for(int j=0;j<i+2;j++) text += text;
+    // display the list of users as a list of openChat buttons
+    QVBoxLayout *layout = new QVBoxLayout();
+    for(QString username: userList){
+        QPushButton *button = new QPushButton();
+        button->setText(username);
+        layout->addWidget(button);
+        connect(button,SIGNAL(clicked()),this,SLOT(openChat()));
+    }
+    ui->scrollArea_userList->setLayout(layout);
+}
 
-//             *browser = new QTextBrowser();
-//            browser->setMinimumHeight(120);
-//            browser->setText(text);
-
-//            layout->addWidget(browser);
-//        }
-
-        // try this and try pushbutton
-//        QCommandLinkButton *slotButtons[10];
-//        QVBoxLayout* layout = new QVBoxLayout(ui->scrollAreaWidgetContents);
-//        for(int i=0; i < 5; i++)
-//        {
-//            slotButtons[i] = new QCommandLinkButton;
-//            slotButtons[i]->setText(slotQuery.value(0).toString());
-//            slotButtons[i]->setDescription(slotQuery.value(1).toString());
-//            ui->scrollAreaWidgetContents->layout()->addWidget(slotButtons[i]);
-//        }
-
-//        scroll_widget->setLayout(layout);
-//        ui->scrollArea_userList->setWidget(scroll_widget);
+void ChatGUI::openChat(){
+//    QObject* button = QObject::sender();
+    QPushButton* button = qobject_cast<QPushButton*> (QObject::sender());
+    std::cout<<"Open test chat: " << button->text().toStdString() << "\n";
 }
 
 void ChatGUI::updateChatBox(){
