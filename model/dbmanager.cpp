@@ -127,7 +127,7 @@ bool DbManager::addGroup(const QVariant &GrpID, const QVariant &GrpAdmnId, \
 bool DbManager::addChat(const QVariant &AccountID, const QVariant &ChatID, const QVariant &sender){
     bool success = false;
     QSqlQuery query;
-    query.prepare("INSERT INTO TABLE chats VALUES(:AccountID, :ChatID, :sender)");
+    query.prepare("INSERT INTO chats VALUES((:AccountID), (:ChatID), (:Sender)");
     query.bindValue(":AccountID", AccountID);
     query.bindValue(":ChatID", ChatID);
     query.bindValue(":sender", sender);
@@ -135,7 +135,8 @@ bool DbManager::addChat(const QVariant &AccountID, const QVariant &ChatID, const
         success = true;
     }
     else{
-        //Print statement
+        qDebug() << "Error adding Chat"
+                 << query.lastError();
     }
     return success;
 }
