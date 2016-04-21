@@ -38,6 +38,7 @@ void Login::on_pushButton_signin_clicked()
     std::string lastname = ui->lineEdit_lastname->text().toStdString();
 
     bool accountCreated = main_menu->getSystem()->createAccount(username,password,firstname,lastname);
+
     if(accountCreated){
         std::cout<< "Sign in successfully, proceed to menu screen \n";
         openMainScreen();

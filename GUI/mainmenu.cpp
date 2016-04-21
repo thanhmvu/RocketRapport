@@ -20,6 +20,9 @@ MainMenu::MainMenu(System * sys) :
 MainMenu::~MainMenu()
 {
     delete ui;
+    delete login_screen;
+    delete profile_screen;
+    delete chat_screen;
 }
 
 void MainMenu::init(){

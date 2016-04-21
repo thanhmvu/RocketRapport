@@ -28,7 +28,8 @@ SOURCES += main.cpp\
     bloggui.cpp \
     tweetgui.cpp \
     chatgui.cpp \
-    scrapbookgui.cpp
+    scrapbookgui.cpp \
+    groupgui.cpp
 
 HEADERS  += login.h\
     ../model/*.h \
@@ -37,7 +38,8 @@ HEADERS  += login.h\
     bloggui.h \
     tweetgui.h \
     chatgui.h \
-    scrapbookgui.h
+    scrapbookgui.h \
+    groupgui.h
 
 FORMS    += login.ui \
     mainmenu.ui \
@@ -45,7 +47,8 @@ FORMS    += login.ui \
     bloggui.ui \
     tweetgui.ui \
     chatgui.ui \
-    scrapbookgui.ui
+    scrapbookgui.ui \
+    groupgui.ui
 
 RESOURCES += \
     images.qrc

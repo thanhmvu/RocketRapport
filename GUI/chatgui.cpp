@@ -34,6 +34,11 @@ void ChatGUI::init(){
 }
 
 void ChatGUI::updateUserList(){
+    ////////////////////////////////////////////////////////////////////
+    /// Load list of user name from SYSTEM/ DATABASE
+    /// Display to screen
+    //////////////////////////////////////////////////////////////////
+
 //        // display current blog posts
 //        QWidget *scroll_widget = new QWidget();
 //        QVBoxLayout *layout = new QVBoxLayout();
@@ -67,6 +72,10 @@ void ChatGUI::updateUserList(){
 }
 
 void ChatGUI::updateChatBox(){
+    ////////////////////////////////////////////////////////////////////
+    /// SOME HOW UPDATE THE MESS CONSTANTLY
+    //////////////////////////////////////////////////////////////////
+
 //    // display current blog posts
 //    QWidget *scroll_widget = new QWidget();
 //    QVBoxLayout *layout = new QVBoxLayout();
@@ -96,6 +105,12 @@ void ChatGUI::on_pushButton_main_menu_clicked()
 
 void ChatGUI::on_pushButton_send_mess_clicked()
 {
+    ////////////////////////////////////////////////////////////////////
+    /// STORE NEW MESS TO DB
+    /// NEW MESS SHOULD BE automaticall display via updateChatBox
+    //////////////////////////////////////////////////////////////////
+
+
     // Set scrollbar to the bottom (solution 2)
     QScrollBar *v = ui->chat_box->verticalScrollBar();
     v->setValue(v->maximum());

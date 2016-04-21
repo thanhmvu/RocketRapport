@@ -19,6 +19,7 @@ public:
     explicit BlogGUI(QWidget *parent = 0);
     BlogGUI(ProfileGUI* pfGUI);
     ~BlogGUI();
+    void loadViewForUser(int viewerID);
 
 private slots:
     void on_pushButton_newPost_clicked();
