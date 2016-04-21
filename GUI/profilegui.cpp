@@ -37,11 +37,23 @@ void ProfileGUI::on_pushButton_back_to_menu_clicked()
     main_menu->show();
 }
 
-void ProfileGUI::loadProfile(){
-    Account * curr_user = main_menu->getSystem()->getCurrentUser();
-    std::string user_fullname = curr_user->getFirstName()
-            + " " + curr_user->getLastName();
-    ui->label_name->setText(QString::fromStdString(user_fullname));
+void ProfileGUI::loadProfile(QString username){
+    ////////////////////////////////////////////////////////////////////
+    /// Load profile of user name from SYSTEM/ DATABASE
+    //////////////////////////////////////////////////////////////////
+    //    Account * curr_user = main_menu->getSystem()->getCurrentUser();
+    //    std::string user_fullname = curr_user->getFirstName()
+    //            + " " + curr_user->getLastName();
+    //    ui->label_name->setText(QString::fromStdString(user_fullname));
+
+    ////////////////////////////////////////////////////////////////////
+    /// Check if current user is the owner of the profile
+    //////////////////////////////////////////////////////////////////
+//    QString current_user = QString::fromStdString(main_menu->getSystem()->getCurrentUser()->getUsername());
+//    if(username.compare(current_user) == 0){
+//        // allow edit profile
+//    }
+
 }
 
 void ProfileGUI::on_pushButton_blog_clicked()

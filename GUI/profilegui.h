@@ -30,7 +30,7 @@ public:
     ProfileGUI(MainMenu * mm);
     ~ProfileGUI();
     void setMainMenu(MainMenu* mm);
-    void loadProfile();
+    void loadProfile(QString username);
 
 private slots:
     void on_pushButton_back_to_menu_clicked();

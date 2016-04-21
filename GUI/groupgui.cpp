@@ -12,3 +12,19 @@ GroupGUI::~GroupGUI()
 {
     delete ui;
 }
+
+GroupGUI::GroupGUI(MainMenu* mm) :
+    ui(new Ui::GroupGUI)
+{
+    ui->setupUi(this);
+    main_menu = mm;
+    init();
+}
+
+void GroupGUI::init(){
+
+}
+
+void GroupGUI::loadGroup(QString groupname){
+
+}
