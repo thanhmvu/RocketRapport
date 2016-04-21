@@ -77,6 +77,11 @@ public:
     void promoteToSystemAdmin();
     void promoteToGroupAdmin();
 
+    //Functions to obtain information from the database
+    void retrieveAllBlogPosts();
+    void retrieveAllTweets();
+    void retrieveAllMessages();
+
     // Functions specific to a general account.
     void addChat(Chat* newChat);
     void removeChat(Chat* badChat);
