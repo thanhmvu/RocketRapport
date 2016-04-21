@@ -24,7 +24,7 @@ public:
 
     //Add methods
     bool addUser(const QVariant &AcntID, const QVariant &FrstName,const QVariant &LstName,   //This method is already configured to add in Account objects with their associated data fields
-                 const QVariant &GrpID,const QVariant &ScrpBkID,const QVariant &BlogID,
+                 const QVariant &ScrpBkID,const QVariant &BlogID,
                  const QVariant &TweetID, const QVariant &UserName, const QVariant &passWord);
     bool addProfile (const QVariant &AcntID, const QVariant &Gender, const QVariant &AbtYslf, const QVariant HmAddress,
                      const QVariant &MstRcntEmplyr, const QVariant age);                     //The profile is the personalized list of a user's information

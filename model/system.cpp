@@ -148,13 +148,11 @@ void System::addAccount(Account* newAccount) {
     const QVariant usrName(a);
     const QVariant passWord(b);
 
-    //const QVariant GrpID = newAccount->getGroupID();
-    const QVariant GrpID = -1; // default to -1 since new account does't have a group yet.
     const QVariant ScrpBkID = newAccount->getMyScrapbook()->getScrpbkID();
     const QVariant BlgID = newAccount->getMyBlog()->getBlogID();
     const QVariant TweetID = newAccount->getMyTweet()->getTweetID();
 
-    dbm->addUser(accntD,frstName,lstNme,GrpID, //Testing out a default group ID. When created, each account will not belong to a group
+    dbm->addUser(accntD,frstName,lstNme,
                 ScrpBkID,BlgID,TweetID,usrName,
                  passWord);
 }

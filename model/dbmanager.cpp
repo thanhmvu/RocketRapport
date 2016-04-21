@@ -41,16 +41,17 @@ DbManager::DbManager(const QString &path)
  * @return
  */
 bool DbManager::addUser(const QVariant &AcntID, const QVariant &FrstName,
-                        const QVariant &LstName, const QVariant &GrpID, const
+                        const QVariant &LstName, const
                         QVariant &ScrpBkID, const QVariant &BlogID, const QVariant &TweetID,
                         const QVariant &UserName, const QVariant &passWord){
 //    std::cout << "Now entering Add User method in DatabaseManager" << std::endl;
     bool success = false;
     QSqlQuery query(m_db); //Prepares a new QSqlQuery
 
+    const QVariant GrpID = -1;
     ////////////////////////////////////////////////////////////////////
-    /// Need to check if input strings are empty.
-    /// They must not be empty, otherwise the QGLite command will be incorrect
+    /// Need to check if input strings are empty?
+    /// If they are empty, will the QGLite command be incorrect?
     //////////////////////////////////////////////////////////////////
     if(!find(AcntID, "accounts") ){
         std::cout << "Value not found" << std::endl;
