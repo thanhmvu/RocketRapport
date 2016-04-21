@@ -9,7 +9,7 @@ private:
     int chatID;
 public:
     Chat();
-    int getID();
+    int getChatID();
 };
 
 #endif // CHAT_H

@@ -32,7 +32,7 @@ Account::Account()
     myBlog = new Blog();
     myTweet = new Tweet();
     theSystem = nullptr;
-
+    dbm = theSystem->getDbm(); //Set the dbm used by the system to the dbm used by the account
 }
 
 Account::Account(std::string usrName){
@@ -64,7 +64,7 @@ Account::Account(std::string usrName){
     myBlog = new Blog();
     myTweet = new Tweet();
     theSystem = nullptr;
-
+    dbm = theSystem->getDbm(); //Set the dbm used by the system to the dbm used by the account
 }
 
 
@@ -179,6 +179,12 @@ void Account::promoteToGroupAdmin() {
  */
 void Account::addChat(Chat* newChat) {
     this->getMyChats().push_back(newChat); //Add new chat to list of chats
+    QVariant ID(accountID);
+    int i = newChat->getChatID();
+    QVariant chatID(i);
+    QString convert = QString::fromStdString(username);
+    QVariant uname(convert);
+    dbm->addChat(ID,chatID,uname);
 }
 
 

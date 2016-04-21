@@ -8,6 +8,6 @@ Chat::Chat()
     id_cnt++;
 }
 
-int Chat::getID(){
+int Chat::getChatID(){
     return chatID;
 }

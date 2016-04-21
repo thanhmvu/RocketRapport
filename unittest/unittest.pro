@@ -41,13 +41,13 @@ LIBS += -l sqlite3
 
 
 HEADERS += \
-#    ../model/system.h \
-#    ../model/dbmanager.h\
-#    ../model/account.h\
-#    ../model/scrapbook.h\
-#    ../model/tweet.h\
-#    ../model/blog.h\
-#    ../model/chat.h \
+    ../model/system.h \
+    ../model/dbmanager.h\
+    ../model/account.h\
+    ../model/scrapbook.h\
+    ../model/tweet.h\
+    ../model/blog.h\
+    ../model/chat.h \
     ../model/*.h \
 
 
