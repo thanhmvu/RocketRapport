@@ -4,6 +4,7 @@
 #include <vector>
 #include <ctime>
 #include "scrapbook.h"
+#include "dbmanager.h"
 #include "chat.h"
 #include "group.h"
 #include "blog.h"
@@ -12,6 +13,7 @@
 
 class System;
 class Group;
+class DbManager; //Going to try saving chat information directly using dbm
 
 /**
  * @brief The Account class will be used to store user data. The account will be inherited by children classes such as system admins, current guests, and past guests.
@@ -56,7 +58,7 @@ private:
 
     // Private members specific to a system admin.
     System* theSystem;
-
+    DbManager* dbm;
 
 public:
     Account();

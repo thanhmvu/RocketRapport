@@ -32,12 +32,6 @@ TEST(SystemTest, testLogin){
     EXPECT_TRUE(one->login("hSwizzle79","Oblivion0722&"));
 }
 
-//Having some trouble with this method
-TEST(SystemTest, testAddChat){
-    System *one = new System("./testDb.db");
-    one->addChat(1,1,"Johnny");
-}
-
 
 //TEST(SystemTest, usernameExist) {
 //    System sys;

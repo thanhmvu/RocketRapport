@@ -56,6 +56,7 @@ public:
     bool getLoggedIn();
     std::vector<Group*> getGroups();
     std::map <std::string, Account*> getAllAccounts();
+    DbManager* getDbm();   //Return the dbm the system is using
 
     void setCurrentUser(Account* cUser);
     void setLoggedIn(bool logged);

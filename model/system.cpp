@@ -196,6 +196,14 @@ std::map<std::string, Account*> System::getAllAccounts() {
 }
 
 /**
+ * @brief System::getDbm Method used to retrieve the databasemanager and all it's related info. Used in the Account class
+ * @return Pointer to the dbm the system is currently using.
+ */
+DbManager* System::getDbm(){
+    return dbm;
+}
+
+/**
  * @brief Setter for the account list.
  */
 void System::setAccountMap(std::map<std::string, Account*> aMap) {
@@ -245,6 +253,7 @@ bool System::usernameExist(std::string username){
  * @param AccountID ID of the account to whome this chat is initiated by. Used for data retrieval purposes.
  * @param ChatID ID of this particular chat instance.
  * @param sender Name of the initator of this chat
+ * Remove this method if it is not necessary
  * @return
  */
 bool System::addChat(const int &AccountID,
