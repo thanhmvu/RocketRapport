@@ -47,7 +47,7 @@ public:
     std::string retrieveStringInfo(const QString &fieldName, const QString &tableName, const QString &checkName, const QVariant &ID);       //These methods will be used in pulling information from the database.
     void retrieveAllAccounts(std::map<int,std::string> *one); //Store each username with its associated user ID. Use this information to obtain the other IDs
 
-    bool rmAll();
+    bool rmAllAccounts();
 
 };
 

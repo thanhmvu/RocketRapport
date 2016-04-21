@@ -311,7 +311,7 @@ std::string DbManager::retrieveStringInfo(const QString &fieldName, const QStrin
  * @brief DbManager::rmAll Remove all information from the database.
  * @return Boolean signaling that the database has been deleted.
  */
-bool DbManager::rmAll(){
+bool DbManager::rmAllAccounts(){
     QSqlQuery query;
     query.prepare("DELETE FROM accounts");
     query.exec();
