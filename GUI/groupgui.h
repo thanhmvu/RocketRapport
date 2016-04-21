@@ -21,6 +21,9 @@ public:
     void init();
     void loadGroup(QString groupname);
 
+private slots:
+    void on_pushButton_mainmenu_clicked();
+
 private:
     Ui::GroupGUI *ui;
     MainMenu* main_menu;

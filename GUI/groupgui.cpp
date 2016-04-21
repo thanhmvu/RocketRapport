@@ -28,3 +28,9 @@ void GroupGUI::init(){
 void GroupGUI::loadGroup(QString groupname){
 
 }
+
+void GroupGUI::on_pushButton_mainmenu_clicked()
+{
+    this->close();
+    main_menu->show();
+}

@@ -59,6 +59,7 @@ void MainMenu::reload(){
     // load grouplist
     ////////////////////////////////////////////////////////////////////
     /// Load list of groups from SYSTEM/ DATABASE
+    /// To prevent memory leaks, pay attention to userlist and grouplist
     //////////////////////////////////////////////////////////////////
     std::vector<QString> groupList;
     for(int i = 0; i<10; i++){
@@ -89,9 +90,9 @@ void MainMenu::openUserProfile(){
 void MainMenu::openGroupScreen(){
     QPushButton* button = qobject_cast<QPushButton*> (QObject::sender());
     QString groupname = button->text();
-
-//    this->close();
     group_screen->loadGroup(groupname);
+
+    this->close();
     group_screen->show();
 }
 
@@ -105,6 +106,8 @@ Login * MainMenu::getLoginScreen(){
 
 void MainMenu::on_pushButton_profile_clicked()
 {
+    Account * current_user = this->getSystem()->getCurrentUser();
+    profile_screen->loadProfile(QString::fromStdString(current_user->getUsername()));
     this->close();
     profile_screen->show();
 }
