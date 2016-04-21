@@ -77,3 +77,8 @@ void TweetGUI::on_pushButton_back_to_profile_clicked()
     this->close();
     profile_screen->show();
 }
+
+
+void TweetGUI::loadTweetView(QString username){
+
+}

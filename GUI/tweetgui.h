@@ -19,6 +19,7 @@ public:
     explicit TweetGUI(QWidget *parent = 0);
     TweetGUI(ProfileGUI* pf_scrn);
     ~TweetGUI();
+    void loadTweetView(QString username);
 
 private slots:
     void on_pushButton_cancel_clicked();

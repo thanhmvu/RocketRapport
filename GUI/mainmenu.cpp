@@ -85,15 +85,17 @@ void MainMenu::reload(){
 void MainMenu::openUserProfile(){
     QPushButton* button = qobject_cast<QPushButton*> (QObject::sender());
     QString username = button->text();
+    // load content based on viewer
+    profile_screen->loadProfile(username);
 
     this->close();
-    profile_screen->loadProfile(username);
     profile_screen->show();
 }
 
 void MainMenu::openGroupScreen(){
     QPushButton* button = qobject_cast<QPushButton*> (QObject::sender());
     QString groupname = button->text();
+    // load content based on viewer
     group_screen->loadGroup(groupname);
 
     this->close();
@@ -110,8 +112,13 @@ Login * MainMenu::getLoginScreen(){
 
 void MainMenu::on_pushButton_profile_clicked()
 {
-    Account * current_user = this->getSystem()->getCurrentUser();
-    profile_screen->loadProfile(QString::fromStdString(current_user->getUsername()));
+    ////////////////////////////////////////////////////////////////////
+    /// BUG in retrieve current user
+    //////////////////////////////////////////////////////////////////
+//    Account * current_user = this->getSystem()->getCurrentUser();
+//    // load content based on viewer
+//    profile_screen->loadProfile(QString::fromStdString(current_user->getUsername()));
+
     this->close();
     profile_screen->show();
 }

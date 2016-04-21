@@ -80,6 +80,6 @@ void BlogGUI::on_pushButton_back_to_profile_clicked()
     profile_screen->show();
 }
 
-void BlogGUI::loadViewForUser(int viewerID){
+void BlogGUI::loadBlogView(QString username){
 
 }
