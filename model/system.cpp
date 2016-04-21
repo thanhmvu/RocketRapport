@@ -25,24 +25,21 @@ System::System(const QString &path)
     dbm = new DbManager(path);
     loadAccounts(usernameList); // load into usernameList
     fillAccountsMap();
+    std::cout<< "Number of accounts: " << accounts.size()<< std::endl;
 }
 
 /**
- * @brief System::~System Destructor will store information currently in the system to the databse for the system
- * Remember that this methods parameters must match those in the DbManager class
+ * @brief System::~System Destructor
+ *
+ * Since any new data would be immediately stored to the database,
+ * the database is always up-to-date.
+ * No need to store data to database here
+ *
+ * However, the destructor may want to delete any object
+ * that it created in the heap to avoid memory leaks
  */
 System::~System(){
-    std::cout << "Now Deleting System object" << std::endl;
-    //For every Account in the System, store Account with associated values into the database
-
-    // For more on looping through map, look at the link:
-    // http://stackoverflow.com/questions/26281979/c-loop-through-map
-    //Note that 'first' is used at the first value in the pair, and 'second' is the second value in the pair
-    //In our case, the first value is a string, and the second is the actual account value (The map stores a pointer to the account object)
-    for(const auto &acc: accounts) {
-        Account* a = acc.second;
-        addAccount(a);     //Pass in a pointer to an account object stored in each pair of the map to the method that stores the accounts in the database
-    }
+    std::cout << "Delete System object" << std::endl;
 }
 
 
