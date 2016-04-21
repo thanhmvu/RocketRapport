@@ -50,6 +50,7 @@ public:
     void fillAccountsMap();
 
     Account* getCurrentUser();
+    Account* getAccountByUsername(std::string usrname);
     bool getLoggedIn();
     std::vector<Group*> getGroups();
     std::map <std::string, Account*> getAllAccounts();

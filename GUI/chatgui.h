@@ -21,7 +21,7 @@ public:
     ChatGUI(MainMenu * mm);
     ~ChatGUI();
     void updateUserList();
-    void updateChatBox();
+    void autoUpdate();
 
 private slots:
     void on_pushButton_main_menu_clicked();
@@ -32,6 +32,8 @@ private:
     Ui::ChatGUI *ui;
     MainMenu *main_menu;
     void init();
+//    Account* current_user;
+//    Account* the_other_user;
 };
 
 #endif // CHATGUI_H

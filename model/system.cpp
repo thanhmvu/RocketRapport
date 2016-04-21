@@ -53,22 +53,6 @@ System::~System(){
 bool System::login(std::string username, std::string password) {
     bool success = false;
 
-    std::cout << "size; " << accounts.size() <<"\n";
-    for(const auto &acc: accounts) {
-        std::cout << "helooooooo\n";
-        Account* a = acc.second;
-        std::cout << acc.first << "\n";
-        std::cout << a << "\n";
-        std::cout << a->getPassword() << "\n";
-    }
-
-    std::cout << "size; " << usernameList->size() <<"\n";
-    for(const auto &acc: *usernameList) {
-        std::cout << "helooooooo2\n";
-        std::cout << acc.first << "\n";
-        std::cout << acc.second << "\n";
-    }
-
     if (usernameExist(username)) {
         qDebug() << "Valid username found";
         // If valid, check password
@@ -306,4 +290,8 @@ void System::fillAccountsMap(){
         std::cout << insert.first << " " << insert.second << std::endl;
     }
     std::cout << "Accounts Size: " << accounts.size() << std::endl;
+}
+
+Account* System::getAccountByUsername(std::string usrname){
+    return accounts[usrname];
 }
