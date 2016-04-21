@@ -65,6 +65,42 @@ Account::Account(std::string usrName){
 
 }
 
+// this constructor has the risk of duplicate ID
+Account::Account(int accID,     std::string usrname,    std::string pw,
+                int scrpBkID,   int blogID,         int tweetID,
+                std::string firstname,  std::string lastname)
+{
+    this->accountID = accID;
+    id_cnt++;
+
+    isCurrentGuest = true;
+    isPastGuest = false;
+    isSystemAdmin = false;
+    isGroupAdmin = false;
+
+    username = usrname;
+    password = pw;
+    firstName = firstname;
+    lastName = lastname;
+    gender = "none";
+    aboutYourself = "none";
+    homeAddress = "none";
+    profilePicture = "none";
+    mostRecentEmployer = "none";
+    age = 0;
+    phoneNumber = 0;
+
+    monthDeparted = 0;
+    dayDeparted = 0;
+    yearDeparted = 0;
+
+    // rebuild these the the input IDs
+//    myScrapbook = new Scrapbook();
+//    myBlog = new Blog();
+//    myTweet = new Tweet();
+
+
+}
 
 /**
  * @brief Getter for the current guest boolean.

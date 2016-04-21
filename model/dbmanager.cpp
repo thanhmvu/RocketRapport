@@ -48,32 +48,29 @@ bool DbManager::addUser(const QVariant &AcntID, const QVariant &FrstName,
     bool success = false;
     QSqlQuery query(m_db); //Prepares a new QSqlQuery
 
-    const QVariant GrpID = -1;
     ////////////////////////////////////////////////////////////////////
     /// Need to check if input strings are empty?
     /// If they are empty, will the QGLite command be incorrect?
     //////////////////////////////////////////////////////////////////
     if(!find(AcntID, "accounts") ){
         std::cout << "Value not found" << std::endl;
-        query.prepare("INSERT INTO accounts VALUES ( (:AcntID),(:FrstName),(:LstName),(:GrpID),(:ScrpBkID),(:BlogID),(:TweetID),(:UserName),(:PassWord) )");
+        query.prepare("INSERT INTO accounts VALUES ( (:AcntID),(:UserName),(:PassWord),(:ScrpBkID),(:BlogID),(:TweetID),(:FrstName),(:LstName) )");
         query.bindValue(":AcntID", AcntID);
-        query.bindValue(":FrstName", FrstName);
-        query.bindValue(":LstName", LstName);
-        query.bindValue(":GrpID", GrpID);
+        query.bindValue(":UserName",UserName);
+        query.bindValue(":PassWord",passWord);
         query.bindValue(":ScrpBkID", ScrpBkID);
         query.bindValue(":BlogID", BlogID);
         query.bindValue(":TweetID", TweetID);
-        query.bindValue(":UserName",UserName);
-        query.bindValue(":PassWord",passWord);
+        query.bindValue(":FrstName", FrstName);
+        query.bindValue(":LstName", LstName);
 //        qDebug() << "Account ID: "<< query.boundValue(0) << "\n"
-//                 << "First name: "<< query.boundValue(1) << "\n"
-//                 << "Lasr name: "<< query.boundValue(2) << "\n"
-//                 << "Group ID: "<< query.boundValue(3) << "\n"
+//                 << "Username: "<< query.boundValue(7) << "\n"
+//                 << "Password: "<< query.boundValue(8) << "\n";
 //                 << "Scrapbook ID: "<< query.boundValue(4) << "\n"
 //                 << "Blog ID: "<< query.boundValue(5) << "\n"
 //                 << "Tweet ID: "<< query.boundValue(6) << "\n"
-//                 << "Username: "<< query.boundValue(7) << "\n"
-//                 << "Password: "<< query.boundValue(8) << "\n";
+//                 << "First name: "<< query.boundValue(1) << "\n"
+//                 << "Lasr name: "<< query.boundValue(2) << "\n"
 
         if(query.exec()){
             success = true;
@@ -328,10 +325,36 @@ void DbManager::retrieveAllAccounts(std::map<int, std::string> *one){
     query.prepare("SELECT * FROM accounts"); //Choose all elements from the table
     query.exec();
     while(query.next() ){
-        QString name = query.value(7).toString();
+        QString name = query.value(1).toString();
         std::pair<int, std::string> insert1 = {query.value(0).toInt(),name.toStdString()};
         std::cout << insert1.first << " " << insert1.second << std::endl;
         one->insert(insert1);
     }
 }
 
+///**
+// * @brief DbManager::retrieveAllAccounts This method will be used to add every available Account to the given map
+// * @param list
+// * Note to self: test this in the qSqlTest classes (The ones for experimentation)
+// * Refactor this class to work with the accounts map instead of the username list map
+// */
+//void DbManager::retrieveAllAccounts(std::map<QString, *Account> * accounts){
+//    QSqlQuery query;
+//    query.prepare("SELECT * FROM accounts"); //Choose all elements from the table
+//    query.exec();
+//    while(query.next() ){
+//        int accountID = query.value(0).toInt();
+//        QString firstname = query.value(1).toString();
+//        QString lastname = query.value(2).toString();
+//        int groupID = query.value(3).toInt();
+//        int scrpBkID = query.value(4).toInt();
+//        int blogID = query.value(5).toInt();
+//        int tweetID = query.value(6).toInt();
+//        QString username = query.value(7).toString();
+//        QString password = query.value(7).toString();
+
+//        Account * rebuilt_account = new Account(accountID, username, password,
+//                                                scrpBkID, blogID, tweetID,
+//                                                groupID, firstname, lastname);
+//    }
+//}

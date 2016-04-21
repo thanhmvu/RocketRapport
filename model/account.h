@@ -63,6 +63,9 @@ private:
 public:
     Account();
     Account(std::string usrName);
+    Account(int accID,     std::string usrname,    std::string pw,
+            int scrpBkID,   int blogID,         int tweetID,
+            std::string firstname,  std::string lastname);
 
     bool getIsCurrentGuest();
     bool getIsPastGuest();
