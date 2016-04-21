@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
         case 0: // Login
             login.displayScreen();
             login.runScreen();
-            chat.changeScreens(false);
+            login.changeScreens(false);
             clear();
             break;
         case 1: // Main Menu

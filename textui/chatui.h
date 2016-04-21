@@ -8,6 +8,17 @@ class ChatUI : public ScreenUI
 
     int accountIndex;
     int messageIndex;
+    int menuNumber;
+
+    /*
+     * Menu Numbers:
+     *
+     * 0 - Account List
+     * 1 - Chat History
+     * 2 - Type Message
+     * 3 - Menu
+     *
+     */
 
 
 public:

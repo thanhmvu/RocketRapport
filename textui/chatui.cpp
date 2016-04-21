@@ -3,6 +3,10 @@
 ChatUI::ChatUI(System* mainSystem)
 {
     this->setSystem(mainSystem);
+    this->setMenuIndex(0);
+    this->setAccountIndex(0);
+    this->setMessageIndex(0);
+    this->setMenuNumber(0);
 }
 
 
@@ -65,8 +69,65 @@ void ChatUI::displayScreen() {
 void ChatUI::runScreen() {
     noecho();
 
+    mvprintw(8+(this->getAccountIndex()), 1, ">");
     refresh();
-    getch();
+
+    int keyPress;
+    while (this->getChangeScreens() == false) {
+        switch(this->getMenuNumber()) {
+        case 0: // Account List
+            while (this->getMenuNumber() == 0) {
+                keyPress = getch();
+                switch(keyPress) {
+                case KEY_UP:
+                    if (this->getAccountIndex() > 0) {
+                        mvprintw(8+(this->getAccountIndex()), 1, " ");
+                        this->setAccountIndex(this->getAccountIndex()-1);
+                        mvprintw(8+(this->getAccountIndex()), 1, ">");
+                    }
+                    break;
+                case KEY_DOWN:
+                    if (this->getAccountIndex() < this->getSystem()->getAllAccounts().size()-1 && this->getAccountIndex() < this->getRows()-4) {
+                        mvprintw(8+(this->getAccountIndex()), 1, " ");
+                        this->setAccountIndex(this->getAccountIndex()+1);
+                        mvprintw(8+(this->getAccountIndex()), 1, ">");
+                    }
+                    break;
+                case KEY_BACKSPACE:
+                    break;
+                case KEY_END:
+                    break;
+                case KEY_HOME:
+                    break;
+                }
+            }
+            break;
+        case 1: // Chat History
+            break;
+        case 2: // Type Message
+            break;
+        case 3: // Menu
+            break;
+        }
+    }
+
+    refresh();
+}
+
+
+/**
+ * @brief Getter that returns the section of the ChatUI the user is interacting with.
+ */
+int ChatUI::getMenuNumber() {
+    return this->menuNumber;
+}
+
+
+/**
+ * @brief Sets the menu number.
+ */
+void ChatUI::setMenuNumber(int number) {
+    this->menuNumber = number;
 }
 
 

@@ -191,7 +191,6 @@ void System::setCurrentUser(Account* cUser) {
  * @return a copy of current account map (with pointers to actual accounts)
  */
 std::map<std::string, Account*> System::getAllAccounts() {
-    std::cout <<"Accounts size: "<<accounts.size() << std::endl;
     return this->accounts;
 }
 
