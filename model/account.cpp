@@ -11,6 +11,28 @@ Account::Account()
     isPastGuest = false;
     isSystemAdmin = false;
     isGroupAdmin = false;
+
+    username = "none";
+    password = "none";
+    firstName = "none";
+    lastName = "none";
+    gender = "none";
+    aboutYourself = "none";
+    homeAddress = "none";
+    profilePicture = "none";
+    mostRecentEmployer = "none";
+    age = 0;
+    phoneNumber = 0;
+
+    monthDeparted = 0;
+    dayDeparted = 0;
+    yearDeparted = 0;
+
+    myScrapbook = new Scrapbook();
+    myBlog = new Blog();
+    myTweet = new Tweet();
+    theSystem = nullptr;
+
 }
 
 Account::Account(std::string usrName){
@@ -23,6 +45,26 @@ Account::Account(std::string usrName){
     isGroupAdmin = false;
 
     username = usrName;
+    password = "none";
+    firstName = "none";
+    lastName = "none";
+    gender = "none";
+    aboutYourself = "none";
+    homeAddress = "none";
+    profilePicture = "none";
+    mostRecentEmployer = "none";
+    age = 0;
+    phoneNumber = 0;
+
+    monthDeparted = 0;
+    dayDeparted = 0;
+    yearDeparted = 0;
+
+    myScrapbook = new Scrapbook();
+    myBlog = new Blog();
+    myTweet = new Tweet();
+    theSystem = nullptr;
+
 }
 
 

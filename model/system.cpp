@@ -20,8 +20,10 @@ System::System(const QString &path)
     loggedIn = false;
     usernameList = new std::map<int, std::string>; //Initializes the userNameList pointer
 //    std::cout<< "New system created" << std::endl;
+
+    // initialize new database manager and load from the database file
     dbm = new DbManager(path);
-    loadAccounts(usernameList);
+    loadAccounts(usernameList); // load into usernameList
     fillAccountsMap();
 
 }
@@ -68,25 +70,10 @@ bool System::login(std::string username, std::string password) {
 
             success = true;
         }
-    }
-
-
-    // If invalid, prompt username again and ask if they want to create a new account
-
-    /* @From Thanh:
-     * Perhaps we have a "run" method
-     * with the flow of the app,
-     * including this kind of loop,
-     * instead of having a loop explicitly in this method
-     */
-    else{
+    }else{
         std::cout << std::endl << "Invalid credentials" << std::endl << "Please try again or create a new account." << std::endl;
-    // After a short delay,
-    // clear the window, and
-    // return to beginning.
-
-
     }
+
     return success;
 }
 
@@ -105,20 +92,20 @@ bool System::createAccount(std::string username, std::string password, std::stri
         std::cout << "Username already exists!" << std::endl;
     }
     else{
-    // create new account
-    Account* newAccount = new Account;
-    newAccount->setUsername(username);
-    newAccount->setPassword(password);
-    newAccount->setFirstName(firstname);
-    newAccount->setLastName(lastname);
+        // create new account
+        Account* newAccount = new Account;
+        newAccount->setUsername(username);
+        newAccount->setPassword(password);
+        newAccount->setFirstName(firstname);
+        newAccount->setLastName(lastname);
 
-    // add account to the system account map
-    accounts[username] = newAccount;
+        // add account to the system account map
+        accounts[username] = newAccount;
 
-    // add account to the database
-    addAccount(newAccount);
-    std::cout<< "New Account Created" << std::endl;
-    success = true;
+        // add account to the database
+        addAccount(newAccount);
+        std::cout<< "New Account Created" << std::endl;
+        success = true;
     }
     return success;
 }
@@ -150,7 +137,7 @@ void System::removeGroup(Group* oldGroup) {
  * @param Takes in a pointer to a new account object that we want to store
  */
 void System::addAccount(Account* newAccount) {
-    std::cout << "Now entering add account method" << std::endl;
+//    std::cout << "Now entering add account method" << std::endl;
     const QString &x = QString::fromStdString(newAccount->getFirstName());
     const QString &y = QString::fromStdString(newAccount->getLastName());
     const QVariant accntD = newAccount->getAccountID();
@@ -161,7 +148,7 @@ void System::addAccount(Account* newAccount) {
     const QVariant usrName(a);
     const QVariant passWord(b);
 
-//    const QVariant GrpID = newAccount->getGroupID();
+    //const QVariant GrpID = newAccount->getGroupID();
     const QVariant GrpID = -1; // default to -1 since new account does't have a group yet.
     const QVariant ScrpBkID = newAccount->getMyScrapbook()->getScrpbkID();
     const QVariant BlgID = newAccount->getMyBlog()->getBlogID();

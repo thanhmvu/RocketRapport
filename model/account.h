@@ -27,7 +27,7 @@ private:
     bool isGroupAdmin;
 
     // Private members specific to a general account
-    Scrapbook* myScrapbook = new Scrapbook();
+    Scrapbook* myScrapbook;
     std::vector<Chat*> myChats;
     std::vector<Account*> friendList;
     std::vector<Group*> groups;
@@ -45,8 +45,8 @@ private:
     int accountID;
 
     // Private members specific to a current guest.
-    Blog* myBlog = new Blog();
-    Tweet* myTweet = new Tweet();
+    Blog* myBlog;
+    Tweet* myTweet;
 
     // Private members specific to a past guest.
     std::vector<std::string> projectsWorkedOn;
