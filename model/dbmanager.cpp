@@ -352,24 +352,32 @@ void DbManager::retrieveAllBlogPosts(Blog *userBlog){
  */
 void DbManager::retrieveAllAccounts(std::map<std::string, Account*> &accounts){
     QSqlQuery query;
-    query.prepare("SELECT * FROM accounts"); //Choose all elements from the table
-    query.exec();
-    while(query.next() ){
-        // get the neccessary info
-        int accountID = query.value(0).toInt();
-        std::string username = query.value(1).toString().toStdString();
-        std::string password = query.value(2).toString().toStdString();
-        int scrpBkID = query.value(3).toInt();
-        int blogID = query.value(4).toInt();
-        int tweetID = query.value(5).toInt();
-        std::string firstname = query.value(6).toString().toStdString();
-        std::string lastname = query.value(7).toString().toStdString();
+    if(query.prepare("SELECT * FROM accounts")){ //Choose all elements from the table
+        if(query.exec()){
+            std::cout <<"Hello from DbManager::retrieveAllAccounts " <<std::endl;
+            std::cout << query.next() << std::endl;
+            std::cout << query.isActive() << std::endl;
+            while(query.next() ){
+                // get the neccessary info
+                int accountID = query.value(0).toInt();
+                std::string username = query.value(1).toString().toStdString();
+                std::string password = query.value(2).toString().toStdString();
+                int scrpBkID = query.value(3).toInt();
+                int blogID = query.value(4).toInt();
+                int tweetID = query.value(5).toInt();
+                std::string firstname = query.value(6).toString().toStdString();
+                std::string lastname = query.value(7).toString().toStdString();
 
-        // rebuild an account based on the info
-        Account * rebuilt_account = new Account(accountID, username, password,
-                                                scrpBkID, blogID, tweetID,
-                                                firstname, lastname);
-        // add accoun to the accounts map
-        accounts[username] = rebuilt_account;
-    }
+                // rebuild an account based on the info
+                Account * rebuilt_account = new Account(accountID, username, password,
+                                                        scrpBkID, blogID, tweetID,
+                                                        firstname, lastname);
+
+                std::cout <<"Username: " << username <<std::endl;
+
+                // add accoun to the accounts map
+                accounts[username] = rebuilt_account;
+            }
+        }else{ qDebug() << "ERROR: QSqlQuerry exec() failed!"; }
+    }else{ qDebug() << "ERROR: QSqlQuerry prepare() failed!"; }
 }
