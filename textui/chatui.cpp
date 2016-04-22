@@ -7,6 +7,7 @@ ChatUI::ChatUI(System* mainSystem)
     this->setAccountIndex(0);
     this->setMessageIndex(0);
     this->setMenuNumber(0);
+    this->setUserIndex(0);
 }
 
 
@@ -79,21 +80,82 @@ void ChatUI::runScreen() {
             while (this->getMenuNumber() == 0) {
                 keyPress = getch();
                 switch(keyPress) {
-                case KEY_UP:
-                    if (this->getAccountIndex() > 0) {
-                        mvprintw(8+(this->getAccountIndex()), 1, " ");
-                        this->setAccountIndex(this->getAccountIndex()-1);
-                        mvprintw(8+(this->getAccountIndex()), 1, ">");
+                case KEY_UP: // Moves up list
+                    if (this->getUserIndex() > 0) {
+                        this->setUserIndex(this->getUserIndex()-1);
+                        if (this->getAccountIndex() > 0) {
+                            mvprintw(8+(this->getAccountIndex()), 1, " ");
+                            this->setAccountIndex(this->getAccountIndex()-1);
+                            mvprintw(8+(this->getAccountIndex()), 1, ">");
+                        }
+                        // 25 blank spaces
+                        for (int i = 8; i < this->getRows()-5; i++) {
+                            mvprintw(i, 2, "                         ");
+                        }
+                        int j = 8;
+                        int k = 0;
+                        for(const auto &acc: this->getSystem()->getAllAccounts()) {
+                            if (j < this->getRows()-5 && k >= (this->getUserIndex() - this->getAccountIndex())) {
+                                std::string uName = acc.first;
+                                ss << uName;
+                                move(j, 2);
+                                addnstr(ss.str().c_str(), ((this->getCols()/2)-12)-3);
+                                ss.str("");
+                                j++;
+                            }
+                            k++;
+                        }
                     }
                     break;
-                case KEY_DOWN:
-                    if (this->getAccountIndex() < this->getSystem()->getAllAccounts().size()-1 && this->getAccountIndex() < this->getRows()-4) {
-                        mvprintw(8+(this->getAccountIndex()), 1, " ");
-                        this->setAccountIndex(this->getAccountIndex()+1);
-                        mvprintw(8+(this->getAccountIndex()), 1, ">");
+                case KEY_DOWN: // Moves down list
+                    if (this->getUserIndex() < this->getSystem()->getAllAccounts().size()-1) {
+                        this->setUserIndex(this->getUserIndex()+1);
+                        if (this->getAccountIndex() < this->getSystem()->getAllAccounts().size()-1) {
+                            if (this->getAccountIndex() < (this->getRows()-5)-8 ) {
+                                mvprintw(8+(this->getAccountIndex()), 1, " ");
+                                this->setAccountIndex(this->getAccountIndex()+1);
+                                mvprintw(8+(this->getAccountIndex()), 1, ">");
+                            }
+                        }
+                        // 25 blank spaces
+                        for (int i = 8; i < this->getRows()-5; i++) {
+                            mvprintw(i, 2, "                         ");
+                        }
+                        int j = 8;
+                        int k = 0;
+                        for(const auto &acc: this->getSystem()->getAllAccounts()) {
+                            if (j < this->getRows()-5 && k >= (this->getUserIndex() - this->getAccountIndex())) {
+                                std::string uName = acc.first;
+                                ss << uName;
+                                move(j, 2);
+                                addnstr(ss.str().c_str(), ((this->getCols()/2)-12)-3);
+                                ss.str("");
+                                j++;
+                            }
+                            k++;
+                        }
                     }
                     break;
-                case KEY_BACKSPACE:
+                case KEY_BACKSPACE: // Selects a user
+                    if (true) {
+                        int k = 0;
+                        for(const auto &acc: this->getSystem()->getAllAccounts()) {
+                            if (k == this->getUserIndex()) {
+
+
+
+                                // ASSIGN CHAT USER
+
+
+
+                                // TESTING PURPOSES:
+                                testUName = acc.first;
+
+                                this->setMenuNumber(1);
+                            }
+                            k++;
+                        }
+                    }
                     break;
                 case KEY_END:
                     break;
@@ -103,10 +165,32 @@ void ChatUI::runScreen() {
             }
             break;
         case 1: // Chat History
+            while (this->getMenuNumber() == 1) {
+                keyPress = getch();
+                switch(keyPress) {
+                case KEY_UP:
+                    break;
+
+                }
+            }
             break;
         case 2: // Type Message
+            while (this->getMenuNumber() == 2) {
+                keyPress = getch();
+                switch(keyPress) {
+                case KEY_UP:
+                    break;
+                }
+            }
             break;
         case 3: // Menu
+            while (this->getMenuNumber() == 3) {
+                keyPress = getch();
+                switch(keyPress) {
+                case KEY_UP:
+                    break;
+                }
+            }
             break;
         }
     }
@@ -160,4 +244,20 @@ int ChatUI::getMessageIndex() {
  */
 void ChatUI::setMessageIndex(int number) {
     this->messageIndex = number;
+}
+
+
+/**
+ * @brief Getter that returns the index of the account so the user can select a user to chat with.
+ */
+int ChatUI::getUserIndex() {
+    return this->userIndex;
+}
+
+
+/**
+ * @brief Sets the user index.
+ */
+void ChatUI::setUserIndex(int number) {
+    this->userIndex = number;
 }

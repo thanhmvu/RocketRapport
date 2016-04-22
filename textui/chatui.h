@@ -6,9 +6,10 @@
 class ChatUI : public ScreenUI
 {
 
-    int accountIndex;
-    int messageIndex;
-    int menuNumber;
+    int accountIndex; // Index for account list section.
+    int messageIndex; // Index for message history
+    int menuNumber; // Section of the screen the user is on.
+    int userIndex; // Keep track of which account they are on.
 
     /*
      * Menu Numbers:
@@ -24,6 +25,8 @@ class ChatUI : public ScreenUI
 public:
     ChatUI(System* mainSystem);
 
+    std::string testUName;
+
     std::stringstream ss;
 
     void displayScreen();
@@ -35,6 +38,8 @@ public:
     void setAccountIndex(int number);
     int getMessageIndex();
     void setMessageIndex(int number);
+    int getUserIndex();
+    void setUserIndex(int number);
 };
 
 #endif // CHATUI_H
