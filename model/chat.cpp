@@ -11,3 +11,7 @@ Chat::Chat()
 int Chat::getChatID(){
     return chatID;
 }
+
+void Chat::addMessage(Message *newMessage){
+    messages.push_back(newMessage);
+}

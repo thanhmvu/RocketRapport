@@ -334,8 +334,9 @@ bool DbManager::rmAllAccounts(){
 
 void DbManager::retrieveAllBlogPosts(Blog *userBlog){
     QSqlQuery query;
-    BlogPost *newBP = new BlogPost;
-    query.prepare("SELECT * FROM blogPosts");
+    QString command = "SELECT * FROM blogPosts WHERE BlogID = ";
+    command += userBlog->getBlogID();
+    query.prepare(command);
     while(query.next()){
         BlogPost *newBP = new BlogPost;
         QString newText1 = query.value(3).toString();
@@ -343,6 +344,25 @@ void DbManager::retrieveAllBlogPosts(Blog *userBlog){
         newBP->setTime(2); //Should I add a method to blog post that manually sets the blog post ID?
         userBlog->addPost(newBP);
     }
+}
+
+void DbManager::retrieveAllMessages(Chat *userChat){
+    QSqlQuery query;
+    QString command = "SELECT * FROM chatMessages WHERE ChatID= ";
+    command += userChat->getChatID();
+    query.prepare(command);
+    while(query.next()){
+        Message *newMessage = new Message;
+        //newMessage->setDateTime(query.value(2));
+        //newMessage->setReceiver(query.value(4));
+        //newMessage->setText(3);
+        userChat->addMessage(newMessage);
+    }
+
+}
+
+void DbManager::retrieveAllTweets(){
+    QSqlQuery query;
 }
 
 /**

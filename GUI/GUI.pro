@@ -16,6 +16,7 @@ SOURCES += main.cpp\
         login.cpp\
     ../model/system.cpp \
     ../model/chat.cpp \
+    ../model/message.cpp \
     ../model/account.cpp \
     ../model/group.cpp \
     ../model/dbmanager.cpp \

@@ -24,7 +24,7 @@ System::System(const QString &path)
     loadAllAccounts(); //load from the database file
     for(auto pair: accounts){
         Account * acc = pair.second;
-        std::cout<< acc->getFirstName() <<"\n";
+        std::cout<< "First name: " << acc->getFirstName() <<"\n";
     }
 
     std::cout<< "New system created containing " << accounts.size() << " accounts." << std::endl;

@@ -16,6 +16,8 @@ SOURCES += main.cpp \
     profileui.cpp \
     ../model/system.cpp \
     ../model/account.cpp \
+    ../model/chat.cpp \
+    ../model/message.cpp \
     ../model/group.cpp \
     ../model/dbmanager.cpp \
     ../model/blog.cpp \

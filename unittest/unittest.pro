@@ -15,6 +15,7 @@ SOURCES += main.cpp \
     ../model/blog.cpp \
     ../model/blogpost.cpp \
     ../model/chat.cpp \
+    ../model/message.cpp \
     ../model/feed.cpp \
     ../model/post.cpp \
     dbmanagertest.cpp \

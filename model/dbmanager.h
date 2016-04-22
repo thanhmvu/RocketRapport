@@ -17,6 +17,8 @@
 #include "blogpost.h"
 #include "tweet.h"
 #include "tweetpost.h"
+#include "chat.h"
+#include "message.h"
 
 class Account;
 
@@ -56,7 +58,7 @@ public:
     void retrieveAllAccounts(std::map<std::string, Account*> &accounts);
     void retrieveAllBlogPosts(Blog *userBlog);
     void retrieveAllTweets();
-    void retrieveAllMessages();
+    void retrieveAllMessages(Chat *userChat);
 
     bool rmAllAccounts();
 
