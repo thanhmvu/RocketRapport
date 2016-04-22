@@ -353,9 +353,9 @@ void DbManager::retrieveAllMessages(Chat *userChat){
     query.prepare(command);
     while(query.next()){
         Message *newMessage = new Message;
-        //newMessage->setDateTime(query.value(2));
-        //newMessage->setReceiver(query.value(4));
-        //newMessage->setText(3);
+        newMessage->setDateTime(query.value(2).toDateTime() );
+        newMessage->setReceiver( query.value(4).toString().toStdString() );
+        newMessage->setText( query.value(3).toString().toStdString() );
         userChat->addMessage(newMessage);
     }
 
