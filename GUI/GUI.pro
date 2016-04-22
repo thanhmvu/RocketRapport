@@ -23,7 +23,9 @@ SOURCES += main.cpp\
     ../model/blog.cpp \
     ../model/blogpost.cpp \
     ../model/tweet.cpp \
+    ../model/tweetpost.cpp \
     ../model/scrapbook.cpp \
+    ../model/comment.cpp \
     ../model/feed.cpp \
     ../model/post.cpp \
     mainmenu.cpp \

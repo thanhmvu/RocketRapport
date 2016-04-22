@@ -19,10 +19,12 @@ SOURCES += main.cpp \
     ../model/chat.cpp \
     ../model/message.cpp \
     ../model/group.cpp \
+    ../model/comment.cpp \
     ../model/dbmanager.cpp \
     ../model/blog.cpp \
     ../model/blogpost.cpp \
     ../model/tweet.cpp \
+    ../model/tweetpost.cpp \
     ../model/scrapbook.cpp \
     ../model/feed.cpp \
     ../model/post.cpp

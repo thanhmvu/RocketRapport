@@ -337,6 +337,7 @@ void DbManager::retrieveAllBlogPosts(Blog *userBlog){
     QString command = "SELECT * FROM blogPosts WHERE BlogID = ";
     command += userBlog->getBlogID();
     query.prepare(command);
+    query.exec();
     while(query.next()){
         BlogPost *newBP = new BlogPost;
         QString newText1 = query.value(3).toString();
@@ -351,6 +352,7 @@ void DbManager::retrieveAllMessages(Chat *userChat){
     QString command = "SELECT * FROM chatMessages WHERE ChatID= ";
     command += userChat->getChatID();
     query.prepare(command);
+    query.exec();
     while(query.next()){
         Message *newMessage = new Message;
         newMessage->setDateTime(query.value(2).toDateTime() );
@@ -361,8 +363,17 @@ void DbManager::retrieveAllMessages(Chat *userChat){
 
 }
 
-void DbManager::retrieveAllTweets(){
+void DbManager::retrieveAllTweets(Tweet *userTweet){
     QSqlQuery query;
+    QString command = "SELECT * FROM tweetPosts WHERE TweetID = ";
+    command += userTweet->getTweetID();
+    query.prepare(command);
+    while(query.next()){
+        TweetPost *newTP = new TweetPost;
+        newTP->setText(query.value(3).toString().toStdString());
+        newTP->setTime(query.value(2).toDateTime());
+        userTweet->addPost(newTP);
+    }
 }
 
 /**

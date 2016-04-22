@@ -12,6 +12,8 @@ SOURCES += main.cpp \
     ../model/group.cpp\
     ../model/scrapbook.cpp\
     ../model/tweet.cpp\
+    ../model/tweetpost.cpp \
+    ../model/comment.cpp \
     ../model/blog.cpp \
     ../model/blogpost.cpp \
     ../model/chat.cpp \

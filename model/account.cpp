@@ -32,6 +32,9 @@ Account::Account()
     myBlog = new Blog();
     myTweet = new Tweet();
 
+    dbm->retrieveAllBlogPosts(myBlog);
+    dbm->retrieveAllTweets(myTweet);
+
 }
 
 Account::Account(std::string usrName){

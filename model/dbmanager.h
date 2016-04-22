@@ -57,7 +57,7 @@ public:
 //    void retrieveAllAccounts(std::map<int,std::string> *one); //Store each username with its associated user ID. Use this information to obtain the other IDs
     void retrieveAllAccounts(std::map<std::string, Account*> &accounts);
     void retrieveAllBlogPosts(Blog *userBlog);
-    void retrieveAllTweets();
+    void retrieveAllTweets(Tweet *userTweet);
     void retrieveAllMessages(Chat *userChat);
 
     bool rmAllAccounts();
