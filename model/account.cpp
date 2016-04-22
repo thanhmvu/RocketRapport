@@ -99,7 +99,6 @@ Account::Account(int accID,     std::string usrname,    std::string pw,
 //    myBlog = new Blog();
 //    myTweet = new Tweet();
 
-
 }
 
 /**

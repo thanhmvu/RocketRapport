@@ -345,29 +345,31 @@ void DbManager::retrieveAllBlogPosts(Blog *userBlog){
     }
 }
 
-///**
-// * @brief DbManager::AllAccounts This method will be used to add every available Account to the given map
-// * @param list
-// * Note to self: test this in the qSqlTest classes (The ones for experimentation)
-// * Refactor this class to work with the accounts map instead of the username list map
-// */
-//void DbManager::retrieveAllAccounts(std::map<QString, *Account> * accounts){
-//    QSqlQuery query;
-//    query.prepare("SELECT * FROM accounts"); //Choose all elements from the table
-//    query.exec();
-//    while(query.next() ){
-//        int accountID = query.value(0).toInt();
-//        QString firstname = query.value(1).toString();
-//        QString lastname = query.value(2).toString();
-//        int groupID = query.value(3).toInt();
-//        int scrpBkID = query.value(4).toInt();
-//        int blogID = query.value(5).toInt();
-//        int tweetID = query.value(6).toInt();
-//        QString username = query.value(7).toString();
-//        QString password = query.value(7).toString();
+/**
+ * @brief DbManager::retrieveAllAccounts This method will
+ * be used to add every available Account to the given map
+ * @param map
+ */
+void DbManager::retrieveAllAccounts(std::map<std::string, Account*> &accounts){
+    QSqlQuery query;
+    query.prepare("SELECT * FROM accounts"); //Choose all elements from the table
+    query.exec();
+    while(query.next() ){
+        // get the neccessary info
+        int accountID = query.value(0).toInt();
+        std::string username = query.value(1).toString().toStdString();
+        std::string password = query.value(2).toString().toStdString();
+        int scrpBkID = query.value(3).toInt();
+        int blogID = query.value(4).toInt();
+        int tweetID = query.value(5).toInt();
+        std::string firstname = query.value(6).toString().toStdString();
+        std::string lastname = query.value(7).toString().toStdString();
 
-//        Account * rebuilt_account = new Account(accountID, username, password,
-//                                                scrpBkID, blogID, tweetID,
-//                                                groupID, firstname, lastname);
-//    }
-//}
+        // rebuild an account based on the info
+        Account * rebuilt_account = new Account(accountID, username, password,
+                                                scrpBkID, blogID, tweetID,
+                                                firstname, lastname);
+        // add accoun to the accounts map
+        accounts[username] = rebuilt_account;
+    }
+}

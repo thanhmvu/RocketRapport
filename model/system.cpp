@@ -19,13 +19,19 @@ System::System(const QString &path)
 
     loggedIn = false;
     usernameList = new std::map<int, std::string>; //Initializes the userNameList pointer
-//    std::cout<< "New system created" << std::endl;
+
 
     // initialize new database manager and load from the database file
     dbm = new DbManager(path);
-    loadAccounts(usernameList); // load into usernameList
-    fillAccountsMap();
-    std::cout<< "Number of accounts: " << accounts.size()<< std::endl;
+//    loadAccounts(usernameList); // load into usernameList
+//    fillAccountsMap();
+    loadAllAccounts();
+    for(auto pair: accounts){
+        Account * acc = pair.second;
+        std::cout<< acc->getFirstName() <<"\n";
+    }
+
+    std::cout<< "New system created containing " << accounts.size() << " accounts." << std::endl;
 }
 
 /**
@@ -301,4 +307,12 @@ void System::fillAccountsMap(){
 
 Account* System::getAccountByUsername(std::string usrname){
     return accounts[usrname];
+}
+
+/**
+ * @brief System::loadAllAccounts
+ */
+void System::loadAllAccounts(){
+    // call dbm to rebuild accounts and load to accounts map
+    dbm->retrieveAllAccounts(accounts);
 }

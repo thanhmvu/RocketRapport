@@ -67,6 +67,9 @@ public:
     //Used for testing purposes
     void printAllUsernames();
 
+
+    void loadAllAccounts();
+
 };
 
 #endif // SYSTEM_H
