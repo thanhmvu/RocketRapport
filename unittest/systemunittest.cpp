@@ -16,21 +16,28 @@ TEST(SystemTest, testAddUser){
  * @brief TEST Closing the current program session, destroying the system, and starting a new system should grant the new system access to  the same information
  * This means that an account added in one session should be able to be retrieved in a later session.
  */
-TEST(SystemTest, testRetrieveAccounts){
-    System *one = new System("./testDb.db"); //Creates
-    one->printAllUsernames();
-    EXPECT_FALSE(one->usernameExist("BringOutTheGimp") ); //Verify that an account not added cannot be found
-    //one->fillAccountsMap(); //Is now done in the constructor
-    EXPECT_TRUE(one->usernameExist("JSwizzle"));
+TEST(SystemTest, testLoadAllAccounts){
+    System sys("./testDatabase.db"); //connect to db file
+    std::map <std::string, Account*> accounts = sys.getAllAccounts();
+    EXPECT_EQ("a", (accounts["a"]->getUsername()));
+    EXPECT_EQ("b", (accounts["b"]->getUsername()));
+
+    EXPECT_EQ("c", (accounts["c"]->getUsername()));
+    EXPECT_EQ("c", (accounts["c"]->getPassword()));
+    EXPECT_EQ("c", (accounts["c"]->getFirstName()));
+    EXPECT_EQ("c", (accounts["c"]->getLastName()));
+    EXPECT_EQ(2, (accounts["c"]->getAccountID()));
+//    EXPECT_EQ(2, (accounts["c"]->getMyBlog()->getBlogID()));
+//    EXPECT_EQ(2, (accounts["c"]->getMyTweet()->getTweetID()));
 }
 
-//Now, test the login system, because it seems to be giving us troubles
-TEST(SystemTest, testLogin){
-    System *one = new System("./testDb.db");
-    one->printAllUsernames();
-    qDebug() << "Value of userNameExists(hSwizzle79): " << one->usernameExist("hSwizzle79");
-    EXPECT_TRUE(one->login("hSwizzle79","Oblivion0722&"));
-}
+////Now, test the login system, because it seems to be giving us troubles
+//TEST(SystemTest, testLogin){
+//    System *one = new System("./testDb.db");
+//    one->printAllUsernames();
+//    qDebug() << "Value of userNameExists(hSwizzle79): " << one->usernameExist("hSwizzle79");
+//    EXPECT_TRUE(one->login("hSwizzle79","Oblivion0722&"));
+//}
 
 
 //TEST(SystemTest, usernameExist) {
