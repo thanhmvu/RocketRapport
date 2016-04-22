@@ -166,6 +166,9 @@ void ChatUI::runScreen() {
             break;
         case 1: // Chat History
             while (this->getMenuNumber() == 1) {
+                ss << testUName;
+                mvprintw(3, ((this->getCols()/2)-11) + ((this->getCols()-((this->getCols()/2)-11))/2) - (testUName.size()/2), ss.str().c_str());
+                ss.str("");
                 keyPress = getch();
                 switch(keyPress) {
                 case KEY_UP:
