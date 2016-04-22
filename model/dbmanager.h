@@ -52,7 +52,7 @@ public:
     //Retrieve methods
     int retrieveIntInfo(const QString &fieldName, const QString &tableName, const QString &checkName, const QVariant &ID);                     //I'm going to be using two different overloaded methods that can obtain information from the database given a query.
     std::string retrieveStringInfo(const QString &fieldName, const QString &tableName, const QString &checkName, const QVariant &ID);       //These methods will be used in pulling information from the database.
-    void retrieveAllAccounts(std::map<int,std::string> *one); //Store each username with its associated user ID. Use this information to obtain the other IDs
+//    void retrieveAllAccounts(std::map<int,std::string> *one); //Store each username with its associated user ID. Use this information to obtain the other IDs
     void retrieveAllAccounts(std::map<std::string, Account*> &accounts);
     void retrieveAllBlogPosts(Blog *userBlog);
     void retrieveAllTweets();

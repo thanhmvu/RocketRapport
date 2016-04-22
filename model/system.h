@@ -33,13 +33,15 @@ private:
     bool loggedIn;
 
     void openDatabase();
+
+
 public:
     System(const QString &path);
     ~System();
 
     bool login(std::string username, std::string password);
-    bool createAccount(std::string username, std::string password, std::string firstname, std::string lastname);
-
+    bool createAccount(std::string username, std::string password,
+                       std::string firstname, std::string lastname);
     void addGroup(Group* newGroup);
     void removeGroup(Group* oldGroup);
     void addAccount(Account* newAccount);
@@ -48,27 +50,27 @@ public:
     bool addChat(const int &AccountID,
                  const int &ChatID, const std::string &sender);
 
-    void loadAccounts(std::map<int, std::string> *one); //Method called in the constructor that will be used to create a list of accounts accessible to the user.
-    void fillAccountsMap();
-
+    // getters
     Account* getCurrentUser();
     Account* getAccountByUsername(std::string usrname);
     bool getLoggedIn();
     std::vector<Group*> getGroups();
     std::map <std::string, Account*> getAllAccounts();
     DbManager* getDbm();   //Return the dbm the system is using
+    int numberOfAccount();
 
+    // setter
     void setCurrentUser(Account* cUser);
     void setLoggedIn(bool logged);
     void setAccountMap(std::map<std::string, Account*> aMap);
 
-    int numberOfAccount();
-
-    //Used for testing purposes
+    // Used for testing purposes
     void printAllUsernames();
 
-
+    // database methods
     void loadAllAccounts();
+    //    void loadAccounts(std::map<int, std::string> *one); //Method called in the constructor that will be used to create a list of accounts accessible to the user.
+    //    void fillAccountsMap();
 
 };
 

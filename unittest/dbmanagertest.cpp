@@ -41,3 +41,4 @@
 //    DbManager *test2 = new DbManager("./testDb.db"); //Recreating the database manager and printing its contents should show an empty list
 //    test2->printAllRows("FirstName");
 //}
+

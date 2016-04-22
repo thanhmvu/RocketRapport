@@ -314,23 +314,23 @@ bool DbManager::rmAllAccounts(){
     query.exec();
 }
 
-/**
- * @brief DbManager::retrieveAllAccounts This method will be used to add every available Account to the given map
- * @param list
- * Note to self: test this in the qSqlTest classes (The ones for experimentation)
- * Refactor this class to work with the accounts map instead of the username list map
- */
-void DbManager::retrieveAllAccounts(std::map<int, std::string> *one){
-    QSqlQuery query;
-    query.prepare("SELECT * FROM accounts"); //Choose all elements from the table
-    query.exec();
-    while(query.next() ){
-        QString name = query.value(1).toString();
-        std::pair<int, std::string> insert1 = {query.value(0).toInt(),name.toStdString()};
-        std::cout << insert1.first << " " << insert1.second << std::endl;
-        one->insert(insert1);
-    }
-}
+///**
+// * @brief DbManager::retrieveAllAccounts This method will be used to add every available Account to the given map
+// * @param list
+// * Note to self: test this in the qSqlTest classes (The ones for experimentation)
+// * Refactor this class to work with the accounts map instead of the username list map
+// */
+//void DbManager::retrieveAllAccounts(std::map<int, std::string> *one){
+//    QSqlQuery query;
+//    query.prepare("SELECT * FROM accounts"); //Choose all elements from the table
+//    query.exec();
+//    while(query.next() ){
+//        QString name = query.value(1).toString();
+//        std::pair<int, std::string> insert1 = {query.value(0).toInt(),name.toStdString()};
+//        std::cout << insert1.first << " " << insert1.second << std::endl;
+//        one->insert(insert1);
+//    }
+//}
 
 void DbManager::retrieveAllBlogPosts(Blog *userBlog){
     QSqlQuery query;
