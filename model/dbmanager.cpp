@@ -332,6 +332,7 @@ bool DbManager::rmAllAccounts(){
 //    }
 //}
 
+
 void DbManager::retrieveAllBlogPosts(Blog *userBlog){
     QSqlQuery query;
     QString command = "SELECT * FROM blogPosts WHERE BlogID = ";

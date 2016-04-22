@@ -1,6 +1,15 @@
 #include "gtest/gtest.h"
 #include <stdio.h>
+#include "../model/blog.h"
 #include "../model/system.h"
+#include "../model/dbmanager.h"
+
+TEST(DbManagerTest, testRetrieveAllBlogs){
+    DbManager one("../gProjectDB.db");
+    Blog *b1 = new Blog;
+    one.retrieveAllBlogPosts(b1);
+
+}
 
 //TEST(DbManagerTest, testConstructor){
 //    DbManager *test = new DbManager("./testDb.db");
