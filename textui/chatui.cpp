@@ -78,6 +78,7 @@ void ChatUI::runScreen() {
         switch(this->getMenuNumber()) {
         case 0: // Account List
             while (this->getMenuNumber() == 0) {
+                mvprintw(3, this->getCols()/2-14, "!");
                 keyPress = getch();
                 switch(keyPress) {
                 case KEY_UP: // Moves up list
@@ -157,43 +158,73 @@ void ChatUI::runScreen() {
                         }
                     }
                     break;
-                case KEY_END:
+                case KEY_END: // Switches section of screen.
+                    this->setMenuNumber(1);
                     break;
-                case KEY_HOME:
+                case KEY_HOME: // Views that user's profile
+                    if (true) {
+                        int k = 0;
+                        for(const auto &acc: this->getSystem()->getAllAccounts()) {
+                            if (k == this->getUserIndex()) {
+
+
+
+                                // ASSIGN CHAT USER
+
+
+
+                                // TESTING PURPOSES:
+                                testUName = acc.first;
+
+                                this->setMenuNumber(1);
+                            }
+                            k++;
+                        }
+                    }
                     break;
                 }
             }
+            mvprintw(3, this->getCols()/2-14, " ");
             break;
         case 1: // Chat History
             while (this->getMenuNumber() == 1) {
+                mvprintw(3, this->getCols()-2, "!");
                 ss << testUName;
                 mvprintw(3, ((this->getCols()/2)-11) + ((this->getCols()-((this->getCols()/2)-11))/2) - (testUName.size()/2), ss.str().c_str());
                 ss.str("");
                 keyPress = getch();
                 switch(keyPress) {
-                case KEY_UP:
+                case KEY_END:
+                    this->setMenuNumber(2);
                     break;
 
                 }
             }
+            mvprintw(3, this->getCols()-2, " ");
             break;
         case 2: // Type Message
             while (this->getMenuNumber() == 2) {
+                mvprintw(this->getRows()-2, this->getCols()-2, "!");
                 keyPress = getch();
                 switch(keyPress) {
-                case KEY_UP:
+                case KEY_END:
+                    this->setMenuNumber(3);
                     break;
                 }
             }
+            mvprintw(this->getRows()-2, this->getCols()-2, " ");
             break;
         case 3: // Menu
             while (this->getMenuNumber() == 3) {
+                mvprintw(this->getRows()-3, this->getCols()/2-14, "!");
                 keyPress = getch();
                 switch(keyPress) {
-                case KEY_UP:
+                case KEY_END:
+                    this->setMenuNumber(0);
                     break;
                 }
             }
+            mvprintw(this->getRows()-3, this->getCols()/2-14, " ");
             break;
         }
     }
