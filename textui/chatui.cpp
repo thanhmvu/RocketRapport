@@ -40,6 +40,7 @@ void ChatUI::displayScreen() {
         mvprintw(this->getRows()-1, i, "-");
     }
     mvprintw(1, (this->getCols()/2)-12, "ROCKET RAPPORT MESSAGING");
+    mvprintw(1, (this->getCols()-20), "End - Switch Section");
     mvprintw(this->getRows()-3, 2, "My Profile");
     mvprintw(this->getRows()-2, 2, "Main Menu");
     mvprintw(this->getRows()-3, this->getCols()-14, "|");
@@ -109,7 +110,7 @@ void ChatUI::runScreen() {
                     }
                     break;
                 case KEY_DOWN: // Moves down list
-                    if (this->getUserIndex() < this->getSystem()->getAllAccounts().size()-1) {
+                    if (this->getUserIndex() < this->getSystem()->getAllAccounts().size()) {
                         this->setUserIndex(this->getUserIndex()+1);
                         if (this->getAccountIndex() < this->getSystem()->getAllAccounts().size()-1) {
                             if (this->getAccountIndex() < (this->getRows()-5)-8 ) {
@@ -169,13 +170,12 @@ void ChatUI::runScreen() {
 
 
 
-                                // ASSIGN CHAT USER
+                                // ASSIGN PROFILE TO SWITCH TO
 
 
 
-                                // TESTING PURPOSES:
-                                testUName = acc.first;
-
+                                this->screenNumber = 3;
+                                this->changeScreens(true);
                                 this->setMenuNumber(1);
                             }
                             k++;
@@ -189,6 +189,7 @@ void ChatUI::runScreen() {
         case 1: // Chat History
             while (this->getMenuNumber() == 1) {
                 mvprintw(3, this->getCols()-2, "!");
+                mvprintw(3, (this->getCols()/2)-10, "                                                ");
                 ss << testUName;
                 mvprintw(3, ((this->getCols()/2)-11) + ((this->getCols()-((this->getCols()/2)-11))/2) - (testUName.size()/2), ss.str().c_str());
                 ss.str("");
@@ -228,6 +229,13 @@ void ChatUI::runScreen() {
             break;
         }
     }
+
+    this->setAccountIndex(0);
+    this->setMessageIndex(0);
+    this->setMenuNumber(0);
+    this->setUserIndex(0);
+    this->changeScreens(false);
+    clear();
 
     refresh();
 }

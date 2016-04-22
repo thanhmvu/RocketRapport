@@ -91,4 +91,10 @@ void MainMenuUI::runScreen() {
         }
         refresh();
     }
+
+    this->setMenuIndex(0);
+    this->changeScreens(false);
+    clear();
+
+    refresh();
 }

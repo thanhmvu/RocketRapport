@@ -39,15 +39,10 @@ int main(int argc, char *argv[])
         case 1: // Main Menu
             mainMenu.displayScreen();
             mainMenu.runScreen();
-            mainMenu.setMenuIndex(0);
-            mainMenu.changeScreens(false);
-            clear();
             break;
         case 2: // Messaging
             chat.displayScreen();
             chat.runScreen();
-            chat.changeScreens(false);
-            clear();
             break;
         case 3: // Profile
             profile.displayScreen();
