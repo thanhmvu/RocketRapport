@@ -67,19 +67,6 @@ public:
             int scrpBkID,   int blogID,         int tweetID,
             std::string firstname,  std::string lastname);
 
-    bool getIsCurrentGuest();
-    bool getIsPastGuest();
-    bool getIsSystemAdmin();
-    bool getIsGroupAdmin();
-    void setIsCurrentGuest(bool cGuest);
-    void setIsPastGuest(bool pGuest);
-    void setIsSystemAdmin(bool sAdmin);
-    void setIsGroupAdmin(bool gAdmin);
-    void promoteToCurrentGuest();
-    void promoteToPastGuest();
-    void promoteToSystemAdmin();
-    void promoteToGroupAdmin();
-
     //Functions to obtain information from the database
     void retrieveAllBlogPosts();
     void retrieveAllTweets();
@@ -92,40 +79,62 @@ public:
     void removeFriend(Account* badFriend);
     void joinGroup(Group* newGroup);
     void leaveGroup(Group* badGroup);
-    std::string getUsername();
+
+    // getters
+    bool    getIsCurrentGuest();
+    bool    getIsPastGuest();
+    bool    getIsSystemAdmin();
+    bool    getIsGroupAdmin();
+
+    int     getAge();
+    int     getPhoneNumber();
+    int     getAccountID();
+    std::string     getUsername();
+    std::string     getPassword();
+    Scrapbook*      getMyScrapbook();
+    std::string     getFirstName();
+    std::string     getLastName();
+    std::string     getGender();
+    std::string     getAbout();
+    std::string     getAddress();
+    std::string     getProfilePicture();
+    std::string     getMostRecentEmployer();
+    std::vector<Chat*>      getMyChats();
+    std::vector<Account*>   getFriendList();
+    std::vector<Group*>     getGroups();
+    System*     getSystem();
+
+    // setters
+    void setIsCurrentGuest(bool cGuest);
+    void setIsPastGuest(bool pGuest);
+    void setIsSystemAdmin(bool sAdmin);
+    void setIsGroupAdmin(bool gAdmin);
+
     void setUsername(std::string uName);
-    std::string getPassword();
     void setPassword(std::string pWord);
-    Scrapbook* getMyScrapbook();
     void setMyScrapbook(Scrapbook* sBook);
-    std::vector<Chat*> getMyChats();
-    std::vector<Account*> getFriendList();
-    std::vector<Group*> getGroups();
-    std::string getFirstName();
     void setFirstName(std::string fName);
-    std::string getLastName();
     void setLastName(std::string lName);
-    std::string getGender();
     void setGender(std::string gend);
-    std::string getAbout();
     void setAbout(std::string about);
-    std::string getAddress();
     void setAddress(std::string address);
-    std::string getProfilePicture();
     void setProfilePicture(std::string picture);
-    std::string getMostRecentEmployer();
     void setMostRecentEmployer(std::string employer);
-    int getAge();
     void setAge(int age);
-    int getPhoneNumber();
     void setPhoneNumber(int number);
-    int getAccountID();
+    void setSystem(System* newSystem);
+
+    void promoteToCurrentGuest();
+    void promoteToPastGuest();
+    void promoteToSystemAdmin();
+    void promoteToGroupAdmin();
 
     // Functions specific to a current guest.
     void departRanch();
-    Blog* getMyBlog();
+    Blog*   getMyBlog();
+    Tweet*  getMyTweet();
+
     void setMyBlog(Blog* myBlog);
-    Tweet* getMyTweet();
     void setMyTweet(Tweet* myTweet);
     void setMonthDeparted(int month);
     void setDayDeparted(int day);
@@ -135,20 +144,19 @@ public:
     std::vector<std::string> getProjectsWorkedOn();
     void addProject(std::string projectName);
     void removeProject(std::string projectName);
+
     int getMonthDeparted();
     int getDayDeparted();
     int getYearDeparted();
 
     // Functions specific to a system admin.
     void addGroup(Group* newGroup);
-    void deleteGroup(Group* oldGroup);
     void addAccount(Account* newAccount, std::string username, std::string firstName, std::string lastName);
+    void deleteGroup(Group* oldGroup);
     void deleteAccount(Account* oldAccount);
     void deleteBlogPost(Blog* targetBlog, BlogPost* badPost);
     void deleteTweetPost(Tweet* targetTweet, TweetPost* badPost);
     void deleteScrapbookPost(Scrapbook* targetScrapbook, ScrapbookPost* badPost);
-    System* getSystem();
-    void setSystem(System* newSystem);
 };
 
 #endif // ACCOUNT_H
