@@ -196,25 +196,99 @@ void ChatUI::runScreen() {
                 ss.str("");
                 keyPress = getch();
                 switch(keyPress) {
-                case KEY_END:
+                case KEY_END: // Switch sections
                     this->setMenuNumber(2);
                     break;
-
+                case KEY_UP: // Scroll up
+                    break;
+                case KEY_DOWN: // Scroll down
+                    break;
                 }
             }
             mvprintw(3, this->getCols()-2, " ");
             break;
         case 2: // Type Message
-            while (this->getMenuNumber() == 2) {
+            if (true) {
+                std::stringstream sstemp;
+                bool noMoreRoom = false;
+                bool canBackSpace = true;
+                int lastXPos = (this->getCols()/2)-11;
+                int lastYPos = this->getRows()-3;
+                int curXPos = (this->getCols()/2)-10;
+                int curYPos = this->getRows()-3;
                 mvprintw(this->getRows()-2, this->getCols()-2, "!");
-                keyPress = getch();
-                switch(keyPress) {
-                case KEY_END:
-                    this->setMenuNumber(3);
-                    break;
+                move(this->getRows()-3, (this->getCols()/2)-10);
+                curs_set(1);
+                while (this->getMenuNumber() == 2) {
+                    keyPress = getch();
+                    switch(keyPress) {
+                    case KEY_END: // Switches sections
+                        this->setMenuNumber(3);
+                        break;
+                    case KEY_HOME: // Sends message
+
+                        // CHAT LOGIC
+
+                        // TEST
+                        mvprintw(this->getRows()-8, (this->getCols()/2)-10, ss.str().c_str());
+                        ss.str("");
+                        for (int i = (this->getCols()/2)-10; i < (this->getCols()-14); i++) {
+                            mvprintw(this->getRows()-3, i, " ");
+                        }
+                        for (int i = (this->getCols()/2)-10; i < (this->getCols()-14); i++) {
+                            mvprintw(this->getRows()-2, i, " ");
+                        }
+                        lastXPos = (this->getCols()/2)-11;
+                        lastYPos = this->getRows()-3;
+                        curXPos = (this->getCols()/2)-10;
+                        curYPos = this->getRows()-3;
+                        noMoreRoom = false;
+                        move(this->getRows()-3, (this->getCols()/2)-10);
+
+                        break;
+                    case KEY_BACKSPACE: // Deletes last typed character
+                        if (canBackSpace) {
+                            mvprintw(lastYPos, lastXPos, " ");
+                            curYPos = lastYPos;
+                            curXPos = lastXPos;
+                            lastXPos--;
+                            if (lastXPos = (this->getCols()/2)-11) {
+                                if (lastYPos != (this->getRows()-3)){
+                                    lastXPos = (this->getCols())-15;
+                                    curYPos = lastYPos;
+                                    lastYPos--;
+                                } else {
+                                    canBackSpace = false;
+                                }
+                            }
+                        }
+                        break;
+                    default: // Any other input like letters, nums, etc.
+                        if (!noMoreRoom) {
+                            ss << keyPress;
+                            sstemp << keyPress;
+                            mvprintw(curYPos, curXPos, sstemp.str().c_str());
+                            sstemp.str("");
+                            lastYPos = curYPos;
+                            lastXPos = curXPos;
+                            curXPos++;
+                            if (curXPos = (this->getCols()-14)) {
+                                if (curYPos != (this->getRows()-2)){
+                                    curXPos = (this->getCols()/2)-10;
+                                    lastYPos = curYPos;
+                                    curYPos++;
+                                } else {
+                                    noMoreRoom = true;
+                                }
+                            }
+                        }
+                        break;
+
+                    }
                 }
             }
             mvprintw(this->getRows()-2, this->getCols()-2, " ");
+            curs_set(0);
             break;
         case 3: // Menu
             while (this->getMenuNumber() == 3) {
