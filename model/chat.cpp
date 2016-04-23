@@ -15,3 +15,7 @@ int Chat::getChatID(){
 void Chat::addMessage(Message *newMessage){
     messages.push_back(newMessage);
 }
+
+std::vector<Message*> Chat::getMessages(){
+    return messages;
+}

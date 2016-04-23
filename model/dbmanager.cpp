@@ -339,13 +339,10 @@ void DbManager::retrieveAllBlogPosts(Blog *userBlog){
     QString valStr = QString::number(userBlog->getBlogID());
     command += valStr;
     query.prepare(command);
-    qDebug() << "query.exec() status: " << query.exec();
+    query.exec();
     while(query.next()){
-        qDebug() << "Next row found";
         BlogPost *newBP = new BlogPost;
-        qDebug() << newBP;
         QString newText1 = query.value(3).toString();
-        qDebug() << "Text: " << newText1;
         newBP->setText(newText1);
         newBP->setTime(2); //Should I add a method to blog post that manually sets the blog post ID?
         userBlog->addPost(newBP);
@@ -355,13 +352,15 @@ void DbManager::retrieveAllBlogPosts(Blog *userBlog){
 void DbManager::retrieveAllMessages(Chat *userChat){
     QSqlQuery query;
     QString command = "SELECT * FROM chatMessages WHERE ChatID= ";
-    command += userChat->getChatID();
+    QString valStr = QString::number(userChat->getChatID());
+    command += valStr;
+    qDebug() << command;
     query.prepare(command);
     while(query.next()){
         Message *newMessage = new Message;
         newMessage->setDateTime(query.value(2).toDateTime() );
-        newMessage->setReceiver( query.value(4).toString().toStdString() );
-        newMessage->setText( query.value(3).toString().toStdString() );
+        newMessage->setReceiver( query.value(4).toString() );
+        newMessage->setText( query.value(3).toString() );
         userChat->addMessage(newMessage);
     }
 

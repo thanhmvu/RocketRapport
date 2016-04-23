@@ -9,14 +9,23 @@ class Message
 private:
     static int id_cnt;
     int messID;
-    std::string text;
-    std::string receiver;
+    QString text;
+    QString receiver;
     QDateTime sentTime;
 public:
     Message();
-    void setText(std::string insert);
-    void setReceiver(std::string insert);
+
+    //Set methods
+    void setText(QString insert);
+    void setReceiver(QString insert);
     void setDateTime(QDateTime timeSent);
+
+    //get methods
+    QString getText();
+    QString getReceiver();
+    QDateTime getTimeSent();
+    int getID();
+
 };
 
 #endif // MESSAGE_H

@@ -3,6 +3,8 @@
 #include <vector>
 #include "../model/blog.h"
 #include "../model/blogpost.h"
+#include "../model/chat.h"
+#include "../model/message.h"
 #include "../model/system.h"
 #include "../model/dbmanager.h"
 
@@ -19,6 +21,22 @@ TEST(DbManagerTest, testRetrieveAllBlogs){
         BlogPost *look = bPosts.at(i);
         std::cout<< look->getID() << ": " << look->getText().toStdString() << std::endl;
     }
+}
+
+TEST(DbManagerTest, testRetrieveAllMessages){
+    DbManager one("../gProjectDB.db");
+    Chat *uChat = new Chat;
+    qDebug() << "Chat ID: " << uChat->getChatID();
+    one.retrieveAllMessages(uChat);
+    std::vector<Message*> chatMessages = uChat->getMessages();
+    std::cout<< "Number of messages inside the chat: " << chatMessages.size();
+
+    for(int i=0; i<chatMessages.size() ; i++){
+        Message *look = chatMessages.at(i);
+        std::cout << "Sent to: " << look->getReceiver().toStdString() << std::endl;
+        std::cout << look->getID() << ": " << look->getText().toStdString() << std::endl;
+    }
+
 }
 
 //TEST(DbManagerTest, testConstructor){

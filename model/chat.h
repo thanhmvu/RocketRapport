@@ -14,6 +14,7 @@ public:
     Chat();
     int getChatID();
     void addMessage(Message *newMessage);
+    std::vector<Message *> getMessages();
 };
 
 #endif // CHAT_H

@@ -8,14 +8,30 @@ Message::Message()
     id_cnt++;
 }
 
+int Message::getID(){
+    return messID;
+}
+
 void Message::setDateTime(QDateTime timeSent){
     sentTime = timeSent;
 }
 
-void Message::setReceiver(std::__cxx11::string insert){
+void Message::setReceiver(QString insert){
     receiver = insert;
 }
 
-void Message::setText(std::__cxx11::string insert){
+void Message::setText(QString insert){
     text = insert;
+}
+
+QString Message::getReceiver(){
+    return receiver;
+}
+
+QString Message::getText(){
+    return text;
+}
+
+QDateTime Message::getTimeSent(){
+    return sentTime;
 }
