@@ -17,16 +17,16 @@ TEST(SystemTest, testAddUser){
  * This means that an account added in one session should be able to be retrieved in a later session.
  */
 TEST(SystemTest, testLoadAllAccounts){
-//    System sys("./testDatabase.db"); //connect to db file
-//    std::map <std::string, Account*> accounts = sys.getAllAccounts();
-//    EXPECT_EQ("a", (accounts["a"]->getUsername()));
-//    EXPECT_EQ("b", (accounts["b"]->getUsername()));
+    System sys("./testDatabase.db"); //connect to db file
+    std::map <std::string, Account*> accounts = sys.getAllAccounts();
+    EXPECT_EQ("a", (accounts["a"]->getUsername()));
+    EXPECT_EQ("b", (accounts["b"]->getUsername()));
 
-//    EXPECT_EQ("c", (accounts["c"]->getUsername()));
-//    EXPECT_EQ("c", (accounts["c"]->getPassword()));
-//    EXPECT_EQ("c", (accounts["c"]->getFirstName()));
-//    EXPECT_EQ("c", (accounts["c"]->getLastName()));
-//    EXPECT_EQ(2, (accounts["c"]->getAccountID()));
+    EXPECT_EQ("c", (accounts["c"]->getUsername()));
+    EXPECT_EQ("c", (accounts["c"]->getPassword()));
+    EXPECT_EQ("c", (accounts["c"]->getFirstName()));
+    EXPECT_EQ("c", (accounts["c"]->getLastName()));
+    EXPECT_EQ(2, (accounts["c"]->getAccountID()));
 //    EXPECT_EQ(2, (accounts["c"]->getMyBlog()->getBlogID()));
 //    EXPECT_EQ(2, (accounts["c"]->getMyTweet()->getTweetID()));
 }

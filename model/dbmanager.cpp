@@ -15,6 +15,8 @@ DbManager::DbManager(const QString &path)
     m_db = QSqlDatabase::addDatabase("QSQLITE");
     m_db.setDatabaseName(path);
 
+    qDebug()<< m_db.connectionName() << "\n";
+    qDebug()<< m_db.lastError() << "\n";
     if (!m_db.open()){
         std::cout << "Error: Connection with database failure" << std::endl;
     }
@@ -387,11 +389,11 @@ void DbManager::retrieveAllTweets(Tweet *userTweet){
  */
 void DbManager::retrieveAllAccounts(std::map<std::string, Account*> &accounts){
     QSqlQuery query;
+//    std::cout <<"Hello from DbManager::retrieveAllAccounts " <<std::endl;
+//    std::cout << query.next() << std::endl;
+//    std::cout << query.isActive() << std::endl;
     if(query.prepare("SELECT * FROM accounts")){ //Choose all elements from the table
         if(query.exec()){
-//            std::cout <<"Hello from DbManager::retrieveAllAccounts " <<std::endl;
-//            std::cout << query.next() << std::endl;
-//            std::cout << query.isActive() << std::endl;
             while(query.next() ){
                 // get the neccessary info
                 int accountID = query.value(0).toInt();
@@ -411,6 +413,6 @@ void DbManager::retrieveAllAccounts(std::map<std::string, Account*> &accounts){
                 // add accoun to the accounts map
                 accounts[username] = rebuilt_account;
             }
-        }else{ qDebug() << "ERROR: QSqlQuerry exec() failed!"; }
-    }else{ qDebug() << "ERROR: QSqlQuerry prepare() failed!"; }
+        }else{ qDebug() << query.lastError(); }
+    }else{ qDebug() << query.lastError(); }
 }
