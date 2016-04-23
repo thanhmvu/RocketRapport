@@ -68,7 +68,12 @@ Account::Account(std::string usrName){
 
 }
 
-// this constructor has the risk of duplicate ID
+/**
+ * @brief Account constructor to rebuild an instance of existing account.
+ *
+ * This contructor give all controls to the user
+ * Thus, one possible risk is duplicate ID
+ */
 Account::Account(int accID,     std::string usrname,    std::string pw,
                 int scrpBkID,   int blogID,         int tweetID,
                 std::string firstname,  std::string lastname)
@@ -97,10 +102,15 @@ Account::Account(int accID,     std::string usrname,    std::string pw,
     dayDeparted = 0;
     yearDeparted = 0;
 
-    // rebuild these the the input IDs
-//    myScrapbook = new Scrapbook();
+    // create blog, tweet, scrapbook, instances using input IDs
 //    myBlog = new Blog();
 //    myTweet = new Tweet();
+//    myScrapbook = new Scrapbook();
+
+    // then call database methods to rebuild the posts of each instance
+
+
+    // rebuild chats
 
 }
 
@@ -766,6 +776,10 @@ void Account::setSystem(System* newSystem) {
     if (this->getIsSystemAdmin() == true) {
         this->theSystem = newSystem;
     }
+}
+
+int Account::getIdCnt(){
+    return id_cnt;
 }
 
 // GROUP ADMIN

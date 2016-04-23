@@ -386,9 +386,9 @@ void DbManager::retrieveAllAccounts(std::map<std::string, Account*> &accounts){
     QSqlQuery query;
     if(query.prepare("SELECT * FROM accounts")){ //Choose all elements from the table
         if(query.exec()){
-            std::cout <<"Hello from DbManager::retrieveAllAccounts " <<std::endl;
-            std::cout << query.next() << std::endl;
-            std::cout << query.isActive() << std::endl;
+//            std::cout <<"Hello from DbManager::retrieveAllAccounts " <<std::endl;
+//            std::cout << query.next() << std::endl;
+//            std::cout << query.isActive() << std::endl;
             while(query.next() ){
                 // get the neccessary info
                 int accountID = query.value(0).toInt();
@@ -404,8 +404,6 @@ void DbManager::retrieveAllAccounts(std::map<std::string, Account*> &accounts){
                 Account * rebuilt_account = new Account(accountID, username, password,
                                                         scrpBkID, blogID, tweetID,
                                                         firstname, lastname);
-
-                std::cout <<"Username: " << username <<std::endl;
 
                 // add accoun to the accounts map
                 accounts[username] = rebuilt_account;

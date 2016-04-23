@@ -18,16 +18,24 @@ System::System(const QString &path)
     id_cnt++;
 
     loggedIn = false;
-    usernameList = new std::map<int, std::string>; //Initializes the userNameList pointer
 
     dbm = new DbManager(path);
-    loadAllAccounts(); //load from the database file
+
+    // rebuild all accounts from the database
+    loadAllAccounts();
+
+    // rebuild all groups from the database
+    // in turn, a group needs to rebuild the feed and links to accounts
+
+
+
+    // print out info for debugging purpose
     for(auto pair: accounts){
         Account * acc = pair.second;
         std::cout<< "First name: " << acc->getFirstName() <<"\n";
     }
-
     std::cout<< "New system created containing " << accounts.size() << " accounts." << std::endl;
+    std::cout<< "Account internal id_cnt value is: " << Account::getIdCnt() << std::endl;
 }
 
 /**
@@ -279,36 +287,3 @@ void System::loadAllAccounts(){
     // call dbm to rebuild accounts and load to accounts map
     dbm->retrieveAllAccounts(accounts);
 }
-
-
-///**
-// * @brief System::loadAccounts This method will be called in the constructor.
-// * Will be used to load every account, and its associated IDs into the system.
-// * @param one Map of usernames passed into the
-// */
-//void System::loadAccounts(std::map<int, std::string> *one){
-//    std::cout<< "Now entering method to load values to usernameList map \n";
-//    system("pwd");
-//    dbm->retrieveAllAccounts(one); //Adds all usernames with their corresponding userIDs into the system
-////    std::cout<<"All accounts are loaded from the database" << std::endl;
-//}
-///**
-// * @brief System::fillAccountsMap Iterate through the map of usernames, storing an account pointer at each.
-// * User after the system has been constructed, thereby filling the usernameList map.
-// * Taken from http://www.cplusplus.com/reference/map/map/begin/
-// * Right now, the program is generating pointers pointing to the same location in memory
-// * */
-//void System::fillAccountsMap(){
-//    std::cout << "Now entering fill accounts map method" << std::endl;
-//    for(std::map<int,std::string>::iterator it=usernameList->begin();it!=usernameList->end();++it ){
-//        std::pair<std::string, Account*> insert;
-//        Account *acntpntr = new Account();
-//        QString one = "PassWord"; QString two = "accounts"; QString three = "UserName"; QString four = QString::fromStdString(it->second); //Use this method to attach a password to the given account object
-//        acntpntr->setPassword(dbm->retrieveStringInfo(one,two,three,four));
-//        insert.first = it->second;
-//        insert.second = acntpntr;
-//        accounts.insert(insert);
-//        std::cout << insert.first << " " << insert.second << std::endl;
-//    }
-//    std::cout << "Accounts Size: " << accounts.size() << std::endl;
-//}

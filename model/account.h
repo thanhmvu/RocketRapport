@@ -157,6 +157,9 @@ public:
     void deleteBlogPost(Blog* targetBlog, BlogPost* badPost);
     void deleteTweetPost(Tweet* targetTweet, TweetPost* badPost);
     void deleteScrapbookPost(Scrapbook* targetScrapbook, ScrapbookPost* badPost);
+
+    // Funtions for testing
+    static int getIdCnt();
 };
 
 #endif // ACCOUNT_H

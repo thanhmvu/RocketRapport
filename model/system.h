@@ -25,7 +25,6 @@ private:
     int id;
     Account* currentUser;
     std::map<std::string, Account*> accounts; //Used to associate stored account objects with their corresponding usernames
-    std::map<int, std::string> *usernameList; //This is the map being used in the database.
     std::vector<Group*> groups;
     DbManager* dbm /*= new DbManager("./gProjectDB.db")*/; //Make sure this line works
     bool gui;
