@@ -110,7 +110,7 @@ void ChatUI::runScreen() {
                     }
                     break;
                 case KEY_DOWN: // Moves down list
-                    if (this->getUserIndex() < this->getSystem()->getAllAccounts().size()) {
+                    if (this->getUserIndex() < this->getSystem()->getAllAccounts().size()-1) {
                         this->setUserIndex(this->getUserIndex()+1);
                         if (this->getAccountIndex() < this->getSystem()->getAllAccounts().size()-1) {
                             if (this->getAccountIndex() < (this->getRows()-5)-8 ) {
@@ -120,19 +120,20 @@ void ChatUI::runScreen() {
                             }
                         }
                         // 25 blank spaces
-                        for (int i = 8; i < this->getRows()-5; i++) {
+                        for (int i = 8; i < this->getRows()-4; i++) {
                             mvprintw(i, 2, "                         ");
                         }
                         int j = 8;
                         int k = 0;
                         for(const auto &acc: this->getSystem()->getAllAccounts()) {
-                            if (j < this->getRows()-5 && k >= (this->getUserIndex() - this->getAccountIndex())) {
+                            if (j < this->getRows()-4 && k >= (this->getUserIndex() - this->getAccountIndex())) {
                                 std::string uName = acc.first;
                                 ss << uName;
                                 move(j, 2);
                                 addnstr(ss.str().c_str(), ((this->getCols()/2)-12)-3);
                                 ss.str("");
                                 j++;
+                                refresh();
                             }
                             k++;
                         }
