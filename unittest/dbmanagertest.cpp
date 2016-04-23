@@ -29,7 +29,7 @@ TEST(DbManagerTest, testRetrieveAllMessages){
     qDebug() << "Chat ID: " << uChat->getChatID();
     one.retrieveAllMessages(uChat);
     std::vector<Message*> chatMessages = uChat->getMessages();
-    std::cout<< "Number of messages inside the chat: " << chatMessages.size();
+    std::cout<< "Number of messages inside the chat: " << chatMessages.size() << std::endl;
 
     for(int i=0; i<chatMessages.size() ; i++){
         Message *look = chatMessages.at(i);
@@ -38,6 +38,7 @@ TEST(DbManagerTest, testRetrieveAllMessages){
     }
 
 }
+
 
 //TEST(DbManagerTest, testConstructor){
 //    DbManager *test = new DbManager("./testDb.db");

@@ -354,8 +354,8 @@ void DbManager::retrieveAllMessages(Chat *userChat){
     QString command = "SELECT * FROM chatMessages WHERE ChatID= ";
     QString valStr = QString::number(userChat->getChatID());
     command += valStr;
-    qDebug() << command;
     query.prepare(command);
+    query.exec();
     while(query.next()){
         Message *newMessage = new Message;
         newMessage->setDateTime(query.value(2).toDateTime() );
