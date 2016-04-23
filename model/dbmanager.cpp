@@ -336,12 +336,16 @@ bool DbManager::rmAllAccounts(){
 void DbManager::retrieveAllBlogPosts(Blog *userBlog){
     QSqlQuery query;
     QString command = "SELECT * FROM blogPosts WHERE BlogID = ";
-    command += userBlog->getBlogID();
+    QString valStr = QString::number(userBlog->getBlogID());
+    command += valStr;
     query.prepare(command);
-    query.exec();
+    qDebug() << "query.exec() status: " << query.exec();
     while(query.next()){
+        qDebug() << "Next row found";
         BlogPost *newBP = new BlogPost;
+        qDebug() << newBP;
         QString newText1 = query.value(3).toString();
+        qDebug() << "Text: " << newText1;
         newBP->setText(newText1);
         newBP->setTime(2); //Should I add a method to blog post that manually sets the blog post ID?
         userBlog->addPost(newBP);
@@ -353,7 +357,6 @@ void DbManager::retrieveAllMessages(Chat *userChat){
     QString command = "SELECT * FROM chatMessages WHERE ChatID= ";
     command += userChat->getChatID();
     query.prepare(command);
-    query.exec();
     while(query.next()){
         Message *newMessage = new Message;
         newMessage->setDateTime(query.value(2).toDateTime() );

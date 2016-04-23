@@ -14,6 +14,10 @@ bool BlogPost::setText(QString new_text){
     text = new_text;
 }
 
+QString BlogPost::getText(){
+    return text;
+}
+
 //bool BlogPost::addComment(Comment cmt){
 //    comments.push_back(cmt);
 //    return true;

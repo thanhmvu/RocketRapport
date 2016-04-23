@@ -18,6 +18,7 @@ public:
     BlogPost();
     int getID();
     bool setText(QString new_text);
+    QString getText();
     std::vector<Comment> getComments();
     bool addComment(Comment cmt);
     bool deleteComment(int id);

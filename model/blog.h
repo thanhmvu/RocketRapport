@@ -1,6 +1,7 @@
 #ifndef BLOG_H
 #define BLOG_H
 #include "blogpost.h"
+#include <stdio.h>
 
 
 class Blog

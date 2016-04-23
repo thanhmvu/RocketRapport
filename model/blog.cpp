@@ -13,7 +13,8 @@ Blog::Blog()
  * @brief Adds a new BlogPost to the Blog's list of posts.
  */
 void Blog::addPost(BlogPost* newPost) {
-    this->getMyPosts().push_back(newPost);
+    myPosts.push_back(newPost);
+    std::cout << "New Blog Post has been added \n";
 }
 
 
