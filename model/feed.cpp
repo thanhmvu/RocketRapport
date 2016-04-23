@@ -15,7 +15,7 @@ Feed::Feed()
 void Feed::displayFeed() {
     this->setFeedText("");
     for (int i = 0; i < this->getFeedPosts().size(); i++) {
-        this->setFeedText(this->getFeedText() + (*(this->getFeedPosts()[i])).getText() + /*" "
+        this->setFeedText(this->getFeedText() += (*(this->getFeedPosts()[i])).getText() += /*" "
                           + (*(this->getFeedPosts()[i])).getTime() + " "
                           + (*(this->getFeedPosts()[i])).getDate() + */
                           "`");
@@ -58,7 +58,7 @@ std::vector<TweetPost*> Feed::getFeedPosts() {
 /**
  * @brief Getter that returns the feed text in one string.
  */
-std::string Feed::getFeedText() {
+QString Feed::getFeedText() {
     return this->feedText;
 }
 
@@ -66,6 +66,6 @@ std::string Feed::getFeedText() {
 /**
  * @brief Setter that sets the feed text;
  */
-void Feed::setFeedText(std::string text) {
+void Feed::setFeedText(QString text) {
     this->feedText = text;
 }

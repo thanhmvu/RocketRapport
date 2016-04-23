@@ -35,10 +35,18 @@ int TweetPost::findComment(int cmt_id){
     return -1;
 }
 
-void TweetPost::setText(std::__cxx11::string newText){
+void TweetPost::setText(QString newText){
     text = newText;
 }
 
 void TweetPost::setTime(QDateTime newTime){
     timePosted = newTime;
+}
+
+QString TweetPost::getText(){
+    return text;
+}
+
+QDateTime TweetPost::getTimePosted(){
+    return timePosted;
 }

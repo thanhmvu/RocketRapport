@@ -10,7 +10,7 @@ private:
     static int id_cnt;
     int feedID;
     std::vector<TweetPost*> feedPosts;
-    std::string feedText;
+    QString feedText;
 
 public:
     Feed();
@@ -20,8 +20,8 @@ public:
     void removePost(TweetPost* oldPost);
 
     std::vector<TweetPost*> getFeedPosts();
-    std::string getFeedText();
-    void setFeedText(std::string text);
+    QString getFeedText();
+    void setFeedText(QString text);
 };
 
 #endif // FEED_H

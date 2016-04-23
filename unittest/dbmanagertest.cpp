@@ -5,6 +5,8 @@
 #include "../model/blogpost.h"
 #include "../model/chat.h"
 #include "../model/message.h"
+#include "../model/tweet.h"
+#include "../model/tweetpost.h"
 #include "../model/system.h"
 #include "../model/dbmanager.h"
 
@@ -37,6 +39,18 @@ TEST(DbManagerTest, testRetrieveAllMessages){
         std::cout << look->getID() << ": " << look->getText().toStdString() << std::endl;
     }
 
+}
+
+TEST(DbManagerTest, testRetrieveAllTweets){
+    DbManager one("../gProjectDB.db");
+    Tweet *uTweet = new Tweet;
+    one.retrieveAllTweets(uTweet);
+    std::vector<TweetPost*> tweetPosts = uTweet->getMyPosts();
+
+    for(int i=0; i<tweetPosts.size(); i++){
+        TweetPost *look = tweetPosts.at(i);
+        qDebug() << look->getID() << ": " << look->getText();
+    }
 }
 
 

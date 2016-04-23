@@ -16,7 +16,7 @@ private:
     int findComment(int cmt_id);
     QDateTime timePosted;
 
-    std::string text;
+    QString text;
 public:
     TweetPost();
     int getID();
@@ -25,7 +25,11 @@ public:
     bool deleteComment(int id);
 
     void setTime(QDateTime newTime);
-    void setText(std::string newText);
+    void setText(QString newText);
+
+    QString getText();
+    QDateTime getTimePosted();
+
 };
 
 #endif // TWEETPOST_H

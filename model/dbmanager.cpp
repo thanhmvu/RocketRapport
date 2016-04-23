@@ -371,9 +371,10 @@ void DbManager::retrieveAllTweets(Tweet *userTweet){
     QString command = "SELECT * FROM tweetPosts WHERE TweetID = ";
     command += userTweet->getTweetID();
     query.prepare(command);
+    query.exec();
     while(query.next()){
         TweetPost *newTP = new TweetPost;
-        newTP->setText(query.value(3).toString().toStdString());
+        newTP->setText(query.value(3).toString());
         newTP->setTime(query.value(2).toDateTime());
         userTweet->addPost(newTP);
     }

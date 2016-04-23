@@ -13,7 +13,7 @@ Tweet::Tweet()
  * @brief Adds a new TweetPost to the Tweet's list of posts.
  */
 void Tweet::addPost(TweetPost* newPost) {
-    this->getMyPosts().push_back(newPost);
+    myPosts.push_back(newPost);
 }
 
 
@@ -49,7 +49,7 @@ void Tweet::concastPosts() {
  * @brief Getter that returns the list of TweetPosts.
  */
 std::vector<TweetPost*> Tweet::getMyPosts() {
-    return this->myPosts;
+    return myPosts;
 }
 
 int Tweet::getTweetID(){
