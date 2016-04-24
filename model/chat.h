@@ -4,6 +4,7 @@
 #include <vector>
 #include "message.h"
 #include "dbmanager.h"
+class DbManager;
 
 class Chat
 {
@@ -13,8 +14,10 @@ private:
 
     std::string talkingToUser;
     std::vector<Message*> messages;
+
+    DbManager *dbm;
 public:
-    Chat();
+    Chat(DbManager *newdbm); //Pass in pointer to dbm object that the chat can use for data storage
     int getChatID();
     void addMessage(Message *newMessage);
     void sendMessage(Message * newMessage);

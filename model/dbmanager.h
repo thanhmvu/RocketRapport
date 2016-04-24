@@ -22,7 +22,9 @@
 #include "chat.h"
 #include "message.h"
 
+//We're going to need to forward declare the classes that use a dbm object
 class Account;
+class Chat;
 
 class DbManager
 {

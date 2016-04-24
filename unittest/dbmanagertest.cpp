@@ -27,7 +27,7 @@ TEST(DbManagerTest, testRetrieveAllBlogs){
 
 TEST(DbManagerTest, testRetrieveAllMessages){
     DbManager one("../gProjectDB.db");
-    Chat *uChat = new Chat;
+    Chat *uChat = new Chat(&one);
     qDebug() << "Chat ID: " << uChat->getChatID();
     one.retrieveAllMessages(uChat);
     std::vector<Message*> chatMessages = uChat->getMessages();

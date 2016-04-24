@@ -2,8 +2,9 @@
 
 int Chat::id_cnt = 0;
 
-Chat::Chat()
+Chat::Chat(DbManager *newdbm)
 {
+    dbm = newdbm;
     chatID = id_cnt;
     id_cnt++;
 }
@@ -31,9 +32,8 @@ void Chat::addMessage(Message *newMessage){
  */
 void Chat::sendMessage(Message * newMessage) {
     this->addMessage(newMessage);
-    //Insert loic for dbm
+    dbm->addMessage(chatID,newMessage->getID(),newMessage->getTimeSent(),newMessage->getText());
 }
-
 
 /**
  * @brief Gets the vector of messages.
