@@ -29,6 +29,7 @@ Account::Account()
     yearDeparted = 0;
 
     myScrapbook = new Scrapbook();
+    myScrapbook->setID(dbm->retrieveIntInfo("ScrpBkID","accounts","AccountID",accountID));
 
     myBlog = new Blog(); //Create new blog associated with user
     myBlog->setID( dbm->retrieveIntInfo("BlogID","accounts","AccountID",accountID) ); //Method used to manually set the ID value of the new user Blog

@@ -13,7 +13,7 @@ private:
 
 public:
     Scrapbook();
-
+    void setID(int newID);
     void addPost(ScrapbookPost* newPost);
     void deletePost(ScrapbookPost* oldPost);
     //  NEEDS TO BE IMPLEMENTED

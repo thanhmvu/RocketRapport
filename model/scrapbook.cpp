@@ -8,6 +8,9 @@ Scrapbook::Scrapbook()
     id_cnt++;
 }
 
+void Scrapbook::setID(int newID){
+    scrpBookID = newID;
+}
 
 /**
  * @brief Adds a new ScrapbookPost to the Scrapbook's list of posts.
