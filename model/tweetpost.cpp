@@ -27,7 +27,7 @@ bool TweetPost::deleteComment(int cmt_id){
 }
 
 int TweetPost::findComment(int cmt_id){
-    for(int i = 0; i< comments.size(); i++){
+    for(unsigned i = 0; i< comments.size(); i++){
         if(comments[i].getID() == cmt_id){
             return i;
         }

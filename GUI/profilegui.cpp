@@ -67,7 +67,6 @@ void ProfileGUI::loadProfile(QString ownername, QString viewer){
 
 void ProfileGUI::on_pushButton_blog_clicked()
 {
-    Account * current_user = main_menu->getSystem()->getCurrentUser();
     // load content based on viewer
     blog_screen->loadBlogView(owner->getUsername(), curr_viewer);
 

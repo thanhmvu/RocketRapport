@@ -104,10 +104,10 @@ bool DbManager::addGroup(const QVariant &GrpID, const QVariant &GrpAdmnId, \
     query.bindValue(":FeedID",FeedID);
     if(query.exec()){
         success = true;
-    }
-    else{
+    }else{
         //Need some kind of print statement to signify that the method didn't work
     }
+    return success;
 }
 
 /**
@@ -177,7 +177,7 @@ bool DbManager::addColumn(const QString name, const QString type){
     QSqlQuery query;
     const QString command = "ALTER TABLE accounts ADD COLUMN " + name + " " + type;
     query.prepare(command);
-    query.exec();
+    return query.exec();
 }
 
 /**
@@ -308,7 +308,7 @@ QString DbManager::retrieveStringInfo(const QString &fieldName, const QString &t
 bool DbManager::rmAllAccounts(){
     QSqlQuery query;
     query.prepare("DELETE FROM accounts");
-    query.exec();
+    return query.exec();
 }
 
 ///**

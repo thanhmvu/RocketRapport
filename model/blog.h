@@ -10,7 +10,7 @@ private:
     static int id_cnt;
     int blogID;
     std::vector<BlogPost*> myPosts;
-    QString blogText;
+//    QString blogText;
 
 public:
     Blog();
@@ -20,7 +20,6 @@ public:
     void deletePost(BlogPost* oldPost);
 
     std::vector<BlogPost*> getMyPosts();
-
     int getBlogID();
 };
 

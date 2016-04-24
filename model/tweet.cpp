@@ -23,7 +23,7 @@ void Tweet::addPost(TweetPost* newPost) {
  * @brief Removes a TweetPost from the Tweet's list of posts.
  */
 void Tweet::deletePost(TweetPost* oldPost) {
-    for (int i = 0; i < this->getMyPosts().size(); i++) {
+    for (unsigned i = 0; i < this->getMyPosts().size(); i++) {
         if (&(*oldPost) == &(*(this->getMyPosts()[i]))) {
             this->getMyPosts().erase(this->getMyPosts().begin() + i);
             break;

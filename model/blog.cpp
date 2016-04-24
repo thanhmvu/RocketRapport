@@ -45,7 +45,7 @@ void Blog::storePostToDB(BlogPost* newPost) {
  * @brief Removes a BlogPost from the Blog's list of posts.
  */
 void Blog::deletePost(BlogPost* oldPost) {
-    for (int i = 0; i < this->getMyPosts().size(); i++) {
+    for (unsigned i = 0; i < this->getMyPosts().size(); i++) {
         if (&(*oldPost) == &(*(this->getMyPosts()[i]))) {
             this->getMyPosts().erase(this->getMyPosts().begin() + i);
             break;

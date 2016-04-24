@@ -19,7 +19,7 @@ TEST(DbManagerTest, testRetrieveAllBlogs){
 
     std::cout<< "Number of blog posts inside the blog: " << bPosts.size() << std::endl;
 
-    for(int i=0; i<bPosts.size(); i++){
+    for(unsigned i=0; i<bPosts.size(); i++){
         BlogPost *look = bPosts.at(i);
         std::cout<< look->getID() << ": " << look->getText().toStdString() << std::endl;
     }
@@ -33,7 +33,7 @@ TEST(DbManagerTest, testRetrieveAllMessages){
     std::vector<Message*> chatMessages = uChat->getMessages();
     std::cout<< "Number of messages inside the chat: " << chatMessages.size() << std::endl;
 
-    for(int i=0; i<chatMessages.size() ; i++){
+    for(unsigned i=0; i<chatMessages.size() ; i++){
         Message *look = chatMessages.at(i);
         std::cout << "Sent to: " << look->getReceiver().toStdString() << std::endl;
         std::cout << look->getID() << ": " << look->getText().toStdString() << std::endl;
@@ -47,7 +47,7 @@ TEST(DbManagerTest, testRetrieveAllTweets){
     one.retrieveAllTweets(uTweet);
     std::vector<TweetPost*> tweetPosts = uTweet->getMyPosts();
 
-    for(int i=0; i<tweetPosts.size(); i++){
+    for(unsigned i=0; i<tweetPosts.size(); i++){
         TweetPost *look = tweetPosts.at(i);
         qDebug() << look->getID() << ": " << look->getText();
     }

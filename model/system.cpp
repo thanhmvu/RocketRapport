@@ -137,7 +137,7 @@ void System::addGroup(Group* newGroup) {
  * @brief Removes a group from the System's list of groups.
  */
 void System::removeGroup(Group* oldGroup) {
-    for (int i = 0; i < this->getGroups().size(); i++) {
+    for (unsigned i = 0; i < this->getGroups().size(); i++) {
         if (&(*oldGroup) == &(*(this->getGroups()[i]))) {
             this->getGroups().erase(this->getGroups().begin() + i);
             break;

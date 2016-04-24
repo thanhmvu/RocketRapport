@@ -24,7 +24,7 @@ void Scrapbook::addPost(ScrapbookPost* newPost) {
  * @brief Removes a ScrapbookPost from the Scrapbook's list of posts.
  */
 void Scrapbook::deletePost(ScrapbookPost* oldPost) {
-    for (int i = 0; i < this->getMyPosts().size(); i++) {
+    for (unsigned i = 0; i < this->getMyPosts().size(); i++) {
         if (&(*oldPost) == &(*(this->getMyPosts()[i]))) {
             this->getMyPosts().erase(this->getMyPosts().begin() + i);
             break;

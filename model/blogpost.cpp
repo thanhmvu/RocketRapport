@@ -12,6 +12,7 @@ int BlogPost::getID(){ return id; }
 
 bool BlogPost::setText(QString new_text){
     text = new_text;
+    return true;
 }
 
 QString BlogPost::getText(){

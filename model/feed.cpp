@@ -14,7 +14,7 @@ Feed::Feed()
  */
 void Feed::displayFeed() {
     this->setFeedText("");
-    for (int i = 0; i < this->getFeedPosts().size(); i++) {
+    for (unsigned i = 0; i < this->getFeedPosts().size(); i++) {
         this->setFeedText(this->getFeedText() += (*(this->getFeedPosts()[i])).getText() += /*" "
                           + (*(this->getFeedPosts()[i])).getTime() + " "
                           + (*(this->getFeedPosts()[i])).getDate() + */
@@ -38,7 +38,7 @@ void Feed::addPost(TweetPost* newPost) {
  * @brief Removes a TweetPost from the list of posts.
  */
 void Feed::removePost(TweetPost* oldPost) {
-    for (int i = 0; i < this->getFeedPosts().size(); i++) {
+    for (unsigned i = 0; i < this->getFeedPosts().size(); i++) {
         if (&(*oldPost) == &(*(this->getFeedPosts()[i]))) {
             this->getFeedPosts().erase(this->getFeedPosts().begin() + i);
             break;

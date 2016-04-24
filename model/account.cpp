@@ -43,7 +43,7 @@ Account::Account(DbManager *newdbm)
     newdbm->retrieveAllTweets(myTweet);
 
     //Iterate through list of chats the user has and store each of the messages in the db to each chat
-    for(int i=0; i<myChats.size(); i++){
+    for(unsigned i=0; i<myChats.size(); i++){
         newdbm->retrieveAllMessages(myChats.at(i));
     }
 }
@@ -262,7 +262,7 @@ void Account::addChat(Chat* newChat) {
  * @brief Removes the specified chat from the list of the user's chats.
  */
 void Account::removeChat(Chat* badChat) {
-    for (int i = 0; i < this->getMyChats().size(); i++) {
+    for (unsigned i = 0; i < this->getMyChats().size(); i++) {
         if (&(*badChat) == &(*(this->getMyChats()[i]))) {
             this->getMyChats().erase(this->getMyChats().begin() + i);
             break;
@@ -283,7 +283,7 @@ void Account::addFriend(Account* newFriend) {
  * @brief Removes a friend from the user's friend list.
  */
 void Account::removeFriend(Account* badFriend) {
-    for (int i = 0; i < this->getFriendList().size(); i++) {
+    for (unsigned i = 0; i < this->getFriendList().size(); i++) {
         if (&(*badFriend) == &(*(this->getFriendList()[i]))) {
             this->getFriendList().erase(this->getFriendList().begin() + i);
             break;
@@ -304,7 +304,7 @@ void Account::joinGroup(Group* newGroup) {
  * @brief Removes a group from the user's list of joined groups.
  */
 void Account::leaveGroup(Group* badGroup) {
-    for (int i = 0; i < this->getGroups().size(); i++) {
+    for (unsigned i = 0; i < this->getGroups().size(); i++) {
         if (&(*badGroup) == &(*(this->getGroups()[i]))) {
             this->getGroups().erase(this->getGroups().begin() + i);
             break;
@@ -568,6 +568,7 @@ Blog* Account::getMyBlog() {
     if (this->getIsCurrentGuest() == true) {
         return this->myBlog;
     }
+    return nullptr;
 }
 
 
@@ -588,6 +589,7 @@ Tweet* Account::getMyTweet() {
     if (this->getIsCurrentGuest() == true) {
         return this->myTweet;
     }
+    return nullptr;
 }
 
 
@@ -638,6 +640,9 @@ void Account::setYearDeparted(int year) {
 std::vector<QString> Account::getProjectsWorkedOn() {
     if (this->getIsPastGuest() == true) {
         return this->projectsWorkedOn;
+    }else{
+        std::vector<QString> empty_vector;
+        return empty_vector;
     }
 }
 
@@ -657,7 +662,7 @@ void Account::addProject(QString projectName) {
  */
 void Account::removeProject(QString projectName) {
     if (this->getIsPastGuest() == true) {
-        for (int i = 0; i < this->getProjectsWorkedOn().size(); i++) {
+        for (unsigned i = 0; i < this->getProjectsWorkedOn().size(); i++) {
             if (projectName == this->getProjectsWorkedOn()[i]) {
                 this->getProjectsWorkedOn().erase(this->getProjectsWorkedOn().begin() + i);
                 break;
@@ -674,6 +679,7 @@ int Account::getMonthDeparted() {
     if (this->getIsPastGuest() == true) {
         return this->monthDeparted;
     }
+    return 0;
 }
 
 
@@ -684,6 +690,7 @@ int Account::getDayDeparted() {
     if (this->getIsPastGuest() == true) {
         return this->dayDeparted;
     }
+    return 0;
 }
 
 
@@ -694,6 +701,7 @@ int Account::getYearDeparted() {
     if (this->getIsPastGuest() == true) {
         return this->yearDeparted;
     }
+    return 0;
 }
 
 // SYSTEM ADMIN
@@ -779,6 +787,7 @@ System* Account::getSystem() {
     if (this->getIsSystemAdmin() == true) {
         return this->theSystem;
     }
+    return nullptr;
 }
 
 
