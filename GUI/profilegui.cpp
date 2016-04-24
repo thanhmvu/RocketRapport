@@ -1,4 +1,4 @@
-#include "profilegui.h"
+﻿#include "profilegui.h"
 #include "ui_profilegui.h"
 
 ProfileGUI::ProfileGUI(QWidget *parent) :
@@ -39,16 +39,16 @@ void ProfileGUI::on_pushButton_back_to_menu_clicked()
 
 void ProfileGUI::loadProfile(QString username){
 
-    Account * curr_user = main_menu->getSystem()->getCurrentUser();
+    Account * profile_owner = main_menu->getSystem()->getAccountByUsername(username.toStdString());
     // display full name
-    std::string user_fullname = curr_user->getFirstName() + " " + curr_user->getLastName();
-    ui->label_name->setText(QString::fromStdString(user_fullname));
+    std::string owner_fullname = profile_owner->getFirstName() + " " + profile_owner->getLastName();
+    ui->label_name->setText(QString::fromStdString(owner_fullname));
 
     // display username
-    ui->label_username->setText(QString::fromStdString(curr_user->getUsername()));
+    ui->label_username->setText(QString::fromStdString(profile_owner->getUsername()));
 
     // display about-you section
-    ui->about_section->setText("About me:\n" + QString::fromStdString(curr_user->getAbout()));
+    ui->about_section->setText("About me:\n" + QString::fromStdString(profile_owner->getAbout()));
 
     ////////////////////////////////////////////////////////////////////
     /// Check if current user is the owner of the profile
