@@ -145,14 +145,18 @@ bool DbManager::addChat(const QVariant &AccountID, const QVariant &ChatID, const
  * @return
  */
 bool DbManager::addMessage(const QVariant &ChatID, const QVariant &MessageID, const QVariant &DateTime,
-                           const QVariant text){
+                           const QVariant &text, const QVariant &receiver){
+    system("pwd");
     bool success = false;
     QSqlQuery query;
-    query.prepare("INSERT INTO chatMessages VALUES( (:ChatID), (:MessageID), (:DateTime), (:text)");
+    qDebug() << "Status of prepare statement" << query.prepare("INSERT INTO chatMessages VALUES(:ChatID,:MessageID,:dateTime,:Text, :Receiver)");
     query.bindValue(":ChatID", ChatID);
     query.bindValue(":MessageID",MessageID);
-    query.bindValue(":DateTime",DateTime);
-    query.bindValue(":text",text);
+    query.bindValue(":dateTime",DateTime);
+    query.bindValue(":Text",text);
+    query.bindValue(":Receiver",receiver);
+    qDebug() << "All bound values: " << query.boundValue(0) << " " << query.boundValue(1) << " " << query.boundValue(2) << " " <<
+                query.boundValue(3) << " " << query.boundValue(4);
     if(query.exec()){
         success = true;
     }

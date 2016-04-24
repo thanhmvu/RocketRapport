@@ -48,8 +48,8 @@ public:
     bool addFeedPost(const QVariant &FeedID, const QVariant &feedPostID, const QVariant &feedPostText);
     bool addBlogPost(const QVariant &BlogID, const QVariant &BlogPostID, const QVariant &timeDate, const QVariant &test);
     bool addChat(const QVariant &AccountID, const QVariant &ChatID, const QVariant &sender);
-    bool addMessage(const QVariant &ChatID,const QVariant &MessageID, const QVariant &DateTime,
-                    const QVariant text);
+    bool addMessage(const QVariant &ChatID, const QVariant &MessageID, const QVariant &DateTime,
+                    const QVariant &text, const QVariant &receiver);
 
     //Methods used to modify the existing contents of the table
     bool addColumn(const QString name, const QString type);

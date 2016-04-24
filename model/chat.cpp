@@ -4,7 +4,7 @@ int Chat::id_cnt = 0;
 
 Chat::Chat(DbManager *newdbm)
 {
-    dbm = newdbm;
+    dbm = newdbm; //Start by setting the local dbm object to the parameter dbm pointer
     chatID = id_cnt;
     id_cnt++;
 }
@@ -32,7 +32,8 @@ void Chat::addMessage(Message *newMessage){
  */
 void Chat::sendMessage(Message * newMessage) {
     this->addMessage(newMessage);
-    dbm->addMessage(chatID,newMessage->getID(),newMessage->getTimeSent(),newMessage->getText());
+    dbm->addMessage(chatID,newMessage->getID(),newMessage->getTimeSent(),
+                    newMessage->getText(), newMessage->getReceiver());
 }
 
 /**
