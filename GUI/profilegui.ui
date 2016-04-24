@@ -29,7 +29,7 @@
     <pixmap resource="images.qrc">:/icons/RR_profile_pic.png</pixmap>
    </property>
   </widget>
-  <widget class="QTextBrowser" name="textBrowser">
+  <widget class="QTextBrowser" name="about_section">
    <property name="geometry">
     <rect>
      <x>30</x>
@@ -93,12 +93,12 @@ p, li { white-space: pre-wrap; }
        </font>
       </property>
       <property name="text">
-       <string>UserName</string>
+       <string>Full Name</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QLabel" name="label_employer">
+     <widget class="QLabel" name="label_username">
       <property name="font">
        <font>
         <pointsize>18</pointsize>
@@ -107,7 +107,7 @@ p, li { white-space: pre-wrap; }
        </font>
       </property>
       <property name="text">
-       <string>Employer: </string>
+       <string>Username</string>
       </property>
      </widget>
     </item>
@@ -121,7 +121,7 @@ p, li { white-space: pre-wrap; }
        </font>
       </property>
       <property name="text">
-       <string>Phone: </string>
+       <string/>
       </property>
      </widget>
     </item>

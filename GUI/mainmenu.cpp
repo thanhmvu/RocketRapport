@@ -112,12 +112,10 @@ Login * MainMenu::getLoginScreen(){
 
 void MainMenu::on_pushButton_profile_clicked()
 {
-    ////////////////////////////////////////////////////////////////////
-    /// BUG in retrieve current user
-    //////////////////////////////////////////////////////////////////
-//    Account * current_user = this->getSystem()->getCurrentUser();
-//    // load content based on viewer
-//    profile_screen->loadProfile(QString::fromStdString(current_user->getUsername()));
+    Account * current_user = this->getSystem()->getCurrentUser();
+
+    // load content based on viewer
+    profile_screen->loadProfile(QString::fromStdString(current_user->getUsername()));
 
     this->close();
     profile_screen->show();

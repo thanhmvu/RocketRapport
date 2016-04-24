@@ -38,13 +38,17 @@ void ProfileGUI::on_pushButton_back_to_menu_clicked()
 }
 
 void ProfileGUI::loadProfile(QString username){
-    ////////////////////////////////////////////////////////////////////
-    /// Load profile of user name from SYSTEM/ DATABASE
-    //////////////////////////////////////////////////////////////////
-    //    Account * curr_user = main_menu->getSystem()->getCurrentUser();
-    //    std::string user_fullname = curr_user->getFirstName()
-    //            + " " + curr_user->getLastName();
-    //    ui->label_name->setText(QString::fromStdString(user_fullname));
+
+    Account * curr_user = main_menu->getSystem()->getCurrentUser();
+    // display full name
+    std::string user_fullname = curr_user->getFirstName() + " " + curr_user->getLastName();
+    ui->label_name->setText(QString::fromStdString(user_fullname));
+
+    // display username
+    ui->label_username->setText(QString::fromStdString(curr_user->getUsername()));
+
+    // display about-you section
+    ui->about_section->setText("About me:\n" + QString::fromStdString(curr_user->getAbout()));
 
     ////////////////////////////////////////////////////////////////////
     /// Check if current user is the owner of the profile
