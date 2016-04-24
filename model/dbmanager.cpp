@@ -340,8 +340,9 @@ void DbManager::retrieveAllBlogPosts(Blog *userBlog){
     while(query.next()){
         BlogPost *newBP = new BlogPost;
         QString newText1 = query.value(3).toString();
+        QDateTime time = query.value(2).toDateTime();
         newBP->setText(newText1);
-        newBP->setTime(2); //Should I add a method to blog post that manually sets the blog post ID?
+        newBP->setTimePosted(time); //Should I add a method to blog post that manually sets the blog post ID?
         userBlog->addPost(newBP);
     }
 }

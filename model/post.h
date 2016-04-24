@@ -1,25 +1,27 @@
 #ifndef POST_H
 #define POST_H
 #include <iostream>
-#include <ctime>
 #include <QString>
+#include <QDateTime>
 
 class Post
 {
 private:
     static int id_cnt;
+
+protected:
     int id;
     QString text;
-    time_t time;
+    QDateTime timePosted;
 
 public:
     Post();
     QString getText();
-    time_t getTime();
+    QDateTime getTimePosted();
     int getID();
 
     bool setText(QString new_text);
-    bool setTime(time_t new_time);
+    bool setTimePosted(QDateTime new_time);
 };
 
 #endif // POST_H

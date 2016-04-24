@@ -10,19 +10,6 @@ BlogPost::BlogPost()
 
 int BlogPost::getID(){ return id; }
 
-bool BlogPost::setText(QString new_text){
-    text = new_text;
-    return true;
-}
-
-QString BlogPost::getText(){
-    return text;
-}
-
-QDateTime BlogPost::getDateTime(){
-    return datePosted;
-}
-
 //We've cut out commenting functionality for now.
 //bool BlogPost::addComment(Comment cmt){
 //    comments.push_back(cmt);

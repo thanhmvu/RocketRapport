@@ -64,7 +64,7 @@ void BlogGUI::on_pushButton_savePost_clicked()
     ui->pushButton_newPost->setVisible(true);
 
     // TODO: add new post to the system and display
-//    profile_screen->owner->
+//    profile_screen->owner->getMyBlog()->addPost();
 }
 
 void BlogGUI::on_pushButton_cancel_clicked()

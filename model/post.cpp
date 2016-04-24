@@ -15,8 +15,8 @@ QString Post::getText(){
     return text;
 }
 
-time_t Post::getTime(){
-    return time;
+QDateTime Post::getTimePosted(){
+    return timePosted;
 }
 
 bool Post::setText(QString new_text){
@@ -24,7 +24,7 @@ bool Post::setText(QString new_text){
     return true;
 }
 
-bool Post::setTime(time_t new_time){
-    time = new_time;
+bool Post::setTimePosted(QDateTime new_time){
+    timePosted = new_time;
     return true;
 }
