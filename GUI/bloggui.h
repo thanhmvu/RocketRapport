@@ -19,7 +19,7 @@ public:
     explicit BlogGUI(QWidget *parent = 0);
     BlogGUI(ProfileGUI* pfGUI);
     ~BlogGUI();
-    void loadBlogView(QString username);
+    void loadBlogView(QString blog_owner, QString viewer);
 
 private slots:
     void on_pushButton_newPost_clicked();

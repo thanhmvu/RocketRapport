@@ -161,8 +161,7 @@ bool DbManager::addMessage(const QVariant &ChatID, const QVariant &MessageID, co
         success = true;
     }
     else{
-        qDebug() << "Issue with adding new Message"
-                 << query.lastError();
+        //Print Statement
     }
 
     return success;
@@ -415,7 +414,7 @@ void DbManager::retrieveAllAccounts(std::map<std::string, Account*> &accounts){
                 // rebuild an account based on the info
                 Account * rebuilt_account = new Account(accountID, username, password,
                                                         scrpBkID, blogID, tweetID,
-                                                        firstname, lastname,this);
+                                                        firstname, lastname, this);
 
                 // add accoun to the accounts map
                 accounts[username] = rebuilt_account;
@@ -423,3 +422,32 @@ void DbManager::retrieveAllAccounts(std::map<std::string, Account*> &accounts){
         }else{ qDebug() << query.lastError(); }
     }else{ qDebug() << query.lastError(); }
 }
+
+
+
+
+bool DbManager::addBlogPost(const QVariant &blogPostID, const QVariant &blogID, const QVariant &timeDate, const QVariant &test){
+//     bool success = false;
+//     QSqlQuery query;
+//     // BlogID INTEGER, BLogPstID INTEGER, timeDate DATE, text VARCHAR(5000)
+//     // insert into blogPosts values (0,0,'2007-01-01 10:00:00','a');
+//     // CREATE TABLE blogPosts (blogPostID INTEGER PRIMARY KEY, blogID INTEGER, dateTime DATETIME, text VARCHAR(5000));
+//     // CREATE TABLE tweetPosts (tweetPostID INTEGER PRIMARY KEY, tweetID INTEGER, dateTime DATETIME, text VARCHAR(200));
+//     /*
+
+//       CREATE TABLE chatMessages (messageID INTEGER PRIMARY KEY, chatID INTEGER, dateTime DATETIME, text VARCHAR(500));
+//*/
+//     query.prepare("INSERT INTO blogPosts VALUES(:blogPostID, :blogID, :timeDate, :text");
+//     query.bindValue(":ChatID", ChatID);
+//     query.bindValue(":MessageID",MessageID);
+//     query.bindValue(":DateTime",DateTime);
+//     query.bindValue(":text",text);
+//     if(query.exec()){
+//         success = true;
+//     }
+//     else{
+//         //Print Statement
+//     }
+
+//     return success;
+ }

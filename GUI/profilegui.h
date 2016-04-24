@@ -23,6 +23,8 @@ private:
     MainMenu* main_menu;
     BlogGUI * blog_screen;
     TweetGUI * tweet_screen;
+    QString owner;
+    QString curr_viewer;
     void init();
 
 public:
@@ -30,7 +32,7 @@ public:
     ProfileGUI(MainMenu * mm);
     ~ProfileGUI();
     void setMainMenu(MainMenu* mm);
-    void loadProfile(QString username);
+    void loadProfile(QString profile_owner, QString viewer);
 
 private slots:
     void on_pushButton_back_to_menu_clicked();

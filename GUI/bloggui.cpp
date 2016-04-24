@@ -80,6 +80,14 @@ void BlogGUI::on_pushButton_back_to_profile_clicked()
     profile_screen->show();
 }
 
-void BlogGUI::loadBlogView(QString username){
+void BlogGUI::loadBlogView(QString blog_owner, QString viewer){
+    ui->label_myBlog->setText(blog_owner+"'s blog");
+
+    ////////////////////////////////////////////////////////////////////
+    /// load blogs from database
+    //////////////////////////////////////////////////////////////////
+
+
+    // check if current user is the owner of the profile
 
 }

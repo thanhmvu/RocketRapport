@@ -41,9 +41,11 @@ void ProfileGUI::on_pushButton_back_to_menu_clicked()
     main_menu->show();
 }
 
-void ProfileGUI::loadProfile(QString username){
+void ProfileGUI::loadProfile(QString owner, QString viewer){
+    this->owner = owner;
+    curr_viewer = viewer;
 
-    Account * profile_owner = main_menu->getSystem()->getAccountByUsername(username.toStdString());
+    Account * profile_owner = main_menu->getSystem()->getAccountByUsername(owner.toStdString());
     // display full name
     std::string owner_fullname = profile_owner->getFirstName() + " " + profile_owner->getLastName();
     ui->label_name->setText(QString::fromStdString(owner_fullname));
@@ -54,9 +56,8 @@ void ProfileGUI::loadProfile(QString username){
     // display about-you section
     ui->about_section->setText("About me:\n" + QString::fromStdString(profile_owner->getAbout()));
 
-    // Check if current user is the owner of the profile
-    QString current_user = QString::fromStdString(main_menu->getSystem()->getCurrentUser()->getUsername());
-    if(username.compare(current_user) == 0){
+    // Check if current user is the owner of the profile;
+    if(owner.compare(viewer) == 0){
        ui->about_section->setReadOnly(false);
        ui->pushButton_update_about->setVisible(true);
     }else{
@@ -67,12 +68,9 @@ void ProfileGUI::loadProfile(QString username){
 
 void ProfileGUI::on_pushButton_blog_clicked()
 {
-    ////////////////////////////////////////////////////////////////////
-    /// BUG in retrieve current user
-    //////////////////////////////////////////////////////////////////
-//    Account * current_user = main_menu->getSystem()->getCurrentUser();
-//    // load content based on viewer
-//    blog_screen->loadBlogView(QString::fromStdString(current_user->getUsername()));
+    Account * current_user = main_menu->getSystem()->getCurrentUser();
+    // load content based on viewer
+    blog_screen->loadBlogView(owner, curr_viewer);
 
     this->close();
     blog_screen->show();

@@ -76,8 +76,10 @@ void MainMenu::reload(){
 void MainMenu::openUserProfile(){
     QPushButton* button = qobject_cast<QPushButton*> (QObject::sender());
     QString username = button->text();
+    QString current_user = QString::fromStdString(main_system->getCurrentUser()->getUsername());
+
     // load content based on viewer
-    profile_screen->loadProfile(username);
+    profile_screen->loadProfile(username, current_user);
 
     this->close();
     profile_screen->show();
@@ -104,9 +106,10 @@ Login * MainMenu::getLoginScreen(){
 void MainMenu::on_pushButton_profile_clicked()
 {
     Account * current_user = this->getSystem()->getCurrentUser();
+    QString username = QString::fromStdString(current_user->getUsername());
 
     // load content based on viewer
-    profile_screen->loadProfile(QString::fromStdString(current_user->getUsername()));
+    profile_screen->loadProfile(username, username);
 
     this->close();
     profile_screen->show();

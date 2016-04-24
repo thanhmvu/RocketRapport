@@ -74,7 +74,7 @@
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_3">
     <item>
-     <widget class="QLabel" name="label">
+     <widget class="QLabel" name="label_myBlog">
       <property name="font">
        <font>
         <pointsize>17</pointsize>
