@@ -18,10 +18,18 @@ int Chat::getChatID(){
 
 
 /**
- * @brief "Sends" a message to the database.
+ * @brief Adds a message to the vector of messages.
  */
 void Chat::addMessage(Message *newMessage){
     messages.push_back(newMessage);
+}
+
+/**
+ * @brief "Sends" a message to the database.
+ */
+void Chat::sendMessage(Message * newMessage) {
+    this->addMessage(newMessage);
+    // Database logic
 }
 
 

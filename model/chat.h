@@ -16,6 +16,7 @@ public:
     Chat();
     int getChatID();
     void addMessage(Message *newMessage);
+    void sendMessage(Message * newMessage);
     std::vector<Message *> getMessages();
     std::string getTalkingToUser();
     void setTalkingToUser(std::string name);
