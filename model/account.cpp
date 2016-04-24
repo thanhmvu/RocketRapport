@@ -48,7 +48,7 @@ Account::Account(DbManager *newdbm)
     }
 }
 
-Account::Account(std::string usrName, DbManager *newdbm){
+Account::Account(QString usrName, DbManager *newdbm){
     dbm = newdbm;
     this->accountID = id_cnt;
     id_cnt++;
@@ -86,9 +86,9 @@ Account::Account(std::string usrName, DbManager *newdbm){
  * This contructor give all controls to the user
  * Thus, one possible risk is duplicate ID
  */
-Account::Account(int accID,     std::string usrname,    std::string pw,
+Account::Account(int accID,     QString usrname,    QString pw,
                 int scrpBkID,   int blogID,         int tweetID,
-                std::string firstname,  std::string lastname, DbManager *newdbm)
+                QString firstname,  QString lastname, DbManager *newdbm)
 {
     dbm = newdbm;
     this->accountID = accID;
@@ -316,7 +316,7 @@ void Account::leaveGroup(Group* badGroup) {
 /**
  * @brief Getter for the user's username.
  */
-std::string Account::getUsername() {
+QString Account::getUsername() {
     return this->username;
 }
 
@@ -324,7 +324,7 @@ std::string Account::getUsername() {
 /**
  * @brief Setter for the user's username.
  */
-void Account::setUsername(std::string uName) {
+void Account::setUsername(QString uName) {
     this->username = uName;
 }
 
@@ -332,7 +332,7 @@ void Account::setUsername(std::string uName) {
 /**
  * @brief Getter for the user's password.
  */
-std::string Account::getPassword() {
+QString Account::getPassword() {
     return this->password;
 }
 
@@ -340,7 +340,7 @@ std::string Account::getPassword() {
 /**
  * @brief Setter for the user's password.
  */
-void Account::setPassword(std::string pWord) {
+void Account::setPassword(QString pWord) {
     this->password = pWord;
 }
 
@@ -388,7 +388,7 @@ std::vector<Group*> Account::getGroups() {
 /**
  * @brief Getter for the user's first name.
  */
-std::string Account::getFirstName() {
+QString Account::getFirstName() {
     return this->firstName;
 }
 
@@ -396,7 +396,7 @@ std::string Account::getFirstName() {
 /**
  * @brief Setter for the user's first name.
  */
-void Account::setFirstName(std::string fName) {
+void Account::setFirstName(QString fName) {
     this->firstName = fName;
 }
 
@@ -404,7 +404,7 @@ void Account::setFirstName(std::string fName) {
 /**
  * @brief Getter for the user's last name.
  */
-std::string Account::getLastName() {
+QString Account::getLastName() {
     return this->lastName;
 }
 
@@ -412,7 +412,7 @@ std::string Account::getLastName() {
 /**
  * @brief Setter for the user's last name.
  */
-void Account::setLastName(std::string lName) {
+void Account::setLastName(QString lName) {
     this->lastName = lName;
 }
 
@@ -420,7 +420,7 @@ void Account::setLastName(std::string lName) {
 /**
  * @brief Getter for the user's gender.
  */
-std::string Account::getGender() {
+QString Account::getGender() {
     return this->gender;
 }
 
@@ -428,7 +428,7 @@ std::string Account::getGender() {
 /**
  * @brief Setter for the user's gender.
  */
-void Account::setGender(std::string gend) {
+void Account::setGender(QString gend) {
     this->gender = gend;
 }
 
@@ -436,7 +436,7 @@ void Account::setGender(std::string gend) {
 /**
  * @brief Getter for the user's "about yourself" information.
  */
-std::string Account::getAbout() {
+QString Account::getAbout() {
     return this->aboutYourself;
 }
 
@@ -444,7 +444,7 @@ std::string Account::getAbout() {
 /**
  * @brief Setter for the user's "about yourself" information.
  */
-void Account::setAbout(std::string about) {
+void Account::setAbout(QString about) {
     this->aboutYourself = about;
 }
 
@@ -452,7 +452,7 @@ void Account::setAbout(std::string about) {
 /**
  * @brief Getter for the user's home address.
  */
-std::string Account::getAddress() {
+QString Account::getAddress() {
     return this->homeAddress;
 }
 
@@ -460,7 +460,7 @@ std::string Account::getAddress() {
 /**
  * @brief Setter for the user's home address.
  */
-void Account::setAddress(std::string address) {
+void Account::setAddress(QString address) {
     this->homeAddress = address;
 }
 
@@ -468,7 +468,7 @@ void Account::setAddress(std::string address) {
 /**
  * @brief Getter for the user's profile picture.
  */
-std::string Account::getProfilePicture() {
+QString Account::getProfilePicture() {
     return this->profilePicture;
 }
 
@@ -476,7 +476,7 @@ std::string Account::getProfilePicture() {
 /**
  * @brief Setter for the user's profile picture.
  */
-void Account::setProfilePicture(std::string picture) {
+void Account::setProfilePicture(QString picture) {
     this->profilePicture = picture;
 }
 
@@ -484,7 +484,7 @@ void Account::setProfilePicture(std::string picture) {
 /**
  * @brief Getter for the user's most recent employer.
  */
-std::string Account::getMostRecentEmployer() {
+QString Account::getMostRecentEmployer() {
     return this->mostRecentEmployer;
 }
 
@@ -492,7 +492,7 @@ std::string Account::getMostRecentEmployer() {
 /**
  * @brief Setter for the user's most recent employer.
  */
-void Account::setMostRecentEmployer(std::string employer) {
+void Account::setMostRecentEmployer(QString employer) {
     this->mostRecentEmployer = employer;
 }
 
@@ -635,7 +635,7 @@ void Account::setYearDeparted(int year) {
 /**
  * @brief Getter for the past guest's list of projects worked on.
  */
-std::vector<std::string> Account::getProjectsWorkedOn() {
+std::vector<QString> Account::getProjectsWorkedOn() {
     if (this->getIsPastGuest() == true) {
         return this->projectsWorkedOn;
     }
@@ -645,7 +645,7 @@ std::vector<std::string> Account::getProjectsWorkedOn() {
 /**
  * @brief Adds a project to the past guest's list of projects.
  */
-void Account::addProject(std::string projectName) {
+void Account::addProject(QString projectName) {
     if (this->getIsPastGuest() == true) {
         this->getProjectsWorkedOn().push_back(projectName);
     }
@@ -655,7 +655,7 @@ void Account::addProject(std::string projectName) {
 /**
  * @brief Adds a project to the past guest's list of projects.
  */
-void Account::removeProject(std::string projectName) {
+void Account::removeProject(QString projectName) {
     if (this->getIsPastGuest() == true) {
         for (int i = 0; i < this->getProjectsWorkedOn().size(); i++) {
             if (projectName == this->getProjectsWorkedOn()[i]) {
@@ -721,7 +721,7 @@ void Account::deleteGroup(Group* oldGroup) {
 /**
  * @brief Adds an account to the System's list of accounts.
  */
-void Account::addAccount(Account* newAccount, std::string username, std::string firstName, std::string lastName) {
+void Account::addAccount(Account* newAccount, QString username, QString firstName, QString lastName) {
     if (this->getIsSystemAdmin() == true) {
         (*newAccount).setFirstName(firstName);
         (*newAccount).setLastName(lastName);
@@ -830,7 +830,7 @@ int Account::getIdCnt(){
 ///**
 // * @brief Changes the name of the group that this admin is in charge of.
 // */
-//void Account::editGroupName(std::string name) {
+//void Account::editGroupName(QString name) {
 ////    if (this->getIsGroupAdmin() == true) {
 ////        this->getGroup()->setGroupName(name);
 ////    }

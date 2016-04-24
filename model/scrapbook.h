@@ -2,6 +2,7 @@
 #define SCRAPBOOK_H
 #include "scrapbookpost.h"
 #include <vector>
+#include <QString>
 
 class Scrapbook
 {
@@ -9,7 +10,7 @@ private:
     static int id_cnt;
     int scrpBookID;
     std::vector<ScrapbookPost*> myPosts;
-    std::string tweetText;
+    QString tweetText;
 
 public:
     Scrapbook();

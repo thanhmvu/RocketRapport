@@ -9,7 +9,7 @@ private:
     static int id_cnt;
     int tweetID;
     std::vector<TweetPost*> myPosts;
-    std::string tweetText;
+    QString tweetText;
 
 public:
     Tweet();

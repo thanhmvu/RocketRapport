@@ -11,7 +11,7 @@ Comment::Comment()
 
 int Comment::getID(){ return id;}
 
-std::string Comment::getText(){
+QString Comment::getText(){
     return text;
 }
 
@@ -19,7 +19,7 @@ time_t Comment::getTime(){
     return time;
 }
 
-bool Comment::setText(std::string new_text){
+bool Comment::setText(QString new_text){
     text = new_text;
     return true;
 }

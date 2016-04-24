@@ -11,7 +11,7 @@ Post::Post()
 
 int Post::getID(){ return id;}
 
-std::string Post::getText(){
+QString Post::getText(){
     return text;
 }
 
@@ -19,7 +19,7 @@ time_t Post::getTime(){
     return time;
 }
 
-bool Post::setText(std::string new_text){
+bool Post::setText(QString new_text){
     text = new_text;
     return true;
 }

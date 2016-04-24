@@ -10,7 +10,7 @@ private:
     static int id_cnt;
     int blogID;
     std::vector<BlogPost*> myPosts;
-    std::string blogText;
+    QString blogText;
 
 public:
     Blog();

@@ -34,15 +34,15 @@ private:
     std::vector<Chat*> myChats;
     std::vector<Account*> friendList;
     std::vector<Group*> groups;
-    std::string username;
-    std::string password;
-    std::string firstName;
-    std::string lastName;
-    std::string gender;
-    std::string aboutYourself;
-    std::string homeAddress;
-    std::string profilePicture;
-    std::string mostRecentEmployer;
+    QString username;
+    QString password;
+    QString firstName;
+    QString lastName;
+    QString gender;
+    QString aboutYourself;
+    QString homeAddress;
+    QString profilePicture;
+    QString mostRecentEmployer;
     int age;
     int phoneNumber;
     int accountID;
@@ -52,7 +52,7 @@ private:
     Tweet* myTweet;
 
     // Private members specific to a past guest.
-    std::vector<std::string> projectsWorkedOn;
+    std::vector<QString> projectsWorkedOn;
     int monthDeparted;
     int dayDeparted;
     int yearDeparted;
@@ -64,10 +64,10 @@ private:
 public:
     //Constructors
     Account(DbManager *newdbm);
-    Account(std::string usrName, DbManager *newdbm);
-    Account(int accID,     std::string usrname,    std::string pw,
+    Account(QString usrName, DbManager *newdbm);
+    Account(int accID,     QString usrname,    QString pw,
             int scrpBkID,   int blogID,         int tweetID,
-            std::string firstname,  std::string lastname, DbManager *newdbm);
+            QString firstname,  QString lastname, DbManager *newdbm);
 
     //Functions to obtain information from the database
     void retrieveAllBlogPosts();
@@ -91,16 +91,16 @@ public:
     int     getAge();
     int     getPhoneNumber();
     int     getAccountID();
-    std::string     getUsername();
-    std::string     getPassword();
+    QString     getUsername();
+    QString     getPassword();
     Scrapbook*      getMyScrapbook();
-    std::string     getFirstName();
-    std::string     getLastName();
-    std::string     getGender();
-    std::string     getAbout();
-    std::string     getAddress();
-    std::string     getProfilePicture();
-    std::string     getMostRecentEmployer();
+    QString     getFirstName();
+    QString     getLastName();
+    QString     getGender();
+    QString     getAbout();
+    QString     getAddress();
+    QString     getProfilePicture();
+    QString     getMostRecentEmployer();
     std::vector<Chat*>      getMyChats();
     std::vector<Account*>   getFriendList();
     std::vector<Group*>     getGroups();
@@ -112,16 +112,16 @@ public:
     void setIsSystemAdmin(bool sAdmin);
     void setIsGroupAdmin(bool gAdmin);
 
-    void setUsername(std::string uName);
-    void setPassword(std::string pWord);
+    void setUsername(QString uName);
+    void setPassword(QString pWord);
     void setMyScrapbook(Scrapbook* sBook);
-    void setFirstName(std::string fName);
-    void setLastName(std::string lName);
-    void setGender(std::string gend);
-    void setAbout(std::string about);
-    void setAddress(std::string address);
-    void setProfilePicture(std::string picture);
-    void setMostRecentEmployer(std::string employer);
+    void setFirstName(QString fName);
+    void setLastName(QString lName);
+    void setGender(QString gend);
+    void setAbout(QString about);
+    void setAddress(QString address);
+    void setProfilePicture(QString picture);
+    void setMostRecentEmployer(QString employer);
     void setAge(int age);
     void setPhoneNumber(int number);
     void setSystem(System* newSystem);
@@ -143,9 +143,9 @@ public:
     void setYearDeparted(int year);
 
     // Functions specific to a past guest.
-    std::vector<std::string> getProjectsWorkedOn();
-    void addProject(std::string projectName);
-    void removeProject(std::string projectName);
+    std::vector<QString> getProjectsWorkedOn();
+    void addProject(QString projectName);
+    void removeProject(QString projectName);
 
     int getMonthDeparted();
     int getDayDeparted();
@@ -153,7 +153,7 @@ public:
 
     // Functions specific to a system admin.
     void addGroup(Group* newGroup);
-    void addAccount(Account* newAccount, std::string username, std::string firstName, std::string lastName);
+    void addAccount(Account* newAccount, QString username, QString firstName, QString lastName);
     void deleteGroup(Group* oldGroup);
     void deleteAccount(Account* oldAccount);
     void deleteBlogPost(Blog* targetBlog, BlogPost* badPost);

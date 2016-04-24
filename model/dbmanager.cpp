@@ -281,7 +281,7 @@ int DbManager::retrieveIntInfo(const QString &fieldName, const QString &tableNam
  * @param field
  * @return
  */
-std::string DbManager::retrieveStringInfo(const QString &fieldName, const QString &tableName, const QString &checkName, const QVariant &ID){
+QString DbManager::retrieveStringInfo(const QString &fieldName, const QString &tableName, const QString &checkName, const QVariant &ID){
     QSqlQuery query;
     QString command = "SELECT " + fieldName + " FROM " + tableName + " WHERE " + checkName + "= :ID";
     query.prepare(command);
@@ -296,7 +296,7 @@ std::string DbManager::retrieveStringInfo(const QString &fieldName, const QStrin
                  << query.lastError();
     }
     QString rString = query.value(0).toString();
-    return rString.toStdString();
+    return rString;
 }
 
 
@@ -317,13 +317,13 @@ bool DbManager::rmAllAccounts(){
 // * Note to self: test this in the qSqlTest classes (The ones for experimentation)
 // * Refactor this class to work with the accounts map instead of the username list map
 // */
-//void DbManager::retrieveAllAccounts(std::map<int, std::string> *one){
+//void DbManager::retrieveAllAccounts(std::map<int, QString> *one){
 //    QSqlQuery query;
 //    query.prepare("SELECT * FROM accounts"); //Choose all elements from the table
 //    query.exec();
 //    while(query.next() ){
 //        QString name = query.value(1).toString();
-//        std::pair<int, std::string> insert1 = {query.value(0).toInt(),name.toStdString()};
+//        std::pair<int, QString> insert1 = {query.value(0).toInt(),name.toStdString()};
 //        std::cout << insert1.first << " " << insert1.second << std::endl;
 //        one->insert(insert1);
 //    }
@@ -392,7 +392,7 @@ void DbManager::retrieveAllTweets(Tweet *userTweet){
  * be used to add every available Account to the given map
  * @param map
  */
-void DbManager::retrieveAllAccounts(std::map<std::string, Account*> &accounts){
+void DbManager::retrieveAllAccounts(std::map<QString, Account*> &accounts){
     QSqlQuery query;
 //    std::cout <<"Hello from DbManager::retrieveAllAccounts " <<std::endl;
 //    std::cout << query.next() << std::endl;
@@ -402,13 +402,13 @@ void DbManager::retrieveAllAccounts(std::map<std::string, Account*> &accounts){
             while(query.next() ){
                 // get the neccessary info
                 int accountID = query.value(0).toInt();
-                std::string username = query.value(1).toString().toStdString();
-                std::string password = query.value(2).toString().toStdString();
+                QString username = query.value(1).toString();
+                QString password = query.value(2).toString();
                 int scrpBkID = query.value(3).toInt();
                 int blogID = query.value(4).toInt();
                 int tweetID = query.value(5).toInt();
-                std::string firstname = query.value(6).toString().toStdString();
-                std::string lastname = query.value(7).toString().toStdString();
+                QString firstname = query.value(6).toString();
+                QString lastname = query.value(7).toString();
 
                 // rebuild an account based on the info
                 Account * rebuilt_account = new Account(accountID, username, password,

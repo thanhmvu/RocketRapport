@@ -32,7 +32,8 @@ System::System(const QString &path)
     // print out info for debugging purpose
     for(auto pair: accounts){
         Account * acc = pair.second;
-        std::cout<< "First name: " << acc->getFirstName() <<"\n";
+        std::cout<< "First name std::cout: " << acc->getFirstName().toStdString() <<"\n";
+        qDebug()<< "First name qDebug: " << acc->getFirstName();
     }
     std::cout<< "New system created containing " << accounts.size() << " accounts." << std::endl;
     std::cout<< "Account internal id_cnt value is: " << Account::getIdCnt() << std::endl;
@@ -62,18 +63,21 @@ System::~System(){
  * @return false if username does not exist
  * or password is incorect, true if both are correct.
  */
-bool System::login(std::string username, std::string password) {
+bool System::login(QString username, QString password) {
     bool success = false;
 
     if (usernameExist(username)) {
         qDebug() << "Valid username found";
         // If valid, check password
         Account *queryAcc = accounts[username]; //Is most likely causing a bad allocation
-        std::cout << "Entered Value: " << password << std::endl;
-        std::cout << "Expected Value: " << queryAcc->getPassword() << std::endl;
+        //std::cout << "Entered Value: " << password << std::endl;
+        //std::cout << "Expected Value: " << queryAcc->getPassword() << std::endl;
+        qDebug() << "Entered Value: " << password;
+        qDebug() << "Expected Value: " << queryAcc->getPassword();
 
         if (password == queryAcc->getPassword()) {
-            std::cout << std::endl << "Successful login!" << std::endl;
+            //std::cout << std::endl << "Successful login!" << std::endl;
+            qDebug()<< "Successful login!";
             // Proceed to the main menu of the program.
             currentUser = queryAcc;
             this->setLoggedIn(true);
@@ -94,7 +98,7 @@ bool System::login(std::string username, std::string password) {
  * @return false if username is in use, true otherwise
  * This method is also used to create a randomly generated ID for each of the User's fields that requires an ID (such as the Blog, Tweet, etc)
  */
-bool System::createAccount(std::string username, std::string password, std::string firstname, std::string lastname) {
+bool System::createAccount(QString username, QString password, QString firstname, QString lastname) {
     // check if username is in use
     bool success = false;
     std::cout << "Now entering create account method" << std::endl;
@@ -148,13 +152,13 @@ void System::removeGroup(Group* oldGroup) {
  */
 void System::addAccount(Account* newAccount) {
 //    std::cout << "Now entering add account method" << std::endl;
-    const QString &x = QString::fromStdString(newAccount->getFirstName());
-    const QString &y = QString::fromStdString(newAccount->getLastName());
+    const QString &x = (newAccount->getFirstName());
+    const QString &y = (newAccount->getLastName());
     const QVariant accntD = newAccount->getAccountID();
     const QVariant frstName(x);
     const QVariant lstNme(y);
-    const QString &a = QString::fromStdString(newAccount->getUsername() );
-    const QString &b = QString::fromStdString(newAccount->getPassword() );
+    const QString &a = (newAccount->getUsername());
+    const QString &b = (newAccount->getPassword());
     const QVariant usrName(a);
     const QVariant passWord(b);
 
@@ -201,7 +205,7 @@ void System::setCurrentUser(Account* cUser) {
  *
  * @return a copy of current account map (with pointers to actual accounts)
  */
-std::map<std::string, Account*> System::getAllAccounts() {
+std::map<QString, Account*> System::getAllAccounts() {
     return this->accounts;
 }
 
@@ -216,7 +220,7 @@ DbManager* System::getDbm(){
 /**
  * @brief Setter for the account list.
  */
-void System::setAccountMap(std::map<std::string, Account*> aMap) {
+void System::setAccountMap(std::map<QString, Account*> aMap) {
     this->accounts = aMap;
 }
 
@@ -248,7 +252,7 @@ std::vector<Group*> System::getGroups() {
  * @param the username of the account
  * @return true if the account exists
  */
-bool System::usernameExist(std::string username){
+bool System::usernameExist(QString username){
     // for more on map::find, look at the link below
     // http://www.cplusplus.com/reference/map/map/find/
     if(accounts.find(username) == accounts.end()){
@@ -267,11 +271,10 @@ bool System::usernameExist(std::string username){
  * @return
  */
 bool System::addChat(const int &AccountID,
-                     const int &ChatID, const std::string &sender){
+                     const int &ChatID, const QString &sender){
     const QVariant AcntID(AccountID);
     const QVariant ChtID(ChatID);
-    QString convert = QString::fromStdString(sender);
-    const QVariant sndr(convert);
+    const QVariant sndr(sender);
     dbm->addChat(AcntID,ChtID,sndr);
     return true;
 }
@@ -280,7 +283,7 @@ int System::numberOfAccount(){
     return accounts.size();
 }
 
-Account* System::getAccountByUsername(std::string usrname){
+Account* System::getAccountByUsername(QString usrname){
     return accounts[usrname];
 }
 

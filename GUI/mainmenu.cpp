@@ -39,7 +39,7 @@ void MainMenu::reload(){
     QWidget *scroll_widget = new QWidget();
     QVBoxLayout *layout = new QVBoxLayout();
     for(auto pair: main_system->getAllAccounts()){
-        QString username = QString::fromStdString(pair.first);
+        QString username = pair.first;
         QPushButton *button = new QPushButton();
         button->setText(username);
         button->setFixedWidth(150);
@@ -76,7 +76,7 @@ void MainMenu::reload(){
 void MainMenu::openUserProfile(){
     QPushButton* button = qobject_cast<QPushButton*> (QObject::sender());
     QString username = button->text();
-    QString current_user = QString::fromStdString(main_system->getCurrentUser()->getUsername());
+    QString current_user = main_system->getCurrentUser()->getUsername();
 
     // load content based on viewer
     profile_screen->loadProfile(username, current_user);
@@ -106,7 +106,7 @@ Login * MainMenu::getLoginScreen(){
 void MainMenu::on_pushButton_profile_clicked()
 {
     Account * current_user = this->getSystem()->getCurrentUser();
-    QString username = QString::fromStdString(current_user->getUsername());
+    QString username = current_user->getUsername();
 
     // load content based on viewer
     profile_screen->loadProfile(username, username);

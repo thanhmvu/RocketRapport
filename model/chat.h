@@ -12,7 +12,7 @@ private:
     static int id_cnt;
     int chatID;
 
-    std::string talkingToUser;
+    QString talkingToUser;
     std::vector<Message*> messages;
 
     DbManager *dbm;
@@ -22,8 +22,8 @@ public:
     void addMessage(Message *newMessage);
     void sendMessage(Message * newMessage);
     std::vector<Message *> getMessages();
-    std::string getTalkingToUser();
-    void setTalkingToUser(std::string name);
+    QString getTalkingToUser();
+    void setTalkingToUser(QString name);
 };
 
 #endif // CHAT_H

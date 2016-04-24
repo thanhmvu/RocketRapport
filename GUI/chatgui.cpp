@@ -90,7 +90,8 @@ void ChatGUI::on_pushButton_send_mess_clicked()
 
     // get the new message
     // NOT WORKING!!
-    std::cout<< ui->input_message->toPlainText().toStdString();
+    //std::cout<< ui->input_message->toPlainText().toStdString();
+    qDebug()<< ui->input_message->toPlainText();
 
     // concatenate new mess to the current mess history
 

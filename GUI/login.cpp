@@ -32,10 +32,10 @@ void Login::setMainMenu(MainMenu * mm){
 
 void Login::on_pushButton_signin_clicked()
 {
-    std::string username = ui->lineEdit_signin_user->text().toStdString();
-    std::string password = ui->lineEdit_signin_pw->text().toStdString();
-    std::string firstname = ui->lineEdit_firstname->text().toStdString();
-    std::string lastname = ui->lineEdit_lastname->text().toStdString();
+    QString username = ui->lineEdit_signin_user->text();
+    QString password = ui->lineEdit_signin_pw->text();
+    QString firstname = ui->lineEdit_firstname->text();
+    QString lastname = ui->lineEdit_lastname->text();
 
     bool accountCreated = main_menu->getSystem()->createAccount(username,password,firstname,lastname);
 
@@ -57,8 +57,8 @@ void Login::openMainScreen(){
 
 void Login::on_pushButton_login_clicked()
 {
-    std::string username = ui->lineEdit_login_user->text().toStdString();
-    std::string password = ui->lineEdit_login_pw->text().toStdString();
+    QString username = ui->lineEdit_login_user->text();
+    QString password = ui->lineEdit_login_pw->text();
 
     bool accountLoggedIn = main_menu->getSystem()->login(username,password);
 

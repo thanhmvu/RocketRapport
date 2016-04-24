@@ -16,11 +16,11 @@ private:
     Account* admin;
 
     std::vector<Account*> groupMembers;
-    std::vector<std::string> pastProjects;
+    std::vector<QString> pastProjects;
 
     bool isActive;
-    std::string groupName;
-    std::string currentProject;
+    QString groupName;
+    QString currentProject;
 
 public:
     Group();
@@ -37,7 +37,7 @@ public:
 //    void updateFeed(Account* userPosted, TweetPost* latestPost);
 //    void addGroupMember(Account* newMember);
 //    void removeGroupMember(Account* oldMember);
-//    void addToPastProjects(std::string project);
+//    void addToPastProjects(QString project);
 
 //    Feed* getFeed();
 //    bool getIsActive();
@@ -45,12 +45,12 @@ public:
 //    std::vector<Account*> getGroupMembers();
 //    Account* getAdmin();
 //    void changeAdmin(Account* newAdmin);
-//    std::string getGroupName();
-//    void setGroupName(std::string name);
-//    std::string getCurrentProject();
-//    void setCurrentProject(std::string project);
-//    void newProject(std::string project);
-//    std::vector<std::string> getPastProjects();
+//    QString getGroupName();
+//    void setGroupName(QString name);
+//    QString getCurrentProject();
+//    void setCurrentProject(QString project);
+//    void newProject(QString project);
+//    std::vector<QString> getPastProjects();
 
     int getID();
 

@@ -43,7 +43,7 @@ Group::Group()
 ///**
 // * @brief Adds a new project to the list of past projects.
 // */
-//void Group::addToPastProjects(std::string project) {
+//void Group::addToPastProjects(QString project) {
 //    this->getPastProjects().push_back(project);
 //}
 
@@ -97,7 +97,7 @@ Group::Group()
 ///**
 // * @brief Getter that returns the name of the group.
 // */
-//std::string Group::getGroupName() {
+//QString Group::getGroupName() {
 //    return this->groupName;
 //}
 
@@ -105,7 +105,7 @@ Group::Group()
 ///**
 // * @brief Setter that sets the name of this group.
 // */
-//void Group::setGroupName(std::string name) {
+//void Group::setGroupName(QString name) {
 //    this->groupName = name;
 //}
 
@@ -113,7 +113,7 @@ Group::Group()
 ///**
 // * @brief Getter that returns the current project.
 // */
-//std::string Group::getCurrentProject() {
+//QString Group::getCurrentProject() {
 //    return this->currentProject;
 //}
 
@@ -121,7 +121,7 @@ Group::Group()
 ///**
 // * @brief Setter that sets the current project.
 // */
-//void Group::setCurrentProject(std::string project) {
+//void Group::setCurrentProject(QString project) {
 //    this->currentProject = project;
 //}
 
@@ -129,7 +129,7 @@ Group::Group()
 ///**
 // * @brief Changes the current project and adds the old project to the pastProjects list.
 // */
-//void Group::newProject(std::string project) {
+//void Group::newProject(QString project) {
 //    this->getPastProjects().push_back(this->getCurrentProject());
 //    this->currentProject = project;
 //}
@@ -138,7 +138,7 @@ Group::Group()
 ///**
 // * @brief Getter that returns the list of past projects.
 // */
-//std::vector<std::string> Group::getPastProjects() {
+//std::vector<QString> Group::getPastProjects() {
 //    return this->pastProjects;
 //}
 

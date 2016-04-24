@@ -42,21 +42,21 @@ void ProfileGUI::on_pushButton_back_to_menu_clicked()
 }
 
 void ProfileGUI::loadProfile(QString ownername, QString viewer){
-    this->owner = main_menu->getSystem()->getAccountByUsername(ownername.toStdString());
+    this->owner = main_menu->getSystem()->getAccountByUsername(ownername);
     this->curr_viewer = viewer;
 
     // display full name
-    std::string owner_fullname = owner->getFirstName() + " " + owner->getLastName();
-    ui->label_name->setText(QString::fromStdString(owner_fullname));
+    QString owner_fullname = owner->getFirstName() + " " + owner->getLastName();
+    ui->label_name->setText(owner_fullname);
 
     // display username
-    ui->label_username->setText(QString::fromStdString(owner->getUsername()));
+    ui->label_username->setText(owner->getUsername());
 
     // display about-you section
-    ui->about_section->setText("About me:\n" + QString::fromStdString(owner->getAbout()));
+    ui->about_section->setText("About me:\n" + owner->getAbout());
 
     // Check if current user is the owner of the profile;
-    if(QString::fromStdString(owner->getUsername()).compare(viewer) == 0){
+    if(owner->getUsername().compare(viewer) == 0){
        ui->about_section->setReadOnly(false);
        ui->pushButton_update_about->setVisible(true);
     }else{
@@ -69,7 +69,7 @@ void ProfileGUI::on_pushButton_blog_clicked()
 {
     Account * current_user = main_menu->getSystem()->getCurrentUser();
     // load content based on viewer
-    blog_screen->loadBlogView(QString::fromStdString(owner->getUsername()), curr_viewer);
+    blog_screen->loadBlogView(owner->getUsername(), curr_viewer);
 
     this->close();
     blog_screen->show();

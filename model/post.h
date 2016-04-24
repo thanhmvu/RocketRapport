@@ -1,24 +1,24 @@
 #ifndef POST_H
 #define POST_H
-#include <string>
 #include <iostream>
 #include <ctime>
+#include <QString>
 
 class Post
 {
 private:
     static int id_cnt;
     int id;
-    std::string text;
+    QString text;
     time_t time;
 
 public:
     Post();
-    std::string getText();
+    QString getText();
     time_t getTime();
     int getID();
 
-    bool setText(std::string new_text);
+    bool setText(QString new_text);
     bool setTime(time_t new_time);
 };
 

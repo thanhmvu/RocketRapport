@@ -54,7 +54,7 @@ void ChatUI::displayScreen() {
     int j = 8;
     for(const auto &acc: this->getSystem()->getAllAccounts()) {
         if (j < this->getRows()-4) {
-            std::string uName = acc.first;
+            std::string uName = acc.first.toStdString();
             ss << uName;
             move(j, 2);
             addnstr(ss.str().c_str(), ((this->getCols()/2)-12)-3);
@@ -100,7 +100,7 @@ void ChatUI::runScreen() {
                         int k = 0;
                         for(const auto &acc: this->getSystem()->getAllAccounts()) {
                             if (j < this->getRows()-5 && k >= (this->getUserIndex() - this->getAccountIndex())) {
-                                std::string uName = acc.first;
+                                std::string uName = acc.first.toStdString();
                                 ss << uName;
                                 move(j, 2);
                                 addnstr(ss.str().c_str(), ((this->getCols()/2)-12)-3);
@@ -129,7 +129,7 @@ void ChatUI::runScreen() {
                         int k = 0;
                         for(const auto &acc: this->getSystem()->getAllAccounts()) {
                             if (j < this->getRows()-4 && k >= (this->getUserIndex() - this->getAccountIndex())) {
-                                std::string uName = acc.first;
+                                std::string uName = acc.first.toStdString();
                                 ss << uName;
                                 move(j, 2);
                                 addnstr(ss.str().c_str(), ((this->getCols()/2)-12)-3);
@@ -154,7 +154,7 @@ void ChatUI::runScreen() {
 
 
                                 // TESTING PURPOSES:
-                                testUName = acc.first;
+                                testUName = acc.first.toStdString();
 
                                 this->setMenuNumber(1);
                             }

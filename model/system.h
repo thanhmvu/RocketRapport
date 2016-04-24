@@ -7,6 +7,8 @@
 #include <vector>
 #include <map>
 #include <iostream>
+#include <QDebug>
+#include <QString>
 
 class Group;
 class Account;
@@ -24,7 +26,7 @@ private:
     static int id_cnt;
     int id;
     Account* currentUser;
-    std::map<std::string, Account*> accounts; //Used to associate stored account objects with their corresponding usernames
+    std::map<QString, Account*> accounts; //Used to associate stored account objects with their corresponding usernames
     std::vector<Group*> groups;
     DbManager* dbm /*= new DbManager("./gProjectDB.db")*/; //Make sure this line works
     bool gui;
@@ -38,37 +40,37 @@ public:
     System(const QString &path);
     ~System();
 
-    bool login(std::string username, std::string password);
-    bool createAccount(std::string username, std::string password,
-                       std::string firstname, std::string lastname);
+    bool login(QString username, QString password);
+    bool createAccount(QString username, QString password,
+                       QString firstname, QString lastname);
     void addGroup(Group* newGroup);
     void removeGroup(Group* oldGroup);
     void addAccount(Account* newAccount);
     void removeAccount(Account* oldAccount);
-    bool usernameExist(std::string username);
+    bool usernameExist(QString username);
     bool addChat(const int &AccountID,
-                 const int &ChatID, const std::string &sender);
+                 const int &ChatID, const QString &sender);
 
     // getters
     Account* getCurrentUser();
-    Account* getAccountByUsername(std::string usrname);
+    Account* getAccountByUsername(QString usrname);
     bool getLoggedIn();
     std::vector<Group*> getGroups();
-    std::map <std::string, Account*> getAllAccounts();
+    std::map <QString, Account*> getAllAccounts();
     DbManager* getDbm();   //Return the dbm the system is using
     int numberOfAccount();
 
     // setter
     void setCurrentUser(Account* cUser);
     void setLoggedIn(bool logged);
-    void setAccountMap(std::map<std::string, Account*> aMap);
+    void setAccountMap(std::map<QString, Account*> aMap);
 
     // Used for testing purposes
     void printAllUsernames();
 
     // database methods
     void loadAllAccounts();
-    //    void loadAccounts(std::map<int, std::string> *one); //Method called in the constructor that will be used to create a list of accounts accessible to the user.
+    //    void loadAccounts(std::map<int, QString> *one); //Method called in the constructor that will be used to create a list of accounts accessible to the user.
     //    void fillAccountsMap();
 
 };

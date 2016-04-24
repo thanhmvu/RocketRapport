@@ -18,7 +18,7 @@ TEST(SystemTest, testAddUser){
  */
 TEST(SystemTest, testLoadAllAccounts){
     System sys("./testDatabase.db"); //connect to db file
-    std::map <std::string, Account*> accounts = sys.getAllAccounts();
+    std::map <QString, Account*> accounts = sys.getAllAccounts();
     EXPECT_EQ("a", (accounts["a"]->getUsername()));
     EXPECT_EQ("b", (accounts["b"]->getUsername()));
 

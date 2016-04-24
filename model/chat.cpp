@@ -47,7 +47,7 @@ std::vector<Message*> Chat::getMessages(){
 /**
  * @brief Gets the username of the user that this account is talking to.
  */
-std::string Chat::getTalkingToUser() {
+QString Chat::getTalkingToUser() {
     return this->talkingToUser;
 }
 
@@ -55,6 +55,6 @@ std::string Chat::getTalkingToUser() {
 /**
  * @brief Sets the user that is being talked to.
  */
-void Chat::setTalkingToUser(std::string name) {
+void Chat::setTalkingToUser(QString name) {
     this->talkingToUser = name;
 }
