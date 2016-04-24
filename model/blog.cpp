@@ -8,16 +8,15 @@ Blog::Blog()
     id_cnt++;
 }
 
-void Blog::setID(int newID){
-    blogID = newID;
-}
-
 /**
  * @brief Adds a new BlogPost to the Blog's list of posts.
  */
 void Blog::addPost(BlogPost* newPost) {
+    // add new post to the blog post vector
     myPosts.push_back(newPost);
-    std::cout << "New Blog Post has been added \n";
+
+    // add new post to the database
+
 }
 
 
@@ -34,21 +33,6 @@ void Blog::deletePost(BlogPost* oldPost) {
 }
 
 
-/*//////////////////////////////////////////////////////////////////
-///
-///
-///
-///                 NEEDS TO BE IMPLEMENTED.
-///
-///
-///
-/////////////////////////////////////////////////////////////////*/
-void Blog::concastPosts() {
-
-}
-
-
-
 /**
  * @brief Getter that returns the list of BlogPosts.
  */
@@ -58,4 +42,8 @@ std::vector<BlogPost*> Blog::getMyPosts() {
 
 int Blog::getBlogID(){
     return blogID;
+}
+
+void Blog::setID(int newID){
+    blogID = newID;
 }

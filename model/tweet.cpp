@@ -8,15 +8,14 @@ Tweet::Tweet()
     id_cnt ++;
 }
 
-void Tweet::setID(int newID){
-    tweetID = newID;
-}
-
 /**
  * @brief Adds a new TweetPost to the Tweet's list of posts.
  */
 void Tweet::addPost(TweetPost* newPost) {
+    // add new post to the blog post vector
     myPosts.push_back(newPost);
+
+    // add new post to the database
 }
 
 
@@ -33,21 +32,6 @@ void Tweet::deletePost(TweetPost* oldPost) {
 }
 
 
-/*//////////////////////////////////////////////////////////////////
-///
-///
-///
-///                 NEEDS TO BE IMPLEMENTED.
-///
-///
-///
-/////////////////////////////////////////////////////////////////*/
-void Tweet::concastPosts() {
-
-}
-
-
-
 /**
  * @brief Getter that returns the list of TweetPosts.
  */
@@ -57,4 +41,8 @@ std::vector<TweetPost*> Tweet::getMyPosts() {
 
 int Tweet::getTweetID(){
     return tweetID;
+}
+
+void Tweet::setID(int newID){
+    tweetID = newID;
 }
