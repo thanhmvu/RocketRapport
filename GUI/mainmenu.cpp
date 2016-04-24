@@ -35,20 +35,11 @@ void MainMenu::init(){
 }
 
 void MainMenu::reload(){
-    // load userlist
-    ////////////////////////////////////////////////////////////////////
-    /// Load list of user name from SYSTEM/ DATABASE
-    /// To prevent memory leaks, pay attention to userlist and grouplist
-    //////////////////////////////////////////////////////////////////
-    std::vector<QString> userList;
-    for(int i = 0; i<20; i++){
-        userList.push_back(QString ("User_%1").arg(i));
-    }
-
     // display the list of users as a list of user buttons
     QWidget *scroll_widget = new QWidget();
     QVBoxLayout *layout = new QVBoxLayout();
-    for(QString username: userList){
+    for(auto pair: main_system->getAllAccounts()){
+        QString username = QString::fromStdString(pair.first);
         QPushButton *button = new QPushButton();
         button->setText(username);
         button->setFixedWidth(150);
