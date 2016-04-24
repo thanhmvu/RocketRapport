@@ -54,12 +54,14 @@ void ProfileGUI::loadProfile(QString username){
     // display about-you section
     ui->about_section->setText("About me:\n" + QString::fromStdString(profile_owner->getAbout()));
 
-
     // Check if current user is the owner of the profile
     QString current_user = QString::fromStdString(main_menu->getSystem()->getCurrentUser()->getUsername());
     if(username.compare(current_user) == 0){
        ui->about_section->setReadOnly(false);
        ui->pushButton_update_about->setVisible(true);
+    }else{
+        ui->about_section->setReadOnly(true);
+        ui->pushButton_update_about->setVisible(false);
     }
 }
 
