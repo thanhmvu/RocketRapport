@@ -47,7 +47,7 @@ bool DbManager::addUser(const QVariant &AcntID, const QVariant &FrstName,
                         const QVariant &UserName, const QVariant &passWord){
 //    std::cout << "Now entering Add User method in DatabaseManager" << std::endl;
     bool success = false;
-    QSqlQuery query(m_db); //Prepares a new QSqlQuery
+    QSqlQuery query; //Prepares a new QSqlQuery
 
     ////////////////////////////////////////////////////////////////////
     /// Need to check if input strings are empty?
@@ -64,14 +64,6 @@ bool DbManager::addUser(const QVariant &AcntID, const QVariant &FrstName,
         query.bindValue(":TweetID", TweetID);
         query.bindValue(":FrstName", FrstName);
         query.bindValue(":LstName", LstName);
-//        qDebug() << "Account ID: "<< query.boundValue(0) << "\n"
-//                 << "Username: "<< query.boundValue(7) << "\n"
-//                 << "Password: "<< query.boundValue(8) << "\n";
-//                 << "Scrapbook ID: "<< query.boundValue(4) << "\n"
-//                 << "Blog ID: "<< query.boundValue(5) << "\n"
-//                 << "Tweet ID: "<< query.boundValue(6) << "\n"
-//                 << "First name: "<< query.boundValue(1) << "\n"
-//                 << "Lasr name: "<< query.boundValue(2) << "\n"
 
         if(query.exec()){
             success = true;
@@ -150,16 +142,14 @@ bool DbManager::addChat(const QVariant &AccountID, const QVariant &ChatID, const
  * @return
  */
 bool DbManager::addMessage(const QVariant &ChatID, const QVariant &MessageID, const QVariant &DateTime,
-                           const QVariant text, const QVariant imageURL, const QVariant receiver){
+                           const QVariant text){
     bool success = false;
     QSqlQuery query;
-    query.prepare("INSERT INTO messages VALUES(:ChatID, :MessageID, :DateTime, :text, :imageURL, :receiver");
+    query.prepare("INSERT INTO messages VALUES(:ChatID, :MessageID, :DateTime, :text");
     query.bindValue(":ChatID", ChatID);
     query.bindValue(":MessageID",MessageID);
     query.bindValue(":DateTime",DateTime);
     query.bindValue(":text",text);
-    query.bindValue(":imageURL",imageURL);
-    query.bindValue(":receiver",receiver);
     if(query.exec()){
         success = true;
     }
@@ -381,6 +371,15 @@ void DbManager::retrieveAllTweets(Tweet *userTweet){
         userTweet->addPost(newTP);
     }
 }
+
+ void DbManager::retrieveAllScbkPosts(Scrapbook *userScBook){
+     QSqlQuery query;
+     QString command = "SELECT * FROM tweetPosts WHERE TweetID = ";
+     QString idValue = QString::number(userScBook->getScrpbkID() );
+     command += idValue;
+     query.prepare(command);
+     query.exec();
+ }
 
 /**
  * @brief DbManager::retrieveAllAccounts This method will

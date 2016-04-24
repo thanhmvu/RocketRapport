@@ -41,6 +41,10 @@ Account::Account()
     dbm->retrieveAllBlogPosts(myBlog);
     dbm->retrieveAllTweets(myTweet);
 
+    //Iterate through list of chats the user has and store each of the messages in the db to each chat
+    for(int i=0; i<myChats.size(); i++){
+        dbm->retrieveAllMessages(myChats.at(i));
+    }
 }
 
 Account::Account(std::string usrName){

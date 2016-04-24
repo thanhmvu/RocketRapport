@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <vector>
 #include "message.h"
+#include "dbmanager.h"
 
 class Chat
 {

@@ -11,6 +11,7 @@ SOURCES += main.cpp \
     ../model/account.cpp\
     ../model/group.cpp\
     ../model/scrapbook.cpp\
+    ../model/scrapbookpost.cpp \
     ../model/tweet.cpp\
     ../model/tweetpost.cpp \
     ../model/comment.cpp \
@@ -21,7 +22,8 @@ SOURCES += main.cpp \
     ../model/feed.cpp \
     ../model/post.cpp \
     dbmanagertest.cpp \
-    accounttest.cpp
+    accounttest.cpp \
+    chattest.cpp
 
 INCLUDEPATH += googletest                       \
                googletest/src                   \

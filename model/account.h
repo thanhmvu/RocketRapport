@@ -13,6 +13,7 @@
 
 class System;
 class Group;
+class Chat;
 class DbManager; //Going to try saving chat information directly using dbm
 
 /**

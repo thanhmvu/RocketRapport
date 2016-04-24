@@ -22,14 +22,17 @@ int Chat::getChatID(){
  */
 void Chat::addMessage(Message *newMessage){
     messages.push_back(newMessage);
+
 }
 
 /**
  * @brief "Sends" a message to the database.
+ * Employs the use of a static method from the DbManager class
  */
 void Chat::sendMessage(Message * newMessage) {
     this->addMessage(newMessage);
-    // Database logic
+    DbManager::addMessage(chatID,newMessage->getID(),
+                          newMessage->getTimeSent(),newMessage->getText());
 }
 
 

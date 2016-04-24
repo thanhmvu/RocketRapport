@@ -26,6 +26,7 @@ SOURCES += main.cpp \
     ../model/tweet.cpp \
     ../model/tweetpost.cpp \
     ../model/scrapbook.cpp \
+    ../model/scrapbookpost.cpp \
     ../model/feed.cpp \
     ../model/post.cpp
 
