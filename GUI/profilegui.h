@@ -5,6 +5,7 @@
 #include "mainmenu.h"
 #include "bloggui.h"
 #include "tweetgui.h"
+#include "../model/account.h"
 
 namespace Ui {
 class ProfileGUI;
@@ -23,8 +24,9 @@ private:
     MainMenu* main_menu;
     BlogGUI * blog_screen;
     TweetGUI * tweet_screen;
-    QString owner;
+//    QString owner;
     QString curr_viewer;
+    Account * owner;
     void init();
 
 public:
