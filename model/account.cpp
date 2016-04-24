@@ -29,9 +29,14 @@ Account::Account()
     yearDeparted = 0;
 
     myScrapbook = new Scrapbook();
-    myBlog = new Blog();
-    myTweet = new Tweet();
 
+    myBlog = new Blog(); //Create new blog associated with user
+    myBlog->setID( dbm->retrieveIntInfo("BlogID","accounts","AccountID",accountID) ); //Method used to manually set the ID value of the new user Blog
+
+    myTweet = new Tweet(); //Create new Tweet associated with user
+    myTweet->setID( dbm->retrieveIntInfo("TweetID","accounts","AccountID",accountID) ); //Method used to manually set the ID value of the new user Tweet
+
+    //Methods to access the database and retrieve all of the user's associated posts and information.
     dbm->retrieveAllBlogPosts(myBlog);
     dbm->retrieveAllTweets(myTweet);
 

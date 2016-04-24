@@ -13,7 +13,7 @@ private:
 
 public:
     Tweet();
-
+    void setID(int newID);
     void addPost(TweetPost* newPost);
     void deletePost(TweetPost* oldPost);
     //  NEEDS TO BE IMPLEMENTED

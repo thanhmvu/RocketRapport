@@ -8,6 +8,9 @@ Blog::Blog()
     id_cnt++;
 }
 
+void Blog::setID(int newID){
+    blogID = newID;
+}
 
 /**
  * @brief Adds a new BlogPost to the Blog's list of posts.

@@ -14,7 +14,7 @@ private:
 
 public:
     Blog();
-
+    void setID(int newID);
     void addPost(BlogPost* newPost);
     void deletePost(BlogPost* oldPost);
     //  NEEDS TO BE IMPLEMENTED

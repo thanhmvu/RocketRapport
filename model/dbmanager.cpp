@@ -16,7 +16,6 @@ DbManager::DbManager(const QString &path)
     m_db.setDatabaseName(path);
 
     qDebug()<< m_db.connectionName() << "\n";
-    qDebug()<< m_db.lastError() << "\n";
     if (!m_db.open()){
         std::cout << "Error: Connection with database failure" << std::endl;
     }
@@ -371,7 +370,8 @@ void DbManager::retrieveAllMessages(Chat *userChat){
 void DbManager::retrieveAllTweets(Tweet *userTweet){
     QSqlQuery query;
     QString command = "SELECT * FROM tweetPosts WHERE TweetID = ";
-    command += userTweet->getTweetID();
+    QString idValue = QString::number(userTweet->getTweetID() );
+    command += idValue;
     query.prepare(command);
     query.exec();
     while(query.next()){

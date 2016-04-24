@@ -8,6 +8,9 @@ Tweet::Tweet()
     id_cnt ++;
 }
 
+void Tweet::setID(int newID){
+    tweetID = newID;
+}
 
 /**
  * @brief Adds a new TweetPost to the Tweet's list of posts.
