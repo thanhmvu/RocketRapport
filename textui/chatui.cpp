@@ -8,6 +8,7 @@ ChatUI::ChatUI(System* mainSystem)
     this->setMessageIndex(0);
     this->setMenuNumber(0);
     this->setUserIndex(0);
+    this->setNumOfOptions(2);
 }
 
 
@@ -72,6 +73,7 @@ void ChatUI::runScreen() {
     noecho();
 
     mvprintw(8+(this->getAccountIndex()), 1, ">");
+    mvprintw((this->getRows()-3)+(this->getMenuIndex()), 1, ">");
     refresh();
 
     int keyPress;
@@ -249,6 +251,11 @@ void ChatUI::runScreen() {
                     case KEY_BACKSPACE: // Deletes last typed character
                         if (canBackSpace) {
                             mvprintw(lastYPos, lastXPos, " ");
+                            std::string remove = ss.str();
+                            remove.erase(remove.size()-1, 1);
+                            ss.str("");
+                            ss << remove;
+                            move(lastYPos, lastXPos);
                             curYPos = lastYPos;
                             curXPos = lastXPos;
                             lastXPos--;
@@ -302,6 +309,32 @@ void ChatUI::runScreen() {
                 case KEY_END:
                     this->setMenuNumber(0);
                     break;
+                case KEY_UP:
+                    if (this->getMenuIndex() > 0) {
+                        mvprintw((this->getRows()-3)+(this->getMenuIndex()), 1, " ");
+                        this->moveUpMenuIndex();
+                        mvprintw((this->getRows()-3)+(this->getMenuIndex()), 1, ">");
+                    }
+                    break;
+                case KEY_DOWN:
+                    if (this->getMenuIndex() < this->getNumOfOptions()-1) {
+                        mvprintw((this->getRows()-3)+(this->getMenuIndex()), 1, " ");
+                        this->moveDownMenuIndex();
+                        mvprintw((this->getRows()-3)+(this->getMenuIndex()), 1, ">");
+                    }
+                    break;
+                case KEY_BACKSPACE:
+                    this->changeScreens(true);
+                    switch(this->getMenuIndex()) {
+                    case 0: // My Profile
+                        this->screenNumber = 3;
+                        break;
+                    case 1: // Main Menu
+                        this->screenNumber = 1;
+                        break;
+                    }
+                    this->setMenuNumber(0);
+                    break;
                 }
             }
             mvprintw(this->getRows()-3, this->getCols()/2-14, " ");
@@ -313,6 +346,7 @@ void ChatUI::runScreen() {
     this->setMessageIndex(0);
     this->setMenuNumber(0);
     this->setUserIndex(0);
+    this->setMenuIndex(0);
     this->changeScreens(false);
     clear();
 

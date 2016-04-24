@@ -10,6 +10,7 @@ class ChatUI : public ScreenUI
     int messageIndex; // Index for message history
     int menuNumber; // Section of the screen the user is on.
     int userIndex; // Keep track of which account they are on.
+    // Menu Index   -   Index for the menu section.
 
     /*
      * Menu Numbers:
