@@ -1,5 +1,6 @@
 #ifndef LOGINUI_H
 #define LOGINUI_H
+#include <sstream>
 #include "screenui.h"
 
 class LoginUI : public ScreenUI

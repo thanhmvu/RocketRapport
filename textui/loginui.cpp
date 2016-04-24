@@ -45,6 +45,13 @@ void LoginUI::runScreen() {
     int rowIndex = 0;
     int curY = 9;
     int curX = 17;
+    std::stringstream fnss;
+    std::stringstream lnss;
+    std::stringstream uss;
+    std::stringstream pss;
+    std::stringstream luss;
+    std::stringstream lpss;
+    std::stringstream sstemp;
 
     curs_set(1);
     move(fnY, fnX);
@@ -300,6 +307,117 @@ void LoginUI::runScreen() {
         case KEY_HOME: // Select options
             break;
         default: // User types into fields
+            char temp = (char)keyPress;
+            switch(colIndex) {
+            case 0:
+                switch(rowIndex) {
+                case 0:
+                    if ((fnX-17) < 20) {
+                        fnss << temp;
+                        sstemp << temp;
+                        mvprintw(fnY, fnX, sstemp.str().c_str());
+                        sstemp.str("");
+                        fnX++;
+                    } else {
+                        move(curY, curX);
+                        printw(" ");
+                        move(curY, curX);
+                    }
+                    break;
+                case 1:
+                    if ((lnX-16) < 20) {
+                        lnss << temp;
+                        sstemp << temp;
+                        mvprintw(lnY, lnX, sstemp.str().c_str());
+                        sstemp.str("");
+                        lnX++;
+                    } else {
+                        move(curY, curX);
+                        printw(" ");
+                        move(curY, curX);
+                    }
+                    break;
+                case 2:
+                    if ((uX-15) < 20) {
+                        uss << temp;
+                        sstemp << temp;
+                        mvprintw(uY, uX, sstemp.str().c_str());
+                        sstemp.str("");
+                        uX++;
+                    } else {
+                        move(curY, curX);
+                        printw(" ");
+                        move(curY, curX);
+                    }
+                    break;
+                case 3:
+                    if ((pX-15) < 20) {
+                        pss << temp;
+                        sstemp << temp;
+                        mvprintw(pY, pX, sstemp.str().c_str());
+                        sstemp.str("");
+                        pX++;
+                    } else {
+                        move(curY, curX);
+                        printw(" ");
+                        move(curY, curX);
+                    }
+                    break;
+                case 4:
+                    move(curY, curX);
+                    printw(">");
+                    move(curY, curX);
+                    break;
+                case 5:
+                    move(curY, curX);
+                    printw(">");
+                    move(curY, curX);
+                    break;
+                }
+                break;
+            case 1:
+                switch(rowIndex) {
+                case 0:
+                case 1:
+                    if ((luX-((this->getCols()/2)+15)) < 20) {
+                        luss << temp;
+                        sstemp << temp;
+                        mvprintw(luY, luX, sstemp.str().c_str());
+                        sstemp.str("");
+                        luX++;
+                    } else {
+                        move(curY, curX);
+                        printw(" ");
+                        move(curY, curX);
+                    }
+                    break;
+                case 2:
+                case 3:
+                    if ((lpX-((this->getCols()/2)+15)) < 20) {
+                        lpss << temp;
+                        sstemp << temp;
+                        mvprintw(lpY, lpX, sstemp.str().c_str());
+                        sstemp.str("");
+                        lpX++;
+                    } else {
+                        move(curY, curX);
+                        printw(" ");
+                        move(curY, curX);
+                    }
+                    break;
+                case 4:
+                    move(curY, curX);
+                    printw(">");
+                    move(curY, curX);
+                    break;
+                case 5:
+                    move(curY, curX);
+                    printw(">");
+                    move(curY, curX);
+                    break;
+                }
+                break;
+            }
             break;
         }
     }
