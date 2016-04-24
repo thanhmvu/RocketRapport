@@ -303,8 +303,136 @@ void LoginUI::runScreen() {
             move(curY, curX);
             break;
         case KEY_BACKSPACE: // Deleting text input
+            switch(colIndex) {
+            case 0:
+                switch(rowIndex) {
+                case 0:
+                    if ((fnX-17) > 0) {
+                        fnX--;
+                        mvprintw(fnY, fnX, " ");
+                        move(fnY, fnX);
+                        std::string remove = fnss.str();
+                        remove.erase(remove.size()-1, 1);
+                        fnss.str("");
+                        fnss << remove;
+                    } else {
+                        move(curY, curX);
+                    }
+                    break;
+                case 1:
+                    if ((lnX-16) > 0) {
+                        lnX--;
+                        mvprintw(lnY, lnX, " ");
+                        move(lnY, lnX);
+                        std::string remove = lnss.str();
+                        remove.erase(remove.size()-1, 1);
+                        lnss.str("");
+                        lnss << remove;
+                    } else {
+                        move(curY, curX);
+                    }
+                    break;
+                case 2:
+                    if ((uX-15) > 0) {
+                        uX--;
+                        mvprintw(uY, uX, " ");
+                        move(uY, uX);
+                        std::string remove = uss.str();
+                        remove.erase(remove.size()-1, 1);
+                        uss.str("");
+                        uss << remove;
+                    } else {
+                        move(curY, curX);
+                    }
+                    break;
+                case 3:
+                    if ((pX-15) > 0) {
+                        pX--;
+                        mvprintw(pY, pX, " ");
+                        move(pY, pX);
+                        std::string remove = pss.str();
+                        remove.erase(remove.size()-1, 1);
+                        pss.str("");
+                        pss << remove;
+                    } else {
+                        move(curY, curX);
+                    }
+                    break;
+                case 4:
+                    move(curY, curX);
+                    break;
+                case 5:
+                    move(curY, curX);
+                    break;
+                }
+                break;
+            case 1:
+                switch(rowIndex) {
+                case 0:
+                case 1:
+                    if ((luX-((this->getCols()/2)+15)) > 0) {
+                        luX--;
+                        mvprintw(luY, luX, " ");
+                        move(luY, luX);
+                        std::string remove = luss.str();
+                        remove.erase(remove.size()-1, 1);
+                        luss.str("");
+                        luss << remove;
+                    } else {
+                        move(curY, curX);
+                    }
+                    break;
+                case 2:
+                case 3:
+                    if ((lpX-((this->getCols()/2)+15)) > 0) {
+                        lpX--;
+                        mvprintw(lpY, lpX, " ");
+                        move(lpY, lpX);
+                        std::string remove = lpss.str();
+                        remove.erase(remove.size()-1, 1);
+                        lpss.str("");
+                        lpss << remove;
+                    } else {
+                        move(curY, curX);
+                    }
+                    break;
+                case 4:
+                    move(curY, curX);
+                    break;
+                case 5:
+                    move(curY, curX);
+                    break;
+                }
+                break;
+            }
             break;
         case KEY_HOME: // Select options
+            switch(rowIndex) {
+            case 4:
+                switch(colIndex) {
+                case 0: // Create new account
+
+
+
+
+
+
+                    break;
+                case 1: // Log in
+
+
+
+
+
+
+                    break;
+                }
+                break;
+            case 5: // Exit
+                this->screenNumber = 7;
+                this->changeScreens(true);
+                break;
+            }
             break;
         default: // User types into fields
             char temp = (char)keyPress;
@@ -421,7 +549,6 @@ void LoginUI::runScreen() {
             break;
         }
     }
-
 
     this->changeScreens(false);
     clear();
