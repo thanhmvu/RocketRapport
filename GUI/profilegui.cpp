@@ -6,7 +6,6 @@ ProfileGUI::ProfileGUI(QWidget *parent) :
     ui(new Ui::ProfileGUI)
 {
     ui->setupUi(this);
-    init();
 }
 
 ProfileGUI::ProfileGUI(MainMenu * mm) :
@@ -14,12 +13,17 @@ ProfileGUI::ProfileGUI(MainMenu * mm) :
 {
     ui->setupUi(this);
     main_menu = mm;
+
+    blog_screen = new BlogGUI(this);
+    tweet_screen = new TweetGUI(this);
+
+    ui->about_section->setReadOnly(true);
+    ui->pushButton_update_about->setVisible(false);
+
     init();
 }
 
 void ProfileGUI::init(){
-    blog_screen = new BlogGUI(this);
-    tweet_screen = new TweetGUI(this);
 }
 
 ProfileGUI::~ProfileGUI()
@@ -50,14 +54,13 @@ void ProfileGUI::loadProfile(QString username){
     // display about-you section
     ui->about_section->setText("About me:\n" + QString::fromStdString(profile_owner->getAbout()));
 
-    ////////////////////////////////////////////////////////////////////
-    /// Check if current user is the owner of the profile
-    //////////////////////////////////////////////////////////////////
-//    QString current_user = QString::fromStdString(main_menu->getSystem()->getCurrentUser()->getUsername());
-//    if(username.compare(current_user) == 0){
-//        // allow edit profile
-//    }
 
+    // Check if current user is the owner of the profile
+    QString current_user = QString::fromStdString(main_menu->getSystem()->getCurrentUser()->getUsername());
+    if(username.compare(current_user) == 0){
+       ui->about_section->setReadOnly(false);
+       ui->pushButton_update_about->setVisible(true);
+    }
 }
 
 void ProfileGUI::on_pushButton_blog_clicked()
@@ -89,4 +92,11 @@ void ProfileGUI::on_pushButton_tweet_clicked()
 void ProfileGUI::on_pushButton_scrapbook_clicked()
 {
     //TODO: OPEN SCRAPBOOK AS HTML FILE
+}
+
+void ProfileGUI::on_pushButton_update_about_clicked()
+{
+    ////////////////////////////////////////////////////////////////////
+    /// Store new about to the database
+    //////////////////////////////////////////////////////////////////
 }

@@ -37,6 +37,7 @@ private slots:
     void on_pushButton_blog_clicked();
     void on_pushButton_tweet_clicked();
     void on_pushButton_scrapbook_clicked();
+    void on_pushButton_update_about_clicked();
 };
 
 #endif // PROFILEGUI_H
