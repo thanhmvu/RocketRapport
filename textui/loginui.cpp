@@ -23,6 +23,7 @@ void LoginUI::displayScreen() {
     mvprintw(13, (this->getCols()/2)+5, "Password:");
     mvprintw(17, (this->getCols()-((this->getCols()/2)/2))-3, "Log In");
     mvprintw(20, (this->getCols()/2)-4, "Exit");
+    mvprintw(this->getRows()-1, 4, "Up, Down, Left, Right - Navigate Menu;        Home - Select Option");
     refresh();
 }
 
@@ -40,11 +41,268 @@ void LoginUI::runScreen() {
     int siY = 17, siX = ((this->getCols()/2)/2)-5;
     int liY = 17, liX = (this->getCols()-((this->getCols()/2)/2))-4;
     int exitY = 20, exitX = (this->getCols()/2)-5;
+    int colIndex = 0;
+    int rowIndex = 0;
+    int curY = 9;
+    int curX = 17;
 
     curs_set(1);
     move(fnY, fnX);
     refresh();
-    getch();
+
+    int keyPress;
+    while(this->getChangeScreens() == false) {
+        getyx(stdscr, curY, curX);
+        keyPress = getch();
+        switch(keyPress) {
+        case KEY_UP: // Move up options
+            switch(colIndex) {
+            case 0: // Left Side
+                switch(rowIndex) {
+                case 0:
+                    curs_set(0);
+                    move(exitY, exitX);
+                    printw(">");
+                    move(exitY, exitX);
+                    rowIndex = 5;
+                    break;
+                case 1:
+                    move(fnY, fnX);
+                    rowIndex = 0;
+                    break;
+                case 2:
+                    move(lnY, lnX);
+                    rowIndex = 1;
+                    break;
+                case 3:
+                    move(uY, uX);
+                    rowIndex = 2;
+                    break;
+                case 4:
+                    curs_set(1);
+                    printw(" ");
+                    move(pY, pX);
+                    rowIndex = 3;
+                    break;
+                case 5:
+                    curs_set(0);
+                    printw(" ");
+                    move(siY, siX);
+                    printw(">");
+                    move(siY, siX);
+                    rowIndex = 4;
+                    break;
+                }
+                break;
+            case 1: // Right Side
+                switch(rowIndex) {
+                case 0:
+                    curs_set(0);
+                    move(exitY, exitX);
+                    printw(">");
+                    move(exitY, exitX);
+                    rowIndex = 5;
+                    break;
+                case 1:
+                    curs_set(0);
+                    move(exitY, exitX);
+                    printw(">");
+                    move(exitY, exitX);
+                    rowIndex = 5;
+                    break;
+                case 2:
+                    move(luY, luX);
+                    rowIndex = 0;
+                    break;
+                case 3:
+                    move(luY, luX);
+                    rowIndex = 0;
+                    break;
+                case 4:
+                    curs_set(1);
+                    printw(" ");
+                    move(lpY, lpX);
+                    rowIndex = 2;
+                    break;
+                case 5:
+                    curs_set(0);
+                    printw(" ");
+                    move(liY, liX);
+                    printw(">");
+                    move(liY, liX);
+                    rowIndex = 4;
+                    break;
+                }
+                break;
+            }
+            break;
+        case KEY_DOWN: // Move down options
+            switch(colIndex) {
+            case 0: // Left Side
+                switch(rowIndex) {
+                case 0:
+                    move(lnY, lnX);
+                    rowIndex = 1;
+                    break;
+                case 1:
+                    move(uY, uX);
+                    rowIndex = 2;
+                    break;
+                case 2:
+                    move(pY, pX);
+                    rowIndex = 3;
+                    break;
+                case 3:
+                    curs_set(0);
+                    move(siY, siX);
+                    printw(">");
+                    move(siY, siX);
+                    rowIndex = 4;
+                    break;
+                case 4:
+                    printw(" ");
+                    move(exitY, exitX);
+                    printw(">");
+                    move(exitY, exitX);
+                    rowIndex = 5;
+                    break;
+                case 5:
+                    curs_set(1);
+                    printw(" ");
+                    move(fnY, fnX);
+                    rowIndex = 0;
+                    break;
+                }
+                break;
+            case 1: // Right Side
+                switch(rowIndex) {
+                case 0:
+                    move(lpY, lpX);
+                    rowIndex = 2;
+                    break;
+                case 1:
+                    move(lpY, lpX);
+                    rowIndex = 2;
+                    break;
+                case 2:
+                    curs_set(0);
+                    move(liY, liX);
+                    printw(">");
+                    move(liY, liX);
+                    rowIndex = 4;
+                    break;
+                case 3:
+                    curs_set(0);
+                    move(liY, liX);
+                    printw(">");
+                    move(liY, liX);
+                    rowIndex = 4;
+                    break;
+                case 4:
+                    printw(" ");
+                    move(exitY, exitX);
+                    printw(">");
+                    move(exitY, exitX);
+                    rowIndex = 5;
+                    break;
+                case 5:
+                    curs_set(1);
+                    printw(" ");
+                    move(luY, luX);
+                    rowIndex = 0;
+                    break;
+                }
+                break;
+            }
+            break;
+        case KEY_LEFT: // Move left options
+        case KEY_RIGHT: // Move right options
+            switch(colIndex) {
+            case 0:
+                switch(rowIndex) {
+                case 0:
+                    move(luY, luX);
+                    colIndex = 1;
+                    break;
+                case 1:
+                    move(luY, luX);
+                    colIndex = 1;
+                    break;
+                case 2:
+                    move(lpY, lpX);
+                    colIndex = 1;
+                    break;
+                case 3:
+                    move(lpY, lpX);
+                    colIndex = 1;
+                    break;
+                case 4:
+                    printw(" ");
+                    curs_set(0);
+                    move(liY, liX);
+                    printw(">");
+                    move(liY, liX);
+                    colIndex = 1;
+                    break;
+                case 5:
+                    printw(" ");
+                    curs_set(0);
+                    move(exitY, exitX);
+                    printw(">");
+                    move(exitY, exitX);
+                    colIndex = 1;
+                    break;
+                }
+                break;
+            case 1:
+                switch(rowIndex) {
+                case 0:
+                    move(fnY, fnX);
+                    colIndex = 0;
+                    break;
+                case 1:
+                    move(lnY, lnX);
+                    colIndex = 0;
+                    break;
+                case 2:
+                    move(uY, uX);
+                    colIndex = 0;
+                    break;
+                case 3:
+                    move(pY, pX);
+                    colIndex = 0;
+                    break;
+                case 4:
+                    printw(" ");
+                    curs_set(0);
+                    move(siY, siX);
+                    printw(">");
+                    move(siY, siX);
+                    colIndex = 0;
+                    break;
+                case 5:
+                    printw(" ");
+                    curs_set(0);
+                    move(exitY, exitX);
+                    printw(">");
+                    move(exitY, exitX);
+                    colIndex = 0;
+                    break;
+                }
+                break;
+            }
+            break;
+        case '\n': // Return to position if they press enter
+            move(curY, curX);
+            break;
+        case KEY_BACKSPACE: // Deleting text input
+            break;
+        case KEY_HOME: // Select options
+            break;
+        default: // User types into fields
+            break;
+        }
+    }
 
 
     this->changeScreens(false);
