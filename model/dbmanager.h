@@ -31,7 +31,8 @@ private:
     int id;
     QSqlDatabase m_db;
 public:
-    DbManager(const QString& path);
+    DbManager(const QString& path);\
+    ~DbManager();
 
     //Add methods
     static bool addUser(const QVariant &AcntID, const QVariant &FrstName,const QVariant &LstName,   //This method is already configured to add in Account objects with their associated data fields

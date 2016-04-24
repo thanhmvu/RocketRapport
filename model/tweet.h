@@ -16,8 +16,6 @@ public:
     void setID(int newID);
     void addPost(TweetPost* newPost);
     void deletePost(TweetPost* oldPost);
-    //  NEEDS TO BE IMPLEMENTED
-    void concastPosts();
 
     std::vector<TweetPost*> getMyPosts();
 

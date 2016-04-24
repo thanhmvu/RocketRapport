@@ -17,8 +17,6 @@ public:
     void setID(int newID);
     void addPost(BlogPost* newPost);
     void deletePost(BlogPost* oldPost);
-    //  NEEDS TO BE IMPLEMENTED
-    void concastPosts();
 
     std::vector<BlogPost*> getMyPosts();
 

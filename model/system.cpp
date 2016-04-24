@@ -49,6 +49,10 @@ System::System(const QString &path)
  * that it created in the heap to avoid memory leaks
  */
 System::~System(){
+    delete dbm;
+    ////////////////////////////////////////////////////////////////////
+    /// delete accounts and groups
+    //////////////////////////////////////////////////////////////////
     std::cout << "Delete System object" << std::endl;
 }
 

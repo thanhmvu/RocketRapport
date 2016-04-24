@@ -24,11 +24,14 @@ DbManager::DbManager(const QString &path)
     }
 }
 
-
-////////////////////////////////////////////////////////////////////
-/// DO WE NEED DESTRUCTOR ???
-//////////////////////////////////////////////////////////////////
-
+DbManager::~DbManager()
+{
+    if (m_db.isOpen())
+    {
+        m_db.close();
+    }
+    qDebug() << "Delete DbManager object";
+}
 
 /**
  * @brief DbManager::addUser Method used to add user objects with associated object IDs to
