@@ -49,7 +49,7 @@ public:
     bool addBlogPost(const QVariant &BlogPostID, const QVariant &BlogID, const QVariant &timeDate, const QVariant &test);
     bool addChat(const QVariant &AccountID, const QVariant &ChatID, const QVariant &sender);
     bool addMessage(const QVariant &ChatID, const QVariant &MessageID, const QVariant &DateTime,
-                    const QVariant &text, const QVariant &receiver);
+                    const QVariant &text);
 
     //Methods used to modify the existing contents of the table
     bool addColumn(const QString name, const QString type);

@@ -33,7 +33,7 @@ void Chat::addMessage(Message *newMessage){
 void Chat::sendMessage(Message * newMessage) {
     this->addMessage(newMessage);
     dbm->addMessage(chatID,newMessage->getID(),newMessage->getTimeSent(),
-                    newMessage->getText(), newMessage->getReceiver());
+                    newMessage->getText());
 }
 
 /**
