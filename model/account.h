@@ -62,11 +62,12 @@ private:
     DbManager* dbm;
 
 public:
-    Account();
-    Account(std::string usrName);
+    //Constructors
+    Account(DbManager *newdbm);
+    Account(std::string usrName, DbManager *newdbm);
     Account(int accID,     std::string usrname,    std::string pw,
             int scrpBkID,   int blogID,         int tweetID,
-            std::string firstname,  std::string lastname);
+            std::string firstname,  std::string lastname, DbManager *newdbm);
 
     //Functions to obtain information from the database
     void retrieveAllBlogPosts();

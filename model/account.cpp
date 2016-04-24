@@ -2,8 +2,9 @@
 
 int Account::id_cnt = 0;
 
-Account::Account()
+Account::Account(DbManager *newdbm)
 {
+    dbm = newdbm;
     this->accountID = id_cnt;
     id_cnt++;
 
@@ -29,25 +30,26 @@ Account::Account()
     yearDeparted = 0;
 
     myScrapbook = new Scrapbook();
-    myScrapbook->setID(dbm->retrieveIntInfo("ScrpBkID","accounts","AccountID",accountID));
+    myScrapbook->setID(newdbm->retrieveIntInfo("ScrpBkID","accounts","AccountID",accountID));
 
     myBlog = new Blog(); //Create new blog associated with user
-    myBlog->setID( dbm->retrieveIntInfo("BlogID","accounts","AccountID",accountID) ); //Method used to manually set the ID value of the new user Blog
+    myBlog->setID( newdbm->retrieveIntInfo("BlogID","accounts","AccountID",accountID) ); //Method used to manually set the ID value of the new user Blog
 
     myTweet = new Tweet(); //Create new Tweet associated with user
-    myTweet->setID( dbm->retrieveIntInfo("TweetID","accounts","AccountID",accountID) ); //Method used to manually set the ID value of the new user Tweet
+    myTweet->setID( newdbm->retrieveIntInfo("TweetID","accounts","AccountID",accountID) ); //Method used to manually set the ID value of the new user Tweet
 
     //Methods to access the database and retrieve all of the user's associated posts and information.
-    dbm->retrieveAllBlogPosts(myBlog);
-    dbm->retrieveAllTweets(myTweet);
+    newdbm->retrieveAllBlogPosts(myBlog);
+    newdbm->retrieveAllTweets(myTweet);
 
     //Iterate through list of chats the user has and store each of the messages in the db to each chat
     for(int i=0; i<myChats.size(); i++){
-        dbm->retrieveAllMessages(myChats.at(i));
+        newdbm->retrieveAllMessages(myChats.at(i));
     }
 }
 
-Account::Account(std::string usrName){
+Account::Account(std::string usrName, DbManager *newdbm){
+    dbm = newdbm;
     this->accountID = id_cnt;
     id_cnt++;
 
@@ -86,8 +88,9 @@ Account::Account(std::string usrName){
  */
 Account::Account(int accID,     std::string usrname,    std::string pw,
                 int scrpBkID,   int blogID,         int tweetID,
-                std::string firstname,  std::string lastname)
+                std::string firstname,  std::string lastname, DbManager *newdbm)
 {
+    dbm = newdbm;
     this->accountID = accID;
     id_cnt++;
 

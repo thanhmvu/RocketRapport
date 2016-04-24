@@ -31,8 +31,7 @@ void Chat::addMessage(Message *newMessage){
  */
 void Chat::sendMessage(Message * newMessage) {
     this->addMessage(newMessage);
-    DbManager::addMessage(chatID,newMessage->getID(),
-                          newMessage->getTimeSent(),newMessage->getText());
+    //Insert loic for dbm
 }
 
 

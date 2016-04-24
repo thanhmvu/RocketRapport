@@ -103,7 +103,7 @@ bool System::createAccount(std::string username, std::string password, std::stri
     }
     else{
         // create new account
-        Account* newAccount = new Account;
+        Account* newAccount = new Account(dbm);
         newAccount->setUsername(username);
         newAccount->setPassword(password);
         newAccount->setFirstName(firstname);

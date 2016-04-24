@@ -148,7 +148,7 @@ bool DbManager::addMessage(const QVariant &ChatID, const QVariant &MessageID, co
                            const QVariant text){
     bool success = false;
     QSqlQuery query;
-    query.prepare("INSERT INTO messages VALUES(:ChatID, :MessageID, :DateTime, :text");
+    query.prepare("INSERT INTO chatMessages VALUES( (:ChatID), (:MessageID), (:DateTime), (:text)");
     query.bindValue(":ChatID", ChatID);
     query.bindValue(":MessageID",MessageID);
     query.bindValue(":DateTime",DateTime);
@@ -157,7 +157,8 @@ bool DbManager::addMessage(const QVariant &ChatID, const QVariant &MessageID, co
         success = true;
     }
     else{
-        //Print Statement
+        qDebug() << "Issue with adding new Message"
+                 << query.lastError();
     }
 
     return success;
@@ -410,7 +411,7 @@ void DbManager::retrieveAllAccounts(std::map<std::string, Account*> &accounts){
                 // rebuild an account based on the info
                 Account * rebuilt_account = new Account(accountID, username, password,
                                                         scrpBkID, blogID, tweetID,
-                                                        firstname, lastname);
+                                                        firstname, lastname,this);
 
                 // add accoun to the accounts map
                 accounts[username] = rebuilt_account;
