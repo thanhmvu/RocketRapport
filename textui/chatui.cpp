@@ -252,7 +252,7 @@ void ChatUI::runScreen() {
                             curYPos = lastYPos;
                             curXPos = lastXPos;
                             lastXPos--;
-                            if (lastXPos = (this->getCols()/2)-11) {
+                            if (lastXPos == (this->getCols()/2)-11) {
                                 if (lastYPos != (this->getRows()-3)){
                                     lastXPos = (this->getCols())-15;
                                     curYPos = lastYPos;
@@ -263,16 +263,20 @@ void ChatUI::runScreen() {
                             }
                         }
                         break;
+                    case '\n':
+                        move(curYPos, curXPos);
+                        break;
                     default: // Any other input like letters, nums, etc.
                         if (!noMoreRoom) {
-                            ss << keyPress;
-                            sstemp << keyPress;
+                            char temp = (char)keyPress;
+                            ss << temp;
+                            sstemp << temp;
                             mvprintw(curYPos, curXPos, sstemp.str().c_str());
                             sstemp.str("");
                             lastYPos = curYPos;
                             lastXPos = curXPos;
                             curXPos++;
-                            if (curXPos = (this->getCols()-14)) {
+                            if (curXPos == (this->getCols()-14)) {
                                 if (curYPos != (this->getRows()-2)){
                                     curXPos = (this->getCols()/2)-10;
                                     lastYPos = curYPos;
