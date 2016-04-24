@@ -1,6 +1,6 @@
 #include "screenui.h"
 
-int ScreenUI::screenNumber = 1;
+int ScreenUI::screenNumber = 0;
 
 ScreenUI::ScreenUI()
 {

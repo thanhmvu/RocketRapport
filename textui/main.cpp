@@ -33,8 +33,6 @@ int main(int argc, char *argv[])
         case 0: // Login
             login.displayScreen();
             login.runScreen();
-            login.changeScreens(false);
-            clear();
             break;
         case 1: // Main Menu
             mainMenu.displayScreen();

@@ -3,6 +3,7 @@
 MainMenuUI::MainMenuUI(System* mainSystem)
 {
     this->setSystem(mainSystem);
+    this->setNumOfOptions(7);
 }
 
 
@@ -22,8 +23,6 @@ void MainMenuUI::displayScreen() {
     mvprintw(12, 28, "My Scrapbook");
     mvprintw(13, 28, "Logout");
     mvprintw(14, 28, "Exit");
-
-    this->setNumOfOptions(7);
 
     mvprintw(this->getRows()-3, this->getCols()-26, "BckSp -      Select Option");
     mvprintw(this->getRows()-2, this->getCols()-26, "Up    -   Navigate Up Menu");
