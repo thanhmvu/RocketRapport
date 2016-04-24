@@ -25,6 +25,7 @@
 //We're going to need to forward declare the classes that use a dbm object
 class Account;
 class Chat;
+class Blog;
 
 class DbManager
 {
@@ -46,7 +47,7 @@ public:
     bool addGroup(const QVariant &GrpID, const QVariant &GrpAdmnId, bool actStatus,          //I'm going to skip over some of the add to table methods and move to messages, which I know Mike is about to work on
                   const QVariant &GrpName, const QVariant &FeedID);
     bool addFeedPost(const QVariant &FeedID, const QVariant &feedPostID, const QVariant &feedPostText);
-    bool addBlogPost(const QVariant &BlogPostID, const QVariant &BlogID, const QVariant &timeDate, const QVariant &test);
+    bool addBlogPost(const QVariant &BlogPostID, const QVariant &BlogID, const QVariant &timeDate, const QVariant &text);
     bool addChat(const QVariant &AccountID, const QVariant &ChatID, const QVariant &sender);
     bool addMessage(const QVariant &ChatID, const QVariant &MessageID, const QVariant &DateTime,
                     const QVariant &text);

@@ -2,6 +2,8 @@
 #define BLOG_H
 #include "blogpost.h"
 #include <stdio.h>
+#include "dbmanager.h"
+class DbManager;
 
 
 class Blog
@@ -11,9 +13,9 @@ private:
     int blogID;
     std::vector<BlogPost*> myPosts;
 //    QString blogText;
-
+    DbManager *dbm;
 public:
-    Blog();
+    Blog(DbManager *newdbm);
     void setID(int newID);
     void addPost(BlogPost* newPost);
     void storePostToDB(BlogPost* newPost);

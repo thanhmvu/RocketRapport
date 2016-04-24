@@ -28,7 +28,7 @@ void Chat::addMessage(Message *newMessage){
 
 /**
  * @brief "Sends" a message to the database.
- * Employs the use of a static method from the DbManager class
+ * Remember that each of the messageIDs must be unique.
  */
 void Chat::sendMessage(Message * newMessage) {
     this->addMessage(newMessage);

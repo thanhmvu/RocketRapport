@@ -12,7 +12,7 @@
 
 TEST(DbManagerTest, testRetrieveAllBlogs){
     DbManager one("../gProjectDB.db");
-    Blog *b1 = new Blog;
+    Blog *b1 = new Blog(&one);
     qDebug() << b1->getBlogID();
     one.retrieveAllBlogPosts(b1);
     std::vector<BlogPost*> bPosts = b1->getMyPosts();

@@ -19,6 +19,11 @@ QString BlogPost::getText(){
     return text;
 }
 
+QDateTime BlogPost::getDateTime(){
+    return datePosted;
+}
+
+//We've cut out commenting functionality for now.
 //bool BlogPost::addComment(Comment cmt){
 //    comments.push_back(cmt);
 //    return true;

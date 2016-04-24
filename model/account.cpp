@@ -32,7 +32,7 @@ Account::Account(DbManager *newdbm)
     myScrapbook = new Scrapbook();
     myScrapbook->setID(newdbm->retrieveIntInfo("ScrpBkID","accounts","AccountID",accountID));
 
-    myBlog = new Blog(); //Create new blog associated with user
+    myBlog = new Blog(dbm); //Create new blog associated with user
     myBlog->setID( newdbm->retrieveIntInfo("BlogID","accounts","AccountID",accountID) ); //Method used to manually set the ID value of the new user Blog
 
     myTweet = new Tweet(); //Create new Tweet associated with user
@@ -75,7 +75,7 @@ Account::Account(QString usrName, DbManager *newdbm){
     yearDeparted = 0;
 
     myScrapbook = new Scrapbook();
-    myBlog = new Blog();
+    myBlog = new Blog(dbm);
     myTweet = new Tweet();
 
 }

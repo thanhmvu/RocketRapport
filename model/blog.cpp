@@ -2,8 +2,9 @@
 
 int Blog::id_cnt = 0;
 
-Blog::Blog()
+Blog::Blog(DbManager *newdbm)
 {
+    dbm = newdbm;
     blogID = id_cnt;
     id_cnt++;
 }
@@ -19,25 +20,8 @@ void Blog::addPost(BlogPost* newPost) {
     storePostToDB(newPost);
 }
 
-void Blog::storePostToDB(BlogPost* newPost) {
-//    std::cout << "Now entering add account method" << std::endl;
-//    const QString &x = QString::fromStdString(newAccount->getFirstName());
-//    const QString &y = QString::fromStdString(newAccount->getLastName());
-//    const QVariant accntD = newAccount->getAccountID();
-//    const QVariant frstName(x);
-//    const QVariant lstNme(y);
-//    const QString &a = QString::fromStdString(newAccount->getUsername() );
-//    const QString &b = QString::fromStdString(newAccount->getPassword() );
-//    const QVariant usrName(a);
-//    const QVariant passWord(b);
-
-//    const QVariant ScrpBkID = newAccount->getMyScrapbook()->getScrpbkID();
-//    const QVariant BlgID = newAccount->getMyBlog()->getBlogID();
-//    const QVariant TweetID = newAccount->getMyTweet()->getTweetID();
-
-//    dbm->addBlogPost(accntD,frstName,lstNme,
-//                ScrpBkID,BlgID,TweetID,usrName,
-//                 passWord);
+void Blog::storePostToDB(BlogPost *newPost) {
+    dbm->addBlogPost( newPost->getID(),blogID,newPost->getDateTime(),newPost->getText() );
 }
 
 

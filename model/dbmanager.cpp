@@ -425,9 +425,9 @@ void DbManager::retrieveAllAccounts(std::map<QString, Account*> &accounts){
 
 
 
-bool DbManager::addBlogPost(const QVariant &blogPostID, const QVariant &blogID, const QVariant &timeDate, const QVariant &test){
-//     bool success = false;
-//     QSqlQuery query;
+bool DbManager::addBlogPost(const QVariant &blogPostID, const QVariant &blogID, const QVariant &timeDate, const QVariant &text){
+     bool success = false;
+     QSqlQuery query;
 //     // BlogID INTEGER, BLogPstID INTEGER, timeDate DATE, text VARCHAR(5000)
 //     // insert into blogPosts values (0,0,'2007-01-01 10:00:00','a');
 //     // CREATE TABLE blogPosts (blogPostID INTEGER PRIMARY KEY, blogID INTEGER, dateTime DATETIME, text VARCHAR(5000));
@@ -436,17 +436,17 @@ bool DbManager::addBlogPost(const QVariant &blogPostID, const QVariant &blogID, 
 
 //       CREATE TABLE chatMessages (messageID INTEGER PRIMARY KEY, chatID INTEGER, dateTime DATETIME, text VARCHAR(500));
 //*/
-//     query.prepare("INSERT INTO blogPosts VALUES(:blogPostID, :blogID, :timeDate, :text");
-//     query.bindValue(":ChatID", ChatID);
-//     query.bindValue(":MessageID",MessageID);
-//     query.bindValue(":DateTime",DateTime);
-//     query.bindValue(":text",text);
-//     if(query.exec()){
-//         success = true;
-//     }
-//     else{
-//         //Print Statement
-//     }
+     query.prepare("INSERT INTO blogPosts VALUES(:blogID, :blogPostID, :timeDate, :text");
+     query.bindValue(":blogID", blogID);
+     query.bindValue(":blogPostID",blogPostID);
+     query.bindValue(":timeDate",timeDate);
+     query.bindValue(":text",text);
+     if(query.exec()){
+         success = true;
+     }
+     else{
+         //Print Statement
+     }
 
-//     return success;
+     return success;
  }
