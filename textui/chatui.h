@@ -1,6 +1,7 @@
 #ifndef CHATUI_H
 #define CHATUI_H
 #include "screenui.h"
+#include "../model/chat.h"
 #include <sstream>
 
 class ChatUI : public ScreenUI

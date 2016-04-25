@@ -87,7 +87,7 @@ void ChatUI::runScreen() {
         for(const auto &acc: this->getSystem()->getAllAccounts()) {
             if (v == indexOfTalking) {
                 for (int j = 0; j < acc.second->getMyChats().size(); j++) {
-                    if (acc.second->getMyChats()[j]->getTalkingToUser().toStdString() == talkingWith) {
+                    if (acc.second->getMyChats()[j]->getTalkingToUser().toStdString() == this->getSystem()->getCurrentUser()->getUsername().toStdString()) {
                         for (int m = 0; m < acc.second->getMyChats()[j]->getMessages().size(); m++) {
                             if (q < 4) {
                                 QString datetime = acc.second->getMyChats()[j]->getMessages()[m+scrollIndex]->getTimeSent().toString(dateFormat);
@@ -252,26 +252,65 @@ void ChatUI::runScreen() {
                         this->setMenuNumber(3);
                         break;
                     case KEY_HOME: // Sends message
-                        for(const auto &acc: this->getSystem()->getAllAccounts()) {
-
+                        if (true) {
+                            Message * sentMessage = new Message();
+                            sentMessage->setText(QString::fromStdString(ss.str()));
+                            sentMessage->setDateTime(QDateTime::currentDateTime());
+                            int k = 0;
+                            bool chatExists = false;
+                            for(const auto &acc: this->getSystem()->getAllAccounts()) {
+                                if (k == indexOfTalking) {
+                                    if (acc.second->getMyChats().size() == 0) {
+                                        Chat* newChat = new Chat(this->getSystem()->getDbm());
+                                        newChat->setTalkingToUser(this->getSystem()->getCurrentUser()->getUsername());
+                                        acc.second->addChat(newChat);
+                                        Chat* newChat2 = new Chat(this->getSystem()->getDbm());
+                                        newChat2->setTalkingToUser(acc.first);
+                                        this->getSystem()->getCurrentUser()->addChat(newChat2);
+                                    } else {
+                                        for (int i = 0; i < acc.second->getMyChats().size(); i++) {
+                                            if (acc.second->getMyChats()[i]->getTalkingToUser() == this->getSystem()->getCurrentUser()->getUsername()) {
+                                                chatExists = true;
+                                            }
+                                        }
+                                        if (!chatExists) {
+                                            Chat* newChat = new Chat(this->getSystem()->getDbm());
+                                            newChat->setTalkingToUser(this->getSystem()->getCurrentUser()->getUsername());
+                                            acc.second->addChat(newChat);
+                                            Chat* newChat2 = new Chat(this->getSystem()->getDbm());
+                                            newChat2->setTalkingToUser(acc.first);
+                                            this->getSystem()->getCurrentUser()->addChat(newChat2);
+                                        }
+                                    }
+                                    for (int i = 0; i < acc.second->getMyChats().size(); i++) {
+                                        if (acc.second->getMyChats()[i]->getTalkingToUser().toStdString() == this->getSystem()->getCurrentUser()->getUsername().toStdString()) {
+                                            // Found Chat with current user
+                                            acc.second->getMyChats()[i]->sendMessage(sentMessage);
+                                        }
+                                    }
+                                }
+                                k++;
+                            }
+                            for (int i = 0; i < this->getSystem()->getCurrentUser()->getMyChats().size(); i++) {
+                                if (this->getSystem()->getCurrentUser()->getMyChats()[i]->getTalkingToUser().toStdString() == talkingWith) {
+                                    // Found Chat with other user
+                                    this->getSystem()->getCurrentUser()->getMyChats()[i]->sendMessage(sentMessage);
+                                }
+                            }
+                            ss.str("");
+                            for (int i = (this->getCols()/2)-10; i < (this->getCols()-14); i++) {
+                                mvprintw(this->getRows()-3, i, " ");
+                            }
+                            for (int i = (this->getCols()/2)-10; i < (this->getCols()-14); i++) {
+                                mvprintw(this->getRows()-2, i, " ");
+                            }
+                            lastXPos = (this->getCols()/2)-11;
+                            lastYPos = this->getRows()-3;
+                            curXPos = (this->getCols()/2)-10;
+                            curYPos = this->getRows()-3;
+                            noMoreRoom = false;
+                            move(this->getRows()-3, (this->getCols()/2)-10);
                         }
-
-                        // TEST
-                        mvprintw(this->getRows()-8, (this->getCols()/2)-10, ss.str().c_str());
-                        ss.str("");
-                        for (int i = (this->getCols()/2)-10; i < (this->getCols()-14); i++) {
-                            mvprintw(this->getRows()-3, i, " ");
-                        }
-                        for (int i = (this->getCols()/2)-10; i < (this->getCols()-14); i++) {
-                            mvprintw(this->getRows()-2, i, " ");
-                        }
-                        lastXPos = (this->getCols()/2)-11;
-                        lastYPos = this->getRows()-3;
-                        curXPos = (this->getCols()/2)-10;
-                        curYPos = this->getRows()-3;
-                        noMoreRoom = false;
-                        move(this->getRows()-3, (this->getCols()/2)-10);
-
                         break;
                     case KEY_BACKSPACE: // Deletes last typed character
                         if (canBackSpace) {
