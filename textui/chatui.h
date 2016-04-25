@@ -26,7 +26,9 @@ class ChatUI : public ScreenUI
 public:
     ChatUI(System* mainSystem);
 
-    std::string testUName;
+    std::string talkingWith;
+    int indexOfTalking;
+    int scrollIndex;
 
     std::stringstream ss;
 

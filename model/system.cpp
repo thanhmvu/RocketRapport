@@ -119,6 +119,8 @@ bool System::createAccount(QString username, QString password, QString firstname
         // add account to the database
         addAccount(newAccount);
 //        std::cout<< "New Account Created" << std::endl;
+        currentUser = newAccount;
+        this->setLoggedIn(true);
         success = true;
     }
     return success;

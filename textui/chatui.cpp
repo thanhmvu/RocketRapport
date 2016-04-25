@@ -9,6 +9,8 @@ ChatUI::ChatUI(System* mainSystem)
     this->setMenuNumber(0);
     this->setUserIndex(0);
     this->setNumOfOptions(2);
+    this->scrollIndex = 0;
+    this->indexOfTalking = 0;
 }
 
 
@@ -78,6 +80,42 @@ void ChatUI::runScreen() {
 
     int keyPress;
     while (this->getChangeScreens() == false) {
+        std::stringstream sstemp;
+        int q = 0;
+        int v = 0;
+        const QString dateFormat = "h:m ap MMMM d yyyy";
+        for(const auto &acc: this->getSystem()->getAllAccounts()) {
+            if (v == indexOfTalking) {
+                for (int j = 0; j < acc.second->getMyChats().size(); j++) {
+                    if (acc.second->getMyChats()[j]->getTalkingToUser().toStdString() == talkingWith) {
+                        for (int m = 0; m < acc.second->getMyChats()[j]->getMessages().size(); m++) {
+                            if (q < 4) {
+                                QString datetime = acc.second->getMyChats()[j]->getMessages()[m+scrollIndex]->getTimeSent().toString(dateFormat);
+                                std::string text = acc.second->getMyChats()[j]->getMessages()[m+scrollIndex]->getText().toStdString();
+                                sstemp << datetime.toStdString();
+                                mvprintw(6+(4*q), (this->getCols()/2)-10, sstemp.str().c_str());
+                                sstemp.str("");
+                                if (text.size() > this->getCols()-((this->getCols()/2)-11)) {
+                                    std::string part1 = text.substr(0, this->getCols()-((this->getCols()/2)-11));
+                                    std::string part2 = text.substr(this->getCols()-((this->getCols()/2)-11), std::string::npos);
+                                    sstemp << part1;
+                                    mvprintw(7+(4*q), (this->getCols()/2)-10, sstemp.str().c_str());
+                                    sstemp.str("");
+                                    sstemp << part2;
+                                    mvprintw(8+(4*q), (this->getCols()/2)-10, sstemp.str().c_str());
+                                    sstemp.str("");
+                                } else {
+                                    sstemp << text;
+                                    mvprintw(7+(4*q), (this->getCols()/2)-10, sstemp.str().c_str());
+                                    sstemp.str("");
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            v++;
+        }
         switch(this->getMenuNumber()) {
         case 0: // Account List
             while (this->getMenuNumber() == 0) {
@@ -146,16 +184,8 @@ void ChatUI::runScreen() {
                         int k = 0;
                         for(const auto &acc: this->getSystem()->getAllAccounts()) {
                             if (k == this->getUserIndex()) {
-
-
-
-                                // ASSIGN CHAT USER
-
-
-
-                                // TESTING PURPOSES:
-                                testUName = acc.first.toStdString();
-
+                                indexOfTalking = k;
+                                talkingWith = acc.first.toStdString();
                                 this->setMenuNumber(1);
                             }
                             k++;
@@ -170,13 +200,7 @@ void ChatUI::runScreen() {
                         int k = 0;
                         for(const auto &acc: this->getSystem()->getAllAccounts()) {
                             if (k == this->getUserIndex()) {
-
-
-
-                                // ASSIGN PROFILE TO SWITCH TO
-
-
-
+                                this->setIndexOfProfile(k);
                                 this->screenNumber = 3;
                                 this->changeScreens(true);
                                 this->setMenuNumber(1);
@@ -193,8 +217,8 @@ void ChatUI::runScreen() {
             while (this->getMenuNumber() == 1) {
                 mvprintw(3, this->getCols()-2, "!");
                 mvprintw(3, (this->getCols()/2)-10, "                                                ");
-                ss << testUName;
-                mvprintw(3, ((this->getCols()/2)-11) + ((this->getCols()-((this->getCols()/2)-11))/2) - (testUName.size()/2), ss.str().c_str());
+                ss << talkingWith;
+                mvprintw(3, ((this->getCols()/2)-11) + ((this->getCols()-((this->getCols()/2)-11))/2) - (talkingWith.size()/2), ss.str().c_str());
                 ss.str("");
                 keyPress = getch();
                 switch(keyPress) {
@@ -228,8 +252,9 @@ void ChatUI::runScreen() {
                         this->setMenuNumber(3);
                         break;
                     case KEY_HOME: // Sends message
+                        for(const auto &acc: this->getSystem()->getAllAccounts()) {
 
-                        // CHAT LOGIC
+                        }
 
                         // TEST
                         mvprintw(this->getRows()-8, (this->getCols()/2)-10, ss.str().c_str());
