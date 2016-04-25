@@ -85,7 +85,7 @@ bool System::login(QString username, QString password) {
             success = true;
         }
     }else{
-        std::cout << std::endl << "Invalid credentials" << std::endl << "Please try again or create a new account." << std::endl;
+//        std::cout << std::endl << "Invalid credentials" << std::endl << "Please try again or create a new account." << std::endl;
     }
 
     return success;
@@ -101,9 +101,9 @@ bool System::login(QString username, QString password) {
 bool System::createAccount(QString username, QString password, QString firstname, QString lastname) {
     // check if username is in use
     bool success = false;
-    std::cout << "Now entering create account method" << std::endl;
+//    std::cout << "Now entering create account method" << std::endl;
     if (usernameExist(username)) {
-        std::cout << "Username already exists!" << std::endl;
+//        std::cout << "Username already exists!" << std::endl;
     }
     else{
         // create new account
@@ -118,7 +118,7 @@ bool System::createAccount(QString username, QString password, QString firstname
 
         // add account to the database
         addAccount(newAccount);
-        std::cout<< "New Account Created" << std::endl;
+//        std::cout<< "New Account Created" << std::endl;
         success = true;
     }
     return success;

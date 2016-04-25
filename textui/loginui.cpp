@@ -61,6 +61,10 @@ void LoginUI::runScreen() {
     while(this->getChangeScreens() == false) {
         getyx(stdscr, curY, curX);
         keyPress = getch();
+        mvprintw(19, 7, "                        ");
+        mvprintw(20, 14, "          ");
+        mvprintw(19, 44, "                                  ");
+        mvprintw(20, 44, "                                  ");
         switch(keyPress) {
         case KEY_UP: // Move up options
             switch(colIndex) {
@@ -87,12 +91,14 @@ void LoginUI::runScreen() {
                     break;
                 case 4:
                     curs_set(1);
+                    move(siY, siX);
                     printw(" ");
                     move(pY, pX);
                     rowIndex = 3;
                     break;
                 case 5:
                     curs_set(0);
+                    move(exitY, exitX);
                     printw(" ");
                     move(siY, siX);
                     printw(">");
@@ -127,12 +133,14 @@ void LoginUI::runScreen() {
                     break;
                 case 4:
                     curs_set(1);
+                    move(liY, liX);
                     printw(" ");
                     move(lpY, lpX);
                     rowIndex = 2;
                     break;
                 case 5:
                     curs_set(0);
+                    move(exitY, exitX);
                     printw(" ");
                     move(liY, liX);
                     printw(">");
@@ -167,6 +175,7 @@ void LoginUI::runScreen() {
                     rowIndex = 4;
                     break;
                 case 4:
+                    move(siY, siX);
                     printw(" ");
                     move(exitY, exitX);
                     printw(">");
@@ -175,6 +184,7 @@ void LoginUI::runScreen() {
                     break;
                 case 5:
                     curs_set(1);
+                    move(exitY, exitX);
                     printw(" ");
                     move(fnY, fnX);
                     rowIndex = 0;
@@ -206,6 +216,7 @@ void LoginUI::runScreen() {
                     rowIndex = 4;
                     break;
                 case 4:
+                    move(liY, liX);
                     printw(" ");
                     move(exitY, exitX);
                     printw(">");
@@ -214,6 +225,7 @@ void LoginUI::runScreen() {
                     break;
                 case 5:
                     curs_set(1);
+                    move(exitY, exitX);
                     printw(" ");
                     move(luY, luX);
                     rowIndex = 0;
@@ -244,6 +256,7 @@ void LoginUI::runScreen() {
                     colIndex = 1;
                     break;
                 case 4:
+                    move(siY, siX);
                     printw(" ");
                     curs_set(0);
                     move(liY, liX);
@@ -252,6 +265,7 @@ void LoginUI::runScreen() {
                     colIndex = 1;
                     break;
                 case 5:
+                    move(exitY, exitX);
                     printw(" ");
                     curs_set(0);
                     move(exitY, exitX);
@@ -280,6 +294,7 @@ void LoginUI::runScreen() {
                     colIndex = 0;
                     break;
                 case 4:
+                    move(liY, liX);
                     printw(" ");
                     curs_set(0);
                     move(siY, siX);
@@ -288,6 +303,7 @@ void LoginUI::runScreen() {
                     colIndex = 0;
                     break;
                 case 5:
+                    move(exitY, exitX);
                     printw(" ");
                     curs_set(0);
                     move(exitY, exitX);
@@ -411,20 +427,68 @@ void LoginUI::runScreen() {
             case 4:
                 switch(colIndex) {
                 case 0: // Create new account
-
-
-
-
-
-
+                    if (true) {
+                        bool accountCreated = this->getSystem()->createAccount(QString::fromStdString(uss.str()), QString::fromStdString(pss.str()), QString::fromStdString(fnss.str()), QString::fromStdString(lnss.str()));
+                        if (accountCreated) {
+                            this->screenNumber = 1;
+                            this->changeScreens(true);
+                        } else {
+                            mvprintw(19, 7, "Username already exists.");
+                            mvprintw(20, 14, "Try again.");
+                            fnX = 17;
+                            lnX = 16;
+                            uX = 15;
+                            pX = 15;
+                            luX = (this->getCols()/2)+15;
+                            lpX = (this->getCols()/2)+15;
+                            fnss.str("");
+                            lnss.str("");
+                            uss.str("");
+                            pss.str("");
+                            luss.str("");
+                            lpss.str("");
+                            for (int i = 0; i < 20; i++) {
+                                mvprintw(fnY, (fnX+i), " ");
+                                mvprintw(lnY, (lnX+i), " ");
+                                mvprintw(uY, (uX+i), " ");
+                                mvprintw(pY, (pX+i), " ");
+                                mvprintw(luY, (luX+i), " ");
+                                mvprintw(lpY, (lpX+i), " ");
+                            }
+                        }
+                    }
                     break;
                 case 1: // Log in
-
-
-
-
-
-
+                    if (true) {
+                        bool accountLoggedIn = this->getSystem()->login(QString::fromStdString(luss.str()), QString::fromStdString(lpss.str()));
+                        if (accountLoggedIn) {
+                            this->screenNumber = 1;
+                            this->changeScreens(true);
+                        } else {
+                            mvprintw(19, 44, "Username or Password is incorrect.");
+                            mvprintw(20, 44, "Try again or create a new account.");
+                            fnX = 17;
+                            lnX = 16;
+                            uX = 15;
+                            pX = 15;
+                            luX = (this->getCols()/2)+15;
+                            lpX = (this->getCols()/2)+15;
+                            fnss.str("");
+                            lnss.str("");
+                            uss.str("");
+                            pss.str("");
+                            luss.str("");
+                            lpss.str("");
+                            for (int i = 0; i < 20; i++) {
+                                mvprintw(fnY, (fnX+i), " ");
+                                mvprintw(lnY, (lnX+i), " ");
+                                mvprintw(uY, (uX+i), " ");
+                                mvprintw(pY, (pX+i), " ");
+                                mvprintw(luY, (luX+i), " ");
+                                mvprintw(lpY, (lpX+i), " ");
+                            }
+                        }
+                    }
                     break;
                 }
                 break;

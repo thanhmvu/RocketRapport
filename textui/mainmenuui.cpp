@@ -14,6 +14,8 @@ void MainMenuUI::displayScreen() {
     // move(row, col);
     // mvprintw(row, col, string);
     // getmaxyx(screen, rowVar, colVar);
+    std::stringstream sstemp;
+    sstemp << this->getSystem()->getCurrentUser()->getUsername().toStdString();
 
     mvprintw(4, (this->getCols()/2)-7, "ROCKET RAPPORT");
     mvprintw(8, 28, "Messaging");
@@ -29,6 +31,10 @@ void MainMenuUI::displayScreen() {
     mvprintw(this->getRows()-1, this->getCols()-26, "Down  - Navigate Down Menu");
 
     mvprintw(this->getRows()-1, 0, "@Average Joe's, Inc.");
+
+    mvprintw(0, 0, "User: ");
+    mvprintw(0, 6, sstemp.str().c_str());
+    sstemp.str("");
 
     refresh();
 }
