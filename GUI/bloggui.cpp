@@ -47,14 +47,14 @@ void BlogGUI::on_pushButton_savePost_clicked()
 {
     QString text = ui->textEdit_newPost->toPlainText();
     QDateTime time = QDateTime::currentDateTime();
+    Blog *blog = profile_screen->getProfileOwner()->getMyBlog();
+    int id = blog->getBlogID();
 
     // create new post object
-    BlogPost *post = new BlogPost();
-    post->setText(text);
-    post->setTimePosted(time);
+    BlogPost *post = new BlogPost(id,time,text);
 
     // add new post to database
-    profile_screen->getProfileOwner()->getMyBlog()->addPost(post);
+    blog->addPost(post);
 
     // display to screen
     displayPost(post);

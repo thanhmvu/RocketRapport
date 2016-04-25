@@ -2,16 +2,31 @@
 
 int BlogPost::id_cnt = 0;
 
-BlogPost::BlogPost()
-{
+//BlogPost::BlogPost()
+//{
+//    id = id_cnt;
+//    id_cnt ++;
+//}
+
+BlogPost::BlogPost(int BlogID, QDateTime t, QString content){
     id = id_cnt;
     id_cnt ++;
+
+    blogID = BlogID;
+    timePosted = t;
+    text = content;
 }
 
 int BlogPost::getID(){ return id; }
 
 void BlogPost::setID(int newID){
     id = newID;
+}
+
+int BlogPost::getBlogID(){ return blogID; }
+
+void BlogPost::setBlogID(int newID){
+    blogID = newID;
 }
 
 void BlogPost::setText(QString new_text){

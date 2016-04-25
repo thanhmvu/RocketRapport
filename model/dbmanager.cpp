@@ -338,11 +338,14 @@ void DbManager::retrieveAllBlogPosts(Blog *userBlog){
     query.prepare(command);
     query.exec();
     while(query.next()){
-        BlogPost *newBP = new BlogPost;
-        QString newText1 = query.value(3).toString();
+        // extract the info
+        int postID = query.value(0).toInt();
+        int blogID = query.value(1).toInt();
         QDateTime time = query.value(2).toDateTime();
-        newBP->setText(newText1);
-        newBP->setTimePosted(time); //Should I add a method to blog post that manually sets the blog post ID?
+        QString text = query.value(3).toString();
+        // re-create the post
+        BlogPost *newBP = new BlogPost(blogID, time, text);
+        newBP->setID(postID); // manually ensure that the ID of new post matches the one in the database
         userBlog->addPost(newBP);
     }
 }
@@ -431,10 +434,9 @@ bool DbManager::addBlogPost(const QVariant &blogPostID, const QVariant &blogID,
      QSqlQuery query;
      qDebug() << query.prepare("INSERT INTO blogPosts VALUES( (:BlogPostID), (:blogID), (:timeDate), (:text))" );
      query.bindValue(":BlogPostID",blogPostID);
-     query.bindValue(":BLogPstID", blogID);
+     query.bindValue(":blogID", blogID);
      query.bindValue(":timeDate",timeDate);
      query.bindValue(":text",text);
-     qDebug() << "Value found in bound value for BlogID: " << query.boundValue(1);
      if(query.exec()){
          std::cout << "DbManager::addBlogPost exec(): true\n";
          return true;
