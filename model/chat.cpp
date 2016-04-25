@@ -62,3 +62,7 @@ QString Chat::getTalkingToUser() {
 void Chat::setTalkingToUser(QString name) {
     this->talkingToUser = name;
 }
+
+void Chat::setChatID(int newID){
+    chatID = newID;
+}

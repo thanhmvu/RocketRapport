@@ -41,6 +41,7 @@ Account::Account(DbManager *newdbm)
     //Methods to access the database and retrieve all of the user's associated posts and information.
     newdbm->retrieveAllBlogPosts(myBlog);
     newdbm->retrieveAllTweets(myTweet);
+    newdbm->retrieveAllChats(this);
 
     //Iterate through list of chats the user has and store each of the messages in the db to each chat
     for(unsigned i=0; i<myChats.size(); i++){

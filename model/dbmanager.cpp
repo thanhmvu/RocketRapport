@@ -391,18 +391,18 @@ void DbManager::retrieveAllTweets(Tweet *userTweet){
      query.exec();
  }
 
- void DbManager::retrieveAllChats(Chat *userChat){
+ void DbManager::retrieveAllChats(Account *user){
     QSqlQuery query;
-    QString command = "SELECT * FROM chats WHERE ChatID = ";
-    QString idValue = QString::number(userChat->getChatID() );
+    QString command = "SELECT * FROM chats WHERE AccountID = ";
+    QString idValue = QString::number(user->getAccountID() );
     command += idValue;
     query.prepare(command);
-    if(query.exec() ){
-
-    }
-    else{
-        qDebug() << "Issue retrieving all chat objects: "
-               << query.lastError();
+    query.exec();
+    while(query.next() ){
+        Chat *newChat = new Chat(this);
+        newChat->setChatID(query.value(1).toInt());
+        newChat->setTalkingToUser(query.value(2).toString()); //Set the name of the member the chat is used for speaking with
+        user->addChat(newChat);
     }
  }
 

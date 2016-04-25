@@ -24,6 +24,7 @@ public:
     std::vector<Message *> getMessages();
     QString getTalkingToUser();
     void setTalkingToUser(QString name);
+    void setChatID(int newID);
 };
 
 #endif // CHAT_H
