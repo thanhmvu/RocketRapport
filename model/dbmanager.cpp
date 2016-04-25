@@ -30,7 +30,7 @@ DbManager::~DbManager()
     {
         m_db.close();
     }
-    qDebug() << "Delete DbManager object";
+    //qDebug() << "Delete DbManager object";
 }
 
 /**
@@ -96,7 +96,7 @@ bool DbManager::addGroup(const QVariant &GrpID, const QVariant &GrpAdmnId, \
                          bool actStatus, const QVariant &GrpName, const QVariant &FeedID){
     bool success = false;
     QSqlQuery query;
-    query.prepare("INSERT INTO TABLE groups VALUES(:GrpID, :GrpAdmnId, :actStatus, :GrpName, :FeedID");
+    query.prepare("INSERT INTO TABLE groups VALUES(:GrpID, :GrpAdmnId, :actStatus, :GrpName, :FeedID) ");
     query.bindValue(":GrpID",GrpID);
     query.bindValue(":GrpAdmnId",GrpAdmnId);
     query.bindValue(":actStatus",actStatus);
@@ -148,13 +148,13 @@ bool DbManager::addMessage(const QVariant &ChatID, const QVariant &MessageID, co
                            const QVariant &text){
     bool success = false;
     QSqlQuery query;
-    qDebug() << "Status of prepare statement" << query.prepare("INSERT INTO chatMessages VALUES(:ChatID,:MessageID,:dateTime,:Text)");
+    //qDebug() << "Status of prepare statement" << query.prepare("INSERT INTO chatMessages VALUES(:ChatID,:MessageID,:dateTime,:Text)");
     query.bindValue(":ChatID", ChatID);
     query.bindValue(":MessageID",MessageID);
     query.bindValue(":dateTime",DateTime);
     query.bindValue(":Text",text);
-    qDebug() << "All bound values: " << query.boundValue(0) << " " << query.boundValue(1) << " " << query.boundValue(2) << " " <<
-                query.boundValue(3) ;
+//    qDebug() << "All bound values: " << query.boundValue(0) << " " << query.boundValue(1) << " " << query.boundValue(2) << " " <<
+//                query.boundValue(3) ;
     if(query.exec()){
         success = true;
     }
@@ -330,7 +330,7 @@ bool DbManager::rmAllAccounts(){
 }
 
 void DbManager::retrieveAllBlogPosts(Blog *userBlog){
-    qDebug() << "Now retrieving all blog accounts for blog ID: " << userBlog->getBlogID();
+    //qDebug() << "Now retrieving all blog accounts for blog ID: " << userBlog->getBlogID();
     QSqlQuery query;
     QString command = "SELECT * FROM blogPosts WHERE BlogID = ";
     QString valStr = QString::number(userBlog->getBlogID());
@@ -432,12 +432,12 @@ void DbManager::retrieveAllAccounts(std::map<QString, Account*> &accounts){
 bool DbManager::addBlogPost(const QVariant &blogPostID, const QVariant &blogID,
                             const QVariant &timeDate, const QVariant &text){
      QSqlQuery query;
-     qDebug() << query.prepare("INSERT INTO blogPosts VALUES( (:BlogPostID), (:blogID), (:timeDate), (:text))" );
+     //qDebug() << query.prepare("INSERT INTO blogPosts VALUES( (:BlogPostID), (:blogID), (:timeDate), (:text) )" );
      query.bindValue(":BlogPostID",blogPostID);
      query.bindValue(":blogID", blogID);
      query.bindValue(":timeDate",timeDate);
      query.bindValue(":text",text);
-     qDebug() << "Value bound to blogID" << query.boundValue(1);
+     //qDebug() << "Value bound to blogID" << query.boundValue(1);
      if(query.exec()){
          std::cout << "DbManager::addBlogPost exec(): true\n";
          return true;
