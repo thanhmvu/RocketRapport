@@ -120,7 +120,7 @@ bool DbManager::addGroup(const QVariant &GrpID, const QVariant &GrpAdmnId, \
 bool DbManager::addChat(const QVariant &AccountID, const QVariant &ChatID, const QVariant &sender){
     bool success = false;
     QSqlQuery query;
-    query.prepare("INSERT INTO chats VALUES((:AccountID), (:ChatID), (:Sender)");
+    query.prepare("INSERT INTO chats VALUES((:AccountID), (:ChatID), (:Sender) )");
     query.bindValue(":AccountID", AccountID);
     query.bindValue(":ChatID", ChatID);
     query.bindValue(":sender", sender);
@@ -437,6 +437,7 @@ bool DbManager::addBlogPost(const QVariant &blogPostID, const QVariant &blogID,
      query.bindValue(":blogID", blogID);
      query.bindValue(":timeDate",timeDate);
      query.bindValue(":text",text);
+     qDebug() << "Value bound to blogID" << query.boundValue(1);
      if(query.exec()){
          std::cout << "DbManager::addBlogPost exec(): true\n";
          return true;
