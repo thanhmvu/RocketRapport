@@ -391,6 +391,21 @@ void DbManager::retrieveAllTweets(Tweet *userTweet){
      query.exec();
  }
 
+ void DbManager::retrieveAllChats(Chat *userChat){
+    QSqlQuery query;
+    QString command = "SELECT * FROM chats WHERE ChatID = ";
+    QString idValue = QString::number(userChat->getChatID() );
+    command += idValue;
+    query.prepare(command);
+    if(query.exec() ){
+
+    }
+    else{
+        qDebug() << "Issue retrieving all chat objects: "
+               << query.lastError();
+    }
+ }
+
 /**
  * @brief DbManager::retrieveAllAccounts This method will
  * be used to add every available Account to the given map

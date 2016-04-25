@@ -42,6 +42,7 @@ void Chat::sendMessage(Message *newMessage) {
  */
 std::vector<Message*> Chat::getMessages(){
     //Retrieve all messages from the database
+    messages.clear(); //Delete all messages from the local memory
     dbm->retrieveAllMessages(this);
     return messages;
 }

@@ -68,6 +68,7 @@ public:
     void retrieveAllTweets(Tweet *userTweet);
     void retrieveAllMessages(Chat *userChat);
     void retrieveAllScbkPosts(Scrapbook *userScBook);
+    void retrieveAllChats(Chat *userChat);
 
     bool rmAllAccounts();
 

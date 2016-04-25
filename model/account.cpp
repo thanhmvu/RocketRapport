@@ -365,6 +365,9 @@ void Account::setMyScrapbook(Scrapbook* sBook) {
  * @brief Getter for the user's list of chats.
  */
 std::vector<Chat*> Account::getMyChats() {
+    int x = myChats.size();
+    myChats.clear();
+
     return this->myChats;
 }
 
