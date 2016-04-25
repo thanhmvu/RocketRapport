@@ -32,20 +32,6 @@ void BlogGUI::init(){
     posts_layout = new QVBoxLayout();
     posts_widget->setLayout(posts_layout);
     ui->scrollArea->setWidget(posts_widget);
-
-    // TODO: display actual blog posts pulled from either system class or the database
-    for(int i=0;i<5;i++) {
-        // randomly generate text for illustration purpose
-        QString text = "blog <b>post</b> ";
-        for(int j=0;j<i+2;j++) text += text;
-
-        QTextBrowser *browser = new QTextBrowser();
-        browser->setMinimumHeight(120);
-        browser->setText(text);
-
-        posts_layout->addWidget(browser);
-    }
-
 }
 
 void BlogGUI::on_pushButton_newPost_clicked()
@@ -105,13 +91,22 @@ void BlogGUI::on_pushButton_back_to_profile_clicked()
 }
 
 void BlogGUI::loadBlogView(QString blog_owner, QString viewer){
+    // set the blog's name
     ui->label_myBlog->setText(blog_owner+"'s blog");
 
-    ////////////////////////////////////////////////////////////////////
-    /// load blogs from database
-    //////////////////////////////////////////////////////////////////
+    // load blogs from database based on the blog owner
+    profile_screen->getProfileOwner()->retrieveAllBlogPosts();
+    std::vector<BlogPost*> blogPosts = profile_screen->getProfileOwner()->getMyBlog()->getMyPosts();
+    for(BlogPost * post: blogPosts) {
+        displayPost(post);
+    }
 
-
-    // check if current user is the owner of the profile
+    // set visibility of features
+    ui->pushButton_savePost->setVisible(false);
+    ui->textEdit_newPost->setVisible(false);
+    ui->pushButton_cancel->setVisible(false);
+    if(viewer.compare(blog_owner)== 0){
+        ui->pushButton_newPost->setVisible(true);
+    }
 
 }
