@@ -14,7 +14,6 @@ Blog::Blog(DbManager *newdbm)
  * @brief Adds a new BlogPost to the Blog's list of posts.
  */
 void Blog::addPost(BlogPost* newPost) {
-//    BlogPost newPost = new BlogPost();
     // add new post to the blog post vector
     myPosts.push_back(newPost);
     // add new post to the database

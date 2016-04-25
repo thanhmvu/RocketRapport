@@ -55,7 +55,7 @@ void MainMenu::reload(){
     /// To prevent memory leaks, pay attention to userlist and grouplist
     //////////////////////////////////////////////////////////////////
     std::vector<QString> groupList;
-    for(int i = 0; i<20; i++){
+    for(int i = 0; i<3; i++){
         groupList.push_back(QString ("Group_%1").arg(i));
     }
 

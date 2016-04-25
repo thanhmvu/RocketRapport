@@ -97,3 +97,7 @@ void ProfileGUI::on_pushButton_update_about_clicked()
     /// Store new about to the database
     //////////////////////////////////////////////////////////////////
 }
+
+Account * ProfileGUI::getProfileOwner(){
+    return owner;
+}

@@ -3,6 +3,7 @@
 #include "blogpost.h"
 #include <stdio.h>
 #include "dbmanager.h"
+#include <vector>
 class DbManager;
 
 

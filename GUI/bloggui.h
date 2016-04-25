@@ -3,7 +3,9 @@
 
 #include <QWidget>
 #include <QTextBrowser>
+#include <QVBoxLayout>
 #include "profilegui.h"
+#include "../model/blogpost.h"
 
 namespace Ui {
 class BlogGUI;
@@ -30,7 +32,10 @@ private slots:
 private:
     Ui::BlogGUI *ui;
     ProfileGUI* profile_screen;
+    QWidget *posts_widget;
+    QVBoxLayout *posts_layout;
     void init();
+    void displayPost(BlogPost * post);
 };
 
 #endif // BLOGGUI_H

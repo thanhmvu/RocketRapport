@@ -118,9 +118,9 @@ Account::Account(int accID,     QString usrname,    QString pw,
     yearDeparted = 0;
 
     // create blog, tweet, scrapbook, instances using input IDs
-//    myBlog = new Blog();
-//    myTweet = new Tweet();
-//    myScrapbook = new Scrapbook();
+    myBlog = new Blog(dbm);
+    myTweet = new Tweet(dbm);
+    myScrapbook = new Scrapbook();
 
     // then call database methods to rebuild the posts of each instance
 

@@ -35,6 +35,7 @@ public:
     ~ProfileGUI();
     void setMainMenu(MainMenu* mm);
     void loadProfile(QString profile_owner, QString viewer);
+    Account * getProfileOwner();
 
 private slots:
     void on_pushButton_back_to_menu_clicked();

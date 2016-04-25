@@ -5,20 +5,20 @@
 #include <qdatetime.h>
 #include <vector>
 
-//TEST(BlogTest, testAddBlogPost){
-//    DbManager dbmTest("../gProjectDB.db");
-//    Blog testB(&dbmTest);
-//    BlogPost *newBP = new BlogPost;
-//    newBP->setID(3);
-//    newBP->setText("This is another test blog post");
+TEST(BlogTest, testAddBlogPost){
+    DbManager dbmTest("../gProjectDB.db");
+    Blog testB(&dbmTest);
+    BlogPost *newBP = new BlogPost;
+    newBP->setID(3);
+    newBP->setText("This is another test blog post");
 
-//    QDateTime *newDateTime = new QDateTime;
-//    QDate newDate(2016,5,23);
-//    newDateTime->setDate(newDate);
-//    newBP->setTimePosted(*newDateTime);
+    QDateTime *newDateTime = new QDateTime;
+    QDate newDate(2016,5,23);
+    newDateTime->setDate(newDate);
+    newBP->setTimePosted(*newDateTime);
 
-//    testB.addPost(newBP);
-//}
+    testB.addPost(newBP);
+}
 
 TEST(BlogTest,testBlogConstructor){
     DbManager newDBM("../gProjectDB.db");
