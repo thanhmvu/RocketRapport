@@ -251,12 +251,10 @@ void Account::retrieveAllTweets(){
  */
 void Account::addChat(Chat* newChat) {
     this->getMyChats().push_back(newChat); //Add new chat to list of chats
-//    QVariant ID(accountID);
-//    //int i = newChat->getChatID();
-//    QVariant chatID(i);
-//    QString convert = QString::fromStdString(username);
-//    QVariant uname(convert);
-//    dbm->addChat(ID,chatID,uname);
+    QVariant ID(accountID);
+    int i = newChat->getChatID();
+    QVariant chatID(i);
+    dbm->addChat(ID,chatID,newChat->getTalkingToUser());
 }
 
 

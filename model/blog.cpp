@@ -7,7 +7,7 @@ Blog::Blog(DbManager *newdbm)
     dbm = newdbm;
     blogID = id_cnt;
     id_cnt++;
-    dbm->retrieveAllBlogPosts(this); //Retrieve all blog posts associated with this blog
+    //dbm->retrieveAllBlogPosts(this); //Retrieve all blog posts associated with this blog
 }
 
 /**
@@ -17,7 +17,6 @@ void Blog::addPost(BlogPost* newPost) {
 //    BlogPost newPost = new BlogPost();
     // add new post to the blog post vector
     myPosts.push_back(newPost);
-
     // add new post to the database
     storePostToDB(newPost);
 }
@@ -26,7 +25,6 @@ void Blog::storePostToDB(BlogPost *newPost) {
     dbm->addBlogPost( newPost->getID()      ,   blogID,
                       newPost->getTimePosted(),   newPost->getText() );
 }
-
 
 /**
  * @brief Removes a BlogPost from the Blog's list of posts.

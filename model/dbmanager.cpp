@@ -349,6 +349,7 @@ bool DbManager::rmAllAccounts(){
 
 
 void DbManager::retrieveAllBlogPosts(Blog *userBlog){
+    qDebug() << "Now retrieving all blog accounts for blog ID: " << userBlog->getBlogID();
     QSqlQuery query;
     QString command = "SELECT * FROM blogPosts WHERE BlogID = ";
     QString valStr = QString::number(userBlog->getBlogID());
@@ -446,11 +447,12 @@ void DbManager::retrieveAllAccounts(std::map<QString, Account*> &accounts){
 
 bool DbManager::addBlogPost(const QVariant &blogPostID, const QVariant &blogID, const QVariant &timeDate, const QVariant &text){
      QSqlQuery query;
-     qDebug() << query.prepare("INSERT INTO blogPosts VALUES( (:BlogID), (:BLogPstID), (:timeDate), (:text))" );
-     query.bindValue(":BlogID",blogID);
-     query.bindValue(":BLogPstID", blogPostID);
+     qDebug() << query.prepare("INSERT INTO blogPosts VALUES( (:BlogPostID), (:blogID), (:timeDate), (:text))" );
+     query.bindValue(":BlogPostID",blogPostID);
+     query.bindValue(":BLogPstID", blogID);
      query.bindValue(":timeDate",timeDate);
      query.bindValue(":text",text);
+     qDebug() << "Value found in bound value for BlogID: " << query.boundValue(1);
      if(query.exec()){
          return true;
      }else{
