@@ -24,9 +24,11 @@ public:
     bool addComment(Comment cmt);
     bool deleteComment(int id);
 
+    //Set methods
     void setTime(QDateTime newTime);
     void setText(QString newText);
 
+    //Get methods
     QString getText();
     QDateTime getTimePosted();
 

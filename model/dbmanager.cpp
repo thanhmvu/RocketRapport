@@ -146,7 +146,6 @@ bool DbManager::addChat(const QVariant &AccountID, const QVariant &ChatID, const
  */
 bool DbManager::addMessage(const QVariant &ChatID, const QVariant &MessageID, const QVariant &DateTime,
                            const QVariant &text){
-    system("pwd");
     bool success = false;
     QSqlQuery query;
     qDebug() << "Status of prepare statement" << query.prepare("INSERT INTO chatMessages VALUES(:ChatID,:MessageID,:dateTime,:Text)");
@@ -161,6 +160,25 @@ bool DbManager::addMessage(const QVariant &ChatID, const QVariant &MessageID, co
     }
     else{
         //Print Statement
+    }
+
+    return success;
+}
+
+bool DbManager::addTweetPost(const QVariant &TweetID, const QVariant &TweetPostID, const QVariant TimeDate, const QVariant Text){
+    bool success = false;
+    QSqlQuery query;
+    query.prepare("INSERT INTO tweetPosts VALUES(:TweetID,:TweetPostID,:TimeDate,:Text) ");
+    query.bindValue(":TweetID",TweetID);
+    query.bindValue(":TweetPostID",TweetPostID);
+    query.bindValue(":TimeDate",TimeDate);
+    query.bindValue(":Text",Text);
+    if(query.exec()){
+        success = true;
+    }
+    else{
+        qDebug() << "Issue adding tweetPost: "
+                 << query.lastError();
     }
 
     return success;

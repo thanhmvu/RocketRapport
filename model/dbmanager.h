@@ -26,6 +26,7 @@
 class Account;
 class Chat;
 class Blog;
+class Tweet;
 
 class DbManager
 {
@@ -51,6 +52,7 @@ public:
     bool addChat(const QVariant &AccountID, const QVariant &ChatID, const QVariant &sender);
     bool addMessage(const QVariant &ChatID, const QVariant &MessageID, const QVariant &DateTime,
                     const QVariant &text);
+    bool addTweetPost(const QVariant &TweetID,const QVariant &TweetPostID,const QVariant TimeDate, const QVariant Text);
 
     //Methods used to modify the existing contents of the table
     bool addColumn(const QString name, const QString type);

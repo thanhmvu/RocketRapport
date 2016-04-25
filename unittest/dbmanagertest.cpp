@@ -43,7 +43,7 @@ TEST(DbManagerTest, testRetrieveAllMessages){
 
 TEST(DbManagerTest, testRetrieveAllTweets){
     DbManager one("../gProjectDB.db");
-    Tweet *uTweet = new Tweet;
+    Tweet *uTweet = new Tweet(&one);
     one.retrieveAllTweets(uTweet);
     std::vector<TweetPost*> tweetPosts = uTweet->getMyPosts();
 

@@ -35,7 +35,7 @@ Account::Account(DbManager *newdbm)
     myBlog = new Blog(dbm); //Create new blog associated with user
     myBlog->setID( newdbm->retrieveIntInfo("BlogID","accounts","AccountID",accountID) ); //Method used to manually set the ID value of the new user Blog
 
-    myTweet = new Tweet(); //Create new Tweet associated with user
+    myTweet = new Tweet(dbm); //Create new Tweet associated with user
     myTweet->setID( newdbm->retrieveIntInfo("TweetID","accounts","AccountID",accountID) ); //Method used to manually set the ID value of the new user Tweet
 
     //Methods to access the database and retrieve all of the user's associated posts and information.
@@ -76,7 +76,7 @@ Account::Account(QString usrName, DbManager *newdbm){
 
     myScrapbook = new Scrapbook();
     myBlog = new Blog(dbm);
-    myTweet = new Tweet();
+    myTweet = new Tweet(dbm);
 
 }
 

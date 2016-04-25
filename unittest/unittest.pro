@@ -24,7 +24,8 @@ SOURCES += main.cpp \
     dbmanagertest.cpp \
     accounttest.cpp \
     chattest.cpp \
-    blogtest.cpp
+    blogtest.cpp \
+    tweettest.cpp
 
 INCLUDEPATH += googletest                       \
                googletest/src                   \

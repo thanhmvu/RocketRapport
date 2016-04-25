@@ -1,7 +1,9 @@
 #ifndef TWEET_H
 #define TWEET_H
 #include "tweetpost.h"
-
+#include <string>
+#include "dbmanager.h"
+class DbManager;
 
 class Tweet
 {
@@ -11,10 +13,13 @@ private:
     std::vector<TweetPost*> myPosts;
     QString tweetText;
 
+    DbManager *dbm;
+
 public:
-    Tweet();
+    Tweet(DbManager *newDbm);
     void setID(int newID);
     void addPost(TweetPost* newPost);
+    void createPost(TweetPost* newPost);
     void deletePost(TweetPost* oldPost);
 
     std::vector<TweetPost*> getMyPosts();

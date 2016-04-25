@@ -2,8 +2,9 @@
 
 int Tweet::id_cnt = 0;
 
-Tweet::Tweet()
+Tweet::Tweet(DbManager *newDbm)
 {
+    dbm = newDbm;
     tweetID = id_cnt;
     id_cnt ++;
 }
@@ -15,9 +16,15 @@ void Tweet::addPost(TweetPost* newPost) {
     // add new post to the blog post vector
     myPosts.push_back(newPost);
 
-    // add new post to the database
+
 }
 
+void Tweet::createPost(TweetPost *newPost){
+    myPosts.push_back(newPost);
+    // add new post to the database
+    dbm->addTweetPost(tweetID,newPost->getID(),newPost->getTimePosted(),newPost->getText());
+
+}
 
 /**
  * @brief Removes a TweetPost from the Tweet's list of posts.
