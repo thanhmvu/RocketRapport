@@ -23,7 +23,8 @@ SOURCES += main.cpp \
     ../model/post.cpp \
     dbmanagertest.cpp \
     accounttest.cpp \
-    chattest.cpp
+    chattest.cpp \
+    blogtest.cpp
 
 INCLUDEPATH += googletest                       \
                googletest/src                   \
