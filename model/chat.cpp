@@ -7,6 +7,7 @@ Chat::Chat(DbManager *newdbm)
     dbm = newdbm; //Start by setting the local dbm object to the parameter dbm pointer
     chatID = id_cnt;
     id_cnt++;
+    dbm->retrieveAllMessages(this); //Retrieve all messages associated with this chat
 }
 
 
@@ -30,7 +31,7 @@ void Chat::addMessage(Message *newMessage){
  * @brief "Sends" a message to the database.
  * Remember that each of the messageIDs must be unique.
  */
-void Chat::sendMessage(Message * newMessage) {
+void Chat::sendMessage(Message *newMessage) {
     this->addMessage(newMessage);
     dbm->addMessage(chatID,newMessage->getID(),newMessage->getTimeSent(),
                     newMessage->getText());
@@ -40,6 +41,8 @@ void Chat::sendMessage(Message * newMessage) {
  * @brief Gets the vector of messages.
  */
 std::vector<Message*> Chat::getMessages(){
+    //Retrieve all messages from the database
+    dbm->retrieveAllMessages(this);
     return messages;
 }
 
