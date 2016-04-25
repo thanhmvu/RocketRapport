@@ -109,6 +109,7 @@ void ChatUI::runScreen() {
                                     mvprintw(7+(4*q), (this->getCols()/2)-10, sstemp.str().c_str());
                                     sstemp.str("");
                                 }
+                                q++;
                             }
                         }
                     }
@@ -226,8 +227,25 @@ void ChatUI::runScreen() {
                     this->setMenuNumber(2);
                     break;
                 case KEY_UP: // Scroll up
+                    if (scrollIndex > 0) {
+                        scrollIndex--;
+                    }
                     break;
                 case KEY_DOWN: // Scroll down
+                    if (true) {
+                        int k = 0;
+                        for(const auto &acc: this->getSystem()->getAllAccounts()) {
+                            if (k == indexOfTalking) {
+                                for (int j = 0; j < acc.second->getMyChats().size(); j++) {
+                                    if (acc.second->getMyChats()[j]->getTalkingToUser().toStdString() == this->getSystem()->getCurrentUser()->getUsername().toStdString()) {
+                                        if (((acc.second->getMyChats()[j]->getMessages().size())-4)-scrollIndex > 0) {
+                                            scrollIndex++;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                     break;
                 }
             }
