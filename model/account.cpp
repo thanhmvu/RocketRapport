@@ -250,7 +250,7 @@ void Account::retrieveAllTweets(){
  * @brief Adds a new Chat to the user's list of chats.
  */
 void Account::addChat(Chat* newChat) {
-    this->getMyChats().push_back(newChat); //Add new chat to list of chats
+    myChats.push_back(newChat); //Add new chat to list of chats
     QVariant ID(accountID);
     int i = newChat->getChatID();
     QVariant chatID(i);

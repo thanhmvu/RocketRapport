@@ -95,19 +95,23 @@ void ChatUI::runScreen() {
                                 sstemp << datetime.toStdString();
                                 mvprintw(6+(4*q), (this->getCols()/2)-10, sstemp.str().c_str());
                                 sstemp.str("");
+                                refresh();
                                 if (text.size() > this->getCols()-((this->getCols()/2)-11)) {
                                     std::string part1 = text.substr(0, this->getCols()-((this->getCols()/2)-11));
                                     std::string part2 = text.substr(this->getCols()-((this->getCols()/2)-11), std::string::npos);
                                     sstemp << part1;
                                     mvprintw(7+(4*q), (this->getCols()/2)-10, sstemp.str().c_str());
                                     sstemp.str("");
+                                    refresh();
                                     sstemp << part2;
                                     mvprintw(8+(4*q), (this->getCols()/2)-10, sstemp.str().c_str());
                                     sstemp.str("");
+                                    refresh();
                                 } else {
                                     sstemp << text;
                                     mvprintw(7+(4*q), (this->getCols()/2)-10, sstemp.str().c_str());
                                     sstemp.str("");
+                                    refresh();
                                 }
                                 q++;
                             }
