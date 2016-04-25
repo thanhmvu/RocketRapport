@@ -77,7 +77,9 @@ Account::Account(QString usrName, DbManager *newdbm){
     myScrapbook = new Scrapbook();
     myBlog = new Blog(dbm);
     myTweet = new Tweet(dbm);
-
+    for(unsigned i=0; i<myChats.size(); i++){
+        newdbm->retrieveAllMessages(myChats.at(i));
+    }
 }
 
 /**
