@@ -1,5 +1,7 @@
 #include "gtest/gtest.h"
 #include "../model/system.h"
+#include "../model/feed.h"
+#include "../model/group.h"
 //I want to test that the different methods in the system class can call their respective scripts
 //These tests are giving me trouble right now, so I'm commenting them out for the time being
 /**
@@ -57,5 +59,9 @@
 //}
 
 TEST(SystemTest, testAddGroup){
-
+    System testSys("./gProjectDB.db");
+    Group *newGroup = new Group();
+    newGroup->setGroupName("First Group");
+    newGroup->setStatus(1);
+    testSys.addGroup(newGroup);
 }

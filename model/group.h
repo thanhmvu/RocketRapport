@@ -46,14 +46,14 @@ public:
     Account* getAdmin();
 //    void changeAdmin(Account* newAdmin);
     QString getGroupName();
-//    void setGroupName(QString name);
+    void setGroupName(QString name);
 //    QString getCurrentProject();
 //    void setCurrentProject(QString project);
 //    void newProject(QString project);
 //    std::vector<QString> getPastProjects();
     Feed* getFeed();
     int getID();
-
+    bool setStatus(bool activeState);
 };
 
 #endif // GROUP_H

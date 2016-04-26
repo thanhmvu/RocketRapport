@@ -6,6 +6,7 @@ Group::Group()
 {
     groupID = id_cnt;
     id_cnt++;
+    groupFeed = new Feed();
 }
 
 
@@ -102,12 +103,12 @@ QString Group::getGroupName() {
 }
 
 
-///**
-// * @brief Setter that sets the name of this group.
-// */
-//void Group::setGroupName(QString name) {
-//    this->groupName = name;
-//}
+/**
+ * @brief Setter that sets the name of this group.
+ */
+void Group::setGroupName(QString name) {
+    groupName = name;
+}
 
 
 ///**
@@ -151,4 +152,8 @@ int Group::getID(){
 
 Feed* Group::getFeed(){
     return groupFeed;
+}
+
+bool Group::setStatus(bool activeState){
+    isActive = activeState;
 }
