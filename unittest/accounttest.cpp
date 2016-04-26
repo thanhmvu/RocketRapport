@@ -27,15 +27,14 @@
  * @brief TEST This test is used to to test the various functions of an account.
  * This works!
  */
-//TEST (AccountTest, addChat) {
-//    DbManager testDbm("./gProjectDB.db");
-//    Account testAccount(&testDbm);
-//    Chat *testChat = new Chat(&testDbm);
-//    qDebug() << "Chat ID: " << testChat->getChatID() << " New User ID: " << testAccount.getAccountID();
-//    testChat->setTalkingToUser("Vut");
-//    testAccount.addChat(testChat);
-//    ASSERT_EQ(testAccount.getMyChats()[0], testChat);
-//}
+TEST (AccountTest, addChat) {
+    DbManager testDbm("./gProjectDB.db");
+    testDbm.deleteTable("chats"); //Start with an empty table
+    Account testAccount(&testDbm);
+    Chat *testChat = new Chat(0,"Vut",&testDbm);
+    qDebug() << "Chat ID: " << testChat->getChatID() << " New User ID: " << testAccount.getAccountID();
+    testAccount.addChat(testChat);
+}
 
 TEST(AccountTest, testLoadAllMessages){
     DbManager testDbm("./gProjectDB.db");

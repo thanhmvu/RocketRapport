@@ -10,46 +10,51 @@
 #include "../model/system.h"
 #include "../model/dbmanager.h"
 
-TEST(DbManagerTest, testRetrieveAllBlogs){
-    DbManager one("../gProjectDB.db");
-    Blog *b1 = new Blog(&one);
-    qDebug() << b1->getBlogID();
-    one.retrieveAllBlogPosts(b1);
-    std::vector<BlogPost*> bPosts = b1->getMyPosts();
+//TEST(DbManagerTest, testRetrieveAllBlogs){
+//    DbManager one("../gProjectDB.db");
+//    Blog *b1 = new Blog(&one);
+//    qDebug() << b1->getBlogID();
+//    one.retrieveAllBlogPosts(b1);
+//    std::vector<BlogPost*> bPosts = b1->getMyPosts();
 
-    std::cout<< "Number of blog posts inside the blog: " << bPosts.size() << std::endl;
+//    std::cout<< "Number of blog posts inside the blog: " << bPosts.size() << std::endl;
 
-    for(unsigned i=0; i<bPosts.size(); i++){
-        BlogPost *look = bPosts.at(i);
-        std::cout<< look->getID() << ": " << look->getText().toStdString() << std::endl;
-    }
-}
+//    for(unsigned i=0; i<bPosts.size(); i++){
+//        BlogPost *look = bPosts.at(i);
+//        std::cout<< look->getID() << ": " << look->getText().toStdString() << std::endl;
+//    }
+//}
 
-TEST(DbManagerTest, testRetrieveAllMessages){
-    DbManager one("../gProjectDB.db");
-    Chat *uChat = new Chat(&one);
-    qDebug() << "Chat ID: " << uChat->getChatID();
-    one.retrieveAllMessages(uChat);
-    std::vector<Message*> chatMessages = uChat->getMessages();
-    std::cout<< "Number of messages inside the chat: " << chatMessages.size() << std::endl;
+//TEST(DbManagerTest, testRetrieveAllMessages){
+//    DbManager one("../gProjectDB.db");
+//    Chat *uChat = new Chat(&one);
+//    qDebug() << "Chat ID: " << uChat->getChatID();
+//    one.retrieveAllMessages(uChat);
+//    std::vector<Message*> chatMessages = uChat->getMessages();
+//    std::cout<< "Number of messages inside the chat: " << chatMessages.size() << std::endl;
 
-    for(unsigned i=0; i<chatMessages.size() ; i++){
-        Message *look = chatMessages.at(i);
-        std::cout << look->getID() << ": " << look->getText().toStdString() << std::endl;
-    }
+//    for(unsigned i=0; i<chatMessages.size() ; i++){
+//        Message *look = chatMessages.at(i);
+//        std::cout << look->getID() << ": " << look->getText().toStdString() << std::endl;
+//    }
 
-}
+//}
 
-TEST(DbManagerTest, testRetrieveAllTweets){
-    DbManager one("../gProjectDB.db");
-    Tweet *uTweet = new Tweet(&one);
-    one.retrieveAllTweets(uTweet);
-    std::vector<TweetPost*> tweetPosts = uTweet->getMyPosts();
+//TEST(DbManagerTest, testRetrieveAllTweets){
+//    DbManager one("../gProjectDB.db");
+//    Tweet *uTweet = new Tweet(&one);
+//    one.retrieveAllTweets(uTweet);
+//    std::vector<TweetPost*> tweetPosts = uTweet->getMyPosts();
 
-    for(unsigned i=0; i<tweetPosts.size(); i++){
-        TweetPost *look = tweetPosts.at(i);
-        qDebug() << look->getID() << ": " << look->getText();
-    }
+//    for(unsigned i=0; i<tweetPosts.size(); i++){
+//        TweetPost *look = tweetPosts.at(i);
+//        qDebug() << look->getID() << ": " << look->getText();
+//    }
+//}
+
+TEST(DbManager, testAddChat){
+    DbManager one("./gProjectDB.db");
+    one.addChat(4,0,"Chun Wai");
 }
 
 
