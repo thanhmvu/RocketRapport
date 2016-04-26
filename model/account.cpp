@@ -32,15 +32,15 @@ Account::Account(DbManager *newdbm)
     myScrapbook = new Scrapbook();
     myScrapbook->setID(newdbm->retrieveIntInfo("ScrpBkID","accounts","AccountID",accountID));
 
-    myBlog = new Blog(dbm); //Create new blog associated with user
+    myBlog = new Blog(dbm); //Create new blog associated with user and retrieve all posts
     myBlog->setID( newdbm->retrieveIntInfo("BlogID","accounts","AccountID",accountID) ); //Method used to manually set the ID value of the new user Blog
 
-    myTweet = new Tweet(dbm); //Create new Tweet associated with user
+    myTweet = new Tweet(dbm); //Create new Tweet associated with user and retrieve all posts
     myTweet->setID( newdbm->retrieveIntInfo("TweetID","accounts","AccountID",accountID) ); //Method used to manually set the ID value of the new user Tweet
 
     //Methods to access the database and retrieve all of the user's associated posts and information.
-    newdbm->retrieveAllBlogPosts(myBlog);
-    newdbm->retrieveAllTweets(myTweet);
+//    newdbm->retrieveAllBlogPosts(myBlog); // this is done inside Blog constructor already
+//    newdbm->retrieveAllTweets(myTweet);
     newdbm->retrieveAllChats(this);
 
     //Iterate through list of chats the user has and store each of the messages in the db to each chat
@@ -76,8 +76,8 @@ Account::Account(QString usrName, DbManager *newdbm){
     yearDeparted = 0;
 
     myScrapbook = new Scrapbook();
-    myBlog = new Blog(dbm);
-    myTweet = new Tweet(dbm);
+    myBlog = new Blog(dbm);     // retrieve all blog posts inside the constructor
+    myTweet = new Tweet(dbm);   // retrieve all tweets inside the constructor
     for(unsigned i=0; i<myChats.size(); i++){
         newdbm->retrieveAllMessages(myChats.at(i));
     }
@@ -120,11 +120,8 @@ Account::Account(int accID,     QString usrname,    QString pw,
 
     // create blog, tweet, scrapbook, instances using input IDs
     myScrapbook = new Scrapbook();
-    myBlog = new Blog(dbm);
-    myTweet = new Tweet(dbm);
-
-    // then call database methods to rebuild the posts of each instance
-
+    myBlog = new Blog(dbm);     // retrieve all blog posts inside the constructor
+    myTweet = new Tweet(dbm);   // retrieve all tweets inside the constructor
 
     // rebuild chats
 
