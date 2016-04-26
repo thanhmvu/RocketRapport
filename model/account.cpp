@@ -255,9 +255,17 @@ void Account::addChat(Chat* newChat) {
     QVariant ID(accountID);
     int i = newChat->getChatID();
     QVariant chatID(i);
+    QVariant talkingTo(newChat->getTalkingToUser());
     dbm->addChat(ID,chatID,newChat->getTalkingToUser());
 }
 
+/**
+ * @brief Account::insertChat Used to insert chats from the database
+ * @param newChat
+ */
+void Account::insertChat(Chat *newChat){
+    myChats.push_back(newChat);
+}
 
 /**
  * @brief Removes the specified chat from the list of the user's chats.
@@ -366,10 +374,9 @@ void Account::setMyScrapbook(Scrapbook* sBook) {
  * @brief Getter for the user's list of chats.
  */
 std::vector<Chat*> Account::getMyChats() {
-    int x = myChats.size();
     myChats.clear();
-
-    return this->myChats;
+    dbm->retrieveAllChats(this);
+    return myChats;
 }
 
 
@@ -387,7 +394,6 @@ std::vector<Account*> Account::getFriendList() {
 std::vector<Group*> Account::getGroups() {
     return this->groups;
 }
-
 
 /**
  * @brief Getter for the user's first name.

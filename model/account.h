@@ -78,6 +78,7 @@ public:
 
     // Functions specific to a general account.
     void addChat(Chat* newChat);
+    void insertChat(Chat* newChat);
     void removeChat(Chat* badChat);
     void addFriend(Account* newFriend);
     void removeFriend(Account* badFriend);
@@ -106,6 +107,7 @@ public:
     std::vector<Chat*>      getMyChats();
     std::vector<Account*>   getFriendList();
     std::vector<Group*>     getGroups();
+
     System*     getSystem();
 
     // setters

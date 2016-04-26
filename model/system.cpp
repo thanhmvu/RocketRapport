@@ -277,7 +277,7 @@ bool System::addChat(const int &AccountID,
     const QVariant AcntID(AccountID);
     const QVariant ChtID(ChatID);
     const QVariant sndr(sender);
-    dbm->addChat(AcntID,ChtID,sndr);
+    dbm->addChat(AcntID,ChtID,sender);
     return true;
 }
 

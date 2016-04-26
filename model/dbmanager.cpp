@@ -92,7 +92,7 @@ bool DbManager::addUser(const QVariant &AcntID, const QVariant &FrstName,
  * @param FeedID
  * @return
  */
-bool DbManager::addGroup(const QVariant &GrpID, const QVariant &GrpAdmnId, \
+bool DbManager::addGroup(const QVariant &GrpID, const QVariant &GrpAdmnId,
                          bool actStatus, const QVariant &GrpName, const QVariant &FeedID){
     bool success = false;
     QSqlQuery query;
@@ -117,13 +117,14 @@ bool DbManager::addGroup(const QVariant &GrpID, const QVariant &GrpAdmnId, \
  * @param sender
  * @return
  */
-bool DbManager::addChat(const QVariant &AccountID, const QVariant &ChatID, const QVariant &sender){
+bool DbManager::addChat(const QVariant &AccountID, const QVariant &ChatID, const QString &sender){
     bool success = false;
     QSqlQuery query;
-    query.prepare("INSERT INTO chats VALUES((:AccountID), (:ChatID), (:Sender) )");
+    query.prepare("INSERT INTO chats VALUES ((:AccountID), (:ChatID), (:Sender) )");
     query.bindValue(":AccountID", AccountID);
     query.bindValue(":ChatID", ChatID);
-    query.bindValue(":sender", sender);
+    query.bindValue(":Sender", sender);
+    //qDebug() <<query.boundValue(0) << " " << query.boundValue(1) << " " << query.boundValue(2); //Shows an "invalid" value
     if(query.exec()){
         success = true;
     }
@@ -402,7 +403,7 @@ void DbManager::retrieveAllTweets(Tweet *userTweet){
         Chat *newChat = new Chat(this);
         newChat->setChatID(query.value(1).toInt());
         newChat->setTalkingToUser(query.value(2).toString()); //Set the name of the member the chat is used for speaking with
-        user->addChat(newChat);
+        user->insertChat(newChat); //NEeds to insert a preexisting chat, not create a new one
     }
  }
 

@@ -7,7 +7,7 @@ Chat::Chat(DbManager *newdbm)
     dbm = newdbm; //Start by setting the local dbm object to the parameter dbm pointer
     chatID = id_cnt;
     id_cnt++;
-    dbm->retrieveAllMessages(this); //Retrieve all messages associated with this chat
+    //dbm->retrieveAllMessages(this); //Retrieve all messages associated with this chat
 }
 
 

@@ -49,7 +49,7 @@ public:
                   const QVariant &GrpName, const QVariant &FeedID);
     bool addFeedPost(const QVariant &FeedID, const QVariant &feedPostID, const QVariant &feedPostText);
     bool addBlogPost(const QVariant &BlogPostID, const QVariant &BlogID, const QVariant &timeDate, const QVariant &text);
-    bool addChat(const QVariant &AccountID, const QVariant &ChatID, const QVariant &sender);
+    bool addChat(const QVariant &AccountID, const QVariant &ChatID, const QString &receiver);
     bool addMessage(const QVariant &ChatID, const QVariant &MessageID, const QVariant &DateTime,
                     const QVariant &text);
     bool addTweetPost(const QVariant &TweetID,const QVariant &TweetPostID,const QVariant TimeDate, const QVariant Text);

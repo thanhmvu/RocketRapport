@@ -304,7 +304,7 @@ void ChatUI::runScreen() {
                                             this->getSystem()->getCurrentUser()->addChat(newChat2);
                                         }
                                     }
-                                    for (int i = 0; i < acc.second->getMyChats().size(); i++) {
+                                    for (int i = 0; i < acc.second->getMyChats().size(); i++) { //This line is causing the program to add the message over and over again
                                         if (acc.second->getMyChats()[i]->getTalkingToUser().toStdString() == this->getSystem()->getCurrentUser()->getUsername().toStdString()) {
                                             // Found Chat with current user
                                             acc.second->getMyChats()[i]->sendMessage(sentMessage);
