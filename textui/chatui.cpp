@@ -86,6 +86,11 @@ void ChatUI::runScreen() {
         const QString dateFormat = "h:m ap MMMM d yyyy";
         for(const auto &acc: this->getSystem()->getAllAccounts()) {
             if (v == indexOfTalking) {
+                talkingWith = acc.first.toStdString();
+                ss << talkingWith;
+                mvprintw(3, ((this->getCols()/2)-11) + ((this->getCols()-((this->getCols()/2)-11))/2) - (talkingWith.size()/2), ss.str().c_str());
+                ss.str("");
+                refresh();
                 for (int j = 0; j < acc.second->getMyChats().size(); j++) {
                     if (acc.second->getMyChats()[j]->getTalkingToUser().toStdString() == this->getSystem()->getCurrentUser()->getUsername().toStdString()) {
                         for (int m = 0; m < acc.second->getMyChats()[j]->getMessages().size(); m++) {

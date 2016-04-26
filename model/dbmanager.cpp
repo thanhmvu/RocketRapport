@@ -149,7 +149,7 @@ bool DbManager::addMessage(const QVariant &ChatID, const QVariant &MessageID, co
                            const QVariant &text){
     bool success = false;
     QSqlQuery query;
-    //qDebug() << "Status of prepare statement" << query.prepare("INSERT INTO chatMessages VALUES(:ChatID,:MessageID,:dateTime,:Text)");
+    query.prepare("INSERT INTO chatMessages VALUES(:ChatID,:MessageID,:dateTime,:Text)");
     query.bindValue(":ChatID", ChatID);
     query.bindValue(":MessageID",MessageID);
     query.bindValue(":dateTime",DateTime);
