@@ -11,7 +11,9 @@ void ProfileUI::displayScreen() {
 }
 
 void ProfileUI::runScreen() {
-    mvprintw(2, 1, "In Run Screen");
+
+
+    this->changeScreens(false);
+    clear();
     refresh();
-    getch();
 }

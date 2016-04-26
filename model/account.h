@@ -48,6 +48,7 @@ private:
     int age;
     int phoneNumber;
     int accountID;
+    std::string profileUsername;
 
     // Private members specific to a current guest.
     Blog* myBlog;
@@ -107,6 +108,7 @@ public:
     std::vector<Chat*>      getMyChats();
     std::vector<Account*>   getFriendList();
     std::vector<Group*>     getGroups();
+    std::string getProfileUsername();
 
     System*     getSystem();
 
@@ -129,6 +131,7 @@ public:
     void setAge(int age);
     void setPhoneNumber(int number);
     void setSystem(System* newSystem);
+    void setProfileUsername(std::string name);
 
     void promoteToCurrentGuest();
     void promoteToPastGuest();

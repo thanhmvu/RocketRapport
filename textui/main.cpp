@@ -45,8 +45,6 @@ int main(int argc, char *argv[])
         case 3: // Profile
             profile.displayScreen();
             profile.runScreen();
-            profile.changeScreens(false);
-            clear();
             break;
         case 4: // Blog
             blog.displayScreen();

@@ -554,6 +554,22 @@ void Account::setPhoneNumber(int number) {
     this->phoneNumber = number;
 }
 
+
+/**
+ * @brief Getter that returns the username of the profile to be displayed.
+ */
+std::string Account::getProfileUsername() {
+    return this->profileUsername;
+}
+
+
+/**
+ * @brief Setter for the profile username variable.
+ */
+void Account::setProfileUsername(std::string name) {
+    this->profileUsername = name;
+}
+
 // CURRENT GUEST
 
 /**
