@@ -21,6 +21,7 @@ public:
     void addPost(BlogPost* newPost);
     void storePostToDB(BlogPost* newPost);
     void deletePost(BlogPost* oldPost);
+    void deleteAllPosts();
 
     std::vector<BlogPost*> getMyPosts();
     int getBlogID();

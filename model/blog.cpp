@@ -52,3 +52,10 @@ int Blog::getBlogID(){
 void Blog::setID(int newID){
     blogID = newID;
 }
+
+void Blog::deleteAllPosts(){
+    while(!myPosts.empty()){
+        delete myPosts.back();
+        myPosts.pop_back();
+    }
+}

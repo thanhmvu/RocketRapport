@@ -236,6 +236,9 @@ void Account::promoteToGroupAdmin() {
 }
 
 void Account::retrieveAllBlogPosts(){
+    // clear old posts
+    myBlog->deleteAllPosts();
+    // retrieve all posts
     dbm->retrieveAllBlogPosts(myBlog);
 }
 
