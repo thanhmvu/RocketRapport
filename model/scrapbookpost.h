@@ -10,6 +10,9 @@ private:
     int id;
 public:
     ScrapbookPost();
+
+    // for debugging purpose
+    static int getIdCnt(){ return id_cnt; };
 };
 
 #endif // SCRAPBOOKPOST_H

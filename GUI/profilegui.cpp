@@ -73,7 +73,8 @@ void ProfileGUI::on_pushButton_blog_clicked()
     this->close();
     blog_screen->show();
 
-    std::cout<< "BlogPost internal id_cnt value is: " << BlogPost::getIdCnt() << std::endl;
+//    std::cout<< "BlogPost internal id_cnt value is: " << BlogPost::getIdCnt() << std::endl;
+    System::printAllIdCnt();
 }
 
 void ProfileGUI::on_pushButton_tweet_clicked()

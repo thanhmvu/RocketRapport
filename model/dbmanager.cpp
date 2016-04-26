@@ -123,8 +123,8 @@ bool DbManager::addChat(const QVariant &AccountID, const QVariant &ChatID, const
     bool success = false;
     QSqlQuery query;
     query.prepare("INSERT INTO chats VALUES ((:ChatID), (:AccountID), (:Reciever) )");
-    query.bindValue(":AccountID", AccountID);
     query.bindValue(":ChatID", ChatID);
+    query.bindValue(":AccountID", AccountID);
     query.bindValue(":Reciever", sender);
     //qDebug() <<query.boundValue(0) << " " << query.boundValue(1) << " " << query.boundValue(2); //Shows an "invalid" value
     if(query.exec()){

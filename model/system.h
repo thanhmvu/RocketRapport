@@ -73,6 +73,9 @@ public:
     //    void loadAccounts(std::map<int, QString> *one); //Method called in the constructor that will be used to create a list of accounts accessible to the user.
     //    void fillAccountsMap();
 
+    // for debugging purpose
+    static int getIdCnt(){ return id_cnt; };
+    static void printAllIdCnt();
 };
 
 #endif // SYSTEM_H

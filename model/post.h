@@ -22,6 +22,9 @@ public:
 
     bool setText(QString new_text);
     bool setTimePosted(QDateTime new_time);
+
+    // for debugging purpose
+    static int getIdCnt(){ return id_cnt; };
 };
 
 #endif // POST_H

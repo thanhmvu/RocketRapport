@@ -21,6 +21,9 @@ public:
 
     bool setText(QString new_text);
     bool setTime(time_t new_time);
+
+    // for debugging purpose
+    static int getIdCnt(){ return id_cnt; };
 };
 
 #endif // COMMENT_H

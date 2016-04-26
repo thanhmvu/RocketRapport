@@ -36,9 +36,10 @@ System::System(const QString &path)
 //        qDebug()<< "First name qDebug: " << acc->getFirstName();
 //    }
     std::cout<< "New system created containing " << accounts.size() << " accounts." << std::endl;
-    std::cout<< "Account internal id_cnt value is: " << Account::getIdCnt() << std::endl;
-    std::cout<< "Blog internal id_cnt value is: " << Blog::getIdCnt() << std::endl;    
-    std::cout<< "BlogPost internal id_cnt value is: " << BlogPost::getIdCnt() << std::endl;
+//    std::cout<< "Account internal id_cnt value is: " << Account::getIdCnt() << std::endl;
+//    std::cout<< "Blog internal id_cnt value is: " << Blog::getIdCnt() << std::endl;
+//    std::cout<< "BlogPost internal id_cnt value is: " << BlogPost::getIdCnt() << std::endl;
+    printAllIdCnt();
 }
 
 /**
@@ -299,4 +300,21 @@ Account* System::getAccountByUsername(QString usrname){
 void System::loadAllAccounts(){
     // call dbm to rebuild accounts and load to accounts map
     dbm->retrieveAllAccounts(accounts);
+}
+
+void System::printAllIdCnt(){
+    std::cout<< "All id_cnt values is: " << std::endl;
+    std::cout<< "Account    : " << Account::getIdCnt() << std::endl;
+    std::cout<< "Blog       : " << Blog::getIdCnt() << std::endl;
+    std::cout<< "BlogPost   : " << BlogPost::getIdCnt() << std::endl;
+    std::cout<< "Tweet      : " << Tweet::getIdCnt() << std::endl;
+    std::cout<< "TweetPost  : " << TweetPost::getIdCnt() << std::endl;
+    std::cout<< "Chat       : " << Chat::getIdCnt() << std::endl;
+    std::cout<< "Group      : " << Group::getIdCnt() << std::endl;
+    std::cout<< "Message    : " << Message::getIdCnt() << std::endl;
+    std::cout<< "Scrapbook  : " << Scrapbook::getIdCnt() << std::endl;
+    std::cout<< "ScrpbkPost : " << ScrapbookPost::getIdCnt() << std::endl;
+
+//        std::cout<< "Comment    : " << Comment::getIdCnt() << std::endl;
+//        std::cout<< "Feed       : " << Feed::getIdCnt() << std::endl;
 }

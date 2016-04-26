@@ -24,6 +24,8 @@ public:
     QDateTime getTimeSent();
     int getID();
 
+    // for debugging purpose
+    static int getIdCnt(){ return id_cnt; };
 };
 
 #endif // MESSAGE_H

@@ -32,6 +32,8 @@ public:
     QString getText();
     QDateTime getTimePosted();
 
+    // for debugging purpose
+    static int getIdCnt(){ return id_cnt; }
 };
 
 #endif // TWEETPOST_H

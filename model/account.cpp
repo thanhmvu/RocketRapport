@@ -829,10 +829,6 @@ void Account::setSystem(System* newSystem) {
     }
 }
 
-int Account::getIdCnt(){
-    return id_cnt;
-}
-
 // GROUP ADMIN
 
 ///**

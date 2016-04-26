@@ -26,6 +26,9 @@ public:
     QString getTalkingToUser();
     void setTalkingToUser(QString name);
 //    void setChatID(int newID);
+
+    // for debugging purpose
+    static int getIdCnt(){ return id_cnt; };
 };
 
 #endif // CHAT_H

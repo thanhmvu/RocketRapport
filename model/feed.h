@@ -24,6 +24,9 @@ public:
     void setFeedText(QString text);
 
     int getFeedID();
+
+    // for debugging purpose
+    static int getIdCnt(){ return id_cnt; };
 };
 
 #endif // FEED_H

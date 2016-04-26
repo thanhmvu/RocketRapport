@@ -22,6 +22,9 @@ public:
 
     std::vector<ScrapbookPost*> getMyPosts();
     int getScrpbkID();
+
+    // for debugging purpose
+    static int getIdCnt(){ return id_cnt; };
 };
 
 #endif // SCRAPBOOK_H

@@ -25,6 +25,9 @@ public:
     std::vector<TweetPost*> getMyPosts();
 
     int getTweetID();
+
+    // for debugging purpose
+    static int getIdCnt(){ return id_cnt; };
 };
 
 #endif // TWEET_H

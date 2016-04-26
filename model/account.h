@@ -168,7 +168,7 @@ public:
     void deleteScrapbookPost(Scrapbook* targetScrapbook, ScrapbookPost* badPost);
 
     // Funtions for testing
-    static int getIdCnt();
+    static int getIdCnt(){ return id_cnt; };
 };
 
 #endif // ACCOUNT_H

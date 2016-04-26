@@ -54,6 +54,9 @@ public:
     Feed* getFeed();
     int getID();
     bool setStatus(bool activeState);
+
+    // for debugging purpose
+    static int getIdCnt(){ return id_cnt; };
 };
 
 #endif // GROUP_H
