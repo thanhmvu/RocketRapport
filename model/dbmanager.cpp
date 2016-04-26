@@ -354,9 +354,9 @@ void DbManager::retrieveAllBlogPosts(Blog *userBlog){
         int blogID = query.value(1).toInt();
         QDateTime time = query.value(2).toDateTime();
         QString text = query.value(3).toString();
-        // re-create the post
-        BlogPost *newBP = new BlogPost(blogID, time, text);
-        newBP->setID(postID); // manually ensure that the ID of new post matches the one in the database
+
+        // re-create post using special constructor use to reload blogPost with givin postID
+        BlogPost *newBP = new BlogPost(postID, blogID, time, text);
         userBlog->addPost(newBP);
     }
 }
@@ -369,10 +369,12 @@ void DbManager::retrieveAllMessages(Chat *userChat){
     query.prepare(command);
     query.exec();
     while(query.next()){
-        Message *newMessage = new Message;
-        newMessage->setDateTime(query.value(2).toDateTime() );
-        newMessage->setReceiver( query.value(4).toString() );
-        newMessage->setText( query.value(3).toString() );
+        int messID = query.value(0).toInt();
+        QDateTime time = query.value(2).toDateTime();
+        QString text = query.value(3).toString();
+
+        // re-create messages using special constructor
+        Message *newMessage = new Message(messID, time, text);
         userChat->addMessage(newMessage);
     }
 
@@ -410,10 +412,11 @@ void DbManager::retrieveAllTweets(Tweet *userTweet){
     query.prepare(command);
     query.exec();
     while(query.next() ){
-        Chat *newChat = new Chat(this);
-        newChat->setChatID(query.value(0).toInt());
-        newChat->setTalkingToUser(query.value(2).toString()); //Set the name of the member the chat is used for speaking with
-        user->insertChat(newChat); //NEeds to insert a preexisting chat, not create a new one
+        int chatID = query.value(0).toInt();
+        QString partner = query.value(2).toString();
+        Chat *newChat = new Chat(chatID, partner, this);
+
+        user->insertChat(newChat); // special method for loading existing chat from the database
     }
  }
 

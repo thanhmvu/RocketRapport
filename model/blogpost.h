@@ -22,11 +22,12 @@ private:
 public:
 //    BlogPost();
     BlogPost(int BlogID, QDateTime t, QString content);
+    BlogPost(int newID, int BlogID, QDateTime t, QString content);
 
     // Setter methods for each relevant field
     void setText(QString new_text);
     void setTimePosted(QDateTime new_time);
-    void setID(int newID);
+//    void setID(int newID);
     void setBlogID(int newID);
 
     //Getter methods for each field

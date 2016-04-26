@@ -35,7 +35,6 @@ TEST(DbManagerTest, testRetrieveAllMessages){
 
     for(unsigned i=0; i<chatMessages.size() ; i++){
         Message *look = chatMessages.at(i);
-        std::cout << "Sent to: " << look->getReceiver().toStdString() << std::endl;
         std::cout << look->getID() << ": " << look->getText().toStdString() << std::endl;
     }
 

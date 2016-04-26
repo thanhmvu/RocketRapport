@@ -48,10 +48,10 @@ void BlogGUI::on_pushButton_savePost_clicked()
     QString text = ui->textEdit_newPost->toPlainText();
     QDateTime time = QDateTime::currentDateTime();
     Blog *blog = profile_screen->getProfileOwner()->getMyBlog();
-    int id = blog->getBlogID();
+    int blogID = blog->getBlogID();
 
     // create new post object
-    BlogPost *post = new BlogPost(id,time,text);
+    BlogPost *post = new BlogPost(blogID,time,text);
 
     // add new post to database
     blog->addPost(post);

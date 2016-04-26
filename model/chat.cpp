@@ -7,9 +7,22 @@ Chat::Chat(DbManager *newdbm)
     dbm = newdbm; //Start by setting the local dbm object to the parameter dbm pointer
     chatID = id_cnt;
     id_cnt++;
-    //dbm->retrieveAllMessages(this); //Retrieve all messages associated with this chat
 }
 
+/**
+ * @brief constructor used for loading from the database
+ */
+Chat::Chat(int newID, QString partner, DbManager *newdbm)
+{
+    chatID = newID;
+    // update id_cnt if needed
+    if(newID >= id_cnt){
+        id_cnt = newID + 1;
+    }
+
+    talkingToUser = partner;
+    dbm = newdbm;
+}
 
 /**
  * @brief Gets ID of this chat object.
@@ -67,10 +80,10 @@ void Chat::setTalkingToUser(QString name) {
     this->talkingToUser = name;
 }
 
-void Chat::setChatID(int newID){
-    chatID = newID;
-    // update id_cnt if needed
-    if(newID >= id_cnt){
-        id_cnt = newID + 1;
-    }
-}
+//void Chat::setChatID(int newID){
+//    chatID = newID;
+//    // update id_cnt if needed
+//    if(newID >= id_cnt){
+//        id_cnt = newID + 1;
+//    }
+//}

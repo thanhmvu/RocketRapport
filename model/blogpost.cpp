@@ -17,16 +17,31 @@ BlogPost::BlogPost(int BlogID, QDateTime t, QString content){
     text = content;
 }
 
-int BlogPost::getID(){ return id; }
-
-void BlogPost::setID(int newID){
+/**
+ * @brief constructor that is used explicitly for loading from database
+ */
+BlogPost::BlogPost(int newID, int BlogID, QDateTime t, QString content){
     id = newID;
-
     // update id_cnt if needed
     if(newID >= id_cnt){
         id_cnt = newID + 1;
     }
+
+    blogID = BlogID;
+    timePosted = t;
+    text = content;
 }
+
+int BlogPost::getID(){ return id; }
+
+//void BlogPost::setID(int newID){
+//    id = newID;
+
+//    // update id_cnt if needed
+//    if(newID >= id_cnt){
+//        id_cnt = newID + 1;
+//    }
+//}
 
 int BlogPost::getBlogID(){ return blogID; }
 

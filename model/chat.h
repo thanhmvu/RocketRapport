@@ -18,13 +18,14 @@ private:
     DbManager *dbm;
 public:
     Chat(DbManager *newdbm); //Pass in pointer to dbm object that the chat can use for data storage
+    Chat(int newID, QString partner, DbManager *newdbm);
     int getChatID();
     void addMessage(Message *newMessage);
     void sendMessage(Message * newMessage);
     std::vector<Message *> getMessages();
     QString getTalkingToUser();
     void setTalkingToUser(QString name);
-    void setChatID(int newID);
+//    void setChatID(int newID);
 };
 
 #endif // CHAT_H

@@ -8,6 +8,18 @@ Message::Message()
     id_cnt++;
 }
 
+Message::Message(int newID, QDateTime time, QString content)
+{
+    messID = newID;
+    // update id_cnt if needed
+    if(newID >= id_cnt){
+        id_cnt = newID + 1;
+    }
+
+    sentTime = time;
+    text = content;
+}
+
 int Message::getID(){
     return messID;
 }
@@ -16,16 +28,8 @@ void Message::setDateTime(QDateTime timeSent){
     sentTime = timeSent;
 }
 
-void Message::setReceiver(QString insert){
-    receiver = insert;
-}
-
 void Message::setText(QString insert){
     text = insert;
-}
-
-QString Message::getReceiver(){
-    return receiver;
 }
 
 QString Message::getText(){

@@ -10,19 +10,17 @@ private:
     static int id_cnt;
     int messID;
     QString text;
-    QString receiver;
     QDateTime sentTime;
 public:
     Message();
+    Message(int newID, QDateTime time, QString content);
 
     //Set methods
     void setText(QString insert);
-    void setReceiver(QString insert);
     void setDateTime(QDateTime timeSent);
 
     //get methods
     QString getText();
-    QString getReceiver();
     QDateTime getTimeSent();
     int getID();
 
