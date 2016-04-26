@@ -96,16 +96,17 @@ bool DbManager::addGroup(const QVariant &GrpID, const QVariant &GrpAdmnId,
                          bool actStatus, const QVariant &GrpName, const QVariant &FeedID){
     bool success = false;
     QSqlQuery query;
-    query.prepare("INSERT INTO TABLE groups VALUES(:GrpID, :GrpAdmnId, :actStatus, :GrpName, :FeedID) ");
+    query.prepare("INSERT INTO groups VALUES ( (:GrpID) , (:GrpAdmnId) , (:actStatus) , (:GrpName) , (:FeedID) )");
     query.bindValue(":GrpID",GrpID);
     query.bindValue(":GrpAdmnId",GrpAdmnId);
     query.bindValue(":actStatus",actStatus);
     query.bindValue(":GrpName",GrpName);
     query.bindValue(":FeedID",FeedID);
+    qDebug() << query.boundValue(0) << " " << query.boundValue(1) << " " << query.boundValue(2) <<
+                " " << query.boundValue(3) << " " << query.boundValue(4);
     if(query.exec()){
         success = true;
     }else{
-        //Need some kind of print statement to signify that the method didn't work
         qDebug() << "Issue adding new Group"
                  << query.lastError();
     }

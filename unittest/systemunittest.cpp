@@ -59,6 +59,7 @@
 //}
 
 TEST(SystemTest, testAddGroup){
+    system("pwd");
     System testSys("./gProjectDB.db");
     Group *newGroup = new Group();
     newGroup->setGroupName("First Group");
