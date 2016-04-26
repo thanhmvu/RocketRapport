@@ -447,7 +447,7 @@ void DbManager::retrieveAllAccounts(std::map<QString, Account*> &accounts){
 bool DbManager::addBlogPost(const QVariant &blogPostID, const QVariant &blogID,
                             const QVariant &timeDate, const QVariant &text){
      QSqlQuery query;
-     //qDebug() << query.prepare("INSERT INTO blogPosts VALUES( (:BlogPostID), (:blogID), (:timeDate), (:text) )" );
+     qDebug() << query.prepare("INSERT INTO blogPosts VALUES( (:BlogPostID), (:blogID), (:timeDate), (:text) )" );
      query.bindValue(":BlogPostID",blogPostID);
      query.bindValue(":blogID", blogID);
      query.bindValue(":timeDate",timeDate);
