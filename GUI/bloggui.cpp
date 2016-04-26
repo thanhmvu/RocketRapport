@@ -91,6 +91,19 @@ void BlogGUI::on_pushButton_back_to_profile_clicked()
 }
 
 void BlogGUI::loadBlogView(QString blog_owner, QString viewer){
+    // refresh posts_layout
+    QLayoutItem *child;
+    while ((child = posts_layout->takeAt(0)) != 0) {
+        delete child;
+    }
+    delete posts_layout;
+    delete posts_widget;
+
+    posts_widget = new QWidget();
+    posts_layout = new QVBoxLayout();
+    posts_widget->setLayout(posts_layout);
+    ui->scrollArea->setWidget(posts_widget);
+
     // set the blog's name
     ui->label_myBlog->setText(blog_owner+"'s blog");
 
