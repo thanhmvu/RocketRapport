@@ -69,4 +69,8 @@ void Chat::setTalkingToUser(QString name) {
 
 void Chat::setChatID(int newID){
     chatID = newID;
+    // update id_cnt if needed
+    if(newID >= id_cnt){
+        id_cnt = newID + 1;
+    }
 }

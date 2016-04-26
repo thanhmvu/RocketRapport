@@ -30,13 +30,15 @@ System::System(const QString &path)
 
 
     // print out info for debugging purpose
-    for(auto pair: accounts){
-        Account * acc = pair.second;
-        std::cout<< "First name std::cout: " << acc->getFirstName().toStdString() <<"\n";
-        qDebug()<< "First name qDebug: " << acc->getFirstName();
-    }
+//    for(auto pair: accounts){
+//        Account * acc = pair.second;
+//        std::cout<< "First name std::cout: " << acc->getFirstName().toStdString() <<"\n";
+//        qDebug()<< "First name qDebug: " << acc->getFirstName();
+//    }
     std::cout<< "New system created containing " << accounts.size() << " accounts." << std::endl;
     std::cout<< "Account internal id_cnt value is: " << Account::getIdCnt() << std::endl;
+    std::cout<< "Blog internal id_cnt value is: " << Blog::getIdCnt() << std::endl;    
+    std::cout<< "BlogPost internal id_cnt value is: " << BlogPost::getIdCnt() << std::endl;
 }
 
 /**

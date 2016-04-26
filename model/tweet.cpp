@@ -53,4 +53,8 @@ int Tweet::getTweetID(){
 
 void Tweet::setID(int newID){
     tweetID = newID;
+    // update id_cnt if needed
+    if(newID >= id_cnt){
+        id_cnt = newID + 1;
+    }
 }

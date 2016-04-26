@@ -51,6 +51,10 @@ int Blog::getBlogID(){
 
 void Blog::setID(int newID){
     blogID = newID;
+    // update id_cnt if needed
+    if(newID >= id_cnt){
+        id_cnt = newID + 1;
+    }
 }
 
 void Blog::deleteAllPosts(){

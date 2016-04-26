@@ -42,6 +42,9 @@ public:
     bool addComment(Comment cmt);
     bool deleteComment(int id);
     int findComment(int cmt_id);
+
+    // for debugging purpose
+    static int getIdCnt(){ return id_cnt; };
 };
 
 #endif // BLOGPOST_H

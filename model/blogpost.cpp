@@ -21,6 +21,11 @@ int BlogPost::getID(){ return id; }
 
 void BlogPost::setID(int newID){
     id = newID;
+
+    // update id_cnt if needed
+    if(newID >= id_cnt){
+        id_cnt = newID + 1;
+    }
 }
 
 int BlogPost::getBlogID(){ return blogID; }

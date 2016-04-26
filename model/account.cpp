@@ -95,7 +95,10 @@ Account::Account(int accID,     QString usrname,    QString pw,
 {
     dbm = newdbm;
     this->accountID = accID;
-    id_cnt++;
+    // update id_cnt if needed
+    if(accID >= id_cnt){
+        id_cnt = accID + 1;
+    }
 
     isCurrentGuest = true;
     isPastGuest = false;

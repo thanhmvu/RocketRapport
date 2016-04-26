@@ -25,6 +25,9 @@ public:
 
     std::vector<BlogPost*> getMyPosts();
     int getBlogID();
+
+    // for debugging purpose
+    static int getIdCnt(){ return id_cnt; };
 };
 
 #endif // BLOG_H

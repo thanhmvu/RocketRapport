@@ -10,6 +10,10 @@ Scrapbook::Scrapbook()
 
 void Scrapbook::setID(int newID){
     scrpBookID = newID;
+    // update id_cnt if needed
+    if(newID >= id_cnt){
+        id_cnt = newID + 1;
+    }
 }
 
 /**
