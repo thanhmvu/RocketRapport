@@ -18,7 +18,6 @@ TEST(ChatTest,testSendMessage){
     newDateTime->setDate(newDate);
     one->setDateTime(*newDateTime);
 
-    qDebug() << one->getID() << " " << one->getText() << " " << one->getReceiver();
     test.sendMessage(one);
 }
 

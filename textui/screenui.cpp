@@ -107,7 +107,7 @@ void ScreenUI::setSystem(System* mainSystem) {
  * @brief Getter for the index in the account map of the profile to be displayed.
  */
 int ScreenUI::getIndexOfProfile() {
-
+    return this->indexOfProfile;
 }
 
 
@@ -115,5 +115,5 @@ int ScreenUI::getIndexOfProfile() {
  * @brief Setter for the index of profile.
  */
 void ScreenUI::setIndexOfProfile(int index) {
-
+    this->indexOfProfile = index;
 }
