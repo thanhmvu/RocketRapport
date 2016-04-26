@@ -281,8 +281,11 @@ void ChatUI::runScreen() {
                     case KEY_HOME: // Sends message
                         if (true) {
                             Message * sentMessage = new Message();
+                            Message * sentMessage2 = new Message();
                             sentMessage->setText(QString::fromStdString(ss.str()));
                             sentMessage->setDateTime(QDateTime::currentDateTime());
+                            sentMessage2->setText(QString::fromStdString(ss.str()));
+                            sentMessage2->setDateTime(QDateTime::currentDateTime());
                             int k = 0;
                             bool chatExists = false;
                             for(const auto &acc: this->getSystem()->getAllAccounts()) {
@@ -321,7 +324,7 @@ void ChatUI::runScreen() {
                             for (int i = 0; i < this->getSystem()->getCurrentUser()->getMyChats().size(); i++) {
                                 if (this->getSystem()->getCurrentUser()->getMyChats()[i]->getTalkingToUser().toStdString() == talkingWith) {
                                     // Found Chat with other user
-                                    this->getSystem()->getCurrentUser()->getMyChats()[i]->sendMessage(sentMessage);
+                                    this->getSystem()->getCurrentUser()->getMyChats()[i]->sendMessage(sentMessage2);
                                 }
                             }
                             ss.str("");

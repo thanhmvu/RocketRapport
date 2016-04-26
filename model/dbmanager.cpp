@@ -120,10 +120,10 @@ bool DbManager::addGroup(const QVariant &GrpID, const QVariant &GrpAdmnId,
 bool DbManager::addChat(const QVariant &AccountID, const QVariant &ChatID, const QString &sender){
     bool success = false;
     QSqlQuery query;
-    query.prepare("INSERT INTO chats VALUES ((:AccountID), (:ChatID), (:Sender) )");
+    query.prepare("INSERT INTO chats VALUES ((:ChatID), (:AccountID), (:Reciever) )");
     query.bindValue(":AccountID", AccountID);
     query.bindValue(":ChatID", ChatID);
-    query.bindValue(":Sender", sender);
+    query.bindValue(":Reciever", sender);
     //qDebug() <<query.boundValue(0) << " " << query.boundValue(1) << " " << query.boundValue(2); //Shows an "invalid" value
     if(query.exec()){
         success = true;
@@ -409,7 +409,7 @@ void DbManager::retrieveAllTweets(Tweet *userTweet){
     query.exec();
     while(query.next() ){
         Chat *newChat = new Chat(this);
-        newChat->setChatID(query.value(1).toInt());
+        newChat->setChatID(query.value(0).toInt());
         newChat->setTalkingToUser(query.value(2).toString()); //Set the name of the member the chat is used for speaking with
         user->insertChat(newChat); //NEeds to insert a preexisting chat, not create a new one
     }
