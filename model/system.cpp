@@ -134,7 +134,8 @@ bool System::createAccount(QString username, QString password, QString firstname
  */
 void System::addGroup(Group* newGroup) {
     this->getGroups().push_back(newGroup);
-    dbm->addGroup(newGroup->getID(),
+    dbm->addGroup(newGroup->getID(),newGroup->getAdmin()->getAccountID(),
+                  newGroup->getIsActive(),newGroup->getGroupName(),newGroup->getFeed()->getFeedID() );
 }
 
 

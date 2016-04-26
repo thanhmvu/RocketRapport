@@ -55,3 +55,7 @@
 //    EXPECT_EQ(true, sys.usernameExist("user1"));
 //    EXPECT_EQ(true, sys.usernameExist("user2"));
 //}
+
+TEST(SystemTest, testAddGroup){
+
+}

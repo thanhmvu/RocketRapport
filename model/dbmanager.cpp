@@ -106,6 +106,8 @@ bool DbManager::addGroup(const QVariant &GrpID, const QVariant &GrpAdmnId,
         success = true;
     }else{
         //Need some kind of print statement to signify that the method didn't work
+        qDebug() << "Issue adding new Group"
+                 << query.lastError();
     }
     return success;
 }

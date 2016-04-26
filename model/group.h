@@ -39,19 +39,19 @@ public:
 //    void removeGroupMember(Account* oldMember);
 //    void addToPastProjects(QString project);
 
-//    Feed* getFeed();
-//    bool getIsActive();
+//    Feed* Feed();
+    bool getIsActive();
 //    void setIsActive(bool active);
 //    std::vector<Account*> getGroupMembers();
-//    Account* getAdmin();
+    Account* getAdmin();
 //    void changeAdmin(Account* newAdmin);
-//    QString getGroupName();
+    QString getGroupName();
 //    void setGroupName(QString name);
 //    QString getCurrentProject();
 //    void setCurrentProject(QString project);
 //    void newProject(QString project);
 //    std::vector<QString> getPastProjects();
-
+    Feed* getFeed();
     int getID();
 
 };

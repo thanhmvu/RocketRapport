@@ -69,3 +69,7 @@ QString Feed::getFeedText() {
 void Feed::setFeedText(QString text) {
     this->feedText = text;
 }
+
+int Feed::getFeedID(){
+    return feedID;
+}

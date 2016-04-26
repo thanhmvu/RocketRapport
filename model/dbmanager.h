@@ -69,6 +69,7 @@ public:
     void retrieveAllMessages(Chat *userChat);
     void retrieveAllScbkPosts(Scrapbook *userScBook);
     void retrieveAllChats(Account *user);
+    //void retrieveAllGroups(System *newSystem);
 
     bool rmAllAccounts();
     void deleteTable(const QVariant tableName);

@@ -56,12 +56,12 @@ Group::Group()
 //}
 
 
-///**
-// * @brief Getter that returns the isActive boolen.
-// */
-//bool Group::getIsActive() {
-//    return this->isActive;
-//}
+/**
+ * @brief Getter that returns the isActive boolen.
+ */
+bool Group::getIsActive() {
+    return isActive;
+}
 
 
 ///**
@@ -79,12 +79,12 @@ Group::Group()
 //}
 
 
-///**
-// * @brief Getter that returns the admin of this group.
-// */
-//Account* Group::getAdmin() {
-//    return this->admin;
-//}
+/**
+ * @brief Getter that returns the admin of this group.
+ */
+Account* Group::getAdmin() {
+    return this->admin;
+}
 
 
 ///**
@@ -94,12 +94,12 @@ Group::Group()
 //    this->admin = newAdmin;
 //}
 
-///**
-// * @brief Getter that returns the name of the group.
-// */
-//QString Group::getGroupName() {
-//    return this->groupName;
-//}
+/**
+ * @brief Getter that returns the name of the group.
+ */
+QString Group::getGroupName() {
+    return groupName;
+}
 
 
 ///**
@@ -147,4 +147,8 @@ Group::Group()
  */
 int Group::getID(){
     return groupID;
+}
+
+Feed* Group::getFeed(){
+    return groupFeed;
 }

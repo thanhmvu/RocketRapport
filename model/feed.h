@@ -22,6 +22,8 @@ public:
     std::vector<TweetPost*> getFeedPosts();
     QString getFeedText();
     void setFeedText(QString text);
+
+    int getFeedID();
 };
 
 #endif // FEED_H
