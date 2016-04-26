@@ -101,19 +101,3 @@ System* ScreenUI::getSystem() {
 void ScreenUI::setSystem(System* mainSystem) {
     this->mySystem = mainSystem;
 }
-
-
-/**
- * @brief Getter for the index in the account map of the profile to be displayed.
- */
-int ScreenUI::getIndexOfProfile() {
-    return this->indexOfProfile;
-}
-
-
-/**
- * @brief Setter for the index of profile.
- */
-void ScreenUI::setIndexOfProfile(int index) {
-    this->indexOfProfile = index;
-}

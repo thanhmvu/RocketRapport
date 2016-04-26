@@ -210,7 +210,8 @@ void ChatUI::runScreen() {
                         int k = 0;
                         for(const auto &acc: this->getSystem()->getAllAccounts()) {
                             if (k == this->getUserIndex()) {
-                                this->setIndexOfProfile(k);
+                                this->getSystem()->getCurrentUser()->setIndexOfProfile(k);
+                                this->getSystem()->getCurrentUser()->setProfileUsername(acc.first.toStdString());
                                 this->screenNumber = 3;
                                 this->changeScreens(true);
                                 this->setMenuNumber(1);

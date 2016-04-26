@@ -49,6 +49,7 @@ private:
     int phoneNumber;
     int accountID;
     std::string profileUsername;
+    int indexOfProfile;
 
     // Private members specific to a current guest.
     Blog* myBlog;
@@ -109,6 +110,8 @@ public:
     std::vector<Account*>   getFriendList();
     std::vector<Group*>     getGroups();
     std::string getProfileUsername();
+    int getIndexOfProfile();
+    void setIndexOfProfile(int index);
 
     System*     getSystem();
 

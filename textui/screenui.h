@@ -30,7 +30,6 @@ class ScreenUI
     int rows;
     int cols;
     bool changeScreen;
-    int indexOfProfile;
 
 public:
     ScreenUI();
@@ -53,8 +52,6 @@ public:
     bool getChangeScreens();
     System* getSystem();
     void setSystem(System* mainSystem);
-    int getIndexOfProfile();
-    void setIndexOfProfile(int index);
 };
 
 #endif // SCREENUI_H

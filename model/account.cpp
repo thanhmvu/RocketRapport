@@ -869,3 +869,19 @@ void Account::setSystem(System* newSystem) {
 ////        this->getGroup()->setGroupName(name);
 ////    }
 //}
+
+
+/**
+ * @brief Getter for the index in the account map of the profile to be displayed.
+ */
+int Account::getIndexOfProfile() {
+    return this->indexOfProfile;
+}
+
+
+/**
+ * @brief Setter for the index of profile.
+ */
+void Account::setIndexOfProfile(int index) {
+    this->indexOfProfile = index;
+}
