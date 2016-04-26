@@ -7,7 +7,7 @@ Blog::Blog(DbManager *newdbm)
     dbm = newdbm;
     blogID = id_cnt;
     id_cnt++;
-    //dbm->retrieveAllBlogPosts(this); //Retrieve all blog posts associated with this blog
+    dbm->retrieveAllBlogPosts(this); //Retrieve all blog posts associated with this blog
 }
 
 /**

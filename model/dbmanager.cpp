@@ -330,6 +330,14 @@ bool DbManager::rmAllAccounts(){
     return query.exec();
 }
 
+void DbManager::deleteTable(const QVariant tableName){
+    QSqlQuery query;
+    QString command = "delete from ";
+    command += tableName.toString();
+    query.prepare(command);
+    query.exec();
+}
+
 void DbManager::retrieveAllBlogPosts(Blog *userBlog){
     //qDebug() << "Now retrieving all blog accounts for blog ID: " << userBlog->getBlogID();
     QSqlQuery query;

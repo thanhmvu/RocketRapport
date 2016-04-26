@@ -5,31 +5,31 @@
 /**
  * @brief TEST This test should be able to store the Accounts into the database, which can be retrieved in another session.
  */
-TEST(SystemTest, testAddUser){
+//TEST(SystemTest, testAddUser){
 //    system("pwd");
 //    System *one = new System("./testDb.db");
 //    one->createAccount("hSwizzle79","Oblivion0722&","Jefferey","Pfaffmann");
 //    EXPECT_FALSE(one->createAccount("hSwizzle79","Oblivion0722&","Jefferey","Pfaffmann"));
-}
+//}
 
 /**
  * @brief TEST Closing the current program session, destroying the system, and starting a new system should grant the new system access to  the same information
  * This means that an account added in one session should be able to be retrieved in a later session.
  */
-TEST(SystemTest, testLoadAllAccounts){
-    System sys("./testDatabase.db"); //connect to db file
-    std::map <QString, Account*> accounts = sys.getAllAccounts();
-    EXPECT_EQ("a", (accounts["a"]->getUsername()));
-    EXPECT_EQ("b", (accounts["b"]->getUsername()));
+//TEST(SystemTest, testLoadAllAccounts){
+//    System sys("./testDatabase.db"); //connect to db file
+//    std::map <QString, Account*> accounts = sys.getAllAccounts();
+//    EXPECT_EQ("a", (accounts["a"]->getUsername()));
+//    EXPECT_EQ("b", (accounts["b"]->getUsername()));
 
-    EXPECT_EQ("c", (accounts["c"]->getUsername()));
-    EXPECT_EQ("c", (accounts["c"]->getPassword()));
-    EXPECT_EQ("c", (accounts["c"]->getFirstName()));
-    EXPECT_EQ("c", (accounts["c"]->getLastName()));
-    EXPECT_EQ(2, (accounts["c"]->getAccountID()));
-//    EXPECT_EQ(2, (accounts["c"]->getMyBlog()->getBlogID()));
-//    EXPECT_EQ(2, (accounts["c"]->getMyTweet()->getTweetID()));
-}
+//    EXPECT_EQ("c", (accounts["c"]->getUsername()));
+//    EXPECT_EQ("c", (accounts["c"]->getPassword()));
+//    EXPECT_EQ("c", (accounts["c"]->getFirstName()));
+//    EXPECT_EQ("c", (accounts["c"]->getLastName()));
+//    EXPECT_EQ(2, (accounts["c"]->getAccountID()));
+////    EXPECT_EQ(2, (accounts["c"]->getMyBlog()->getBlogID()));
+////    EXPECT_EQ(2, (accounts["c"]->getMyTweet()->getTweetID()));
+//}
 
 ////Now, test the login system, because it seems to be giving us troubles
 //TEST(SystemTest, testLogin){

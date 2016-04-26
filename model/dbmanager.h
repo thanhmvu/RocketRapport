@@ -71,6 +71,7 @@ public:
     void retrieveAllChats(Account *user);
 
     bool rmAllAccounts();
+    void deleteTable(const QVariant tableName);
 
 };
 
