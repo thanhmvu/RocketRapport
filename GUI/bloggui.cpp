@@ -120,6 +120,8 @@ void BlogGUI::loadBlogView(QString blog_owner, QString viewer){
     ui->pushButton_cancel->setVisible(false);
     if(viewer.compare(blog_owner)== 0){
         ui->pushButton_newPost->setVisible(true);
+    }else{
+        ui->pushButton_newPost->setVisible(false);
     }
 
 }

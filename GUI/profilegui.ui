@@ -119,7 +119,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>My Tweets</string>
+    <string>Tweet</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_blog">
@@ -132,7 +132,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>My Blog</string>
+    <string>Blog</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_scrapbook">
