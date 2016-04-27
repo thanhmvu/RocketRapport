@@ -289,7 +289,9 @@ Account* System::getAccountByUsername(QString usrname){
  * @brief System::loadAllAccounts
  */
 void System::retrieveAllAccounts(){
-    // call dbm to rebuild accounts and load to accounts map
+    // clear old accounts
+    deleteAllAccounts();
+    // call dbm to rebuild all accounts and load to accounts map
     dbm->retrieveAllAccounts(accounts);
 }
 
