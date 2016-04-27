@@ -257,7 +257,6 @@ void Account::addChat(Chat* newChat) {
     myChats.push_back(newChat); //Add new chat to list of chats
     QVariant ID(accountID);
     int i = newChat->getChatID();
-    QVariant chatID(i);
     dbm->addChat(ID,newChat->getChatID(),newChat->getTalkingToUser());
 }
 

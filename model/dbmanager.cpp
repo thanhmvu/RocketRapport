@@ -123,23 +123,24 @@ bool DbManager::addGroup(const QVariant &GrpID, const QVariant &GrpAdmnId,
 bool DbManager::addChat(const QVariant &AccountID, const QVariant &ChatID, const QString &sender){
     bool success = false;
     QSqlQuery query;
-    query.prepare("INSERT INTO chats VALUES ((:AccountID), (:ChatID),  (:Reciever) )");
+    std::string test;
+    bool check = query.prepare("INSERT INTO chats VALUES ((:AccountID), (:ChatID),  (:Reciever) )");
     query.bindValue(":AccountID", AccountID);
     query.bindValue(":ChatID", ChatID);
     query.bindValue(":Reciever", sender);
-    //qDebug() <<query.boundValue(0) << " " << query.boundValue(1) << " " << query.boundValue(2); //Shows an "invalid" value
+//    qDebug() << check << " " << query.boundValue(0) << " " << query.boundValue(1) << " " << query.boundValue(2); //Shows an "invalid" value
     if(query.exec()){
         success = true;
     }
     else{
-        qDebug() << "Error adding Chat"
-                 << query.lastError();
+        qDebug() << "Error adding Chat";
+        test = query.lastError().text().toStdString();
     }
     return success;
 }
 
 /**
- * @brief DbManager::addMessage Add messae information to the database
+ * @brief DbManager::addMessage Add message information to the database
  * @param ChatID
  * @param MessageID
  * @param DateTime

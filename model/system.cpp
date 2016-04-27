@@ -131,7 +131,7 @@ bool System::createAccount(QString username, QString password, QString firstname
 
 
 /**
- * @brief Adds a group to the System's list of groups.
+ * @brief Adds a group to the System's list of groups. Add to the dbManager's table titled "groups"
  */
 void System::addGroup(Group* newGroup) {
     this->getGroups().push_back(newGroup);

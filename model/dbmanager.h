@@ -27,6 +27,7 @@ class Account;
 class Chat;
 class Blog;
 class Tweet;
+class System;
 
 class DbManager
 {
@@ -69,7 +70,7 @@ public:
     void retrieveAllMessages(Chat *userChat);
     void retrieveAllScbkPosts(Scrapbook *userScBook);
     void retrieveAllChats(Account *user);
-    //void retrieveAllGroups(System *newSystem);
+    void retrieveAllGroups(System *newSystem);
 
     bool rmAllAccounts();
     void deleteTable(const QVariant tableName);
