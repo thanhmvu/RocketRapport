@@ -256,7 +256,6 @@ void Account::retrieveAllTweets(){
 void Account::addChat(Chat* newChat) {
     myChats.push_back(newChat); //Add new chat to list of chats
     QVariant ID(accountID);
-    int i = newChat->getChatID();
     dbm->addChat(ID,newChat->getChatID(),newChat->getTalkingToUser());
 }
 
@@ -375,7 +374,7 @@ void Account::setMyScrapbook(Scrapbook* sBook) {
  * @brief Getter for the user's list of chats.
  */
 std::vector<Chat*> Account::getMyChats() {
-    //myChats.clear();
+    // delete all chats and reload from databases
     while(!myChats.empty()){
         delete myChats.back();
         myChats.pop_back();

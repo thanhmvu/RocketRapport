@@ -48,8 +48,8 @@ public:
     void addAccount(Account* newAccount);
     void removeAccount(Account* oldAccount);
     bool usernameExist(QString username);
-    bool addChat(const int &AccountID,
-                 const int &ChatID, const QString &sender);
+//    bool addChat(const int &AccountID,
+//                 const int &ChatID, const QString &sender);
 
     // getters
     Account* getCurrentUser();

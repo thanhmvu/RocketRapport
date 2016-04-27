@@ -277,14 +277,13 @@ bool System::usernameExist(QString username){
  * Remove this method if it is not necessary
  * @return
  */
-bool System::addChat(const int &AccountID,
-                     const int &ChatID, const QString &sender){
-    const QVariant AcntID(AccountID);
-    const QVariant ChtID(ChatID);
-    const QVariant sndr(sender);
-    dbm->addChat(AcntID,ChtID,sender);
-    return true;
-}
+//bool System::addChat(const int &AccountID,
+//                     const int &ChatID, const QString &Receiver){
+//    const QVariant AcntID(AccountID);
+//    const QVariant ChtID(ChatID);
+//    dbm->addChat(AcntID,ChtID, Receiver);
+//    return true;
+//}
 
 int System::numberOfAccount(){
     return accounts.size();
