@@ -320,8 +320,10 @@ void System::printAllIdCnt(){
 void System::deleteAllAccounts(){
     for(auto pair: accounts){
         delete pair.second;
+        accounts[pair.first] = nullptr;
     }
     accounts.clear();
+    currentUser = nullptr;
 }
 
 void System::refreshSystem(){
