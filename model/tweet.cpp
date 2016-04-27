@@ -23,7 +23,8 @@ void Tweet::addPost(TweetPost* newPost) {
 void Tweet::createPost(TweetPost *newPost){
     myPosts.push_back(newPost);
     // add new post to the database
-    dbm->addTweetPost(tweetID,newPost->getID(),newPost->getTimePosted(),newPost->getText());
+    // need to be implemented (and double check) based on Blog
+//    dbm->addTweetPost(newPost->getID(),tweetID,newPost->getTimePosted(),newPost->getText());
 
 }
 

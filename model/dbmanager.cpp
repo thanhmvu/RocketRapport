@@ -33,6 +33,11 @@ DbManager::~DbManager()
     //qDebug() << "Delete DbManager object";
 }
 
+
+//////////////////////////////////////////////////////////////////////////
+/// Add methods
+//////////////////////////////////////////////////////////////////////////
+
 /**
  * @brief DbManager::addUser Method used to add user objects with associated object IDs to
  * @param AcntID   ID number used to associate a User object with a name and a series of other ID's
@@ -44,18 +49,13 @@ DbManager::~DbManager()
  * @param TweetID
  * @return
  */
-bool DbManager::addUser(const QVariant &AcntID, const QVariant &FrstName,
-                        const QVariant &LstName, const
-                        QVariant &ScrpBkID, const QVariant &BlogID, const QVariant &TweetID,
+bool DbManager::addUser(const QVariant &AcntID  , const QVariant &FrstName,
+                        const QVariant &LstName , const QVariant &ScrpBkID,
+                        const QVariant &BlogID  , const QVariant &TweetID,
                         const QVariant &UserName, const QVariant &passWord){
-//    std::cout << "Now entering Add User method in DatabaseManager" << std::endl;
     bool success = false;
     QSqlQuery query; //Prepares a new QSqlQuery
 
-    ////////////////////////////////////////////////////////////////////
-    /// Need to check if input strings are empty?
-    /// If they are empty, will the QGLite command be incorrect?
-    //////////////////////////////////////////////////////////////////
     if(!find(AcntID, "accounts") ){
         std::cout << "Value not found" << std::endl;
         query.prepare("INSERT INTO accounts VALUES ( (:AcntID),(:UserName),(:PassWord),(:ScrpBkID),(:BlogID),(:TweetID),(:FrstName),(:LstName) )");
@@ -92,8 +92,10 @@ bool DbManager::addUser(const QVariant &AcntID, const QVariant &FrstName,
  * @param FeedID
  * @return
  */
-bool DbManager::addGroup(const QVariant &GrpID, const QVariant &GrpAdmnId,
-                         bool actStatus, const QVariant &GrpName, const QVariant &FeedID){
+bool DbManager::addGroup(const QVariant &GrpID  , const QVariant &GrpAdmnId,
+                         bool actStatus         , const QVariant &GrpName,
+                         const QVariant &FeedID)
+{
     bool success = false;
     QSqlQuery query;
     query.prepare("INSERT INTO groups VALUES ( (:GrpID) , (:GrpAdmnId) , (:actStatus) , (:GrpName) , (:FeedID) )");
@@ -120,24 +122,22 @@ bool DbManager::addGroup(const QVariant &GrpID, const QVariant &GrpAdmnId,
  * @param sender
  * @return
  */
-bool DbManager::addChat(const QVariant &AccountID, const QVariant &ChatID, const QString &sender){
+bool DbManager::addChat(const QVariant &AccountID, const QVariant &ChatID, const QString &receiver){
     bool success = false;
     QSqlQuery query;
-    std::string test;
-    bool check = query.prepare("INSERT INTO chats VALUES ((:ChatID), (:AccountID),  (:Reciever) )");
+    query.prepare("INSERT INTO chats VALUES ((:ChatID), (:AccountID),  (:Reciever) )");
     query.bindValue(":AccountID", AccountID);
     query.bindValue(":ChatID", ChatID);
-    query.bindValue(":Reciever", sender);
-//    qDebug() << check << " " << query.boundValue(0) << " " << query.boundValue(1) << " " << query.boundValue(2); //Shows an "invalid" value
+    query.bindValue(":Reciever", receiver);
     if(query.exec()){
         success = true;
     }
     else{
-        qDebug() << "Error adding Chat";
-        test = query.lastError().text().toStdString();
+        qDebug() << "Error adding Chat: "<< query.lastError().text();
     }
     return success;
 }
+
 
 /**
  * @brief DbManager::addMessage Add message information to the database
@@ -149,17 +149,15 @@ bool DbManager::addChat(const QVariant &AccountID, const QVariant &ChatID, const
  * @param receiver  Name of the user being sent the message
  * @return
  */
-bool DbManager::addMessage(const QVariant &ChatID, const QVariant &MessageID, const QVariant &DateTime,
-                           const QVariant &text){
+bool DbManager::addMessage(const QVariant &ChatID   , const QVariant &MessageID,
+                           const QVariant &DateTime , const QVariant &text){
     bool success = false;
     QSqlQuery query;
-    query.prepare("INSERT INTO chatMessages VALUES(:ChatID,:MessageID,:dateTime,:Text)");
-    query.bindValue(":ChatID", ChatID);
+    query.prepare("INSERT INTO chatMessages VALUES( (:MessageID), (:ChatID), (:dateTime), (:Text) )");
     query.bindValue(":MessageID",MessageID);
+    query.bindValue(":ChatID", ChatID);
     query.bindValue(":dateTime",DateTime);
     query.bindValue(":Text",text);
-//    qDebug() << "All bound values: " << query.boundValue(0) << " " << query.boundValue(1) << " " << query.boundValue(2) << " " <<
-//                query.boundValue(3) ;
     if(query.exec()){
         success = true;
     }
@@ -171,12 +169,14 @@ bool DbManager::addMessage(const QVariant &ChatID, const QVariant &MessageID, co
     return success;
 }
 
-bool DbManager::addTweetPost(const QVariant &TweetID, const QVariant &TweetPostID, const QVariant TimeDate, const QVariant Text){
+
+bool DbManager::addTweetPost(const QVariant &TweetPostID, const QVariant &TweetID,
+                             const QVariant &TimeDate   , const QVariant &Text){
     bool success = false;
     QSqlQuery query;
-    query.prepare("INSERT INTO tweetPosts VALUES(:TweetID,:TweetPostID,:TimeDate,:Text) ");
-    query.bindValue(":TweetID",TweetID);
+    query.prepare("INSERT INTO tweetPosts VALUES( (:TweetPostID), (:TweetID), (:TimeDate), (:Text) ) ");
     query.bindValue(":TweetPostID",TweetPostID);
+    query.bindValue(":TweetID",TweetID);
     query.bindValue(":TimeDate",TimeDate);
     query.bindValue(":Text",Text);
     if(query.exec()){
@@ -189,6 +189,30 @@ bool DbManager::addTweetPost(const QVariant &TweetID, const QVariant &TweetPostI
 
     return success;
 }
+
+
+bool DbManager::addBlogPost(const QVariant &blogPostID, const QVariant &blogID,
+                            const QVariant &timeDate, const QVariant &text){
+     QSqlQuery query;
+     query.prepare("INSERT INTO blogPosts VALUES( (:BlogPostID), (:blogID), (:timeDate), (:text) )" );
+     query.bindValue(":BlogPostID",blogPostID);
+     query.bindValue(":blogID", blogID);
+     query.bindValue(":timeDate",timeDate);
+     query.bindValue(":text",text);
+     if(query.exec()){
+         std::cout << "DbManager::addBlogPost exec(): true\n";
+         return true;
+     }else{
+         qDebug() << query.lastError();
+         return false;
+     }
+ }
+
+
+
+//////////////////////////////////////////////////////////////////////////
+/// Methods used to modify the existing contents of the table
+//////////////////////////////////////////////////////////////////////////
 
 /**
  * @brief AccountDatabaseManager::addColumn Used to add a new column to the associated database file
@@ -458,23 +482,3 @@ void DbManager::retrieveAllAccounts(std::map<QString, Account*> &accounts){
     }else{ qDebug() << query.lastError(); }
 }
 
-
-
-
-bool DbManager::addBlogPost(const QVariant &blogPostID, const QVariant &blogID,
-                            const QVariant &timeDate, const QVariant &text){
-     QSqlQuery query;
-     qDebug() << query.prepare("INSERT INTO blogPosts VALUES( (:BlogPostID), (:blogID), (:timeDate), (:text) )" );
-     query.bindValue(":BlogPostID",blogPostID);
-     query.bindValue(":blogID", blogID);
-     query.bindValue(":timeDate",timeDate);
-     query.bindValue(":text",text);
-     //qDebug() << "Value bound to blogID" << query.boundValue(1);
-     if(query.exec()){
-         std::cout << "DbManager::addBlogPost exec(): true\n";
-         return true;
-     }else{
-         qDebug() << query.lastError();
-         return false;
-     }
- }
