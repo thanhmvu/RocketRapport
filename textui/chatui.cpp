@@ -254,6 +254,7 @@ void ChatUI::runScreen() {
                                     }
                                 }
                             }
+                            k++;
                         }
                     }
                     break;
