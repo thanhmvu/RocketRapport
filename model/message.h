@@ -13,6 +13,7 @@ private:
     QDateTime sentTime;
 public:
     Message();
+    Message(QDateTime time, QString content);
     Message(int newID, QDateTime time, QString content);
 
     //Set methods
