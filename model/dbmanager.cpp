@@ -298,6 +298,30 @@ bool DbManager::deleteName(const QVariant &UsrID){
     return deleted;
 }
 
+
+/**
+ * @brief DbManager::rmAll Remove all information from the database.
+ * @return Boolean signaling that the database has been deleted.
+ */
+bool DbManager::rmAllAccounts(){
+    QSqlQuery query;
+    query.prepare("DELETE FROM accounts");
+    return query.exec();
+}
+
+void DbManager::deleteTable(const QVariant tableName){
+    QSqlQuery query;
+    QString command = "delete from ";
+    command += tableName.toString();
+    query.prepare(command);
+    query.exec();
+}
+
+
+//////////////////////////////////////////////////////////////////////////
+/// Retrieve methods
+//////////////////////////////////////////////////////////////////////////
+
 /**
  * @brief DbManager::retrieveIntInfo
  * @param fieldName Name of the column we want the program to return
@@ -348,27 +372,7 @@ QString DbManager::retrieveStringInfo(const QString &fieldName, const QString &t
 }
 
 
-
-/**
- * @brief DbManager::rmAll Remove all information from the database.
- * @return Boolean signaling that the database has been deleted.
- */
-bool DbManager::rmAllAccounts(){
-    QSqlQuery query;
-    query.prepare("DELETE FROM accounts");
-    return query.exec();
-}
-
-void DbManager::deleteTable(const QVariant tableName){
-    QSqlQuery query;
-    QString command = "delete from ";
-    command += tableName.toString();
-    query.prepare(command);
-    query.exec();
-}
-
 void DbManager::retrieveAllBlogPosts(Blog *userBlog){
-    //qDebug() << "Now retrieving all blog accounts for blog ID: " << userBlog->getBlogID();
     QSqlQuery query;
     QString command = "SELECT * FROM blogPosts WHERE BlogID = ";
     QString valStr = QString::number(userBlog->getBlogID());
@@ -454,9 +458,6 @@ void DbManager::retrieveAllTweets(Tweet *userTweet){
  */
 void DbManager::retrieveAllAccounts(std::map<QString, Account*> &accounts){
     QSqlQuery query;
-//    std::cout <<"Hello from DbManager::retrieveAllAccounts " <<std::endl;
-//    std::cout << query.next() << std::endl;
-//    std::cout << query.isActive() << std::endl;
     if(query.prepare("SELECT * FROM accounts")){ //Choose all elements from the table
         if(query.exec()){
             while(query.next() ){

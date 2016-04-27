@@ -38,19 +38,13 @@ void ChatGUI::updateUserList(){
     ////////////////////////////////////////////////////////////////////
     /// Load list of user name from SYSTEM/ DATABASE
     //////////////////////////////////////////////////////////////////
-
-    // get a list of usernames from DATABASE
-    std::vector<QString> userList;
-    for(int i = 0; i<20; i++){
-        userList.push_back(QString ("User_%1").arg(i));
-    }
-
-    // display the list of users as a list of openChat buttons
     QWidget *scroll_widget = new QWidget();
     QVBoxLayout *layout = new QVBoxLayout();
-    for(QString username: userList){
+    for(auto pair: main_menu->getSystem()->getAllAccounts()){
+        QString username = pair.first;
         QPushButton *button = new QPushButton();
         button->setText(username);
+        button->setFixedWidth(150);
         layout->addWidget(button);
         connect(button,SIGNAL(clicked()),this,SLOT(openChat()));
     }
