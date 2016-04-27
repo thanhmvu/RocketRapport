@@ -307,9 +307,9 @@ void ChatUI::runScreen() {
                                         if (!chatExists) {
                                             Chat* newChat = new Chat(this->getSystem()->getDbm());
                                             newChat->setTalkingToUser(this->getSystem()->getCurrentUser()->getUsername());
-                                            acc.second->addChat(newChat);
+                                            acc.second->addChat(newChat); //This line may be where we're having problems
                                             Chat* newChat2 = new Chat(this->getSystem()->getDbm());
-                                            newChat2->setTalkingToUser(acc.first);
+                                            newChat2->setTalkingToUser(acc.first); //Also potentially problematic
                                             this->getSystem()->getCurrentUser()->addChat(newChat2);
                                         }
                                     }

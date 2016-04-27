@@ -413,7 +413,7 @@ void DbManager::retrieveAllTweets(Tweet *userTweet){
     QString idValue = QString::number(user->getAccountID() );
     command += idValue;
     query.prepare(command);
-    query.exec();
+    bool check = query.exec();
     while(query.next() ){
         int chatID = query.value(0).toInt();
         QString partner = query.value(2).toString();

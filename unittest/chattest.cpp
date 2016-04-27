@@ -17,7 +17,6 @@ TEST(ChatTest,testSendMessage){
     QDate newDate(2016,5,23);
     newDateTime->setDate(newDate);
     one->setDateTime(*newDateTime);
-
     test.sendMessage(one);
 }
 

@@ -375,7 +375,11 @@ void Account::setMyScrapbook(Scrapbook* sBook) {
  * @brief Getter for the user's list of chats.
  */
 std::vector<Chat*> Account::getMyChats() {
-    myChats.clear();
+    //myChats.clear();
+    while(!myChats.empty()){
+        delete myChats.back();
+        myChats.pop_back();
+    }
     dbm->retrieveAllChats(this);
     return myChats;
 }
