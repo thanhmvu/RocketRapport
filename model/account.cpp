@@ -38,15 +38,14 @@ Account::Account(DbManager *newdbm)
     myTweet = new Tweet(dbm); //Create new Tweet associated with user and retrieve all posts
     myTweet->setID( newdbm->retrieveIntInfo("TweetID","accounts","AccountID",accountID) ); //Method used to manually set the ID value of the new user Tweet
 
-    //Methods to access the database and retrieve all of the user's associated posts and information.
-//    newdbm->retrieveAllBlogPosts(myBlog); // this is done inside Blog constructor already
-//    newdbm->retrieveAllTweets(myTweet);
+    // rebuild all chats
     newdbm->retrieveAllChats(this);
 
-    //Iterate through list of chats the user has and store each of the messages in the db to each chat
+    // rebuild all messages
     for(unsigned i=0; i<myChats.size(); i++){
         newdbm->retrieveAllMessages(myChats.at(i));
     }
+
 }
 
 Account::Account(QString usrName, DbManager *newdbm){
@@ -78,9 +77,15 @@ Account::Account(QString usrName, DbManager *newdbm){
     myScrapbook = new Scrapbook();
     myBlog = new Blog(dbm);     // retrieve all blog posts inside the constructor
     myTweet = new Tweet(dbm);   // retrieve all tweets inside the constructor
+
+    // rebuild all chats
+    newdbm->retrieveAllChats(this);
+
+    // rebuild all messages
     for(unsigned i=0; i<myChats.size(); i++){
         newdbm->retrieveAllMessages(myChats.at(i));
     }
+
 }
 
 /**
@@ -126,7 +131,13 @@ Account::Account(int accID,     QString usrname,    QString pw,
     myBlog = new Blog(dbm);     // retrieve all blog posts inside the constructor
     myTweet = new Tweet(dbm);   // retrieve all tweets inside the constructor
 
-    // rebuild chats
+    // rebuild all chats
+    newdbm->retrieveAllChats(this);
+
+    // rebuild all messages
+    for(unsigned i=0; i<myChats.size(); i++){
+        newdbm->retrieveAllMessages(myChats.at(i));
+    }
 
 }
 
