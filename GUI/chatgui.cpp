@@ -35,9 +35,11 @@ void ChatGUI::init(){
 }
 
 void ChatGUI::updateUserList(){
-    ////////////////////////////////////////////////////////////////////
-    /// Load list of user name from SYSTEM/ DATABASE
-    //////////////////////////////////////////////////////////////////
+    // retrieve all accounts from the database
+//    main_menu->getSystem()->retrieveAllAccounts();
+    main_menu->getSystem()->refreshSystem();
+
+    // and display the accounts as list of buttons
     QWidget *scroll_widget = new QWidget();
     QVBoxLayout *layout = new QVBoxLayout();
     for(auto pair: main_menu->getSystem()->getAllAccounts()){
@@ -102,6 +104,9 @@ void ChatGUI::on_pushButton_send_mess_clicked()
 
 void ChatGUI::on_pushButton_main_menu_clicked()
 {
+    // reload main menu in case of new accounts or new groups
+    main_menu->reload();
+
     this->close();
     main_menu->show();
 }

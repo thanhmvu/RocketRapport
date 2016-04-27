@@ -35,6 +35,10 @@ void MainMenu::init(){
 }
 
 void MainMenu::reload(){
+    // retrieve all accounts from database
+//    main_system->retrieveAllAccounts();
+    main_system->refreshSystem();
+
     // display the list of users as a list of user buttons
     QWidget *scroll_widget = new QWidget();
     QVBoxLayout *layout = new QVBoxLayout();
@@ -49,7 +53,7 @@ void MainMenu::reload(){
     scroll_widget->setLayout(layout);
     ui->scrollArea_userList->setWidget(scroll_widget);
 
-    // load grouplist
+
     ////////////////////////////////////////////////////////////////////
     /// Load list of groups from SYSTEM/ DATABASE
     /// To prevent memory leaks, pay attention to userlist and grouplist

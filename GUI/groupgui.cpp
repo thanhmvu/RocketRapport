@@ -31,6 +31,9 @@ void GroupGUI::loadGroup(QString groupname){
 
 void GroupGUI::on_pushButton_mainmenu_clicked()
 {
+    // reload main menu in case of new accounts or new groups
+    main_menu->reload();
+
     this->close();
     main_menu->show();
 }

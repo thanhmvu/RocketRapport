@@ -37,6 +37,9 @@ void ProfileGUI::setMainMenu(MainMenu* mm){
 
 void ProfileGUI::on_pushButton_back_to_menu_clicked()
 {
+    // reload main menu in case of new accounts or new groups
+    main_menu->reload();
+
     this->close();
     main_menu->show();
 }

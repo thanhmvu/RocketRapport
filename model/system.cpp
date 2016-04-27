@@ -81,7 +81,7 @@ bool System::login(QString username, QString password) {
             success = true;
         }
     }else{
-//        std::cout << std::endl << "Invalid credentials" << std::endl << "Please try again or create a new account." << std::endl;
+        //        std::cout << std::endl << "Invalid credentials" << std::endl << "Please try again or create a new account." << std::endl;
     }
 
     return success;
@@ -97,9 +97,9 @@ bool System::login(QString username, QString password) {
 bool System::createAccount(QString username, QString password, QString firstname, QString lastname) {
     // check if username is in use
     bool success = false;
-//    std::cout << "Now entering create account method" << std::endl;
+    //    std::cout << "Now entering create account method" << std::endl;
     if (usernameExist(username)) {
-//        std::cout << "Username already exists!" << std::endl;
+        //        std::cout << "Username already exists!" << std::endl;
     }
     else{
         // create new account
@@ -114,7 +114,7 @@ bool System::createAccount(QString username, QString password, QString firstname
 
         // add account to the database
         addAccount(newAccount);
-//        std::cout<< "New Account Created" << std::endl;
+        //        std::cout<< "New Account Created" << std::endl;
         currentUser = newAccount;
         this->setLoggedIn(true);
         success = true;
@@ -166,7 +166,7 @@ void System::addAccount(Account* newAccount) {
     const QVariant TweetID = newAccount->getMyTweet()->getTweetID();
 
     dbm->addUser(accntD,frstName,lstNme,
-                ScrpBkID,BlgID,TweetID,usrName,
+                 ScrpBkID,BlgID,TweetID,usrName,
                  passWord);
 }
 
@@ -282,7 +282,12 @@ int System::numberOfAccount(){
 }
 
 Account* System::getAccountByUsername(QString usrname){
-    return accounts[usrname];
+    if(usernameExist(usrname)){
+        return accounts[usrname];
+    }else{
+        std::cout << "System::getAccountByUsername fail. User does not exist.\n";
+        return nullptr;
+    }
 }
 
 /**
@@ -308,8 +313,8 @@ void System::printAllIdCnt(){
     std::cout<< "Scrapbook  : " << Scrapbook::getIdCnt() << std::endl;
     std::cout<< "ScrpbkPost : " << ScrapbookPost::getIdCnt() << std::endl;
 
-//        std::cout<< "Comment    : " << Comment::getIdCnt() << std::endl;
-//        std::cout<< "Feed       : " << Feed::getIdCnt() << std::endl;
+//    std::cout<< "Comment    : " << Comment::getIdCnt() << std::endl;
+//    std::cout<< "Feed       : " << Feed::getIdCnt() << std::endl;
 }
 
 void System::deleteAllAccounts(){
@@ -317,4 +322,24 @@ void System::deleteAllAccounts(){
         delete pair.second;
     }
     accounts.clear();
+}
+
+void System::refreshSystem(){
+    if(currentUser != nullptr){
+        // temporarily store current user's username
+        QString curr_username = currentUser->getUsername();
+
+        // reload all accounts
+        retrieveAllAccounts();
+
+        // retrieve current user
+        currentUser = getAccountByUsername(curr_username);
+    }else{
+        // reload all accounts
+        retrieveAllAccounts();
+    }
+
+    ////////////////////////////////////////////////////////////////////
+    /// retrieve all group but then need to link group to account
+    //////////////////////////////////////////////////////////////////
 }

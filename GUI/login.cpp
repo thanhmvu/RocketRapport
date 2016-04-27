@@ -51,6 +51,9 @@ void Login::on_pushButton_signin_clicked()
 }
 
 void Login::openMainScreen(){
+    // reload main menu in case of new accounts or new groups
+    main_menu->reload();
+
     this->close();
     main_menu->show();
 }
