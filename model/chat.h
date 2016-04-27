@@ -18,6 +18,7 @@ private:
     DbManager *dbm; // does not own this
 public:
     Chat(DbManager *newdbm); //Pass in pointer to dbm object that the chat can use for data storage
+    Chat(QString partner, DbManager *newdbm);
     Chat(int newID, QString partner, DbManager *newdbm);
     ~Chat();
     int getChatID();

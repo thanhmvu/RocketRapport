@@ -9,8 +9,17 @@ Chat::Chat(DbManager *newdbm)
     id_cnt++;
 }
 
+Chat::Chat(QString partner, DbManager *newdbm)
+{
+    chatID = id_cnt;
+    id_cnt++;
+
+    talkingToUser = partner;
+    dbm = newdbm;
+}
+
 /**
- * @brief constructor used for loading from the database
+ * @brief special constructor used for loading from the database
  */
 Chat::Chat(int newID, QString partner, DbManager *newdbm)
 {
@@ -50,7 +59,6 @@ void Chat::addMessage(Message *newMessage){
 
 /**
  * @brief "Sends" a message to the database.
- * Remember that each of the messageIDs must be unique.
  */
 void Chat::sendMessage(Message *newMessage) {
     this->addMessage(newMessage);

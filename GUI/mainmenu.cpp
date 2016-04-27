@@ -121,7 +121,7 @@ void MainMenu::on_pushButton_profile_clicked()
 
 void MainMenu::on_pushButton_chat_clicked()
 {
-    chat_screen->updateUserList();
+    chat_screen->refreshChatScreen();
 
     this->close();
     chat_screen->show();

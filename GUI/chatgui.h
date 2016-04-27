@@ -5,12 +5,14 @@
 #include "mainmenu.h"
 #include <QScrollBar>
 #include <QVBoxLayout>
+#include "../model/account.h"
 
 namespace Ui {
 class ChatGUI;
 }
 
 class MainMenu;
+//class Account;
 
 class ChatGUI : public QWidget
 {
@@ -22,6 +24,7 @@ public:
     ~ChatGUI();
     void updateUserList();
     void autoUpdate();
+    void refreshChatScreen();
 
 private slots:
     void on_pushButton_main_menu_clicked();
@@ -31,9 +34,8 @@ private slots:
 private:
     Ui::ChatGUI *ui;
     MainMenu *main_menu;
-    void init();
-//    Account* current_user;
-//    Account* the_other_user;
+    Account * talking_to_user;
+    Account * curr_user;
 };
 
 #endif // CHATGUI_H

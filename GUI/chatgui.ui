@@ -110,9 +110,9 @@ p, li { white-space: pre-wrap; }
    <property name="geometry">
     <rect>
      <x>270</x>
-     <y>20</y>
+     <y>50</y>
      <width>611</width>
-     <height>411</height>
+     <height>381</height>
     </rect>
    </property>
    <property name="html">
@@ -190,6 +190,22 @@ p, li { white-space: pre-wrap; }
    </property>
    <property name="text">
     <string>Test Button 2</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="name_tag">
+   <property name="geometry">
+    <rect>
+     <x>270</x>
+     <y>24</y>
+     <width>611</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>name</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
    </property>
   </widget>
  </widget>
