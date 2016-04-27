@@ -907,6 +907,10 @@ void Account::setIndexOfProfile(int index) {
     this->indexOfProfile = index;
 }
 
+/**
+ * @brief get chat for specific talking-to user
+ * @return a pointer to that chat or null pointer if there is no chat
+ */
 Chat * Account::getChatByPartnerName(QString talking_to_usr_name){
     for(Chat* chat: this->myChats){
         if(chat->getTalkingToUser().compare(talking_to_usr_name) == 0){

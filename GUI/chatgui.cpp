@@ -61,12 +61,17 @@ void ChatGUI::openChat(){
     talking_to_user = main_menu->getSystem()->getAccountByUsername(other_username);
     ui->name_tag->setText(other_username);
 
-    ////////////////////////////////////////////////////////////////////
-    /// Load chat from DATABASE based on the current user and the other user
-    /// and display to screen
-    //////////////////////////////////////////////////////////////////
-//    std::cout<< curr_user->getUsername()<<" opened a chat with " << other_username.toStdString() << "\n";
-//    for(Message * mess: curr_user)
+
+    // Load chat from DATABASE based on the current user and the other user
+    Chat * chat = curr_user->getChatByPartnerName(other_username);
+    if(chat != nullptr){
+        // Display to screen
+        QString chat_text;
+        for(Message * mess: chat->getMessages()){
+            chat_text += (mess->getTimeSent().toString() + "\n" + mess->getText()+ "\n" + "\n");
+        }
+        ui->chat_box->setText(chat_text);
+    }
 }
 
 void ChatGUI::autoUpdate(){

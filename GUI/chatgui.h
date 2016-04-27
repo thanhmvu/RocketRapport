@@ -6,6 +6,7 @@
 #include <QScrollBar>
 #include <QVBoxLayout>
 #include "../model/account.h"
+#include <vector>
 
 namespace Ui {
 class ChatGUI;
