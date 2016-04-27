@@ -114,7 +114,7 @@ public:
     std::vector<Group*>     getGroups();
     std::string getProfileUsername();
     int getIndexOfProfile();
-    void setIndexOfProfile(int index);
+    Chat * getChatByPartnerName(QString talking_to_usr_name);
 
     System*     getSystem();
 
@@ -138,6 +138,7 @@ public:
     void setPhoneNumber(int number);
     void setSystem(System* newSystem);
     void setProfileUsername(std::string name);
+    void setIndexOfProfile(int index);
 
     void promoteToCurrentGuest();
     void promoteToPastGuest();

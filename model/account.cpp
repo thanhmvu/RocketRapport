@@ -895,3 +895,12 @@ int Account::getIndexOfProfile() {
 void Account::setIndexOfProfile(int index) {
     this->indexOfProfile = index;
 }
+
+Chat * Account::getChatByPartnerName(QString talking_to_usr_name){
+    for(Chat* chat: this->myChats){
+        if(chat->getTalkingToUser().compare(talking_to_usr_name) == 0){
+            return chat;
+        }
+    }
+    return nullptr;
+}
