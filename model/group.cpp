@@ -9,6 +9,9 @@ Group::Group()
     groupFeed = new Feed();
 }
 
+Group::~Group(){
+    delete groupFeed;
+}
 
 ///**
 // * @brief Adds a new TweetPost to the group feed.

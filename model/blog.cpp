@@ -10,6 +10,14 @@ Blog::Blog(DbManager *newdbm)
     dbm->retrieveAllBlogPosts(this); //Retrieve all blog posts associated with this blog
 }
 
+Blog::~Blog(){
+    while(!myPosts.empty()){
+        delete myPosts.back();
+        myPosts.pop_back();
+    }
+}
+
+
 /**
  * @brief Adds a new BlogPost to the Blog's list of posts.
  */

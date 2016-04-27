@@ -10,6 +10,14 @@ Tweet::Tweet(DbManager *newDbm)
     dbm->retrieveAllTweets(this); //Retrieve all tweet posts associated with this Tweet
 }
 
+Tweet::~Tweet(){
+    while(!myPosts.empty()){
+        delete myPosts.back();
+        myPosts.pop_back();
+    }
+}
+
+
 /**
  * @brief Adds a new TweetPost to the Tweet's list of posts.
  */

@@ -24,6 +24,14 @@ Chat::Chat(int newID, QString partner, DbManager *newdbm)
     dbm = newdbm;
 }
 
+Chat::~Chat(){
+    while(!messages.empty()){
+        delete messages.back();
+        messages.pop_back();
+    }
+}
+
+
 /**
  * @brief Gets ID of this chat object.
  */

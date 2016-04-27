@@ -54,9 +54,13 @@ System::System(const QString &path)
  */
 System::~System(){
     delete dbm;
-    ////////////////////////////////////////////////////////////////////
-    /// delete accounts and groups
-    //////////////////////////////////////////////////////////////////
+    while(!groups.empty()){
+        delete groups.back();
+        groups.pop_back();
+    }
+    for(auto pair: accounts){
+        delete pair.second;
+    }
     std::cout << "Delete System object" << std::endl;
 }
 

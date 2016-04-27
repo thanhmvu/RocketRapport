@@ -8,6 +8,12 @@ Feed::Feed()
     id_cnt++;
 }
 
+Feed::~Feed(){
+    while(!feedPosts.empty()){
+        delete feedPosts.back();
+        feedPosts.pop_back();
+    }
+}
 
 /**
  * @brief Concatenates all of the TweetPosts in this Feed into one string of text.

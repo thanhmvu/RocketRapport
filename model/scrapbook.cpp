@@ -8,6 +8,14 @@ Scrapbook::Scrapbook()
     id_cnt++;
 }
 
+Scrapbook::~Scrapbook(){
+    while(!myPosts.empty()){
+        delete myPosts.back();
+        myPosts.pop_back();
+    }
+}
+
+
 void Scrapbook::setID(int newID){
     scrpBookID = newID;
     // update id_cnt if needed

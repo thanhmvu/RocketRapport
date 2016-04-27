@@ -14,6 +14,7 @@ private:
 
 public:
     Feed();
+    ~Feed();
 
     void displayFeed();
     void addPost(TweetPost* newPost);

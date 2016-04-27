@@ -130,6 +130,15 @@ Account::Account(int accID,     QString usrname,    QString pw,
 
 }
 
+Account::~Account(){
+    while(!myChats.empty()){
+        delete myChats.back();
+        myChats.pop_back();
+    }
+    delete myBlog;
+    delete myTweet;
+}
+
 /**
  * @brief Getter for the current guest boolean.
  */

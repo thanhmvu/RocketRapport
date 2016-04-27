@@ -14,6 +14,8 @@ private:
 
 public:
     Scrapbook();
+    ~Scrapbook();
+
     void setID(int newID);
     void addPost(ScrapbookPost* newPost);
     void deletePost(ScrapbookPost* oldPost);

@@ -24,6 +24,7 @@ private:
 
 public:
     Group();
+    ~Group();
 
     ////////////////////////////////////////////////////////////////////
     /// Some methods may need to check:

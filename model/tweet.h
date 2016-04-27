@@ -17,6 +17,7 @@ private:
 
 public:
     Tweet(DbManager *newDbm);
+    ~Tweet();
     void setID(int newID);
     void addPost(TweetPost* newPost);
     void createPost(TweetPost* newPost);

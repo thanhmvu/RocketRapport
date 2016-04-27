@@ -12,11 +12,12 @@ class Blog
 private:
     static int id_cnt;
     int blogID;
-    std::vector<BlogPost*> myPosts;
+    std::vector<BlogPost*> myPosts; // own this
 //    QString blogText;
-    DbManager *dbm;
+    DbManager *dbm; // does not own this
 public:
     Blog(DbManager *newdbm);
+    ~Blog();
     void setID(int newID);
     void addPost(BlogPost* newPost);
     void storePostToDB(BlogPost* newPost);

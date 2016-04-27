@@ -13,12 +13,13 @@ private:
     int chatID;
 
     QString talkingToUser;
-    std::vector<Message*> messages;
+    std::vector<Message*> messages; // owns this
 
-    DbManager *dbm;
+    DbManager *dbm; // does not own this
 public:
     Chat(DbManager *newdbm); //Pass in pointer to dbm object that the chat can use for data storage
     Chat(int newID, QString partner, DbManager *newdbm);
+    ~Chat();
     int getChatID();
     void addMessage(Message *newMessage);
     void sendMessage(Message * newMessage);

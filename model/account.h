@@ -33,9 +33,9 @@ private:
 
     // Private members specific to a general account
     Scrapbook* myScrapbook;
-    std::vector<Chat*> myChats;
-    std::vector<Account*> friendList;
-    std::vector<Group*> groups;
+    std::vector<Chat*> myChats; // the account owns these objects
+    std::vector<Account*> friendList; // the account does not own these objects
+    std::vector<Group*> groups; // the account does not own these objects
     QString username;
     QString password;
     QString firstName;
@@ -52,6 +52,7 @@ private:
     int indexOfProfile;
 
     // Private members specific to a current guest.
+    // the account owns these objects
     Blog* myBlog;
     Tweet* myTweet;
 
@@ -62,6 +63,7 @@ private:
     int yearDeparted;
 
     // Private members specific to a system admin.
+    // the account does not own these objects
     System* theSystem;
     DbManager* dbm;
 
@@ -72,6 +74,7 @@ public:
     Account(int accID,     QString usrname,    QString pw,
             int scrpBkID,   int blogID,         int tweetID,
             QString firstname,  QString lastname, DbManager *newdbm);
+    ~Account();
 
     //Functions to obtain information from the database
     void retrieveAllBlogPosts();
