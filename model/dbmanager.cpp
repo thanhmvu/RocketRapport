@@ -124,7 +124,7 @@ bool DbManager::addChat(const QVariant &AccountID, const QVariant &ChatID, const
     bool success = false;
     QSqlQuery query;
     std::string test;
-    bool check = query.prepare("INSERT INTO chats VALUES ((:AccountID), (:ChatID),  (:Reciever) )");
+    bool check = query.prepare("INSERT INTO chats VALUES ((:ChatID), (:AccountID),  (:Reciever) )");
     query.bindValue(":AccountID", AccountID);
     query.bindValue(":ChatID", ChatID);
     query.bindValue(":Reciever", sender);
@@ -164,7 +164,8 @@ bool DbManager::addMessage(const QVariant &ChatID, const QVariant &MessageID, co
         success = true;
     }
     else{
-        //Print Statement
+        qDebug() << "Issue adding new Message"
+                 << query.lastError();
     }
 
     return success;
