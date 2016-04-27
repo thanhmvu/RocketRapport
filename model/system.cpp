@@ -49,9 +49,7 @@ System::~System(){
         delete groups.back();
         groups.pop_back();
     }
-    for(auto pair: accounts){
-        delete pair.second;
-    }
+    deleteAllAccounts();
     std::cout << "Delete System object" << std::endl;
 }
 
@@ -310,4 +308,11 @@ void System::printAllIdCnt(){
 
 //        std::cout<< "Comment    : " << Comment::getIdCnt() << std::endl;
 //        std::cout<< "Feed       : " << Feed::getIdCnt() << std::endl;
+}
+
+void System::deleteAllAccounts(){
+    for(auto pair: accounts){
+        delete pair.second;
+    }
+    accounts.clear();
 }

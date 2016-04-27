@@ -64,6 +64,7 @@ public:
     void removeAccount(Account* oldAccount);
     bool usernameExist(QString username);
     void retrieveAllAccounts();
+    void deleteAllAccounts();
 
     //    bool addChat(const int &AccountID,
     //                 const int &ChatID, const QString &sender)
