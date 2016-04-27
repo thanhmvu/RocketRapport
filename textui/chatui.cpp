@@ -84,6 +84,9 @@ void ChatUI::runScreen() {
         int q = 0;
         int v = 0;
         const QString dateFormat = "h:m ap MMMM d yyyy";
+        for (int i = 4; i < this->getRows()-4; i++) {
+            mvprintw(i, (this->getCols()/2)-10, "                                                  ");
+        }
         for(const auto &acc: this->getSystem()->getAllAccounts()) {
             if (v == indexOfTalking) {
                 talkingWith = acc.first.toStdString();
