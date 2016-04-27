@@ -40,17 +40,6 @@ public:
     System(const QString &path);
     ~System();
 
-    bool login(QString username, QString password);
-    bool createAccount(QString username, QString password,
-                       QString firstname, QString lastname);
-    void addGroup(Group* newGroup);
-    void removeGroup(Group* oldGroup);
-    void addAccount(Account* newAccount);
-    void removeAccount(Account* oldAccount);
-    bool usernameExist(QString username);
-//    bool addChat(const int &AccountID,
-//                 const int &ChatID, const QString &sender);
-
     // getters
     Account* getCurrentUser();
     Account* getAccountByUsername(QString usrname);
@@ -65,15 +54,22 @@ public:
     void setLoggedIn(bool logged);
     void setAccountMap(std::map<QString, Account*> aMap);
 
-    // Used for testing purposes
-    void printAllUsernames();
 
-    // database methods
-    void loadAllAccounts();
-    //    void loadAccounts(std::map<int, QString> *one); //Method called in the constructor that will be used to create a list of accounts accessible to the user.
-    //    void fillAccountsMap();
+    bool login(QString username, QString password);
+    bool createAccount(QString username, QString password,
+                       QString firstname, QString lastname);
+    void addGroup(Group* newGroup);
+    void removeGroup(Group* oldGroup);
+    void addAccount(Account* newAccount);
+    void removeAccount(Account* oldAccount);
+    bool usernameExist(QString username);
+    void retrieveAllAccounts();
+
+    //    bool addChat(const int &AccountID,
+    //                 const int &ChatID, const QString &sender)
 
     // for debugging purpose
+    void printAllUsernames();
     static int getIdCnt(){ return id_cnt; };
     static void printAllIdCnt();
 };

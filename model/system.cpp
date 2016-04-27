@@ -22,23 +22,14 @@ System::System(const QString &path)
     dbm = new DbManager(path);
 
     // rebuild all accounts from the database
-    loadAllAccounts();
+    retrieveAllAccounts();
 
-    // rebuild all groups from the database
-    // in turn, a group needs to rebuild the feed and links to accounts
+    ////////////////////////////////////////////////////////////////////
+    /// rebuild all groups from the database
+    /// and a group needs to rebuild the feed and links to accounts
+    //////////////////////////////////////////////////////////////////
 
-
-
-    // print out info for debugging purpose
-//    for(auto pair: accounts){
-//        Account * acc = pair.second;
-//        std::cout<< "First name std::cout: " << acc->getFirstName().toStdString() <<"\n";
-//        qDebug()<< "First name qDebug: " << acc->getFirstName();
-//    }
     std::cout<< "New system created containing " << accounts.size() << " accounts." << std::endl;
-//    std::cout<< "Account internal id_cnt value is: " << Account::getIdCnt() << std::endl;
-//    std::cout<< "Blog internal id_cnt value is: " << Blog::getIdCnt() << std::endl;
-//    std::cout<< "BlogPost internal id_cnt value is: " << BlogPost::getIdCnt() << std::endl;
     printAllIdCnt();
 }
 
@@ -162,7 +153,6 @@ void System::removeGroup(Group* oldGroup) {
  * @param Takes in a pointer to a new account object that we want to store
  */
 void System::addAccount(Account* newAccount) {
-//    std::cout << "Now entering add account method" << std::endl;
     const QString &x = (newAccount->getFirstName());
     const QString &y = (newAccount->getLastName());
     const QVariant accntD = newAccount->getAccountID();
@@ -300,7 +290,7 @@ Account* System::getAccountByUsername(QString usrname){
 /**
  * @brief System::loadAllAccounts
  */
-void System::loadAllAccounts(){
+void System::retrieveAllAccounts(){
     // call dbm to rebuild accounts and load to accounts map
     dbm->retrieveAllAccounts(accounts);
 }
