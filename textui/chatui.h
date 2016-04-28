@@ -36,6 +36,8 @@ public:
     void displayScreen();
     void runScreen();
 
+    void printChatHistory();
+
     int getMenuNumber();
     void setMenuNumber(int number);
     int getAccountIndex();

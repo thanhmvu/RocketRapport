@@ -81,54 +81,7 @@ void ChatUI::runScreen() {
     int keyPress;
     while (this->getChangeScreens() == false) {
         std::stringstream sstemp;
-        int q = 0;
-        int v = 0;
-        const QString dateFormat = "h:m ap MMMM d yyyy";
-        for (int i = 4; i < this->getRows()-4; i++) {
-            mvprintw(i, (this->getCols()/2)-10, "                                                  ");
-        }
-        for(const auto &acc: this->getSystem()->getAllAccounts()) {
-            if (v == indexOfTalking) {
-                talkingWith = acc.first.toStdString();
-                ss << talkingWith;
-                mvprintw(3, ((this->getCols()/2)-11) + ((this->getCols()-((this->getCols()/2)-11))/2) - (talkingWith.size()/2), ss.str().c_str());
-                ss.str("");
-                refresh();
-                for (int j = 0; j < acc.second->getMyChats().size(); j++) {
-                    if (acc.second->getMyChats()[j]->getTalkingToUser().toStdString() == this->getSystem()->getCurrentUser()->getUsername().toStdString()) {
-                        for (int m = 0; m < acc.second->getMyChats()[j]->getMessages().size(); m++) {
-                            if (q < 4) {
-                                QString datetime = acc.second->getMyChats()[j]->getMessages()[m+scrollIndex]->getTimeSent().toString(dateFormat);
-                                std::string text = acc.second->getMyChats()[j]->getMessages()[m+scrollIndex]->getText().toStdString();
-                                sstemp << datetime.toStdString();
-                                mvprintw(6+(4*q), (this->getCols()/2)-10, sstemp.str().c_str());
-                                sstemp.str("");
-                                refresh();
-                                if (text.size() > this->getCols()-((this->getCols()/2)-11)) {
-                                    std::string part1 = text.substr(0, this->getCols()-((this->getCols()/2)-11));
-                                    std::string part2 = text.substr(this->getCols()-((this->getCols()/2)-11), std::string::npos);
-                                    sstemp << part1;
-                                    mvprintw(7+(4*q), (this->getCols()/2)-10, sstemp.str().c_str());
-                                    sstemp.str("");
-                                    refresh();
-                                    sstemp << part2;
-                                    mvprintw(8+(4*q), (this->getCols()/2)-10, sstemp.str().c_str());
-                                    sstemp.str("");
-                                    refresh();
-                                } else {
-                                    sstemp << text;
-                                    mvprintw(7+(4*q), (this->getCols()/2)-10, sstemp.str().c_str());
-                                    sstemp.str("");
-                                    refresh();
-                                }
-                                q++;
-                            }
-                        }
-                    }
-                }
-            }
-            v++;
-        }
+        this->printChatHistory();
         switch(this->getMenuNumber()) {
         case 0: // Account List
             while (this->getMenuNumber() == 0) {
@@ -199,6 +152,7 @@ void ChatUI::runScreen() {
                             if (k == this->getUserIndex()) {
                                 indexOfTalking = k;
                                 talkingWith = acc.first.toStdString();
+                                scrollIndex = 0;
                                 this->setMenuNumber(1);
                             }
                             k++;
@@ -243,6 +197,7 @@ void ChatUI::runScreen() {
                     if (scrollIndex > 0) {
                         scrollIndex--;
                     }
+                    this->printChatHistory();
                     break;
                 case KEY_DOWN: // Scroll down
                     if (true) {
@@ -251,7 +206,8 @@ void ChatUI::runScreen() {
                             if (k == indexOfTalking) {
                                 for (int j = 0; j < acc.second->getMyChats().size(); j++) {
                                     if (acc.second->getMyChats()[j]->getTalkingToUser().toStdString() == this->getSystem()->getCurrentUser()->getUsername().toStdString()) {
-                                        if (((acc.second->getMyChats()[j]->getMessages().size())-4)-scrollIndex > 0) {
+                                        int temp = (((acc.second->getMyChats()[j]->getMessages().size())-4)-scrollIndex);
+                                        if (temp > 0) {
                                             scrollIndex++;
                                         }
                                     }
@@ -259,6 +215,7 @@ void ChatUI::runScreen() {
                             }
                             k++;
                         }
+                        this->printChatHistory();
                     }
                     break;
                 }
@@ -340,6 +297,7 @@ void ChatUI::runScreen() {
                             for (int i = (this->getCols()/2)-10; i < (this->getCols()-14); i++) {
                                 mvprintw(this->getRows()-2, i, " ");
                             }
+                            this->printChatHistory();
                             lastXPos = (this->getCols()/2)-11;
                             lastYPos = this->getRows()-3;
                             curXPos = (this->getCols()/2)-10;
@@ -350,6 +308,7 @@ void ChatUI::runScreen() {
                         break;
                     case KEY_BACKSPACE: // Deletes last typed character
                         if (canBackSpace) {
+                            this->printChatHistory();
                             mvprintw(lastYPos, lastXPos, " ");
                             std::string remove = ss.str();
                             remove.erase(remove.size()-1, 1);
@@ -371,10 +330,12 @@ void ChatUI::runScreen() {
                         }
                         break;
                     case '\n':
+                        this->printChatHistory();
                         move(curYPos, curXPos);
                         break;
                     default: // Any other input like letters, nums, etc.
                         if (!noMoreRoom) {
+                            this->printChatHistory();
                             char temp = (char)keyPress;
                             ss << temp;
                             sstemp << temp;
@@ -410,6 +371,7 @@ void ChatUI::runScreen() {
                     this->setMenuNumber(0);
                     break;
                 case KEY_UP:
+                    this->printChatHistory();
                     if (this->getMenuIndex() > 0) {
                         mvprintw((this->getRows()-3)+(this->getMenuIndex()), 1, " ");
                         this->moveUpMenuIndex();
@@ -417,6 +379,7 @@ void ChatUI::runScreen() {
                     }
                     break;
                 case KEY_DOWN:
+                    this->printChatHistory();
                     if (this->getMenuIndex() < this->getNumOfOptions()-1) {
                         mvprintw((this->getRows()-3)+(this->getMenuIndex()), 1, " ");
                         this->moveDownMenuIndex();
@@ -451,6 +414,63 @@ void ChatUI::runScreen() {
     clear();
 
     refresh();
+}
+
+
+/**
+ * @brief Clears the chat history then prints the new chat history.
+ */
+void ChatUI::printChatHistory() {
+    std::stringstream pStream;
+    std::stringstream sstemp;
+    int q = 0;
+    int v = 0;
+    const QString dateFormat = "h:m ap MMMM d yyyy";
+    for (int i = 4; i < this->getRows()-4; i++) {
+        mvprintw(i, (this->getCols()/2)-10, "                                                  ");
+    }
+    for(const auto &acc: this->getSystem()->getAllAccounts()) {
+        if (v == indexOfTalking) {
+            talkingWith = acc.first.toStdString();
+            pStream << talkingWith;
+            mvprintw(3, ((this->getCols()/2)-11) + ((this->getCols()-((this->getCols()/2)-11))/2) - (talkingWith.size()/2), pStream.str().c_str());
+            pStream.str("");
+            refresh();
+            for (int j = 0; j < acc.second->getMyChats().size(); j++) {
+                if (acc.second->getMyChats()[j]->getTalkingToUser().toStdString() == this->getSystem()->getCurrentUser()->getUsername().toStdString()) {
+                    for (int m = 0; m < acc.second->getMyChats()[j]->getMessages().size(); m++) {
+                        if (q < 4) {
+                            QString datetime = acc.second->getMyChats()[j]->getMessages()[m+scrollIndex]->getTimeSent().toString(dateFormat);
+                            std::string text = acc.second->getMyChats()[j]->getMessages()[m+scrollIndex]->getText().toStdString();
+                            sstemp << datetime.toStdString();
+                            mvprintw(6+(4*q), (this->getCols()/2)-10, sstemp.str().c_str());
+                            sstemp.str("");
+                            refresh();
+                            if (text.size() > this->getCols()-((this->getCols()/2)-11)) {
+                                std::string part1 = text.substr(0, this->getCols()-((this->getCols()/2)-11));
+                                std::string part2 = text.substr(this->getCols()-((this->getCols()/2)-11), std::string::npos);
+                                sstemp << part1;
+                                mvprintw(7+(4*q), (this->getCols()/2)-10, sstemp.str().c_str());
+                                sstemp.str("");
+                                refresh();
+                                sstemp << part2;
+                                mvprintw(8+(4*q), (this->getCols()/2)-10, sstemp.str().c_str());
+                                sstemp.str("");
+                                refresh();
+                            } else {
+                                sstemp << text;
+                                mvprintw(7+(4*q), (this->getCols()/2)-10, sstemp.str().c_str());
+                                sstemp.str("");
+                                refresh();
+                            }
+                            q++;
+                        }
+                    }
+                }
+            }
+        }
+        v++;
+    }
 }
 
 
