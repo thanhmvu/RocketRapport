@@ -24,6 +24,7 @@ Account::Account(DbManager *newdbm)
     mostRecentEmployer = "none";
     age = 0;
     phoneNumber = 0;
+    profileUsername = "";
 
     monthDeparted = 0;
     dayDeparted = 0;
@@ -67,6 +68,7 @@ Account::Account(QString usrName, DbManager *newdbm){
     mostRecentEmployer = "none";
     age = 0;
     phoneNumber = 0;
+    profileUsername = usrName.toStdString();
 
     monthDeparted = 0;
     dayDeparted = 0;
@@ -117,6 +119,7 @@ Account::Account(int accID,     QString usrname,    QString pw,
     mostRecentEmployer = "none";
     age = 0;
     phoneNumber = 0;
+    profileUsername = usrname.toStdString();
 
     monthDeparted = 0;
     dayDeparted = 0;
@@ -357,6 +360,7 @@ QString Account::getUsername() {
  */
 void Account::setUsername(QString uName) {
     this->username = uName;
+    this->profileUsername = uName.toStdString();
 }
 
 
