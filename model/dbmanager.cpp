@@ -496,8 +496,8 @@ void DbManager::retrieveAllTweets(Tweet *userTweet){
  }
 
  /**
-  * @brief DbManager::retrieveAllChats
-  * @param user
+  * @brief DbManager::retrieveAllChats Method used to attach every chat associated with a user.
+  * @param user Pointer to the account we want to add a list of chats to from the database
   */
  void DbManager::retrieveAllChats(Account *user){
     QSqlQuery query;
@@ -547,6 +547,10 @@ void DbManager::retrieveAllAccounts(std::map<QString, Account*> &accounts){
     }else{ qDebug() << query.lastError(); }
 }
 
+/**
+ * @brief DbManager::retrieveAllGroups Method used to attach each group from the database to a given system object
+ * @param newSystem Pointer to a system object that we want to add groups to.
+ */
 void DbManager::retrieveAllGroups(System *newSystem){
     QSqlQuery query;
     query.prepare("SELECT * FROM groups");
@@ -566,7 +570,10 @@ void DbManager::retrieveAllGroups(System *newSystem){
                  << query.lastError();
     }
 }
-
+/**
+ * @brief DbManager::retrieveAllUsersInGroup Method used to attach each user ID associated with a group to that group.
+ * @param group Pointer to a group object that we want to add a list of account IDs
+ */
 void DbManager::retrieveAllUsersInGroup(Group *group){
     QSqlQuery query;
     QString command = "SELECT * FROM groupUsers WHERE GrpID= ";
