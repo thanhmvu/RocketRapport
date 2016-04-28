@@ -61,8 +61,6 @@ int main(int argc, char *argv[])
         case 6: // Scrapbook
             scrapbook.displayScreen();
             scrapbook.runScreen();
-            scrapbook.changeScreens(false);
-            clear();
             break;
         case 7: // Exit
             running = false;
