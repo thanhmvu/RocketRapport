@@ -21,6 +21,7 @@
 #include "scrapbookpost.h"
 #include "chat.h"
 #include "message.h"
+#include "group.h"
 
 //We're going to need to forward declare the classes that use a dbm object
 class Account;
@@ -28,6 +29,7 @@ class Chat;
 class Blog;
 class Tweet;
 class System;
+class Group;
 
 class DbManager
 {
@@ -65,6 +67,9 @@ public:
     bool addTweetPost(const QVariant &TweetPostID, const QVariant &TweetID,
                       const QVariant &TimeDate   , const QVariant &Text);
 
+    bool addGroupUserPair(const QVariant GroupID, const QVariant UserID);
+
+
 
     // not implemented yet
 //    bool addProfile (const QVariant &AcntID, const QVariant &Gender, const QVariant &AbtYslf, const QVariant HmAddress,
@@ -88,6 +93,7 @@ public:
     void retrieveAllScbkPosts(Scrapbook *userScBook);
     void retrieveAllChats(Account *user);
     void retrieveAllGroups(System *newSystem);
+    void retrieveAllUsersInGroup(Group *group);
 
     bool rmAllAccounts();
     void deleteTable(const QVariant tableName);

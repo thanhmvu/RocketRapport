@@ -1,5 +1,6 @@
 #include "gtest/gtest.h"
 #include "../model/system.h"
+#include "../model/account.h"
 #include "../model/feed.h"
 #include "../model/group.h"
 //I want to test that the different methods in the system class can call their respective scripts
@@ -58,11 +59,57 @@
 //    EXPECT_EQ(true, sys.usernameExist("user2"));
 //}
 
-TEST(SystemTest, testAddGroup){
-    system("pwd");
-    System testSys("./gProjectDB.db");
-    Group *newGroup = new Group();
-    newGroup->setGroupName("First Group");
-    newGroup->setStatus(1);
-    testSys.addGroup(newGroup);
+//TEST(SystemTest, testAddGroup){
+//    system("pwd");
+//    System testSys("./gProjectDB.db");
+//    DbManager *sysDB = testSys.getDbm();
+//    sysDB->deleteTable("groups");
+//    Group *newGroup = new Group();
+//    newGroup->setGroupName("First Group");
+//    newGroup->setStatus(1);
+//    Group *newGroup1 = new Group();
+//    newGroup1->setGroupName("Second Group");
+//    newGroup1->setStatus(1);
+
+//    testSys.addGroup(newGroup);
+//    testSys.addGroup(newGroup1);
+//}
+
+//TEST(SystemTest, testRetrieveGroups){
+//    System testSys("./gProjectDB.db");
+//    testSys.retrieveAllGroups();
+//    std::vector<Group*> lookList = testSys.getGroups();
+//    for(int i =0; i < lookList.size(); i++){
+//        Group *check = lookList.at(i);
+//        qDebug() << check->getID() << ": " << check->getGroupName();
+//    }
+//    DbManager *sysDB = testSys.getDbm();
+//    sysDB->deleteTable("groups");
+//}
+
+//TEST(SystemTest, testAddGroupUserPair){
+//    System sysTest("./gProjectDB.db");
+//    DbManager *sysDB = sysTest.getDbm();
+//    sysDB->deleteTable("groups");
+//    sysDB->deleteTable("accounts");
+//    Group *testGroup = new Group(0,0,"New Group",1,0);
+//    Account *testAccount = new Account(0,"Johnny","Mike",0,0,0,"The","Gimp",sysDB);
+//    sysTest.pairGroupWithUser(testGroup,testAccount);
+//}
+
+//Retrieve Group pair works, just need to find a way to combine the two
+TEST(SystemTest, testRetrieveGroupPairs){
+    System sysTest("./gProjectDB.db");
+    sysTest.retrieveAllGroups();
+    std::vector<Group*> lookList = sysTest.getGroups();
+    Group* check = lookList.at(0);
+    sysTest.retrieveAllUsersInGroup(check);
+
+    qDebug() << "First Group ID: " << check->getID();
+    std::vector<int> IDCheck = check->getGroupMemberIDs();
+    qDebug() << "Number of users in this group: " << IDCheck.size();
+    for(int i=0; i< IDCheck.size(); i++){
+        qDebug() << IDCheck.at(i);
+    }
+
 }

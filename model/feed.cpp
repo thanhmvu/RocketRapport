@@ -8,6 +8,10 @@ Feed::Feed()
     id_cnt++;
 }
 
+Feed::Feed(int newID){
+    feedID = newID;
+}
+
 Feed::~Feed(){
     while(!feedPosts.empty()){
         delete feedPosts.back();

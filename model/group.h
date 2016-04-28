@@ -4,8 +4,10 @@
 #include "feed.h"
 #include "tweetpost.h"
 #include "account.h"
+#include "dbmanager.h"
 
 class Account;
+class DbManager;
 
 class Group
 {
@@ -13,8 +15,10 @@ private:
     static int id_cnt;
     int groupID;
     Feed* groupFeed;
+    int adminID;
     Account* admin;
 
+    std::vector<int> groupMemberIDs;
     std::vector<Account*> groupMembers;
     std::vector<QString> pastProjects;
 
@@ -24,6 +28,7 @@ private:
 
 public:
     Group();
+    Group(int gID, int GrpAdminID, QString gName, bool newStatus, int newFeedID);
     ~Group();
 
     ////////////////////////////////////////////////////////////////////
@@ -36,24 +41,28 @@ public:
 //    bool isMember(Account * caller);
 
 //    void updateFeed(Account* userPosted, TweetPost* latestPost);
-//    void addGroupMember(Account* newMember);
+    void addGroupMember(Account* newMember);
+    void addGroupMemberID(int newID);
 //    void removeGroupMember(Account* oldMember);
 //    void addToPastProjects(QString project);
 
 //    Feed* Feed();
     bool getIsActive();
 //    void setIsActive(bool active);
-//    std::vector<Account*> getGroupMembers();
+    std::vector<Account*> getGroupMembers();
+    std::vector<int> getGroupMemberIDs();
     Account* getAdmin();
 //    void changeAdmin(Account* newAdmin);
     QString getGroupName();
     void setGroupName(QString name);
+
 //    QString getCurrentProject();
 //    void setCurrentProject(QString project);
 //    void newProject(QString project);
 //    std::vector<QString> getPastProjects();
     Feed* getFeed();
     int getID();
+    int getAdminID();
     bool setStatus(bool activeState);
 
     // for debugging purpose

@@ -2,11 +2,31 @@
 
 int Group::id_cnt = 0;
 
-Group::Group()
-{
+/**
+ * @brief Group::Group Constructor used for creating a new group
+ */
+Group::Group(){
+
+    isActive = true;
+    adminID = -1; //Store a default value
     groupID = id_cnt;
     id_cnt++;
     groupFeed = new Feed();
+}
+
+/**
+ * @brief Group::Group Constructor used for creating a group on the local memory whose information is located on the database
+ * @param gID
+ * @param gName
+ * @param newStatus
+ */
+Group::Group(int gID, int GrpAdminID, QString gName, bool newStatus, int newFeedID)
+{
+    groupID = gID;
+    groupName = gName;
+    isActive = newStatus;
+    adminID = GrpAdminID;
+    groupFeed = new Feed(newFeedID);
 }
 
 Group::~Group(){
@@ -23,13 +43,17 @@ Group::~Group(){
 //    // Add Account to Post.
 //}
 
-///**
-// * @brief Adds a new account/user to the group.
-// */
-//void Group::addGroupMember(Account* newMember) {
-//    this->getGroupMembers().push_back(newMember);
-//}
+/**
+ * @brief Adds an account/user to the group.
+ * @param newMember Pointer to account object that we want to add to this particular group.
+ */
+void Group::addGroupMember(Account* newMember) {
+    this->getGroupMembers().push_back(newMember);
+}
 
+void Group::addGroupMemberID(int newID){
+    groupMemberIDs.push_back(newID);
+}
 
 ///**
 // * @brief Removes an account/user from the group.
@@ -75,12 +99,16 @@ bool Group::getIsActive() {
 //    this->isActive = active;
 //}
 
-///**
-// * @brief Getter that returns the list of members in this group.
-// */
-//std::vector<Account*> Group::getGroupMembers() {
-//    return this->groupMembers;
-//}
+/**
+ * @brief Getter that returns the list of members in this group.
+ */
+std::vector<Account*> Group::getGroupMembers() {
+    return this->groupMembers;
+}
+
+std::vector<int> Group::getGroupMemberIDs(){
+    return groupMemberIDs;
+}
 
 
 /**
@@ -151,6 +179,10 @@ void Group::setGroupName(QString name) {
  */
 int Group::getID(){
     return groupID;
+}
+
+int Group::getAdminID(){
+    return adminID;
 }
 
 Feed* Group::getFeed(){

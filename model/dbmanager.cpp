@@ -104,8 +104,8 @@ bool DbManager::addGroup(const QVariant &GrpID  , const QVariant &GrpAdmnId,
     query.bindValue(":actStatus",actStatus);
     query.bindValue(":GrpName",GrpName);
     query.bindValue(":FeedID",FeedID);
-    qDebug() << query.boundValue(0) << " " << query.boundValue(1) << " " << query.boundValue(2) <<
-                " " << query.boundValue(3) << " " << query.boundValue(4);
+//    qDebug() << query.boundValue(0) << " " << query.boundValue(1) << " " << query.boundValue(2) <<
+//                " " << query.boundValue(3) << " " << query.boundValue(4);
     if(query.exec()){
         success = true;
     }else{
@@ -187,6 +187,22 @@ bool DbManager::addTweetPost(const QVariant &TweetPostID, const QVariant &TweetI
                  << query.lastError();
     }
 
+    return success;
+}
+
+bool DbManager::addGroupUserPair(const QVariant GroupID, const QVariant UserID){
+    bool success = false;
+    QSqlQuery query;
+    query.prepare("INSERT INTO groupUsers VALUES( (:GrpID),(:AccountID) )");
+    query.bindValue(":GrpID",GroupID);
+    query.bindValue(":AccountID",UserID);
+    if(query.exec() ){
+        success = true;
+    }
+    else{
+        qDebug() << "Issue adding Group-User pair "
+                 << query.lastError();
+    }
     return success;
 }
 
@@ -483,3 +499,39 @@ void DbManager::retrieveAllAccounts(std::map<QString, Account*> &accounts){
     }else{ qDebug() << query.lastError(); }
 }
 
+void DbManager::retrieveAllGroups(System *newSystem){
+    QSqlQuery query;
+    query.prepare("SELECT * FROM groups");
+    if(query.exec()){
+       while(query.next() ){
+           int dbGrpID = query.value(0).toInt();
+           int dbGrpAdmin = query.value(1).toInt();
+           bool dbStatus = query.value(2).toBool();
+           QString dbGrpname = query.value(3).toString();
+           int dbFeedID = query.value(4).toInt();
+           Group *newGroup = new Group(dbGrpID,dbGrpAdmin,dbGrpname,dbStatus,dbFeedID);
+           newSystem->insertGroup(newGroup);
+       }
+    }
+    else{
+        qDebug() << "Issue retrieving all groups: "
+                 << query.lastError();
+    }
+}
+
+void DbManager::retrieveAllUsersInGroup(Group *group){
+    QSqlQuery query;
+    QString command = "SELECT * FROM groupUsers WHERE GrpID= ";
+    command += QString::number(group->getID());
+
+    query.prepare(command);
+    if(query.exec()){
+        while(query.next() ){ //Pair each account to the chat
+             group->addGroupMemberID(query.value(1).toInt() );
+        }
+    }
+    else{
+        qDebug() << "Issue pairing users with groups"
+                 << query.lastError();
+    }
+}

@@ -14,6 +14,7 @@ private:
 
 public:
     Feed();
+    Feed(int newID);
     ~Feed();
 
     void displayFeed();

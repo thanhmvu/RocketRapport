@@ -287,6 +287,7 @@ void ChatUI::runScreen() {
                         if (true) {
                             Message * sentMessage = new Message();
                             Message * sentMessage2 = new Message();
+                            //mvprintw(3, this->getCols()-2, " ")
                             sentMessage->setText(QString::fromStdString(ss.str()));
                             sentMessage->setDateTime(QDateTime::currentDateTime());
                             sentMessage2->setText(QString::fromStdString(ss.str()));

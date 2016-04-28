@@ -23,7 +23,8 @@ System::System(const QString &path)
 
     // rebuild all accounts from the database
     retrieveAllAccounts();
-
+    //Rebuild all groups
+    retrieveAllGroups();
     ////////////////////////////////////////////////////////////////////
     /// rebuild all groups from the database
     /// and a group needs to rebuild the feed and links to accounts
@@ -128,8 +129,12 @@ bool System::createAccount(QString username, QString password, QString firstname
  */
 void System::addGroup(Group* newGroup) {
     this->getGroups().push_back(newGroup);
-    dbm->addGroup(newGroup->getID(),newGroup->getAdmin()->getAccountID(),
+    dbm->addGroup(newGroup->getID(),newGroup->getAdminID(),
                   newGroup->getIsActive(),newGroup->getGroupName(),newGroup->getFeed()->getFeedID() );
+}
+
+void System::insertGroup(Group *newGroup){
+    groups.push_back(newGroup);
 }
 
 
@@ -143,6 +148,10 @@ void System::removeGroup(Group* oldGroup) {
             break;
         }
     }
+}
+
+void System::pairGroupWithUser(Group *group, Account *account){
+    dbm->addGroupUserPair(group->getID(),account->getAccountID() );
 }
 
 
@@ -298,6 +307,17 @@ void System::retrieveAllAccounts(){
     deleteAllAccounts();
     // call dbm to rebuild all accounts and load to accounts map
     dbm->retrieveAllAccounts(accounts);
+}
+
+/**
+ * @brief System::retrieveAllGroups Method used to obtain all group objects that have info stored in DB
+ */
+void System::retrieveAllGroups(){
+    dbm->retrieveAllGroups(this);
+}
+
+void System::retrieveAllUsersInGroup(Group* groupToAdd){
+    dbm->retrieveAllUsersInGroup(groupToAdd);
 }
 
 void System::printAllIdCnt(){

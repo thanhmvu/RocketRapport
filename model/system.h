@@ -59,11 +59,15 @@ public:
     bool createAccount(QString username, QString password,
                        QString firstname, QString lastname);
     void addGroup(Group* newGroup);
+    void insertGroup(Group* newGroup);
     void removeGroup(Group* oldGroup);
+    void pairGroupWithUser(Group* group,Account* account);
     void addAccount(Account* newAccount);
     void removeAccount(Account* oldAccount);
     bool usernameExist(QString username);
     void retrieveAllAccounts();
+    void retrieveAllGroups();
+    void retrieveAllUsersInGroup(Group* groupToAdd);
     void deleteAllAccounts();
     void refreshSystem();
 
