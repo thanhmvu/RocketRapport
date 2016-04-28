@@ -129,7 +129,7 @@ void ChatGUI::openChat(){
     // Set chat_box scrollbar to the bottom (solution 1)
     QTextCursor c = ui->chat_box->textCursor();
     c.movePosition(QTextCursor::End);
-    ui->chat_box->setTextCursor(c);\
+    ui->chat_box->setTextCursor(c);
 }
 
 /**
@@ -147,6 +147,11 @@ void ChatGUI::displayCurrentChat(){
         }
     }
     ui->chat_box->setText(chat_text);
+
+    // Set chat_box scrollbar to the bottom (solution 1)
+    QTextCursor c = ui->chat_box->textCursor();
+    c.movePosition(QTextCursor::End);
+    ui->chat_box->setTextCursor(c);
 }
 
 /**
