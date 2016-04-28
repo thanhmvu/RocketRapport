@@ -211,6 +211,7 @@ void ChatGUI::on_pushButton_send_mess_clicked()
  */
 void ChatGUI::on_pushButton_main_menu_clicked()
 {
+    isDisplaying = false;
     // reload main menu in case of new accounts or new groups
     main_menu->reload();
 
