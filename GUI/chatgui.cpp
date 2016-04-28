@@ -27,12 +27,13 @@ ChatGUI::ChatGUI(MainMenu * mm) :
     ui->scrollArea_userList->setWidget(scroll_widget);
 
     isDisplaying = false;
-//    refreshChatScreen();
+    talking_to_user = nullptr;
+    newMessFromTalkToUser = false;
 
     // constantly refresh chat screen
     timer = new QTimer();
     connect(timer, SIGNAL(timeout()),this,SLOT(refreshChatScreen()));
-    timer->start(1000);
+    timer->start(300);
 }
 
 /**
@@ -74,11 +75,18 @@ void ChatGUI::refreshChatScreen(){
                     noti += (chat->getTalkingToUser() + "\n");
                     // update number of messages
                     chatMap[chat->getTalkingToUser()] = currNumOfMess;
+
+                    // check if new mess is of current talking-to user
+                    if(talking_to_user != nullptr){
+                        if(talking_to_user->getUsername().compare(chat->getTalkingToUser()) == 0){
+                            newMessFromTalkToUser = true;
+                        }
+                    }
                 }
             }
             ui->notification->setText(noti);
 
-            // check the current displayed chatmate to see if he/she sends new mess
+            // display current chat
             displayCurrentChat();
 
             // display name_tag for current talking-to user
@@ -129,6 +137,7 @@ void ChatGUI::openChat(){
     ui->name_tag->setText(other_username);
 
     // Load chat from DATABASE based on the current user and the other user
+    newMessFromTalkToUser = true;
     displayCurrentChat();
 
     // Set chat_box scrollbar to the bottom (solution 1)
@@ -141,8 +150,8 @@ void ChatGUI::openChat(){
  * @brief
  */
 void ChatGUI::displayCurrentChat(){
-    QString chat_text;
-    if(talking_to_user != nullptr && curr_user != nullptr){
+    if(curr_user != nullptr && talking_to_user != nullptr && newMessFromTalkToUser){
+        QString chat_text;
         Chat * chat = curr_user->getChatByPartnerName(talking_to_user->getUsername());
         if(chat != nullptr){
             // Display to screen
@@ -150,13 +159,15 @@ void ChatGUI::displayCurrentChat(){
                 chat_text += (mess->getTimeSent().toString() + "\n" + mess->getText()+ "\n" + "\n");
             }
         }
-    }
-    ui->chat_box->setText(chat_text);
+        ui->chat_box->setText(chat_text);
 
-    // Set chat_box scrollbar to the bottom (solution 1)
-    QTextCursor c = ui->chat_box->textCursor();
-    c.movePosition(QTextCursor::End);
-    ui->chat_box->setTextCursor(c);
+        // Set chat_box scrollbar to the bottom (solution 1)
+        QTextCursor c = ui->chat_box->textCursor();
+        c.movePosition(QTextCursor::End);
+        ui->chat_box->setTextCursor(c);
+
+        newMessFromTalkToUser = false;
+    }
 }
 
 /**
@@ -226,6 +237,7 @@ void ChatGUI::on_pushButton_main_menu_clicked()
 {
     isDisplaying = false;
     talking_to_user = nullptr;
+    newMessFromTalkToUser = false;
     // reload main menu in case of new accounts or new groups
     main_menu->reload();
 

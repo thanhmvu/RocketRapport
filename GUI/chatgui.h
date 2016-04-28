@@ -41,12 +41,13 @@ private:
     std::map<QString,int> chatMap; // map talking-to user to number of messages
     // does not own
     MainMenu *main_menu;
-    Account * talking_to_user;
-    Account * curr_user;
     std::vector<QPushButton*> userList;
     QWidget *scroll_widget;
     QVBoxLayout *layout;
+    Account * curr_user;
+    Account * talking_to_user;
     bool isDisplaying;
+    bool newMessFromTalkToUser;
 
     void updateUserList();
     void displayCurrentChat();
