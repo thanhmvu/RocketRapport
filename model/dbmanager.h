@@ -30,6 +30,7 @@ class Blog;
 class Tweet;
 class System;
 class Group;
+class Scrapbook;
 
 class DbManager
 {

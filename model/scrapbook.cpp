@@ -2,10 +2,26 @@
 
 int Scrapbook::id_cnt = 0;
 
-Scrapbook::Scrapbook()
+
+Scrapbook::Scrapbook(Account* sb_owner)
 {
     scrpBookID = id_cnt;
     id_cnt++;
+    owner = sb_owner;
+}
+
+/**
+ * @brief constructor to rebuild an instance of existing scrapbook.
+ *
+ */
+Scrapbook::Scrapbook(int newID, Account* sb_owner)
+{
+    scrpBookID = newID;
+    // update id_cnt if needed
+    if(scrpBookID >= id_cnt){
+        id_cnt = scrpBookID + 1;
+    }
+    owner = sb_owner;
 }
 
 Scrapbook::~Scrapbook(){

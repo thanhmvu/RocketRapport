@@ -34,7 +34,7 @@ Account::Account(DbManager *newdbm)
     dayDeparted = 0;
     yearDeparted = 0;
 
-    myScrapbook = new Scrapbook();
+    myScrapbook = new Scrapbook(this);
 
     myBlog = new Blog(dbm); //Create new blog associated with user and retrieve all posts
 
@@ -73,7 +73,7 @@ Account::Account(QString usrName, DbManager *newdbm){
     dayDeparted = 0;
     yearDeparted = 0;
 
-    myScrapbook = new Scrapbook();
+    myScrapbook = new Scrapbook(this);
 
     myBlog = new Blog(dbm); //Create new blog associated with user and retrieve all posts
 
@@ -120,7 +120,7 @@ Account::Account(int accID,     QString usrname,    QString pw,
     yearDeparted = 0;
 
     // create blog, tweet, scrapbook, instances using input IDs
-    myScrapbook = new Scrapbook();
+    myScrapbook = new Scrapbook(scrpBkID, this);
     myBlog = new Blog(blogID, dbm);     // retrieve all blog posts inside the constructor
     myTweet = new Tweet(tweetID, dbm);   // retrieve all tweets inside the constructor
 

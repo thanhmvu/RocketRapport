@@ -17,6 +17,7 @@ class Chat;
 class DbManager; //Going to try saving chat information directly using dbm
 class Blog;
 class Tweet;
+class Scrapbook;
 
 /**
  * @brief The Account class will be used to store user data. The account will be inherited by children classes such as system admins, current guests, and past guests.

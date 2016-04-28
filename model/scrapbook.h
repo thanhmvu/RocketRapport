@@ -3,7 +3,12 @@
 #include "scrapbookpost.h"
 #include <vector>
 #include <QString>
+#include "account.h"
 
+class Account;
+
+// scrapbook should not have to touch database.
+// just simply print out the info pulled from thw owner's account
 class Scrapbook
 {
 private:
@@ -11,9 +16,11 @@ private:
     int scrpBookID;
     std::vector<ScrapbookPost*> myPosts;
     QString tweetText;
+    Account * owner;
 
 public:
-    Scrapbook();
+    Scrapbook(Account* sb_owner);
+    Scrapbook(int newID, Account* sb_owner);
     ~Scrapbook();
 
     void setID(int newID);
