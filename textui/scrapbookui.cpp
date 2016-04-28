@@ -19,7 +19,7 @@ void ScrapbookUI::displayScreen() {
  * @brief Loops through this method while the user is on this screen.
  */
 void ScrapbookUI::runScreen() {
-    this->viewMyScrapbook("../index.html");
+//    this->viewMyScrapbook("../index.html");
     mvprintw(2, 1, "In Run Screen");
     getch();
 
@@ -36,6 +36,6 @@ void ScrapbookUI::runScreen() {
 void ScrapbookUI::viewMyScrapbook(std::string path) {
     std::ofstream scrapbookHTML;
     scrapbookHTML.open(path, std::ios::out | std::ios::trunc);
-    scrapbookHTML << "<!DOCTYPE html><html><head><title>Page Title</title></head><body><h1>This is a Heading</h1><p>This is a paragraph.</p></body></html>";
+    scrapbookHTML << "";
     scrapbookHTML.close();
 }
