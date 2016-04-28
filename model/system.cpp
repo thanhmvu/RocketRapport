@@ -25,6 +25,12 @@ System::System(const QString &path)
     retrieveAllAccounts();
     //Rebuild all groups
     retrieveAllGroups();
+    //Add each of the
+    for(int i=0; i<groups.size(); i++){ //Assign a list of integers showing which accounts are in each group for
+        retrieveAllUsersInGroup( groups.at(i) );
+
+    }
+
     ////////////////////////////////////////////////////////////////////
     /// rebuild all groups from the database
     /// and a group needs to rebuild the feed and links to accounts
@@ -297,6 +303,15 @@ Account* System::getAccountByUsername(QString usrname){
         std::cout << "System::getAccountByUsername fail. User does not exist.\n";
         return nullptr;
     }
+}
+
+/**
+ * @brief System::getAccountByID Return a pointer to an account object given the account's ID
+ * @param ID
+ * @return Pointer to an account object with the given ID
+ */
+Account* System::getAccountByID(int ID){
+
 }
 
 /**

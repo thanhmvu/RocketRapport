@@ -5,7 +5,6 @@ int DbManager::id_cnt =0;
 /**
  * @brief DbManager::DbManager Class used to "communicate" between the program and the database.
  * @param path String used to specify where the program will be accessing a database file.
- * For now, I'm going to go with the approach where we create 10 different add methods with different sets of parameters
  */
 DbManager::DbManager(const QString &path)
 {
@@ -24,6 +23,9 @@ DbManager::DbManager(const QString &path)
     }
 }
 
+/**
+ * @brief DbManager::~DbManager Desuctor that will close the database connection
+ */
 DbManager::~DbManager()
 {
     if (m_db.isOpen())
@@ -39,15 +41,15 @@ DbManager::~DbManager()
 //////////////////////////////////////////////////////////////////////////
 
 /**
- * @brief DbManager::addUser Method used to add user objects with associated object IDs to
+ * @brief DbManager::addUser Method used to add user objects with associated object IDs to the database
  * @param AcntID   ID number used to associate a User object with a name and a series of other ID's
- * @param FrstName
- * @param LstName
- * @param GrpID
- * @param ScrpBkID
- * @param BlogID
- * @param TweetID
- * @return
+ * @param FrstName First name of the new user
+ * @param LstName Last name of the new user
+ * @param GrpID Id of the group the user belongs to. Will be set to an arbitrary default value
+ * @param ScrpBkID ID of the scrapbook belonging to the user
+ * @param BlogID ID of the blog belonging to the user
+ * @param TweetID ID of the tweet system that belongs to the user
+ * @return Returns true if the add method works successfully
  */
 bool DbManager::addUser(const QVariant &AcntID  , const QVariant &FrstName,
                         const QVariant &LstName , const QVariant &ScrpBkID,
@@ -85,12 +87,12 @@ bool DbManager::addUser(const QVariant &AcntID  , const QVariant &FrstName,
 
 /**
  * @brief DbManager::addGroup Method used to add a Group and its asociated information into a table
- * @param GrpID
- * @param GrpAdmnId
+ * @param GrpID ID of the newly created group
+ * @param GrpAdmnId Account ID of the account that is  the admin of this particular group
  * @param actStatus Boolean signifying if a group is active or not.
- * @param GrpName
- * @param FeedID
- * @return
+ * @param GrpName Name of the newly created group
+ * @param FeedID ID of the feed belonging to this particular group
+ * @return Returns true if the add method works successfully
  */
 bool DbManager::addGroup(const QVariant &GrpID  , const QVariant &GrpAdmnId,
                          bool actStatus         , const QVariant &GrpName,
@@ -117,10 +119,10 @@ bool DbManager::addGroup(const QVariant &GrpID  , const QVariant &GrpAdmnId,
 
 /**
  * @brief DbManager::addChat Add a new chat object associated with a patrticular user
- * @param AccountID
- * @param ChatID
- * @param sender
- * @return
+ * @param AccountID ID of the account that starting a new chat
+ * @param ChatID ID of the newly created chat
+ * @param sender Username of the user that the sender is starting a chat with.
+ * @return Returns true if the add method works successfully
  */
 bool DbManager::addChat(const QVariant &AccountID, const QVariant &ChatID, const QString &receiver){
     bool success = false;
@@ -141,13 +143,13 @@ bool DbManager::addChat(const QVariant &AccountID, const QVariant &ChatID, const
 
 /**
  * @brief DbManager::addMessage Add message information to the database
- * @param ChatID
- * @param MessageID
- * @param DateTime
- * @param text
+ * @param ChatID ID of the chat that the newly created message belongs to.
+ * @param MessageID ID of the newly created message.
+ * @param DateTime Date that the newly  created message was sent at.
+ * @param text  Text that is being sent as a message.
  * @param imageURL  URL directing the program to a directory containing the image it wants to load
  * @param receiver  Name of the user being sent the message
- * @return
+ * @return Returns true if the add method works successfully
  */
 bool DbManager::addMessage(const QVariant &ChatID   , const QVariant &MessageID,
                            const QVariant &DateTime , const QVariant &text){
@@ -169,7 +171,14 @@ bool DbManager::addMessage(const QVariant &ChatID   , const QVariant &MessageID,
     return success;
 }
 
-
+/**
+ * @brief DbManager::addTweetPost Method used to add a new tweet post to the database.
+ * @param TweetPostID ID of the newly created tweet post
+ * @param TweetID ID of the tweet object this tweet belongs to
+ * @param TimeDate Date that the tweet was posted on
+ * @param Text Text being posted in the new tweet post
+ * @return Returns true if the add method works successfully
+ */
 bool DbManager::addTweetPost(const QVariant &TweetPostID, const QVariant &TweetID,
                              const QVariant &TimeDate   , const QVariant &Text){
     bool success = false;
@@ -190,6 +199,12 @@ bool DbManager::addTweetPost(const QVariant &TweetPostID, const QVariant &TweetI
     return success;
 }
 
+/**
+ * @brief DbManager::addGroupUserPair Used to add a pair associating a user with a particular group.
+ * @param GroupID ID of the group a particular user is associated with
+ * @param UserID ID of the user that is assigned to a given group
+ * @return Returns true if the add method works successfully
+ */
 bool DbManager::addGroupUserPair(const QVariant GroupID, const QVariant UserID){
     bool success = false;
     QSqlQuery query;
@@ -206,7 +221,14 @@ bool DbManager::addGroupUserPair(const QVariant GroupID, const QVariant UserID){
     return success;
 }
 
-
+/**
+ * @brief DbManager::addBlogPost Method used to add new blog posts to the database
+ * @param blogPostID ID of the newly created blog post
+ * @param blogID ID of the blog that the newly created blog post belongs to
+ * @param timeDate Date that the new blog post was posted on
+ * @param text Text being stored and displayed on the new blog post
+ * @return Returns true if the add method works successfully
+ */
 bool DbManager::addBlogPost(const QVariant &blogPostID, const QVariant &blogID,
                             const QVariant &timeDate, const QVariant &text){
      QSqlQuery query;
@@ -273,7 +295,7 @@ bool DbManager::find(const QVariant &UsrID, const QVariant &table){
 /**
  * @brief DbManager::printAllRows Print all stored rows for a given column.
  * @param column Name of the chosen column for which the user wants to print all information
- * @return
+ * @return Returns true if the method is able to execute the given query
  */
 bool DbManager::printAllRows(const QString &column){
     std::cout<< "Printing all elements" << std::endl;
@@ -290,7 +312,7 @@ bool DbManager::printAllRows(const QString &column){
 /**
  * @brief DbManager::deleteName Remove a user and their associated information from the database
  * @param UsrID ID number used to designate user we want to remove from the system
- * @return
+ * @return Returns true if the query is able to execute
  */
 bool DbManager::deleteName(const QVariant &UsrID){
     bool deleted = false;
@@ -325,6 +347,10 @@ bool DbManager::rmAllAccounts(){
     return query.exec();
 }
 
+/**
+ * @brief DbManager::deleteTable Method used to clear all of the values in a particular table
+ * @param tableName Name of the table the user wants to clear of values
+ */
 void DbManager::deleteTable(const QVariant tableName){
     QSqlQuery query;
     QString command = "delete from ";
@@ -365,9 +391,12 @@ int DbManager::retrieveIntInfo(const QString &fieldName, const QString &tableNam
 }
 
 /**
- * @brief DbManager::retrieveStringInfo
- * @param field
- * @return
+ * @brief DbManager::retrieveStringInfo Retrieve a particular string from the database
+ * @param fieldName
+ * @param tableName
+ * @param checkname
+ * @param ID
+ * @return Return the value of the field the user wants to retrieve
  */
 QString DbManager::retrieveStringInfo(const QString &fieldName, const QString &tableName, const QString &checkName, const QVariant &ID){
     QSqlQuery query;

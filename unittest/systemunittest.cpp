@@ -108,6 +108,7 @@ TEST(SystemTest, testRetrieveGroupPairs){
     qDebug() << "First Group ID: " << check->getID();
     std::vector<int> IDCheck = check->getGroupMemberIDs();
     qDebug() << "Number of users in this group: " << IDCheck.size();
+
     for(int i=0; i< IDCheck.size(); i++){
         qDebug() << IDCheck.at(i);
     }
