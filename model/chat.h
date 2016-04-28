@@ -15,7 +15,7 @@ private:
     QString talkingToUser;
     std::vector<Message*> messages; // owns this
 
-    DbManager *dbm; // does not own this
+    DbManager *dbm;
 public:
     Chat(DbManager *newdbm); //Pass in pointer to dbm object that the chat can use for data storage
     Chat(QString partner, DbManager *newdbm);

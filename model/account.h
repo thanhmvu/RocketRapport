@@ -86,8 +86,8 @@ public:
     void addChat(Chat* newChat);
     void insertChat(Chat* newChat);
     void removeChat(Chat* badChat);
-    void addFriend(Account* newFriend);
-    void removeFriend(Account* badFriend);
+    void addFriend(Account* newFriend); //No code for this method
+    void removeFriend(Account* badFriend); //No code for this method
     void joinGroup(Group* newGroup);
     void leaveGroup(Group* badGroup);
 

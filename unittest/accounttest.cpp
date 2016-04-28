@@ -3,6 +3,7 @@
 #include "../model/chat.h"
 #include "../model/dbmanager.h"
 #include "../model/message.h"
+
 #include <vector>
 
 
@@ -58,24 +59,27 @@ TEST(AccountTest, testLoadAllMessages){
 }
 
 //Method works - I wanted to show that we could add new chats
-//TEST(AccountTest, testAddChats){
-//    DbManager testDbm("./gProjectDB.db");
-//    Account testAccount(&testDbm);
-//    Chat newChat(&testDbm);
-//    newChat.setTalkingToUser("Beth");
-//    testAccount.addChat(&newChat);
+//Test is crashing the system
+TEST(AccountTest, testAddChats){
+    DbManager testDbm("./gProjectDB.db");
+    testDbm.deleteTable("chats");
+    Account testAccount(&testDbm);
+    Chat* newChat = new Chat(1,"Beth",&testDbm);
+    testAccount.addChat(newChat);
 
-//    std::vector<Chat*> look = testAccount.getMyChats();
-//    for(int i=0; i<look.size(); i++){
-//        Chat* check = look[i];
-//        qDebug() << "Chat ID: " << check->getChatID() << " Sent to: " << check->getTalkingToUser();
-//        std::vector<Message*> messageList = check->getMessages();
-//        qDebug() << "Number of messages in this chat: " << messageList.size();
+    std::vector<Chat*> look = testAccount.getMyChats();
+    for(int i=0; i<look.size(); i++){
+        Chat* check = look[i];
+        qDebug() << "Chat ID: " << check->getChatID() << " Sent to: " << check->getTalkingToUser();
+        std::vector<Message*> messageList = check->getMessages();
+        qDebug() << "Number of messages in this chat: " << messageList.size();
 
-//        for(int j =0; j< messageList.size(); j++){
-//            Message* lookMessage = messageList.at(j);
-//            qDebug() << lookMessage->getText();
-//        }
+        for(int j =0; j< messageList.size(); j++){
+            Message* lookMessage = messageList.at(j);
+            qDebug() << lookMessage->getText();
+        }
 
-//    }
-//}
+    }
+}
+
+

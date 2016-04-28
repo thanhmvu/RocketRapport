@@ -10,20 +10,20 @@
 #include "../model/system.h"
 #include "../model/dbmanager.h"
 
-//TEST(DbManagerTest, testRetrieveAllBlogs){
-//    DbManager one("../gProjectDB.db");
-//    Blog *b1 = new Blog(&one);
-//    qDebug() << b1->getBlogID();
-//    one.retrieveAllBlogPosts(b1);
-//    std::vector<BlogPost*> bPosts = b1->getMyPosts();
+TEST(DbManagerTest, testRetrieveAllBlogs){
+    DbManager one("../gProjectDB.db");
+    Blog *b1 = new Blog(&one);
+    qDebug() << b1->getBlogID();
+    one.retrieveAllBlogPosts(b1);
+    std::vector<BlogPost*> bPosts = b1->getMyPosts();
 
-//    std::cout<< "Number of blog posts inside the blog: " << bPosts.size() << std::endl;
+    std::cout<< "Number of blog posts inside the blog: " << bPosts.size() << std::endl;
 
-//    for(unsigned i=0; i<bPosts.size(); i++){
-//        BlogPost *look = bPosts.at(i);
-//        std::cout<< look->getID() << ": " << look->getText().toStdString() << std::endl;
-//    }
-//}
+    for(unsigned i=0; i<bPosts.size(); i++){
+        BlogPost *look = bPosts.at(i);
+        std::cout<< look->getID() << ": " << look->getText().toStdString() << std::endl;
+    }
+}
 
 //TEST(DbManagerTest, testRetrieveAllMessages){
 //    DbManager one("../gProjectDB.db");

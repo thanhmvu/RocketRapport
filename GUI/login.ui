@@ -121,7 +121,7 @@
     <string>Sign in</string>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>450</x>
@@ -161,7 +161,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>530</x>
@@ -185,11 +185,15 @@
      <widget class="QLineEdit" name="lineEdit_signin_user"/>
     </item>
     <item>
-     <widget class="QLineEdit" name="lineEdit_signin_pw"/>
+     <widget class="QLineEdit" name="lineEdit_signin_pw">
+      <property name="echoMode">
+       <enum>QLineEdit::Password</enum>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>450</x>
@@ -215,7 +219,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>530</x>
@@ -229,16 +233,23 @@
      <widget class="QLineEdit" name="lineEdit_login_user"/>
     </item>
     <item>
-     <widget class="QLineEdit" name="lineEdit_login_pw"/>
+     <widget class="QLineEdit" name="lineEdit_login_pw">
+      <property name="echoMode">
+       <enum>QLineEdit::Password</enum>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
+  <zorder>pushButton_login</zorder>
+  <zorder>pushButton_signin</zorder>
+  <zorder>layoutWidget</zorder>
+  <zorder>layoutWidget</zorder>
   <zorder>layoutWidget</zorder>
   <zorder>layoutWidget</zorder>
   <zorder>label_rocket_rapport</zorder>
   <zorder>label_9</zorder>
   <zorder>label_7</zorder>
-  <zorder>label_8</zorder>
   <zorder>label_8</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

@@ -2,6 +2,10 @@
 
 int Account::id_cnt = 0;
 
+/**
+ * @brief Account::Account basic constructor used to create a new account object.
+ * @param newdbm Pointer to a databasemanager object that the accoutn will use for data storage and retrieval purposes
+ */
 Account::Account(DbManager *newdbm)
 {
     dbm = newdbm;
@@ -37,6 +41,11 @@ Account::Account(DbManager *newdbm)
     myTweet = new Tweet(dbm); //Create new Tweet associated with user and retrieve all posts
 }
 
+/**
+ * @brief Account::Account Constructor used to specify a username
+ * @param usrName username for a new account object
+ * @param newdbm Database manager object pointer used for data storage and retrieval purposes.
+ */
 Account::Account(QString usrName, DbManager *newdbm){
     dbm = newdbm;
     this->accountID = id_cnt;
@@ -73,9 +82,9 @@ Account::Account(QString usrName, DbManager *newdbm){
 
 /**
  * @brief Account constructor to rebuild an instance of existing account.
- *
  * This contructor give all controls to the user
  * Thus, one possible risk is duplicate ID
+ * Each of the parameters represents a field present in the accounts table of the program
  */
 Account::Account(int accID,     QString usrname,    QString pw,
                 int scrpBkID,   int blogID,         int tweetID,
@@ -123,6 +132,9 @@ Account::Account(int accID,     QString usrname,    QString pw,
 
 }
 
+/**
+ * @brief Account::~Account Destructor for the Account object. Deletes all chats, the user's blog, and the user's scrapbook
+ */
 Account::~Account(){
     while(!myChats.empty()){
         delete myChats.back();
@@ -237,6 +249,10 @@ void Account::promoteToGroupAdmin() {
     this->setIsGroupAdmin(true);
 }
 
+/**
+ * @brief Account::retrieveAllBlogPosts Used to clear all blog posts within the user's blog and retrieves
+ * all of the associated blog posts from the database
+ */
 void Account::retrieveAllBlogPosts(){
     // clear old posts
     myBlog->deleteAllPosts();
@@ -244,15 +260,23 @@ void Account::retrieveAllBlogPosts(){
     dbm->retrieveAllBlogPosts(myBlog);
 }
 
+/**
+ * @brief Account::retrieveAllTweets Retrieves all tweet posts from the database
+ */
 void Account::retrieveAllTweets(){
     dbm->retrieveAllTweets(myTweet);
 }
 
+/**
+ * @brief Account::retrieveAllChats Retrieves all of the chats associated with the given user.
+ */
 void Account::retrieveAllChats(){
     dbm->retrieveAllChats(this);
 }
 
-
+/**
+ * @brief Account::retrieveAllMessages For every chat contained in this user, retrieve all associated messages
+ */
 void Account::retrieveAllMessages(){
     for(unsigned i=0; i<myChats.size(); i++){
         dbm->retrieveAllMessages(myChats.at(i));
@@ -271,7 +295,7 @@ void Account::addChat(Chat* newChat) {
 
 /**
  * @brief Account::insertChat Used to insert chats from the database
- * @param newChat
+ * @param newChat Pointer to a chat obtained from the database
  */
 void Account::insertChat(Chat *newChat){
     myChats.push_back(newChat);

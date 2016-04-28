@@ -20,17 +20,17 @@ TEST(ChatTest,testSendMessage){
     test.sendMessage(one);
 }
 
-//TEST(ChatTest, testRetrieveAllMessages){
-//    DbManager testDb("./gProjectDB.db");
-//    testDb.deleteTable("chats");
-//    testDb.addChat(0,1,"Mike");
-//    testDb.addChat(0,2,"Vut");
+TEST(ChatTest, testRetrieveAllMessages){
+    DbManager testDb("./gProjectDB.db");
+    testDb.deleteTable("chats");
+    testDb.addChat(0,1,"Mike");
+    testDb.addChat(0,2,"Vut");
 
-//    Chat *testChat = new Chat(&testDb);
-//    std::vector<Message*> listOfMessages = testChat->getMessages();
-//    qDebug() << "Chat Id: " << testChat->getChatID() << " Number of messages in this chat: " << listOfMessages.size();
-//    for(int i=0; i< listOfMessages.size(); i++){
-//        Message *look = listOfMessages.at(i);
-//        qDebug() << look->getID() << ": " << look->getText() << " (Sent to " << look->getReceiver() << ")";
-//    }
-//}
+    Chat *testChat = new Chat(&testDb);
+    std::vector<Message*> listOfMessages = testChat->getMessages();
+    qDebug() << "Chat Id: " << testChat->getChatID() << " Number of messages in this chat: " << listOfMessages.size();
+    for(int i=0; i< listOfMessages.size(); i++){
+        Message *look = listOfMessages.at(i);
+        qDebug() << look->getID() << ": " << look->getText();
+    }
+}

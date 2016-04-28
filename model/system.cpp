@@ -137,6 +137,8 @@ bool System::createAccount(QString username, QString password, QString firstname
 
 /**
  * @brief Adds a group to the System's list of groups. Add to the dbManager's table titled "groups"
+ * @param newGroup Pointer to a new group object that we want to add to the system.
+ * Is used to add a new Group to the database.
  */
 void System::addGroup(Group* newGroup) {
     this->getGroups().push_back(newGroup);
@@ -144,6 +146,10 @@ void System::addGroup(Group* newGroup) {
                   newGroup->getIsActive(),newGroup->getGroupName(),newGroup->getFeed()->getFeedID() );
 }
 
+/**
+ * @brief System::insertGroup Method used to add a group object whose information has been found in the database
+ * @param newGroup Pointer to a group object the program wants to add to the local memory.
+ */
 void System::insertGroup(Group *newGroup){
     groups.push_back(newGroup);
 }
@@ -151,6 +157,7 @@ void System::insertGroup(Group *newGroup){
 
 /**
  * @brief Removes a group from the System's list of groups.
+ * @param Pointer to the group we want to remove from the system.
  */
 void System::removeGroup(Group* oldGroup) {
     for (unsigned i = 0; i < this->getGroups().size(); i++) {
@@ -161,6 +168,11 @@ void System::removeGroup(Group* oldGroup) {
     }
 }
 
+/**
+ * @brief System::pairGroupWithUser Add a groupID, UserID pair to the groupUsers table in the database
+ * @param group Group pointer we're passing in to obtain the group's ID
+ * @param account Account pointer we're passing in to obtain the account's ID
+ */
 void System::pairGroupWithUser(Group *group, Account *account){
     dbm->addGroupUserPair(group->getID(),account->getAccountID() );
 }
@@ -191,13 +203,17 @@ void System::addAccount(Account* newAccount) {
 }
 
 
-/**hSwizzle79
- * @brief Removes an account from the System's list of accounts.
+/**
+ * @brief System::removeAccount Method used to remove an account from the system.
+ * @param oldAccount Pointer to account we want to remove
  */
 void System::removeAccount(Account* oldAccount) {
     accounts.erase(oldAccount->getUsername()); //Must also remove value from the database
 }
 
+/**
+ * @brief System::printAllUsernames Methos used for testing purposes.
+ */
 void System::printAllUsernames(){
     dbm->printAllRows("UserName");
     std::cout << "Finished Printing All Usernames" << std::endl;
@@ -297,10 +313,19 @@ bool System::usernameExist(QString username){
 //    return true;
 //}
 
+/**
+ * @brief System::numberOfAccount
+ * @return Returns the number of accounts being stored in the system.
+ */
 int System::numberOfAccount(){
     return accounts.size();
 }
 
+/**
+ * @brief System::getAccountByUsername Method used to obtain account object using their username
+ * @param usrname Name of the account we want to retrieve
+ * @return Account object associated with the given username
+ */
 Account* System::getAccountByUsername(QString usrname){
     if(usernameExist(usrname)){
         return accounts[usrname];
@@ -312,7 +337,7 @@ Account* System::getAccountByUsername(QString usrname){
 
 /**
  * @brief System::getAccountByID Return a pointer to an account object given the account's ID
- * @param ID
+ * @param ID The identification number of the account we want to retrieve
  * @return Pointer to an account object with the given ID
  */
 Account* System::getAccountByID(int ID){
@@ -320,7 +345,7 @@ Account* System::getAccountByID(int ID){
 }
 
 /**
- * @brief System::loadAllAccounts
+ * @brief System::loadAllAccounts Clears every account located in the vector (local memory) before reloading all accounts from the database
  */
 void System::retrieveAllAccounts(){
     // clear old accounts
@@ -336,10 +361,17 @@ void System::retrieveAllGroups(){
     dbm->retrieveAllGroups(this);
 }
 
+/**
+ * @brief System::retrieveAllUsersInGroup Method used to "attach" the IDs of every account belonging to a group to their respective groups
+ * @param groupToAdd Group which we want to attach all associated account IDs
+ */
 void System::retrieveAllUsersInGroup(Group* groupToAdd){
     dbm->retrieveAllUsersInGroup(groupToAdd);
 }
 
+/**
+ * @brief System::printAllIdCnt method used for testing/verification purposes. Prints all information associated contained in this system.
+ */
 void System::printAllIdCnt(){
     std::cout<< "All id_cnt values is: " << std::endl;
     std::cout<< "Account    : " << Account::getIdCnt() << std::endl;
@@ -377,6 +409,9 @@ void System::addAccountsToGroup(Group *group){
 
 }
 
+/**
+ * @brief System::deleteAllAccounts Delete every account located in the system memory
+ */
 void System::deleteAllAccounts(){
     for(auto pair: accounts){
         delete pair.second;
@@ -386,6 +421,10 @@ void System::deleteAllAccounts(){
     currentUser = nullptr;
 }
 
+/**
+ * @brief System::refreshSystem used to reload the system information. Resets current user
+ * and obtains all account information from the database.
+ */
 void System::refreshSystem(){
     if(currentUser != nullptr){
         // temporarily store current user's username

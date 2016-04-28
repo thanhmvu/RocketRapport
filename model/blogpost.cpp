@@ -8,6 +8,12 @@ int BlogPost::id_cnt = 0;
 //    id_cnt ++;
 //}
 
+/**
+ * @brief BlogPost::BlogPost Standard constructor used for creating a new BlogPost object
+ * @param BlogID
+ * @param t
+ * @param content
+ */
 BlogPost::BlogPost(int BlogID, QDateTime t, QString content){
     id = id_cnt;
     id_cnt ++;

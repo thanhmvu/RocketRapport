@@ -2,6 +2,10 @@
 
 int Blog::id_cnt = 0;
 
+/**
+ * @brief Blog::Blog Constructor used to create a new blog with a reference to a dbManager object for data storage and retrieval
+ * @param newdbm
+ */
 Blog::Blog(DbManager *newdbm)
 {
     dbm = newdbm;
@@ -21,6 +25,9 @@ Blog::Blog(int BlogID, DbManager *newdbm)
     dbm->retrieveAllBlogPosts(this); //Retrieve all blog posts associated with this blog
 }
 
+/**
+ * @brief Blog::~Blog Destructor used to clear each blog post from the vector of blog posts contained in the blog
+ */
 Blog::~Blog(){
     while(!myPosts.empty()){
         delete myPosts.back();
@@ -39,6 +46,10 @@ void Blog::addPost(BlogPost* newPost) {
     storePostToDB(newPost);
 }
 
+/**
+ * @brief Blog::storePostToDB Store a blog post's information to the database
+ * @param newPost
+ */
 void Blog::storePostToDB(BlogPost *newPost) {
     dbm->addBlogPost( newPost->getID()      ,   blogID,
                       newPost->getTimePosted(),   newPost->getText() );
@@ -64,10 +75,18 @@ std::vector<BlogPost*> Blog::getMyPosts() {
     return this->myPosts;
 }
 
+/**
+ * @brief Blog::getBlogID getter used for Blog ID
+ * @return
+ */
 int Blog::getBlogID(){
     return blogID;
 }
 
+/**
+ * @brief Blog::setID Setter used for blog ID.
+ * @param newID
+ */
 void Blog::setID(int newID){
     blogID = newID;
     // update id_cnt if needed
@@ -76,6 +95,9 @@ void Blog::setID(int newID){
     }
 }
 
+/**
+ * @brief Blog::deleteAllPosts Delete all posts found within the Blog.
+ */
 void Blog::deleteAllPosts(){
     while(!myPosts.empty()){
         delete myPosts.back();
