@@ -392,10 +392,10 @@ int DbManager::retrieveIntInfo(const QString &fieldName, const QString &tableNam
 
 /**
  * @brief DbManager::retrieveStringInfo Retrieve a particular string from the database
- * @param fieldName
- * @param tableName
- * @param checkname
- * @param ID
+ * @param fieldName Name of the field we want to retrieve a value from
+ * @param tableName Name of the table we want to access
+ * @param checkname Name of the field used to specify which tuple we'll access
+ * @param ID Value we're using to match with the checkName
  * @return Return the value of the field the user wants to retrieve
  */
 QString DbManager::retrieveStringInfo(const QString &fieldName, const QString &tableName, const QString &checkName, const QVariant &ID){
@@ -416,7 +416,10 @@ QString DbManager::retrieveStringInfo(const QString &fieldName, const QString &t
     return rString;
 }
 
-
+/**
+ * @brief DbManager::retrieveAllBlogPosts Method used to attach each blog post in  the database to its associated blog
+ * @param userBlog Blog pointer passed in to attach all blog posts matching the given blog pointer's blog ID
+ */
 void DbManager::retrieveAllBlogPosts(Blog *userBlog){
     QSqlQuery query;
     QString command = "SELECT * FROM blogPosts WHERE BlogID = ";
@@ -437,6 +440,10 @@ void DbManager::retrieveAllBlogPosts(Blog *userBlog){
     }
 }
 
+/**
+ * @brief DbManager::retrieveAllMessages Method used to attach every message associated with a user's chat to the chat.
+ * @param userChat Pointer to a user's chat that we want to "fill" with associated messages.
+ */
 void DbManager::retrieveAllMessages(Chat *userChat){
     QSqlQuery query;
     QString command = "SELECT * FROM chatMessages WHERE ChatID= ";
@@ -456,6 +463,10 @@ void DbManager::retrieveAllMessages(Chat *userChat){
 
 }
 
+/**
+ * @brief DbManager::retrieveAllTweets Method used to attach every tweet post associated with a user's Tweet to the Tweet.
+ * @param userTweet Pointer to the user's tweet object
+ */
 void DbManager::retrieveAllTweets(Tweet *userTweet){
     QSqlQuery query;
     QString command = "SELECT * FROM tweetPosts WHERE TweetID = ";
@@ -471,6 +482,10 @@ void DbManager::retrieveAllTweets(Tweet *userTweet){
     }
 }
 
+/**
+  * @brief DbManager::retrieveAllScbkPosts Method used to attach every scrapbook post associated with a user's scrapbook to the scrapbook.
+  * @param userScBook Pointer to the user's scrapbook used to retrieve associated information
+  */
  void DbManager::retrieveAllScbkPosts(Scrapbook *userScBook){
      QSqlQuery query;
      QString command = "SELECT * FROM tweetPosts WHERE TweetID = ";
@@ -480,6 +495,10 @@ void DbManager::retrieveAllTweets(Tweet *userTweet){
      query.exec();
  }
 
+ /**
+  * @brief DbManager::retrieveAllChats
+  * @param user
+  */
  void DbManager::retrieveAllChats(Account *user){
     QSqlQuery query;
     QString command = "SELECT * FROM chats WHERE AccountID = ";
