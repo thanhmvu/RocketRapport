@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
 
     bool running = true;
 
-    System mySystem("../gProjectDB.db");
+    System mySystem("/auto/bunter_usr11/cs205_2016_Grp09/gProject_db/gProjectDB.db");
 
     LoginUI login(&mySystem);
     MainMenuUI mainMenu(&mySystem);

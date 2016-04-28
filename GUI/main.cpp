@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
     std::cout<< "Start GUI\n";
 
     QApplication a(argc, argv);
-    System sys("../gProjectDB.db");
+    System sys("/auto/bunter_usr11/cs205_2016_Grp09/gProject_db/gProjectDB.db");
     MainMenu mm(&sys); // create the gui
 
     mm.getLoginScreen()->show();
