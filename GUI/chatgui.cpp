@@ -136,17 +136,17 @@ void ChatGUI::openChat(){
  * @brief
  */
 void ChatGUI::displayCurrentChat(){
+    QString chat_text;
     if(talking_to_user != nullptr && curr_user != nullptr){
         Chat * chat = curr_user->getChatByPartnerName(talking_to_user->getUsername());
         if(chat != nullptr){
             // Display to screen
-            QString chat_text;
             for(Message * mess: chat->getMessages()){
                 chat_text += (mess->getTimeSent().toString() + "\n" + mess->getText()+ "\n" + "\n");
             }
-            ui->chat_box->setText(chat_text);
         }
     }
+    ui->chat_box->setText(chat_text);
 }
 
 /**
