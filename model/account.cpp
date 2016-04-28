@@ -31,20 +31,10 @@ Account::Account(DbManager *newdbm)
     yearDeparted = 0;
 
     myScrapbook = new Scrapbook();
-    myScrapbook->setID(newdbm->retrieveIntInfo("ScrpBkID","accounts","AccountID",accountID));
 
     myBlog = new Blog(dbm); //Create new blog associated with user and retrieve all posts
-    myBlog->setID( newdbm->retrieveIntInfo("BlogID","accounts","AccountID",accountID) ); //Method used to manually set the ID value of the new user Blog
 
     myTweet = new Tweet(dbm); //Create new Tweet associated with user and retrieve all posts
-    myTweet->setID( newdbm->retrieveIntInfo("TweetID","accounts","AccountID",accountID) ); //Method used to manually set the ID value of the new user Tweet
-
-    // rebuild all chats
-    retrieveAllChats();
-
-    // rebuild all messages
-    retrieveAllMessages();
-
 }
 
 Account::Account(QString usrName, DbManager *newdbm){
@@ -75,15 +65,10 @@ Account::Account(QString usrName, DbManager *newdbm){
     yearDeparted = 0;
 
     myScrapbook = new Scrapbook();
-    myBlog = new Blog(dbm);     // retrieve all blog posts inside the constructor
-    myTweet = new Tweet(dbm);   // retrieve all tweets inside the constructor
 
-    // rebuild all chats
-    retrieveAllChats();
+    myBlog = new Blog(dbm); //Create new blog associated with user and retrieve all posts
 
-    // rebuild all messages
-    retrieveAllMessages();
-
+    myTweet = new Tweet(dbm); //Create new Tweet associated with user and retrieve all posts
 }
 
 /**
@@ -127,8 +112,8 @@ Account::Account(int accID,     QString usrname,    QString pw,
 
     // create blog, tweet, scrapbook, instances using input IDs
     myScrapbook = new Scrapbook();
-    myBlog = new Blog(dbm);     // retrieve all blog posts inside the constructor
-    myTweet = new Tweet(dbm);   // retrieve all tweets inside the constructor
+    myBlog = new Blog(blogID, dbm);     // retrieve all blog posts inside the constructor
+    myTweet = new Tweet(tweetID, dbm);   // retrieve all tweets inside the constructor
 
     // rebuild all chats
     retrieveAllChats();

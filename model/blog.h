@@ -17,6 +17,7 @@ private:
     DbManager *dbm; // does not own this
 public:
     Blog(DbManager *newdbm);
+    Blog(int BlogID, DbManager *newdbm);
     ~Blog();
     void setID(int newID);
     void addPost(BlogPost* newPost);

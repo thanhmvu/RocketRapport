@@ -23,6 +23,7 @@ System::System(const QString &path)
 
     // rebuild all accounts from the database
     retrieveAllAccounts();
+
     //Rebuild all groups
     retrieveAllGroups();
     //Add each of the

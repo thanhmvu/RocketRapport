@@ -7,6 +7,17 @@ Tweet::Tweet(DbManager *newDbm)
     dbm = newDbm;
     tweetID = id_cnt;
     id_cnt ++;
+//    dbm->retrieveAllTweets(this); //Retrieve all tweet posts associated with this Tweet
+}
+
+Tweet::Tweet(int TweetID, DbManager *newDbm)
+{
+    dbm = newDbm;
+    tweetID = TweetID;
+    // update id_cnt if needed
+    if(tweetID >= id_cnt){
+        id_cnt = tweetID + 1;
+    }
     dbm->retrieveAllTweets(this); //Retrieve all tweet posts associated with this Tweet
 }
 
