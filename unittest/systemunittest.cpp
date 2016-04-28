@@ -103,7 +103,6 @@ TEST(SystemTest, testRetrieveGroupPairs){
     sysTest.retrieveAllGroups();
     std::vector<Group*> lookList = sysTest.getGroups();
     Group* check = lookList.at(0);
-    sysTest.retrieveAllUsersInGroup(check);
 
     qDebug() << "First Group ID: " << check->getID();
     std::vector<int> IDCheck = check->getGroupMemberIDs();
@@ -112,5 +111,7 @@ TEST(SystemTest, testRetrieveGroupPairs){
     for(int i=0; i< IDCheck.size(); i++){
         qDebug() << IDCheck.at(i);
     }
+    //The group should also contain 3 values in the groupMembers vector
+    ASSERT_EQ(check->getGroupMembers().size(),3);
 
 }

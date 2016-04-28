@@ -28,8 +28,12 @@ System::System(const QString &path)
     //Add each of the
     for(int i=0; i<groups.size(); i++){ //Assign a list of integers showing which accounts are in each group for
         retrieveAllUsersInGroup( groups.at(i) );
-
     }
+
+    for(int i=0; i<groups.size(); i++){ //Assign a list of integers showing which accounts are in each group for
+        addAccountsToGroup(groups.at(i));
+    }
+
 
     ////////////////////////////////////////////////////////////////////
     /// rebuild all groups from the database
@@ -350,6 +354,25 @@ void System::printAllIdCnt(){
 
 //    std::cout<< "Comment    : " << Comment::getIdCnt() << std::endl;
 //    std::cout<< "Feed       : " << Feed::getIdCnt() << std::endl;
+}
+
+/**
+ * @brief System::addAccountsToGroup Add all account pointers that have
+ * @param group pointer to the group object we want to add acocounts to
+ */
+void System::addAccountsToGroup(Group *group){
+    std::vector<int> IDList = group->getGroupMemberIDs();
+
+    for(int i=0; i < IDList.size(); i++){
+        for(auto const &ent : accounts){
+
+            if(IDList.at(i) == ent.second->getAccountID() ){
+                group->addGroupMember(ent.second);
+            }
+
+        }
+    }
+
 }
 
 void System::deleteAllAccounts(){

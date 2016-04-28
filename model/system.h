@@ -69,6 +69,7 @@ public:
     void retrieveAllAccounts();
     void retrieveAllGroups();
     void retrieveAllUsersInGroup(Group* groupToAdd);
+    void addAccountsToGroup(Group* group);
     void deleteAllAccounts();
     void refreshSystem();
 
