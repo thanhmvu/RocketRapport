@@ -36,8 +36,37 @@ void ProfileUI::displayScreen() {
 }
 
 void ProfileUI::runScreen() {
+    int fny = 4, fnx = 13;
+    int lny = 6, lnx = 12;
+    int gy = 8, gx = 9;
+    int hay = 10, hax = 15;
+    int mrey = 12, mrex = 23;
+    int ay = 14, ax = 5;
+    int pny = 16, pnx = 15;
+    int ayy = 18, ayx = 17;
+    int mmy = 21, mmx = (this->getCols()/2)-5;
+    int rowIndex = 0;
+    int curY = 4;
+    int curX = 13;
+    std::stringstream fnss;
+    std::stringstream lnss;
+    std::stringstream gss;
+    std::stringstream hass;
+    std::stringstream mress;
+    std::stringstream ass;
+    std::stringstream pnss;
+    std::stringstream ayss;
 
-    getch();
+    curs_set(1);
+    move(fny, fnx);
+    refresh();
+
+    int keyPress;
+    while(this->getChangeScreens() == false) {
+        getyx(stdscr, curY, curX);
+        keyPress = getch();
+    }
+
     this->getSystem()->getCurrentUser()->setProfileUsername(this->getSystem()->getCurrentUser()->getUsername().toStdString());
     this->changeScreens(false);
     clear();
