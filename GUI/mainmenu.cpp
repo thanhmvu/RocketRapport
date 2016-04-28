@@ -121,7 +121,8 @@ void MainMenu::on_pushButton_profile_clicked()
 
 void MainMenu::on_pushButton_chat_clicked()
 {
-    chat_screen->refreshChatScreen();
+//    chat_screen->refreshChatScreen(); // chat screen constantly refreshes itself
+    chat_screen->setIsDisplaying(true);
 
     this->close();
     chat_screen->show();

@@ -39,12 +39,10 @@ Account::Account(DbManager *newdbm)
     myTweet->setID( newdbm->retrieveIntInfo("TweetID","accounts","AccountID",accountID) ); //Method used to manually set the ID value of the new user Tweet
 
     // rebuild all chats
-    newdbm->retrieveAllChats(this);
+    retrieveAllChats();
 
     // rebuild all messages
-    for(unsigned i=0; i<myChats.size(); i++){
-        newdbm->retrieveAllMessages(myChats.at(i));
-    }
+    retrieveAllMessages();
 
 }
 
@@ -79,12 +77,10 @@ Account::Account(QString usrName, DbManager *newdbm){
     myTweet = new Tweet(dbm);   // retrieve all tweets inside the constructor
 
     // rebuild all chats
-    newdbm->retrieveAllChats(this);
+    retrieveAllChats();
 
     // rebuild all messages
-    for(unsigned i=0; i<myChats.size(); i++){
-        newdbm->retrieveAllMessages(myChats.at(i));
-    }
+    retrieveAllMessages();
 
 }
 
@@ -132,12 +128,10 @@ Account::Account(int accID,     QString usrname,    QString pw,
     myTweet = new Tweet(dbm);   // retrieve all tweets inside the constructor
 
     // rebuild all chats
-    newdbm->retrieveAllChats(this);
+    retrieveAllChats();
 
     // rebuild all messages
-    for(unsigned i=0; i<myChats.size(); i++){
-        newdbm->retrieveAllMessages(myChats.at(i));
-    }
+    retrieveAllMessages();
 
 }
 
@@ -262,13 +256,21 @@ void Account::retrieveAllBlogPosts(){
     dbm->retrieveAllBlogPosts(myBlog);
 }
 
-void Account::retrieveAllMessages(){
-
-}
-
 void Account::retrieveAllTweets(){
     dbm->retrieveAllTweets(myTweet);
 }
+
+void Account::retrieveAllChats(){
+    dbm->retrieveAllChats(this);
+}
+
+
+void Account::retrieveAllMessages(){
+    for(unsigned i=0; i<myChats.size(); i++){
+        dbm->retrieveAllMessages(myChats.at(i));
+    }
+}
+
 
 /**
  * @brief Adds a new Chat to the user's list of chats.

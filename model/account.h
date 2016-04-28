@@ -79,6 +79,7 @@ public:
     //Functions to obtain information from the database
     void retrieveAllBlogPosts();
     void retrieveAllTweets();
+    void retrieveAllChats();
     void retrieveAllMessages();
 
     // Functions specific to a general account.
