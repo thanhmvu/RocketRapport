@@ -80,6 +80,11 @@ void ChatGUI::refreshChatScreen(){
 
             // check the current displayed chatmate to see if he/she sends new mess
             displayCurrentChat();
+
+            // display name_tag for current talking-to user
+            QString temp;
+            if(talking_to_user != nullptr){ temp = talking_to_user->getUsername(); }
+            ui->name_tag->setText(temp);
         }
     }
 }
@@ -217,6 +222,7 @@ void ChatGUI::on_pushButton_send_mess_clicked()
 void ChatGUI::on_pushButton_main_menu_clicked()
 {
     isDisplaying = false;
+    talking_to_user = nullptr;
     // reload main menu in case of new accounts or new groups
     main_menu->reload();
 
