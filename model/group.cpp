@@ -48,7 +48,7 @@ Group::~Group(){
  * @param newMember Pointer to account object that we want to add to this particular group.
  */
 void Group::addGroupMember(Account* newMember) {
-    this->getGroupMembers().push_back(newMember);
+    groupMembers.push_back(newMember);
 }
 
 void Group::addGroupMemberID(int newID){

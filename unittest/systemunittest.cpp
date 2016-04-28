@@ -100,7 +100,6 @@
 //Retrieve Group pair works, just need to find a way to combine the two
 TEST(SystemTest, testRetrieveGroupPairs){
     System sysTest("./gProjectDB.db");
-    sysTest.retrieveAllGroups();
     std::vector<Group*> lookList = sysTest.getGroups();
     Group* check = lookList.at(0);
 

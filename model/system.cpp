@@ -366,8 +366,9 @@ void System::addAccountsToGroup(Group *group){
     for(int i=0; i < IDList.size(); i++){
         for(auto const &ent : accounts){
 
-            if(IDList.at(i) == ent.second->getAccountID() ){
-                group->addGroupMember(ent.second);
+            if(IDList.at(i) == ent.second->getAccountID() ){ //is not adding account pointers
+                Account* insertAc = ent.second;
+                group->addGroupMember(insertAc);
             }
 
         }
