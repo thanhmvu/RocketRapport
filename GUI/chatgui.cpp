@@ -214,6 +214,9 @@ void ChatGUI::on_pushButton_send_mess_clicked()
     // Set scrollbar to the bottom (solution 2)
     QScrollBar *v = ui->chat_box->verticalScrollBar();
     v->setValue(v->maximum());
+
+    // remove the sent message from message box
+    ui->input_message->setText("");
 }
 
 /**
