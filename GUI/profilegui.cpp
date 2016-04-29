@@ -82,9 +82,8 @@ void ProfileGUI::on_pushButton_blog_clicked()
 
 void ProfileGUI::on_pushButton_tweet_clicked()
 {
-//    Account * current_user = main_menu->getSystem()-> getCurrentUser();
-//    // load content based on viewer
-//    tweet_screen->loadTweetView(QString::fromStdString(current_user->getUsername()));
+    // load content based on viewer
+    tweet_screen->loadTweetView(owner->getUsername(), curr_viewer);
 
     this->close();
     tweet_screen->show();

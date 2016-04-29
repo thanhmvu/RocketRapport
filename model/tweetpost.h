@@ -5,21 +5,26 @@
 #include <vector>
 #include <QDateTime>
 #include <string.h>
+#include <qstring.h>
 
 class TweetPost: public Post
 {
 private:
     static int id_cnt;
     int id;
-
+    int tweetID;
     std::vector<Comment> comments;
-    int findComment(int cmt_id);
     QDateTime timePosted;
-
     QString text;
+
+    int findComment(int cmt_id);
 public:
-    TweetPost();
-    int getID();
+//    TweetPost();
+
+    TweetPost(int TweetID, QDateTime t, QString content);
+
+    TweetPost(int newID, int TweetID, QDateTime t, QString content);
+
     std::vector<Comment> getComments();
     bool addComment(Comment cmt);
     bool deleteComment(int id);
@@ -29,6 +34,8 @@ public:
     void setText(QString newText);
 
     //Get methods
+    int getID();
+    int getTweetID();
     QString getText();
     QDateTime getTimePosted();
 

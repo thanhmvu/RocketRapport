@@ -501,10 +501,14 @@ void DbManager::retrieveAllTweets(Tweet *userTweet){
     query.prepare(command);
     query.exec();
     while(query.next()){
-        TweetPost *newTP = new TweetPost;
-        newTP->setText(query.value(3).toString());
-        newTP->setTime(query.value(2).toDateTime());
-        userTweet->addPost(newTP);
+        int postID = query.value(0).toInt();
+        int tweetID = query.value(1).toInt();
+        QDateTime time = query.value(2).toDateTime();
+        QString text = query.value(3).toString();
+
+        // re-create post using special constructor use to reload TweetPost with givin postID
+        TweetPost *newBP = new TweetPost(postID, tweetID, time, text);
+        userTweet->addPost(newBP);
     }
 }
 

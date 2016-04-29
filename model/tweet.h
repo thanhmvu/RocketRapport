@@ -5,6 +5,7 @@
 #include "dbmanager.h"
 class DbManager;
 
+
 class Tweet
 {
 private:

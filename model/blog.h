@@ -13,7 +13,7 @@ private:
     static int id_cnt;
     int blogID;
     std::vector<BlogPost*> myPosts; // own this
-//    QString blogText;
+
     DbManager *dbm; // does not own this
 public:
     Blog(DbManager *newdbm);

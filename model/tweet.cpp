@@ -7,7 +7,6 @@ Tweet::Tweet(DbManager *newDbm)
     dbm = newDbm;
     tweetID = id_cnt;
     id_cnt ++;
-//    dbm->retrieveAllTweets(this); //Retrieve all tweet posts associated with this Tweet
 }
 
 Tweet::Tweet(int TweetID, DbManager *newDbm)
