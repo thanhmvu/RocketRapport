@@ -2,6 +2,7 @@
 #define GROUPGUI_H
 
 #include <QWidget>
+#include <QTextBrowser>
 #include "mainmenu.h"
 #include "../model/group.h"
 
@@ -22,8 +23,10 @@ private:
     QString curr_viewer;
     QWidget *posts_widget;
     QVBoxLayout *posts_layout;
+    QTextBrowser* memlist;
     void loadGroupFeed();
     void displayPost(BlogPost * post);
+    void loadMemberList();
 
 public:
     explicit GroupGUI(QWidget *parent = 0);

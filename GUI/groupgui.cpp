@@ -27,6 +27,10 @@ void GroupGUI::init(){
     posts_layout = new QVBoxLayout();
     posts_widget->setLayout(posts_layout);
     ui->group_feed->setWidget(posts_widget);
+
+    // init user list
+    memlist = new QTextBrowser();
+    ui->member_List->setWidget(memlist);
 }
 
 void GroupGUI::loadGroup(QString groupname, QString viewer){
@@ -68,6 +72,9 @@ void GroupGUI::loadGroup(QString groupname, QString viewer){
 
     // load feed
     loadGroupFeed();
+
+    // load member list
+    loadMemberList();
 }
 
 void GroupGUI::loadGroupFeed(){
@@ -176,8 +183,19 @@ void GroupGUI::on_pushButton_add_member_clicked()
         // add the link to database
         main_menu->getSystem()->pairGroupWithUser(this_group,newMember);
 
-        ui->new_member_username->setText("");
+        loadMemberList();
+        ui->new_member_username->setText("New member added!");
     }else{
         ui->new_member_username->setText("#404: User not found!");
     }
+}
+
+void GroupGUI::loadMemberList(){
+    QString content = "List of Members: \n \n";
+    int i = 1;
+    for(Account * acc: this_group->getGroupMembers()){
+        content += QString::number(i) + ". " + acc->getUsername() + " \n" + " \n";
+        i ++;
+    }
+    memlist->setText(content);
 }
