@@ -40,6 +40,9 @@ Account::Account(DbManager *newdbm)
     myBlog = new Blog(dbm); //Create new blog associated with user and retrieve all posts
 
     myTweet = new Tweet(dbm); //Create new Tweet associated with user and retrieve all posts
+
+    // create a default profile for this account
+    dbm->addProfile(accountID,"","","","",0);
 }
 
 /**
@@ -80,6 +83,9 @@ Account::Account(QString usrName, DbManager *newdbm){
     myBlog = new Blog(dbm); //Create new blog associated with user and retrieve all posts
 
     myTweet = new Tweet(dbm); //Create new Tweet associated with user and retrieve all posts
+
+    // create a default profile for this account
+    dbm->addProfile(accountID,"","","","",0);
 }
 
 /**

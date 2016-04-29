@@ -269,6 +269,8 @@ public:
      * @brief Setter for the Tweet pointer.
      */
     void setMyTweet(Tweet* myTweet);
+
+
 //    void setMonthDeparted(int month);
 //    void setDayDeparted(int day);
 //    void setYearDeparted(int year);
