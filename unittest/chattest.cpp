@@ -34,3 +34,4 @@ TEST(ChatTest, testRetrieveAllMessages){
         qDebug() << look->getID() << ": " << look->getText();
     }
 }
+

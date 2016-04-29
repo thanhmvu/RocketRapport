@@ -8,6 +8,10 @@ Feed::Feed()
     id_cnt++;
 }
 
+/**
+ * @brief Feed::Feed Constructor for a feed object belonging to a group
+ * @param newID ID assigned to the new feed object
+ */
 Feed::Feed(int newID){
     feedID = newID;
 }

@@ -52,3 +52,19 @@ TEST(BlogTest,testRetrieveAllBlogPosts){
     newDBM.deleteTable("blogPosts"); //Clean up the table
 }
 
+TEST(BlogTest, testDeleteAllPost){
+    DbManager newDBM("./gProjectDB.db");
+    newDBM.deleteTable("blogs");
+    newDBM.deleteTable("blogPosts");
+    Blog testBlog(0,&newDBM);
+    BlogPost *insert1 = new BlogPost(0,QDateTime::currentDateTime(),"Test1");
+    BlogPost *insert2 = new BlogPost(1,QDateTime::currentDateTime(),"Test2");
+    BlogPost *insert3 = new BlogPost(2,QDateTime::currentDateTime(),"Test3");
+    testBlog.addPost(insert1);
+    testBlog.addPost(insert2);
+    testBlog.addPost(insert3);
+    ASSERT_EQ(testBlog.getMyPosts().size(),3);
+    testBlog.deleteAllPosts();
+    ASSERT_EQ(testBlog.getMyPosts().size(),0);
+}
+

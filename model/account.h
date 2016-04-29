@@ -70,11 +70,29 @@ private:
 
 public:
     //Constructors
+    /**
+     * @brief Account::Account basic constructor used to create a new account object.
+     * @param newdbm Pointer to a databasemanager object that the accoutn will use for data storage and retrieval purposes
+     */
     Account(DbManager *newdbm);
+    /**
+     * @brief Account::Account Constructor used to specify a username
+     * @param usrName username for a new account object
+     * @param newdbm Database manager object pointer used for data storage and retrieval purposes.
+     */
     Account(QString usrName, DbManager *newdbm);
+    /**
+     * @brief Account constructor to rebuild an instance of existing account.
+     * This contructor give all controls to the user
+     * Thus, one possible risk is duplicate ID
+     * Each of the parameters represents a field present in the accounts table of the program
+     */
     Account(int accID,     QString usrname,    QString pw,
             int scrpBkID,   int blogID,         int tweetID,
             QString firstname,  QString lastname, DbManager *newdbm);
+    /**
+     * @brief Account::~Account Destructor for the Account object. Deletes all chats, the user's blog, and the user's scrapbook
+     */
     ~Account();
 
     //Functions to obtain information from the database
@@ -93,9 +111,21 @@ public:
     void leaveGroup(Group* badGroup);
 
     // getters
+    /**
+     * @brief Getter for the current guest boolean.
+     */
     bool    getIsCurrentGuest();
+    /**
+     * @brief Getter for the past guest boolean.
+     */
     bool    getIsPastGuest();
+    /**
+     * @brief Getter for the system admin boolean.
+     */
     bool    getIsSystemAdmin();
+    /**
+     * @brief Getter for the group admin boolean.
+     */
     bool    getIsGroupAdmin();
 
     int     getAge();
@@ -121,38 +151,119 @@ public:
     System*     getSystem();
 
     // setters
+    /**
+     * @brief Setter for the current guest boolean.
+     */
     void setIsCurrentGuest(bool cGuest);
+    /**
+     * @brief Setter for the past guest boolean.
+     */
     void setIsPastGuest(bool pGuest);
+    /**
+     * @brief Setter for the system admin boolean.
+     */
     void setIsSystemAdmin(bool sAdmin);
+    /**
+     * @brief Setter for the group admin boolean.
+     */
     void setIsGroupAdmin(bool gAdmin);
 
+    /**
+     * @brief Setter for the user's username.
+     */
     void setUsername(QString uName);
+    /**
+     * @brief Setter for the user's password.
+     */
     void setPassword(QString pWord);
+    /**
+     * @brief Setter for the user's scrapbook.
+     */
     void setMyScrapbook(Scrapbook* sBook);
+    /**
+     * @brief Setter for the user's first name.
+     */
     void setFirstName(QString fName);
+    /**
+     * @brief Setter for the user's last name.
+     */
     void setLastName(QString lName);
+    /**
+     * @brief Setter for the user's gender.
+     */
     void setGender(QString gend);
+    /**
+     * @brief Setter for the user's "about yourself" information.
+     */
     void setAbout(QString about);
+    /**
+     * @brief Setter for the user's home address.
+     */
     void setAddress(QString address);
+    /**
+     * @brief Setter for the user's profile picture.
+     */
     void setProfilePicture(QString picture);
+    /**
+     * @brief Setter for the user's most recent employer.
+     */
     void setMostRecentEmployer(QString employer);
+    /**
+     * @brief Setter for the user's age.
+     */
     void setAge(int age);
+    /**
+     * @brief Setter for the user's phone number.
+     */
     void setPhoneNumber(int number);
+    /**
+     * @brief Setter that sets the System object.
+     */
     void setSystem(System* newSystem);
+    /**
+     * @brief Setter for the profile username variable.
+     */
     void setProfileUsername(std::string name);
+    /**
+     * @brief Setter for the index of profile.
+     */
     void setIndexOfProfile(int index);
 
+    /**
+     * @brief Changes the user to a current guest.
+     */
     void promoteToCurrentGuest();
+    /**
+     * @brief Changes the user to a past guest.
+     */
     void promoteToPastGuest();
+    /**
+     * @brief Changes the user to a system admin.
+     */
     void promoteToSystemAdmin();
+    /**
+     * @brief Changes the user to a group admin.
+     */
     void promoteToGroupAdmin();
 
     // Functions specific to a current guest.
 //    void departRanch();
+    /**
+     * @brief Getter for the Blog pointer.
+     */
     Blog*   getMyBlog();
+    /**
+     * @brief Getter for the Tweet pointer.
+     */
     Tweet*  getMyTweet();
 
+    /**
+     * @brief Setter for the Blog pointer.
+     */
     void setMyBlog(Blog* myBlog);
+    /**
+     * @brief Setter for the Tweet pointer.
+     */
     void setMyTweet(Tweet* myTweet);
 //    void setMonthDeparted(int month);
 //    void setDayDeparted(int day);
@@ -177,6 +288,9 @@ public:
 //    void deleteScrapbookPost(Scrapbook* targetScrapbook, ScrapbookPost* badPost);
 
     // Funtions for testing
+    /**
+     * @brief getIdCnt Method used to retrieve the current static id_cnt
+     */
     static int getIdCnt(){ return id_cnt; };
 };
 
