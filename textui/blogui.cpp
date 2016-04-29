@@ -268,7 +268,7 @@ void BlogUI::printFormerPosts() {
                         sstemp << text[a];
                         mvprintw(((this->getRows()/2)+2)+y, 1+x, sstemp.str().c_str());
                         sstemp.str("");
-                        if (x == this->getCols()) {
+                        if (x == this->getCols()-2) {
                             y++;
                             x = 0;
                         } else {

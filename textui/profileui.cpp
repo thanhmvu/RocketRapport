@@ -581,10 +581,6 @@ void ProfileUI::runScreen() {
                 move(curY, curX);
                 printw(">");
                 move(curY, curX);
-            } else {
-                move(curY, curX);
-                printw(" ");
-                move(curY, curX);
             }
             break;
         }

@@ -25,6 +25,6 @@ bool Post::setText(QString new_text){
 }
 
 bool Post::setTimePosted(QDateTime new_time){
-    timePosted = new_time;
+    this->timePosted = new_time;
     return true;
 }
