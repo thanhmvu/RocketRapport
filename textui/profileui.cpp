@@ -27,7 +27,7 @@ void ProfileUI::displayScreen() {
     mvprintw(8, 1, "Gender:");
     mvprintw(10, 1, "Home Address:");
     mvprintw(12, 1, "Most Recent Employer:");
-    mvprintw(14, 1, "Age");
+    mvprintw(14, 1, "Age:");
     mvprintw(16, 1, "Phone Number:");
     mvprintw(18, 1, "About Yourself:");
     mvprintw(21, (this->getCols()/2)-4, "Main Menu");
@@ -37,18 +37,14 @@ void ProfileUI::displayScreen() {
 }
 
 void ProfileUI::runScreen() {
-    int fny = 4, fnx = 13;
-    int lny = 6, lnx = 12;
-    int gy = 8, gx = 9;
-    int hay = 10, hax = 15;
-    int mrey = 12, mrex = 23;
-    int ay = 14, ax = 5;
-    int pny = 16, pnx = 15;
-    int ayy = 18, ayx = 17;
-    int mmy = 21, mmx = (this->getCols()/2)-5;
-    int rowIndex = 0;
-    int curY = 4;
-    int curX = 13;
+    int fnsize = 0;
+    int lnsize = 0;
+    int gsize = 0;
+    int hasize = 0;
+    int mresize = 0;
+    int asize = 0;
+    int pnsize = 0;
+    int aysize = 0;
     std::stringstream fnss;
     std::stringstream lnss;
     std::stringstream gss;
@@ -57,6 +53,56 @@ void ProfileUI::runScreen() {
     std::stringstream ass;
     std::stringstream pnss;
     std::stringstream ayss;
+
+    for(const auto &acc: this->getSystem()->getAllAccounts()) {
+        if (acc.first.toStdString() == this->getSystem()->getCurrentUser()->getProfileUsername()) {
+            std::stringstream sstemp;
+            std::string tempString;
+
+            fnss << acc.second->getFirstName().toStdString();
+            fnsize = acc.second->getFirstName().toStdString().size();
+
+            lnss << acc.second->getLastName().toStdString();
+            lnsize = acc.second->getLastName().toStdString().size();
+
+            gss << acc.second->getGender().toStdString();
+            gsize = acc.second->getGender().toStdString().size();
+
+            hass << acc.second->getAddress().toStdString();
+            hasize = acc.second->getAddress().toStdString().size();
+
+            mress << acc.second->getMostRecentEmployer().toStdString();
+            mresize = acc.second->getMostRecentEmployer().toStdString().size();
+
+            ass << acc.second->getAge();
+            sstemp << acc.second->getAge();
+            tempString = sstemp.str();
+            asize = tempString.size();
+            sstemp.str("");
+
+            pnss << acc.second->getPhoneNumber();
+            sstemp << acc.second->getPhoneNumber();
+            tempString = sstemp.str();
+            pnsize = tempString.size();
+            sstemp.str("");
+
+            ayss << acc.second->getAbout().toStdString();
+            aysize = acc.second->getAbout().toStdString().size();
+        }
+    }
+
+    int fny = 4, fnx = 13+fnsize;
+    int lny = 6, lnx = 12+lnsize;
+    int gy = 8, gx = 9+gsize;
+    int hay = 10, hax = 15+hasize;
+    int mrey = 12, mrex = 23+mresize;
+    int ay = 14, ax = 6+asize;
+    int pny = 16, pnx = 15+pnsize;
+    int ayy = 18, ayx = 17+aysize;
+    int mmy = 21, mmx = (this->getCols()/2)-5;
+    int rowIndex = 0;
+    int curY = 4;
+    int curX = 13;
 
     curs_set(1);
     move(fny, fnx);
