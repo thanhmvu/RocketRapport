@@ -50,6 +50,7 @@ void ScrapbookUI::runScreen() {
  * @brief Clears the index.html file and prints the new stuff to it.
  */
 void ScrapbookUI::viewMyScrapbook(std::string path) {
+    const QString dateFormat = "h:m ap MMMM d yyyy";
     std::ofstream scrapbookHTML;
     scrapbookHTML.open(path, std::ios::out | std::ios::trunc);
     scrapbookHTML   << "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">"
@@ -101,7 +102,34 @@ void ScrapbookUI::viewMyScrapbook(std::string path) {
                     << "</p><br /></div>"
                     << "<div class=\"contentTitle\">About Yourself</div>"
                     << "<div class=\"contentText\"><p>"
-                    << this->getSystem()->getCurrentUser()->getAbout().toStdString();
+                    << this->getSystem()->getCurrentUser()->getAbout().toStdString()
+                    << "</p><br /></div>"
+                    << "<div class=\"contentTitle\">Tweets</div>"
+                    << "<div class=\"contentText\"><p>";
+    for (int i = 0; i < this->getSystem()->getCurrentUser()->getMyTweet()->getMyPosts().size(); i++) {
+        std::string datetime = this->getSystem()->getCurrentUser()->getMyTweet()->getMyPosts()[i]->getTimePosted().toString(dateFormat).toStdString();
+        std::string text = this->getSystem()->getCurrentUser()->getMyTweet()->getMyPosts()[i]->getText().toStdString();
+        scrapbookHTML   << datetime
+                        << "\n"
+                        << text
+                        << "\n\n";
+    }
+    scrapbookHTML   << "</p><br /></div>"
+                    << "<div class=\"contentTitle\">Blog</div>"
+                    << "<div class=\"contentText\"><p>";
+    for (int i = 0; i < this->getSystem()->getCurrentUser()->getMyBlog()->getMyPosts().size(); i++) {
+        std::string datetime = this->getSystem()->getCurrentUser()->getMyBlog()->getMyPosts()[i]->getTimePosted().toString(dateFormat).toStdString();
+        std::string text = this->getSystem()->getCurrentUser()->getMyBlog()->getMyPosts()[i]->getText().toStdString();
+        scrapbookHTML   << datetime
+                        << "\n"
+                        << text
+                        << "\n\n";
+    }
+    scrapbookHTML   << "</p><br /></div>"
+                    << "</div>"
+                    << "</div>"
+                    << "</body>"
+                    << "</html>";
     scrapbookHTML.close();
     system("firefox ../index.html");
 }
