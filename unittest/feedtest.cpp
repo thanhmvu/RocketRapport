@@ -11,6 +11,6 @@
 ////    ASSERT_EQ(newFeed.getFeedPosts().size(),2);
 //}
 
-//TEST(FeedTest, testRemovePost){
-//    TweetPost *newPost = new TweetPost();
-//}
+////TEST(FeedTest, testRemovePost){
+////    TweetPost *newPost = new TweetPost();
+////}
