@@ -226,61 +226,42 @@ void ProfileUI::runScreen() {
             move(curY, curX);
             break;
         case KEY_BACKSPACE:
-            switch(rowIndex) {
-            case 0:
-                if (this->getSystem()->getCurrentUser()->getUsername().toStdString() == this->getSystem()->getCurrentUser()->getProfileUsername()) {
-                    // User can edit
-
+            if (this->getSystem()->getCurrentUser()->getUsername().toStdString() == this->getSystem()->getCurrentUser()->getProfileUsername()) {
+                // User can edit
+                switch(rowIndex) {
+                case 0:
+                    break;
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    break;
+                case 6:
+                    break;
+                case 7:
+                    break;
+                case 8:
+                    break;
                 }
-                break;
-            case 1:
-                if (this->getSystem()->getCurrentUser()->getUsername().toStdString() == this->getSystem()->getCurrentUser()->getProfileUsername()) {
-                    // User can edit
-
-                }
-                break;
-            case 2:
-                if (this->getSystem()->getCurrentUser()->getUsername().toStdString() == this->getSystem()->getCurrentUser()->getProfileUsername()) {
-                    // User can edit
-
-                }
-                break;
-            case 3:
-                if (this->getSystem()->getCurrentUser()->getUsername().toStdString() == this->getSystem()->getCurrentUser()->getProfileUsername()) {
-                    // User can edit
-
-                }
-                break;
-            case 4:
-                if (this->getSystem()->getCurrentUser()->getUsername().toStdString() == this->getSystem()->getCurrentUser()->getProfileUsername()) {
-                    // User can edit
-
-                }
-                break;
-            case 5:
-                if (this->getSystem()->getCurrentUser()->getUsername().toStdString() == this->getSystem()->getCurrentUser()->getProfileUsername()) {
-                    // User can edit
-
-                }
-                break;
-            case 6:
-                if (this->getSystem()->getCurrentUser()->getUsername().toStdString() == this->getSystem()->getCurrentUser()->getProfileUsername()) {
-                    // User can edit
-
-                }
-                break;
-            case 7:
-                if (this->getSystem()->getCurrentUser()->getUsername().toStdString() == this->getSystem()->getCurrentUser()->getProfileUsername()) {
-                    // User can edit
-
-                }
-                break;
-            case 8:
-                this->changeScreens(true);
-                this->screenNumber = 1;
-                break;
             }
             break;
+        case KEY_HOME:
+            if (rowIndex == 8) {
+                this->changeScreens(true);
+                this->screenNumber = 1;
+            } else {
+                move(curY, curX);
+            }
+            break;
+        default:
+            if (this->getSystem()->getCurrentUser()->getUsername().toStdString() == this->getSystem()->getCurrentUser()->getProfileUsername()) {
+                // User can edit
+            }
             break;
         }
     }
