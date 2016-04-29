@@ -95,6 +95,13 @@ void ProfileGUI::on_pushButton_update_about_clicked()
     ////////////////////////////////////////////////////////////////////
     /// Store new about to the database
     //////////////////////////////////////////////////////////////////
+    QString new_about = ui->about_section->toPlainText();
+    // change the system
+    owner->setAbout(new_about);
+    // change the database
+//    main_menu->getSystem()->getDbm()->updateTable(
+//                "profiles", "AbtYslf", new_about, )
+
 }
 
 
