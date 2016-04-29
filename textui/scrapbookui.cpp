@@ -10,7 +10,9 @@ ScrapbookUI::ScrapbookUI(System* mainSystem)
  * @brief Sets up the design of the screen.
  */
 void ScrapbookUI::displayScreen() {
-    mvprintw(1, 1, "On Scrapbook Screen");
+    mvprintw((this->getRows()/2)-4, (this->getCols()/2)-9, "Viewing Scrapbook");
+    mvprintw((this->getRows()/2)+1, (this->getCols()/2)-5, "MainMenu");
+    mvprintw((this->getRows()/2)+1, (this->getCols()/2)-6, ">");
     refresh();
 }
 
@@ -19,9 +21,23 @@ void ScrapbookUI::displayScreen() {
  * @brief Loops through this method while the user is on this screen.
  */
 void ScrapbookUI::runScreen() {
+    curs_set(0);
+    int curY = (this->getRows()/2)+1, curX = (this->getCols()/2)-6;
     this->viewMyScrapbook("../index.html");
-    mvprintw(2, 1, "In Run Screen");
-    getch();
+    int keyPress;
+    while (this->getChangeScreens() == false) {
+        getyx(stdscr, curY, curX);
+        keyPress = getch();
+        switch(keyPress) {
+        case KEY_BACKSPACE:
+            this->changeScreens(true);
+            this->screenNumber = 1;
+            break;
+        default:
+            move(curY, curX);
+            break;
+        }
+    }
 
     this->changeScreens(false);
     clear();
@@ -58,4 +74,5 @@ void ScrapbookUI::viewMyScrapbook(std::string path) {
                     << "<div class=\"contentTitle\">First Name</div>"
                     << "<div class=\"contentText\"><p>";
     scrapbookHTML.close();
+    system("firefox ../index.html");
 }
