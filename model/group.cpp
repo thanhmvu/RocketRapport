@@ -205,3 +205,32 @@ Blog* Group::getBlog(){
 bool Group::setStatus(bool activeState){
     isActive = activeState;
 }
+
+/**
+ * @brief Setter that sets the aboutGroup of this group.
+ */
+bool Group::setAboutGroup(QString aboutUs){
+    aboutGroup = aboutUs;
+    return true;
+}
+
+/**
+ * @brief Getter that returns the aboutGroup of this group.
+ */
+QString Group::getAboutGroup(){
+    return aboutGroup;
+}
+
+/**
+ * @brief Group::isMember check if a given user is a member of the group
+ * @param user the username of the user to check
+ * @return true if given user is a member
+ */
+bool Group::isMember(QString user){
+    for(Account * acc: groupMembers){
+        if(acc->getUsername().compare(user) == 0){
+            return true;
+        }
+    }
+    return false;
+}

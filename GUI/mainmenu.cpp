@@ -42,6 +42,10 @@ void MainMenu::init(){
 }
 
 void MainMenu::reload(){
+    ////////////////////////////////////////////////////////////////////
+    /// To prevent memory leaks, pay attention to userlist and grouplist
+    //////////////////////////////////////////////////////////////////
+
     // retrieve all accounts from database
     main_system->refreshSystem();
 
@@ -59,11 +63,6 @@ void MainMenu::reload(){
     scroll_widget->setLayout(layout);
     ui->scrollArea_userList->setWidget(scroll_widget);
 
-
-    ////////////////////////////////////////////////////////////////////
-    /// Load list of groups from SYSTEM/ DATABASE
-    /// To prevent memory leaks, pay attention to userlist and grouplist
-    //////////////////////////////////////////////////////////////////
     // display the list of groups as a list of group buttons
     QWidget *scroll_widget2 = new QWidget();
     QVBoxLayout *layout2 = new QVBoxLayout();
@@ -93,8 +92,10 @@ void MainMenu::openUserProfile(){
 void MainMenu::openGroupScreen(){
     QPushButton* button = qobject_cast<QPushButton*> (QObject::sender());
     QString groupname = button->text();
+    QString current_user = main_system->getCurrentUser()->getUsername();
+
     // load content based on viewer
-    group_screen->loadGroup(groupname);
+    group_screen->loadGroup(groupname, current_user);
 
     this->close();
     group_screen->show();
@@ -153,7 +154,7 @@ void MainMenu::on_pushButton_launch_clicked()
 
         // successfully create group. open group screen
         // load content based on viewer
-        group_screen->loadGroup(gName);
+        group_screen->loadGroup(gName,main_system->getCurrentUser()->getUsername());
 
         // clean new-groupname box
         ui->lineEdit_groupname->setText("");

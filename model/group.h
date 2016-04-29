@@ -24,6 +24,7 @@ private:
 
     bool isActive;
     QString groupName;
+    QString aboutGroup;
     QString currentProject;
 
     DbManager* dbm;
@@ -34,7 +35,7 @@ public:
           bool newStatus, int newBlogID     , DbManager *newdbm);
     ~Group();
 
-//    bool isMember(Account * caller);
+    bool isMember(QString user);
 
 //    void updateBlog(Account* userPosted, TweetPost* latestPost);
     void addGroupMember(Account* newMember);
@@ -60,6 +61,9 @@ public:
     int getID();
     int getAdminID();
     bool setStatus(bool activeState);
+
+    bool setAboutGroup(QString aboutUs);
+    QString getAboutGroup();
 
     // for debugging purpose
     static int getIdCnt(){ return id_cnt; };

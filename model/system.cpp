@@ -351,6 +351,21 @@ Account* System::getAccountByUsername(QString usrname){
 }
 
 /**
+ * @brief System::getAccountByUsername Method used to obtain account object using their username
+ * @param usrname Name of the account we want to retrieve
+ * @return Account object associated with the given username
+ */
+Group* System::getGroupByName(QString name){
+    for(Group * g: groups){
+        if(g->getGroupName().compare(name) == 0){
+            return g;
+        }
+    }
+    std::cout << "System::getGroupByName fail. Group does not exist.\n";
+    return nullptr;
+}
+
+/**
  * @brief System::getAccountByID Return a pointer to an account object given the account's ID
  * @param ID The identification number of the account we want to retrieve
  * @return Pointer to an account object with the given ID

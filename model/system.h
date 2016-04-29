@@ -45,6 +45,7 @@ public:
     Account* getCurrentUser();
     Account* getAccountByUsername(QString usrname);
     Account* getAccountByID(int ID);
+    Group* getGroupByName(QString name);
     bool getLoggedIn();
     std::vector<Group*> getGroups();
     std::map <QString, Account*> getAllAccounts();

@@ -25,7 +25,6 @@ private:
     MainMenu* main_menu;
     BlogGUI * blog_screen;
     TweetGUI * tweet_screen;
-//    QString owner;
     QString curr_viewer;
     Account * owner;
     void init();
