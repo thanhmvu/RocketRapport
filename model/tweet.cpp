@@ -34,8 +34,9 @@ Tweet::~Tweet(){
 void Tweet::addPost(TweetPost* newPost) {
     // add new post to the blog post vector
     myPosts.push_back(newPost);
-
-
+    // add new post to the database
+    dbm->addTweetPost(newPost->getID()          , tweetID,
+                      newPost->getTimePosted()  , newPost->getText() );
 }
 
 void Tweet::createPost(TweetPost *newPost){
