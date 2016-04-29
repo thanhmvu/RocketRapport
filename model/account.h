@@ -89,7 +89,7 @@ public:
     void removeChat(Chat* badChat);
     void addFriend(Account* newFriend); //No code for this method
     void removeFriend(Account* badFriend); //No code for this method
-    void joinGroup(Group* newGroup);
+    bool joinGroup(Group* newGroup);
     void leaveGroup(Group* badGroup);
 
     // getters

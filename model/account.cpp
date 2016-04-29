@@ -338,8 +338,26 @@ void Account::removeFriend(Account* badFriend) {
 /**
  * @brief Adds a group to the user's list of joined groups.
  */
-void Account::joinGroup(Group* newGroup) {
-    this->getGroups().push_back(newGroup);
+bool Account::joinGroup(Group* newGroup) {
+    if(newGroup != nullptr){
+        // check if group already in the list
+        for(Group * g : groups){
+            if(g != nullptr){
+                if(g->getGroupName().compare(newGroup->getGroupName()) == 0){
+                    std::cout<< "Already in group\n";
+                    return false;
+                }
+            }else{
+                std::cout<< "null pointer in Account::joinGroup\n";
+            }
+        }
+        // if not, add to the list
+        groups.push_back(newGroup);
+        return true;
+    }else{
+        std::cout<< "null pointer in Account::joinGroup\n";
+        return false;
+    }
 }
 
 
