@@ -222,6 +222,27 @@ bool DbManager::addGroupUserPair(const QVariant GroupID, const QVariant UserID){
     return success;
 }
 
+bool DbManager::addProfile(const QVariant accountID, const QVariant Gender,
+                           const QVariant AbtYslf, const QVariant HmAddress,
+                           const QVariant MstRcntEmpl, const QVariant age){
+    bool success = false;
+    QSqlQuery query;
+    query.prepare("INSERT INTO profiles VALUES ( (:accountID), (:Gender), (:AbtYslf), (:HmAddress), (:MstRcntEmpl), (:age)  )");
+    query.bindValue(0,accountID);
+    query.bindValue(1,Gender);
+    query.bindValue(2,AbtYslf);
+    query.bindValue(3,HmAddress);
+    query.bindValue(4,MstRcntEmpl);
+    query.bindValue(5,age);
+    if(query.exec() ){
+        success = true;
+    }
+    else{
+        qDebug() << "Issue adding profile to database"
+                 << query.lastError();
+    }
+}
+
 ///**
 // * @brief DbManager::addFeedPost Method used to add new Feed posts to the database
 // * @param FeedPostID ID of the newly created Feed post
@@ -595,7 +616,7 @@ void DbManager::retrieveAllAccounts(std::map<QString, Account*> &accounts){
                                                         scrpBkID, blogID, tweetID,
                                                         firstname, lastname, this);
 
-                // add account to the accounts map
+                // add accoun to the accounts map
                 accounts[username] = rebuilt_account;
             }
         }else{ qDebug() << query.lastError(); }
@@ -658,7 +679,7 @@ void DbManager::retrieveAllProfileInfo(Account *user){
               user->setAbout(query.value(2).toString() );
               user->setAddress(query.value(3).toString() );
               user->setMostRecentEmployer(query.value(4).toString() );
-              user->setAge(query.value(5).toInt() );
+              user->setAge(query.value(5).toInt());
         }
     }
     else{
