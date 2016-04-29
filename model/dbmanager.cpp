@@ -96,7 +96,7 @@ bool DbManager::addUser(const QVariant &AcntID  , const QVariant &FrstName,
  */
 bool DbManager::addGroup(const QVariant &GrpID  , const QVariant &GrpAdmnId,
                          bool actStatus         , const QVariant &GrpName,
-                         const QVariant &BlogID)
+                         const QVariant &BlogID , const QVariant &GrpInfo)
 {
     bool success = false;
     QSqlQuery query;

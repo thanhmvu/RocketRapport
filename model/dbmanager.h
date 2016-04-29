@@ -55,7 +55,7 @@ public:
 
     bool addGroup   (const QVariant &GrpID      , const QVariant &GrpAdmnId,
                      bool actStatus             , const QVariant &GrpName,
-                     const QVariant &FeedID);
+                     const QVariant &FeedID, const QVariant &GrpInfo);
 
 //    bool addFeedPost(const QVariant &FeedPostID , const QVariant &FeedID,
 //                     const QVariant &timeDate   , const QVariant &text);
