@@ -39,6 +39,7 @@ private slots:
     void on_pushButton_show_about_clicked();
     void on_pushButton_savePost_clicked();
     void on_pushButton_cancelPost_clicked();
+    void on_pushButton_add_member_clicked();
 };
 
 #endif // GROUPGUI_H

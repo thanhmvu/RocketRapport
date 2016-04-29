@@ -449,10 +449,8 @@ void System::addAccountsToGroup(Group *group){
 
             if(IDList.at(i) == ent.second->getAccountID() ){
                 Account* insertAc = ent.second;
-                // add the account to the group
+                // link group and user together
                 group->addGroupMember(insertAc);
-                // add the group to this user
-                insertAc->joinGroup(group);
             }
 
         }

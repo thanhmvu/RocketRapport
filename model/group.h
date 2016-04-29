@@ -38,7 +38,7 @@ public:
     bool isMember(QString user);
 
 //    void updateBlog(Account* userPosted, TweetPost* latestPost);
-    void addGroupMember(Account* newMember);
+    bool addGroupMember(Account* newMember);
     void addGroupMemberID(int newID);
 //    void removeGroupMember(Account* oldMember);
 //    void addToPastProjects(QString project);

@@ -51,6 +51,7 @@ void GroupGUI::loadGroup(QString groupname, QString viewer){
 
         ui->pushButton_show_about->setVisible(true);
         ui->pushButton_newPost->setVisible(true);
+        ui->pushButton_add_member->setVisible(true);
     }
     else{
         ui->about_group->setVisible(true);
@@ -58,6 +59,7 @@ void GroupGUI::loadGroup(QString groupname, QString viewer){
 
         ui->pushButton_show_about->setVisible(false);
         ui->pushButton_newPost->setVisible(false);
+        ui->pushButton_add_member->setVisible(false);
     }
 
     // load feed
@@ -158,4 +160,9 @@ void GroupGUI::on_pushButton_cancelPost_clicked()
 
     ui->pushButton_savePost->setVisible(false);
     ui->pushButton_cancelPost->setVisible(false);
+}
+
+void GroupGUI::on_pushButton_add_member_clicked()
+{
+//    this_group->addGroupMember();
 }

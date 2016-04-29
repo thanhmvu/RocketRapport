@@ -148,7 +148,6 @@ void MainMenu::on_pushButton_launch_clicked()
     }else{
         // link group and user together
         newGroup->addGroupMember(main_system->getCurrentUser());
-        main_system->getCurrentUser()->joinGroup(newGroup);
         // store the group-user pair to database
         main_system->pairGroupWithUser(newGroup,main_system->getCurrentUser());
 

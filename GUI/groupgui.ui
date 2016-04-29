@@ -18,8 +18,8 @@
     <rect>
      <x>30</x>
      <y>20</y>
-     <width>361</width>
-     <height>61</height>
+     <width>311</width>
+     <height>51</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -157,12 +157,31 @@ p, li { white-space: pre-wrap; }
     </item>
    </layout>
   </widget>
+  <widget class="QPushButton" name="pushButton_add_member">
+   <property name="geometry">
+    <rect>
+     <x>570</x>
+     <y>20</y>
+     <width>101</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="text">
+    <string>Add Member</string>
+   </property>
+  </widget>
   <widget class="QPushButton" name="pushButton_savePost">
    <property name="geometry">
     <rect>
-     <x>692</x>
-     <y>54</y>
-     <width>85</width>
+     <x>670</x>
+     <y>50</y>
+     <width>101</width>
      <height>27</height>
     </rect>
    </property>
@@ -179,9 +198,9 @@ p, li { white-space: pre-wrap; }
   <widget class="QPushButton" name="pushButton_show_about">
    <property name="geometry">
     <rect>
-     <x>692</x>
-     <y>21</y>
-     <width>85</width>
+     <x>670</x>
+     <y>20</y>
+     <width>101</width>
      <height>27</height>
     </rect>
    </property>
@@ -198,9 +217,9 @@ p, li { white-space: pre-wrap; }
   <widget class="QPushButton" name="pushButton_mainmenu">
    <property name="geometry">
     <rect>
-     <x>783</x>
-     <y>21</y>
-     <width>87</width>
+     <x>770</x>
+     <y>20</y>
+     <width>101</width>
      <height>27</height>
     </rect>
    </property>
@@ -217,9 +236,9 @@ p, li { white-space: pre-wrap; }
   <widget class="QPushButton" name="pushButton_cancelPost">
    <property name="geometry">
     <rect>
-     <x>601</x>
-     <y>54</y>
-     <width>85</width>
+     <x>570</x>
+     <y>50</y>
+     <width>101</width>
      <height>27</height>
     </rect>
    </property>
@@ -236,9 +255,9 @@ p, li { white-space: pre-wrap; }
   <widget class="QPushButton" name="pushButton_newPost">
    <property name="geometry">
     <rect>
-     <x>783</x>
-     <y>54</y>
-     <width>85</width>
+     <x>770</x>
+     <y>50</y>
+     <width>101</width>
      <height>27</height>
     </rect>
    </property>
@@ -256,6 +275,7 @@ p, li { white-space: pre-wrap; }
   <zorder>layoutWidget</zorder>
   <zorder>layoutWidget_2</zorder>
   <zorder>label_groupname</zorder>
+  <zorder>pushButton_add_member</zorder>
  </widget>
  <resources/>
  <connections/>

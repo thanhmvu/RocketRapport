@@ -60,8 +60,28 @@ Group::~Group(){
  * @brief Adds an account/user to the group.
  * @param newMember Pointer to account object that we want to add to this particular group.
  */
-void Group::addGroupMember(Account* newMember) {
-    groupMembers.push_back(newMember);
+bool Group::addGroupMember(Account* newMember) {
+    if(newMember != nullptr){
+        // check if this member already in the list
+        for(Account * a : groupMembers){
+            if(a != nullptr){
+                if(a->getUsername().compare(newMember->getUsername()) == 0){
+                    std::cout<< "Already in group\n";
+                    return false;
+                }
+            }else{
+                std::cout<< "null pointer in Group::addGroupMember\n";
+            }
+        }
+        // if not, add to the list
+        groupMembers.push_back(newMember);
+        // let new member join group
+        newMember->joinGroup(this);
+        return true;
+    }else{
+        std::cout<< "null pointer in Group::addGroupMember\n";
+        return false;
+    }
 }
 
 void Group::addGroupMemberID(int newID){
