@@ -244,20 +244,109 @@ void ProfileUI::runScreen() {
                     }
                     break;
                 case 1:
+                    if ((lnx-12) > 0) {
+                        lnx--;
+                        mvprintw(lny, lnx, " ");
+                        move(lny, lnx);
+                        std::string remove = lnss.str();
+                        remove.erase(remove.size()-1, 1);
+                        lnss.str("");
+                        lnss << remove;
+                        this->getSystem()->getCurrentUser()->setLastName(QString::fromStdString(lnss.str()));
+                    } else {
+                        move(curY, curX);
+                    }
                     break;
                 case 2:
+                    if ((gx-9) > 0) {
+                        gx--;
+                        mvprintw(gy, gx, " ");
+                        move(gy, gx);
+                        std::string remove = gss.str();
+                        remove.erase(remove.size()-1, 1);
+                        gss.str("");
+                        gss << remove;
+                        this->getSystem()->getCurrentUser()->setGender(QString::fromStdString(gss.str()));
+                    } else {
+                        move(curY, curX);
+                    }
                     break;
                 case 3:
+                    if ((hax-15) > 0) {
+                        hax--;
+                        mvprintw(hay, hax, " ");
+                        move(hay, hax);
+                        std::string remove = hass.str();
+                        remove.erase(remove.size()-1, 1);
+                        hass.str("");
+                        hass << remove;
+                        this->getSystem()->getCurrentUser()->setAddress(QString::fromStdString(hass.str()));
+                    } else {
+                        move(curY, curX);
+                    }
                     break;
                 case 4:
+                    if ((mrex-23) > 0) {
+                        mrex--;
+                        mvprintw(mrey, mrex, " ");
+                        move(mrey, mrex);
+                        std::string remove = mress.str();
+                        remove.erase(remove.size()-1, 1);
+                        mress.str("");
+                        mress << remove;
+                        this->getSystem()->getCurrentUser()->setMostRecentEmployer(QString::fromStdString(mress.str()));
+                    } else {
+                        move(curY, curX);
+                    }
                     break;
                 case 5:
+                    if ((ax-6) > 0) {
+                        int dump = 0;
+                        ax--;
+                        mvprintw(ay, ax, " ");
+                        move(ay, ax);
+                        std::string remove = ass.str();
+                        remove.erase(remove.size()-1, 1);
+                        ass.str("");
+                        ass.str(remove);
+                        ass >> dump;
+                        this->getSystem()->getCurrentUser()->setAge(dump);
+                    } else {
+                        move(curY, curX);
+                    }
                     break;
                 case 6:
+                    if ((pnx-15) > 0) {
+                        int dump = 0;
+                        pnx--;
+                        mvprintw(pny, pnx, " ");
+                        move(pny, pnx);
+                        std::string remove = pnss.str();
+                        remove.erase(remove.size()-1, 1);
+                        pnss.str("");
+                        pnss.str(remove);
+                        pnss >> dump;
+                        this->getSystem()->getCurrentUser()->setPhoneNumber(dump);
+                    } else {
+                        move(curY, curX);
+                    }
                     break;
                 case 7:
+                    if ((ayx-17) > 0) {
+                        ayx--;
+                        mvprintw(ayy, ayx, " ");
+                        move(ayy, ayx);
+                        std::string remove = ayss.str();
+                        remove.erase(remove.size()-1, 1);
+                        ayss.str("");
+                        ayss << remove;
+                        this->getSystem()->getCurrentUser()->setAbout(QString::fromStdString(ayss.str()));
+                    } else {
+                        move(curY, curX);
+                    }
                     break;
                 case 8:
+                    move(curY, curX);
                     break;
                 }
             }
