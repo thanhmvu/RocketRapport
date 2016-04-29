@@ -1,20 +1,20 @@
 #ifndef GROUP_H
 #define GROUP_H
 #include <vector>
-#include "feed.h"
-#include "tweetpost.h"
+#include "blog.h"
 #include "account.h"
 #include "dbmanager.h"
 
 class Account;
 class DbManager;
+class Blog;
 
 class Group
 {
 private:
     static int id_cnt;
     int groupID;
-    Feed* groupFeed;
+    Blog* groupBlog;
     int adminID;
     Account* admin;
 
@@ -26,20 +26,23 @@ private:
     QString groupName;
     QString currentProject;
 
+    DbManager* dbm;
+
 public:
-    Group(QString gName);
-    Group(int gID, int GrpAdminID, QString gName, bool newStatus, int newFeedID);
+    Group(QString gName, DbManager *newdbm);
+    Group(int gID       , int GrpAdminID    , QString gName,
+          bool newStatus, int newBlogID     , DbManager *newdbm);
     ~Group();
 
 //    bool isMember(Account * caller);
 
-//    void updateFeed(Account* userPosted, TweetPost* latestPost);
+//    void updateBlog(Account* userPosted, TweetPost* latestPost);
     void addGroupMember(Account* newMember);
     void addGroupMemberID(int newID);
 //    void removeGroupMember(Account* oldMember);
 //    void addToPastProjects(QString project);
 
-//    Feed* Feed();
+//    Blog* Blog();
     bool getIsActive();
 //    void setIsActive(bool active);
     std::vector<Account*> getGroupMembers();
@@ -53,7 +56,7 @@ public:
 //    void setCurrentProject(QString project);
 //    void newProject(QString project);
 //    std::vector<QString> getPastProjects();
-    Feed* getFeed();
+    Blog* getBlog();
     int getID();
     int getAdminID();
     bool setStatus(bool activeState);

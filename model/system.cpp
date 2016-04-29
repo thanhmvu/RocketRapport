@@ -141,7 +141,7 @@ Group* System::createGroup(QString gName) {
     }
 
     // otherwise, create new group
-    Group* newGroup = new Group(gName);
+    Group* newGroup = new Group(gName, dbm);
 
     // add account to group vector and the database
     addGroup(newGroup);
@@ -157,7 +157,7 @@ Group* System::createGroup(QString gName) {
 void System::addGroup(Group* newGroup) {
     groups.push_back(newGroup);
     dbm->addGroup(newGroup->getID(),newGroup->getAdminID(),
-                  newGroup->getIsActive(),newGroup->getGroupName(),newGroup->getFeed()->getFeedID() );
+                  newGroup->getIsActive(),newGroup->getGroupName(),newGroup->getBlog()->getBlogID() );
 }
 
 /**

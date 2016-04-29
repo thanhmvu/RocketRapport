@@ -91,21 +91,21 @@ bool DbManager::addUser(const QVariant &AcntID  , const QVariant &FrstName,
  * @param GrpAdmnId Account ID of the account that is  the admin of this particular group
  * @param actStatus Boolean signifying if a group is active or not.
  * @param GrpName Name of the newly created group
- * @param FeedID ID of the feed belonging to this particular group
+ * @param BlogID ID of the Blog belonging to this particular group
  * @return Returns true if the add method works successfully
  */
 bool DbManager::addGroup(const QVariant &GrpID  , const QVariant &GrpAdmnId,
                          bool actStatus         , const QVariant &GrpName,
-                         const QVariant &FeedID)
+                         const QVariant &BlogID)
 {
     bool success = false;
     QSqlQuery query;
-    query.prepare("INSERT INTO groups VALUES ( (:GrpID) , (:GrpAdmnId) , (:actStatus) , (:GrpName) , (:FeedID) )");
+    query.prepare("INSERT INTO groups VALUES ( (:GrpID) , (:GrpAdmnId) , (:actStatus) , (:GrpName) , (:BlogID) )");
     query.bindValue(":GrpID",GrpID);
     query.bindValue(":GrpAdmnId",GrpAdmnId);
     query.bindValue(":actStatus",actStatus);
     query.bindValue(":GrpName",GrpName);
-    query.bindValue(":FeedID",FeedID);
+    query.bindValue(":BlogID",BlogID);
 //    qDebug() << query.boundValue(0) << " " << query.boundValue(1) << " " << query.boundValue(2) <<
 //                " " << query.boundValue(3) << " " << query.boundValue(4);
     if(query.exec()){
@@ -220,6 +220,31 @@ bool DbManager::addGroupUserPair(const QVariant GroupID, const QVariant UserID){
     }
     return success;
 }
+
+///**
+// * @brief DbManager::addFeedPost Method used to add new Feed posts to the database
+// * @param FeedPostID ID of the newly created Feed post
+// * @param FeedID ID of the Feed that the newly created Feed post belongs to
+// * @param timeDate Date that the new Feed post was posted on
+// * @param text Text being stored and displayed on the new Feed post
+// * @return Returns true if the add method works successfully
+// */
+//bool DbManager::addFeedPost(const QVariant &FeedPostID, const QVariant &FeedID,
+//                            const QVariant &timeDate, const QVariant &text){
+//     QSqlQuery query;
+//     query.prepare("INSERT INTO FeedPosts VALUES( (:FeedPostID), (:FeedID), (:timeDate), (:text) )" );
+//     query.bindValue(":FeedPostID",FeedPostID);
+//     query.bindValue(":FeedID", FeedID);
+//     query.bindValue(":timeDate",timeDate);
+//     query.bindValue(":text",text);
+//     if(query.exec()){
+//         std::cout << "DbManager::addFeedPost exec(): true\n";
+//         return true;
+//     }else{
+//         qDebug() << query.lastError();
+//         return false;
+//     }
+// }
 
 /**
  * @brief DbManager::addBlogPost Method used to add new blog posts to the database
@@ -482,6 +507,31 @@ void DbManager::retrieveAllTweets(Tweet *userTweet){
     }
 }
 
+///**
+// * @brief DbManager::retrieveAllFeedPosts Method used to attach every feed post associated with a group's Feed.
+// * @param groupTweet Pointer to the group's feed object
+// */
+//void DbManager::retrieveAllFeedPosts(Feed *groupFeed){
+//    QSqlQuery query;
+//    QString command = "SELECT * FROM feedPosts WHERE FeedID = ";
+//    QString valStr = QString::number(groupFeed->getFeedID());
+//    command += valStr;
+//    query.prepare(command);
+//    query.exec();
+//    while(query.next()){
+//        // extract the info
+//        int postID = query.value(0).toInt();
+//        int feedID = query.value(1).toInt();
+//        QDateTime time = query.value(2).toDateTime();
+//        QString text = query.value(3).toString();
+
+//        // using blogPost object for feed
+//        // re-create post using special constructor use to reload feedPost with givin postID
+//        FeedPost *newBP = new FeedPost(postID, feedID, time, text);
+//        groupFeed->addPost(newBP);
+//    }
+//}
+
 /**
   * @brief DbManager::retrieveAllScbkPosts Method used to attach every scrapbook post associated with a user's scrapbook to the scrapbook.
   * @param userScBook Pointer to the user's scrapbook used to retrieve associated information
@@ -560,8 +610,8 @@ void DbManager::retrieveAllGroups(System *newSystem){
            int dbGrpAdmin = query.value(1).toInt();
            bool dbStatus = query.value(2).toBool();
            QString dbGrpname = query.value(3).toString();
-           int dbFeedID = query.value(4).toInt();
-           Group *newGroup = new Group(dbGrpID,dbGrpAdmin,dbGrpname,dbStatus,dbFeedID);
+           int dbBlogID = query.value(4).toInt();
+           Group *newGroup = new Group(dbGrpID,dbGrpAdmin,dbGrpname,dbStatus,dbBlogID,this);
            newSystem->insertGroup(newGroup);
        }
     }

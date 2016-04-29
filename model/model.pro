@@ -17,7 +17,8 @@ SOURCES += main.cpp \
     blogpost.cpp \
     tweetpost.cpp \
     scrapbookpost.cpp \
-    dbmanager.cpp
+    dbmanager.cpp \
+    feedpost.cpp
 
 HEADERS += \
     system.h \
@@ -34,7 +35,8 @@ HEADERS += \
     blogpost.h \
     tweetpost.h \
     scrapbookpost.h \
-    dbmanager.h
+    dbmanager.h \
+    feedpost.h
 
 LIBS += -l sqlite3
 

@@ -1,93 +1,111 @@
-#include "feed.h"
+//#include "feed.h"
 
-int Feed::id_cnt = 0;
+//int Feed::id_cnt = 0;
 
-Feed::Feed()
-{
-    feedID = id_cnt;
-    id_cnt++;
-}
+///**
+// * @brief Feed::Feed Constructor used to create a new Feed with a reference to a dbManager object for data storage and retrieval
+// * @param newdbm
+// */
+//Feed::Feed(DbManager *newdbm)
+//{
+//    dbm = newdbm;
+//    feedID = id_cnt;
+//    id_cnt++;
+////    dbm->retrieveAllFeedPosts(this); //Retrieve all Feed posts associated with this Feed
+//}
 
-/**
- * @brief Feed::Feed Constructor for a feed object belonging to a group
- * @param newID ID assigned to the new feed object
- */
-Feed::Feed(int newID){
-    feedID = newID;
-    // update id_cnt if needed
-    if(newID >= id_cnt){
-        id_cnt = newID + 1;
-    }
-}
+///**
+// * @brief Feed::Feed Constructor used when adding Feed posts from the database using information in the given DB
+// * @param FeedID ID of the new Feed we're creating
+// * @param newdbm Pointer to a dbm object used for storing and retrieving information
+// */
+//Feed::Feed(int FeedID, DbManager *newdbm)
+//{
+//    dbm = newdbm;
+//    feedID = FeedID;
+//    // update id_cnt if needed
+//    if(feedID >= id_cnt){
+//        id_cnt = feedID + 1;
+//    }
+//    dbm->retrieveAllFeedPosts(this); //Retrieve all Feed posts associated with this Feed
+//}
 
-Feed::~Feed(){
-    while(!feedPosts.empty()){
-        delete feedPosts.back();
-        feedPosts.pop_back();
-    }
-}
-
-/**
- * @brief Concatenates all of the TweetPosts in this Feed into one string of text.
- */
-void Feed::displayFeed() {
-    this->setFeedText("");
-    for (unsigned i = 0; i < this->getFeedPosts().size(); i++) {
-        this->setFeedText(this->getFeedText() += (*(this->getFeedPosts()[i])).getText() += /*" "
-                          + (*(this->getFeedPosts()[i])).getTime() + " "
-                          + (*(this->getFeedPosts()[i])).getDate() + */
-                          "`");
-        // Character '`' will be used to seperate each post.
-
-        // Talk to Thanh about Post class and concatenating the posts.
-    }
-}
+///**
+// * @brief Feed::~Feed Destructor used to clear each Feed post from the vector of Feed posts contained in the Feed
+// */
+//Feed::~Feed(){
+//    while(!myPosts.empty()){
+//        delete myPosts.back();
+//        myPosts.pop_back();
+//    }
+//}
 
 
-/**
- * @brief Adds a new TweetPost to the list of posts.
- */
-void Feed::addPost(TweetPost* newPost) {
-    this->getFeedPosts().push_back(newPost);
-}
+///**
+// * @brief Adds a new FeedPost to the Feed's list of posts.
+// */
+//void Feed::addPost(FeedPost* newPost) {
+//    // add new post to the Feed post vector
+//    myPosts.push_back(newPost);
+//    // add new post to the database
+//    storePostToDB(newPost);
+//}
+
+///**
+// * @brief Feed::storePostToDB Store a Feed post's information to the database
+// * @param newPost
+// */
+//void Feed::storePostToDB(FeedPost *newPost) {
+//    dbm->addFeedPost( newPost->getID()      ,   feedID,
+//                      newPost->getTimePosted(),   newPost->getText() );
+//}
+
+///**
+// * @brief Removes a FeedPost from the Feed's list of posts.
+// */
+//void Feed::deletePost(FeedPost* oldPost) {
+//    for (unsigned i = 0; i < this->getMyPosts().size(); i++) {
+//        if (&(*oldPost) == &(*(this->getMyPosts()[i]))) {
+//            this->getMyPosts().erase(this->getMyPosts().begin() + i);
+//            break;
+//        }
+//    }
+//}
 
 
-/**
- * @brief Removes a TweetPost from the list of posts.
- */
-void Feed::removePost(TweetPost* oldPost) {
-    for (unsigned i = 0; i < this->getFeedPosts().size(); i++) {
-        if (&(*oldPost) == &(*(this->getFeedPosts()[i]))) {
-            this->getFeedPosts().erase(this->getFeedPosts().begin() + i);
-            break;
-        }
-    }
-}
+///**
+// * @brief Getter that returns the list of FeedPosts.
+// */
+//std::vector<FeedPost*> Feed::getMyPosts() {
+//    return this->myPosts;
+//}
 
+///**
+// * @brief Feed::getFeedID getter used for Feed ID
+// * @return
+// */
+//int Feed::getFeedID(){
+//    return feedID;
+//}
 
-/**
- * @brief Getter that returns the list of feed posts.
- */
-std::vector<TweetPost*> Feed::getFeedPosts() {
-    return this->feedPosts;
-}
+///**
+// * @brief Feed::setID Setter used for Feed ID.
+// * @param newID
+// */
+//void Feed::setID(int newID){
+//    feedID = newID;
+//    // update id_cnt if needed
+//    if(newID >= id_cnt){
+//        id_cnt = newID + 1;
+//    }
+//}
 
-
-/**
- * @brief Getter that returns the feed text in one string.
- */
-QString Feed::getFeedText() {
-    return this->feedText;
-}
-
-
-/**
- * @brief Setter that sets the feed text;
- */
-void Feed::setFeedText(QString text) {
-    this->feedText = text;
-}
-
-int Feed::getFeedID(){
-    return feedID;
-}
+///**
+// * @brief Feed::deleteAllPosts Delete all posts found within the Feed.
+// */
+//void Feed::deleteAllPosts(){
+//    while(!myPosts.empty()){
+//        delete myPosts.back();
+//        myPosts.pop_back();
+//    }
+//}

@@ -17,6 +17,8 @@
 #include "blogpost.h"
 #include "tweet.h"
 #include "tweetpost.h"
+//#include "feed.h"
+//#include "feedpost.h"
 #include "scrapbook.h"
 #include "scrapbookpost.h"
 #include "chat.h"
@@ -28,6 +30,7 @@ class Account;
 class Chat;
 class Blog;
 class Tweet;
+//class Feed;
 class System;
 class Group;
 class Scrapbook;
@@ -54,7 +57,8 @@ public:
                      bool actStatus             , const QVariant &GrpName,
                      const QVariant &FeedID);
 
-    bool addFeedPost(const QVariant &FeedID, const QVariant &feedPostID, const QVariant &feedPostText);
+//    bool addFeedPost(const QVariant &FeedPostID , const QVariant &FeedID,
+//                     const QVariant &timeDate   , const QVariant &text);
 
     bool addBlogPost(const QVariant &BlogPostID , const QVariant &BlogID,
                      const QVariant &timeDate   , const QVariant &text);
@@ -90,6 +94,7 @@ public:
     void retrieveAllAccounts(std::map<QString, Account*> &accounts);
     void retrieveAllBlogPosts(Blog *userBlog);
     void retrieveAllTweets(Tweet *userTweet);
+//    void retrieveAllFeedPosts(Feed *groupFeed);
     void retrieveAllMessages(Chat *userChat);
     void retrieveAllScbkPosts(Scrapbook *userScBook);
     void retrieveAllChats(Account *user);

@@ -5,14 +5,16 @@ int Group::id_cnt = 0;
 /**
  * @brief Group::Group Constructor used for creating a new group
  */
-Group::Group(QString gName){
+Group::Group(QString gName, DbManager *newdbm){
     groupID = id_cnt;
     id_cnt++;
     groupName = gName;
 
+    dbm = newdbm;
+
     isActive = true;
     adminID = -1; //Store a default value
-    groupFeed = new Feed();
+    groupBlog = new Blog(dbm);
 }
 
 /**
@@ -21,7 +23,8 @@ Group::Group(QString gName){
  * @param gName
  * @param newStatus
  */
-Group::Group(int gID, int GrpAdminID, QString gName, bool newStatus, int newFeedID)
+Group::Group(int gID, int GrpAdminID, QString gName,
+             bool newStatus, int newBlogID, DbManager *newdbm)
 {
     groupID = gID;
     // update id_cnt if needed
@@ -29,26 +32,26 @@ Group::Group(int gID, int GrpAdminID, QString gName, bool newStatus, int newFeed
         id_cnt = gID + 1;
     }
 
+    dbm = newdbm;
+
     groupName = gName;
     isActive = newStatus;
     adminID = GrpAdminID;
 
-    ///////////////////////////////
-    /// Need to retrieve feedPost
-    ///////////////////////////////
-    groupFeed = new Feed(newFeedID);
+    // retrieve all blog posts inside the constructor
+    groupBlog = new Blog(newBlogID,dbm);
 }
 
 Group::~Group(){
-    delete groupFeed;
+    delete groupBlog;
 }
 
 ///**
-// * @brief Adds a new TweetPost to the group feed.
+// * @brief Adds a new TweetPost to the group Blog.
 // */
-//void Group::updateFeed(Account* userPosted, TweetPost* latestPost) {
-//    this->getFeed()->addPost(latestPost);
-//    this->getFeed()->displayFeed();
+//void Group::updateBlog(Account* userPosted, TweetPost* latestPost) {
+//    this->getBlog()->addPost(latestPost);
+//    this->getBlog()->displayBlog();
 
 //    // Add Account to Post.
 //}
@@ -87,10 +90,10 @@ void Group::addGroupMemberID(int newID){
 
 
 ///**
-// * @brief Getter that returns the Feed object associated with this group.
+// * @brief Getter that returns the Blog object associated with this group.
 // */
-//Feed* Group::getFeed() {
-//    return this->groupFeed;
+//Blog* Group::getBlog() {
+//    return this->groupBlog;
 //}
 
 
@@ -195,8 +198,8 @@ int Group::getAdminID(){
     return adminID;
 }
 
-Feed* Group::getFeed(){
-    return groupFeed;
+Blog* Group::getBlog(){
+    return groupBlog;
 }
 
 bool Group::setStatus(bool activeState){

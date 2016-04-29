@@ -1,6 +1,9 @@
 #include "bloggui.h"
 #include "ui_bloggui.h"
 
+/**
+ * @brief BlogGUI::BlogGUI default constructor
+ */
 BlogGUI::BlogGUI(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::BlogGUI)
@@ -9,6 +12,10 @@ BlogGUI::BlogGUI(QWidget *parent) :
     init();
 }
 
+/**
+ * @brief BlogGUI::BlogGUI constructor
+ * @param pfGUI pointer to a ProfileGUI that is linked to this BlogGUI
+ */
 BlogGUI::BlogGUI(ProfileGUI* pfGUI) :
     ui(new Ui::BlogGUI)
 {
