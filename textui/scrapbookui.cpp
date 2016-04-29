@@ -110,9 +110,9 @@ void ScrapbookUI::viewMyScrapbook(std::string path) {
         std::string datetime = this->getSystem()->getCurrentUser()->getMyTweet()->getMyPosts()[i]->getTimePosted().toString(dateFormat).toStdString();
         std::string text = this->getSystem()->getCurrentUser()->getMyTweet()->getMyPosts()[i]->getText().toStdString();
         scrapbookHTML   << datetime
-                        << "\n"
+                        << "<br />"
                         << text
-                        << "\n\n";
+                        << "<br /><br />";
     }
     scrapbookHTML   << "</p><br /></div>"
                     << "<div class=\"contentTitle\">Blog</div>"
@@ -121,9 +121,9 @@ void ScrapbookUI::viewMyScrapbook(std::string path) {
         std::string datetime = this->getSystem()->getCurrentUser()->getMyBlog()->getMyPosts()[i]->getTimePosted().toString(dateFormat).toStdString();
         std::string text = this->getSystem()->getCurrentUser()->getMyBlog()->getMyPosts()[i]->getText().toStdString();
         scrapbookHTML   << datetime
-                        << "\n"
+                        << "<br />"
                         << text
-                        << "\n\n";
+                        << "<br /><br />";
     }
     scrapbookHTML   << "</p><br /></div>"
                     << "</div>"
