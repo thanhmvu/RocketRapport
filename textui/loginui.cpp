@@ -493,7 +493,7 @@ void LoginUI::runScreen() {
                 }
                 break;
             case 5: // Exit
-                this->screenNumber = 7;
+                this->screenNumber = 8;
                 this->changeScreens(true);
                 break;
             }

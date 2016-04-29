@@ -3,7 +3,7 @@
 MainMenuUI::MainMenuUI(System* mainSystem)
 {
     this->setSystem(mainSystem);
-    this->setNumOfOptions(7);
+    this->setNumOfOptions(8);
 }
 
 
@@ -23,8 +23,9 @@ void MainMenuUI::displayScreen() {
     mvprintw(10, 28, "My Blog");
     mvprintw(11, 28, "My Tweets");
     mvprintw(12, 28, "My Scrapbook");
-    mvprintw(13, 28, "Logout");
-    mvprintw(14, 28, "Exit");
+    mvprintw(13, 28, "Groups");
+    mvprintw(14, 28, "Logout");
+    mvprintw(15, 28, "Exit");
 
     mvprintw(this->getRows()-3, this->getCols()-26, "BckSp -      Select Option");
     mvprintw(this->getRows()-2, this->getCols()-26, "Up    -   Navigate Up Menu");
@@ -85,11 +86,14 @@ void MainMenuUI::runScreen() {
             case 4: // Scrapbook
                 this->screenNumber = 6;
                 break;
-            case 5: // Logout
+            case 5: // Groups
+                this->screenNumber = 7;
+                break;
+            case 6: // Logout
                 this->screenNumber = 0;
                 break;
-            case 6: // Exit
-                this->screenNumber = 7;
+            case 7: // Exit
+                this->screenNumber = 8;
                 break;
             }
             break;

@@ -28,7 +28,8 @@ SOURCES += main.cpp \
     ../model/scrapbook.cpp \
     ../model/scrapbookpost.cpp \
     ../model/feed.cpp \
-    ../model/post.cpp
+    ../model/post.cpp \
+    groupui.cpp
 
 HEADERS += \
     screenui.h \
@@ -40,4 +41,5 @@ HEADERS += \
     loginui.h \
     scrapbookui.h \
     profileui.h \
-    ../model/*.h
+    ../model/*.h \
+    groupui.h

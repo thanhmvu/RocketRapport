@@ -6,6 +6,7 @@
 #include "blogui.h"
 #include "tweetui.h"
 #include "scrapbookui.h"
+#include "groupui.h"
 
 using namespace std;
 
@@ -27,6 +28,7 @@ int main(int argc, char *argv[])
     BlogUI blog(&mySystem);
     TweetUI tweet(&mySystem);
     ScrapbookUI scrapbook(&mySystem);
+    GroupUI group(&mySystem);
 
     while (running) {
         switch(mainMenu.screenNumber) {
@@ -60,7 +62,11 @@ int main(int argc, char *argv[])
             scrapbook.displayScreen();
             scrapbook.runScreen();
             break;
-        case 7: // Exit
+        case 7: // Groups
+            group.displayScreen();
+            group.runScreen();
+            break;
+        case 8: // Exit
             running = false;
             break;
         }
