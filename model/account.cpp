@@ -276,6 +276,9 @@ void Account::retrieveAllBlogPosts(){
  * @brief Account::retrieveAllTweets Retrieves all tweet posts from the database
  */
 void Account::retrieveAllTweets(){
+    // clear old posts
+    myTweet->deleteAllPosts();
+    // retrieve all posts
     dbm->retrieveAllTweets(myTweet);
 }
 
