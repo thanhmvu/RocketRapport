@@ -4,4 +4,5 @@ SUBDIRS += \
     model \
     unittest \
     GUI \
-    textui
+    textui \
+    docs
