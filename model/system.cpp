@@ -486,11 +486,11 @@ void System::refreshSystem(){
         retrieveAllAccounts();
     }
 
-    ////////////////////////////////////////////////////////////////////
-    /// retrieve all group but then need to link group to account
-    //////////////////////////////////////////////////////////////////
     //Rebuild all groups
     retrieveAllGroups();
+
+    //link groups to accounts
+    linkGroupAccount();
 }
 
 /**
