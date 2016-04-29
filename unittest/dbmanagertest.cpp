@@ -41,15 +41,18 @@ TEST(DbManagerTest, testRetrieveAllMessages){
 }
 
 TEST(DbManagerTest, testRetrieveAllTweets){
-    DbManager one("../gProjectDB.db");
+    DbManager one("./gProjectDB.db");
     Tweet *uTweet = new Tweet(&one);
+    TweetPost newTP; newTP.setText("Now I am become death");
+    uTweet->addPost(&newTP);
     one.retrieveAllTweets(uTweet);
     std::vector<TweetPost*> tweetPosts = uTweet->getMyPosts();
 
-    for(unsigned i=0; i<tweetPosts.size(); i++){
+    for(int i=0; i<tweetPosts.size(); i++){
         TweetPost *look = tweetPosts.at(i);
         qDebug() << look->getID() << ": " << look->getText();
     }
+    one.deleteTable("tweets");
 }
 
 TEST(DbManager, testAddChat){
