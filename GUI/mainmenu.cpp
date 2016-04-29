@@ -43,7 +43,6 @@ void MainMenu::init(){
 
 void MainMenu::reload(){
     // retrieve all accounts from database
-//    main_system->retrieveAllAccounts();
     main_system->refreshSystem();
 
     // display the list of users as a list of user buttons
@@ -65,17 +64,12 @@ void MainMenu::reload(){
     /// Load list of groups from SYSTEM/ DATABASE
     /// To prevent memory leaks, pay attention to userlist and grouplist
     //////////////////////////////////////////////////////////////////
-    std::vector<QString> groupList;
-    for(int i = 0; i<3; i++){
-        groupList.push_back(QString ("Group_%1").arg(i));
-    }
-
     // display the list of groups as a list of group buttons
     QWidget *scroll_widget2 = new QWidget();
     QVBoxLayout *layout2 = new QVBoxLayout();
-    for(QString groupname: groupList){
+    for(Group * group: main_system->getGroups()){
         QPushButton *button = new QPushButton();
-        button->setText(groupname);
+        button->setText(group->getGroupName());
         button->setFixedWidth(150);
         layout2->addWidget(button);
         connect(button,SIGNAL(clicked()),this,SLOT(openGroupScreen()));
