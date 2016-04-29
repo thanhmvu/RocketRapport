@@ -301,7 +301,8 @@ void ProfileUI::runScreen() {
                     break;
                 case 5:
                     if ((ax-6) > 0) {
-                        int dump = 0;
+                        int numDump = 0;
+                        std::string dump;
                         ax--;
                         mvprintw(ay, ax, " ");
                         move(ay, ax);
@@ -309,15 +310,19 @@ void ProfileUI::runScreen() {
                         remove.erase(remove.size()-1, 1);
                         ass.str("");
                         ass.str(remove);
-                        ass >> dump;
-                        this->getSystem()->getCurrentUser()->setAge(dump);
+                        dump = ass.str();
+                        ass >> numDump;
+                        ass.clear();
+                        ass << dump;
+                        this->getSystem()->getCurrentUser()->setAge(numDump);
                     } else {
                         move(curY, curX);
                     }
                     break;
                 case 6:
                     if ((pnx-15) > 0) {
-                        int dump = 0;
+                        int numDump = 0;
+                        std::string dump;
                         pnx--;
                         mvprintw(pny, pnx, " ");
                         move(pny, pnx);
@@ -325,8 +330,11 @@ void ProfileUI::runScreen() {
                         remove.erase(remove.size()-1, 1);
                         pnss.str("");
                         pnss.str(remove);
-                        pnss >> dump;
-                        this->getSystem()->getCurrentUser()->setPhoneNumber(dump);
+                        dump = pnss.str();
+                        pnss >> numDump;
+                        pnss.clear();
+                        pnss << dump;
+                        this->getSystem()->getCurrentUser()->setPhoneNumber(numDump);
                     } else {
                         move(curY, curX);
                     }
@@ -379,20 +387,125 @@ void ProfileUI::runScreen() {
                     }
                     break;
                 case 1:
+                    if (lnx < this->getCols()-1) {
+                        lnss << temp;
+                        sstemp << temp;
+                        mvprintw(lny, lnx, sstemp.str().c_str());
+                        sstemp.str("");
+                        this->getSystem()->getCurrentUser()->setLastName(QString::fromStdString(lnss.str()));
+                        lnx++;
+                    } else {
+                        move(curY, curX);
+                        printw(" ");
+                        move(curY, curX);
+                    }
                     break;
                 case 2:
+                    if (gx < this->getCols()-1) {
+                        gss << temp;
+                        sstemp << temp;
+                        mvprintw(gy, gx, sstemp.str().c_str());
+                        sstemp.str("");
+                        this->getSystem()->getCurrentUser()->setGender(QString::fromStdString(gss.str()));
+                        gx++;
+                    } else {
+                        move(curY, curX);
+                        printw(" ");
+                        move(curY, curX);
+                    }
                     break;
                 case 3:
+                    if (hax < this->getCols()-1) {
+                        hass << temp;
+                        sstemp << temp;
+                        mvprintw(hay, hax, sstemp.str().c_str());
+                        sstemp.str("");
+                        this->getSystem()->getCurrentUser()->setAddress(QString::fromStdString(hass.str()));
+                        hax++;
+                    } else {
+                        move(curY, curX);
+                        printw(" ");
+                        move(curY, curX);
+                    }
                     break;
                 case 4:
+                    if (mrex < this->getCols()-1) {
+                        mress << temp;
+                        sstemp << temp;
+                        mvprintw(mrey, mrex, sstemp.str().c_str());
+                        sstemp.str("");
+                        this->getSystem()->getCurrentUser()->setMostRecentEmployer(QString::fromStdString(mress.str()));
+                        mrex++;
+                    } else {
+                        move(curY, curX);
+                        printw(" ");
+                        move(curY, curX);
+                    }
                     break;
                 case 5:
+                    if (ax < this->getCols()-1) {
+                        std::string dump;
+                        int numDump = 0;
+                        ass << temp;
+                        sstemp << temp;
+                        mvprintw(ay, ax, sstemp.str().c_str());
+                        sstemp.str("");
+                        dump = ass.str();
+                        ass.str("");
+                        ass.str(dump);
+                        ass >> numDump;
+                        ass.str("");
+                        ass.clear();
+                        ass << dump;
+                        this->getSystem()->getCurrentUser()->setAge(numDump);
+                        ax++;
+                    } else {
+                        move(curY, curX);
+                        printw(" ");
+                        move(curY, curX);
+                    }
                     break;
                 case 6:
+                    if (pnx < this->getCols()-1) {
+                        std::string dump;
+                        int numDump = 0;
+                        pnss << temp;
+                        sstemp << temp;
+                        mvprintw(pny, pnx, sstemp.str().c_str());
+                        sstemp.str("");
+                        dump = pnss.str();
+                        pnss.str("");
+                        pnss.str(dump);
+                        pnss >> numDump;
+                        pnss.str("");
+                        pnss.clear();
+                        pnss << dump;
+                        this->getSystem()->getCurrentUser()->setPhoneNumber(numDump);
+                        pnx++;
+                    } else {
+                        move(curY, curX);
+                        printw(" ");
+                        move(curY, curX);
+                    }
                     break;
                 case 7:
+                    if (ayx < this->getCols()-1) {
+                        ayss << temp;
+                        sstemp << temp;
+                        mvprintw(ayy, ayx, sstemp.str().c_str());
+                        sstemp.str("");
+                        this->getSystem()->getCurrentUser()->setAbout(QString::fromStdString(ayss.str()));
+                        ayx++;
+                    } else {
+                        move(curY, curX);
+                        printw(" ");
+                        move(curY, curX);
+                    }
                     break;
                 case 8:
+                    move(curY, curX);
+                    printw(" ");
+                    move(curY, curX);
                     break;
                 }
             }
