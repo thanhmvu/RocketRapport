@@ -74,7 +74,9 @@ public:
     void retrieveAllUsersInGroup(Group* groupToAdd);
     void addAccountsToGroup(Group* group);
     void deleteAllAccounts();
+    void deleteAllGroups();
     void refreshSystem();
+    void linkGroupAccount();
 
     //    bool addChat(const int &AccountID,
     //                 const int &ChatID, const QString &sender)

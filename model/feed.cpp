@@ -14,6 +14,10 @@ Feed::Feed()
  */
 Feed::Feed(int newID){
     feedID = newID;
+    // update id_cnt if needed
+    if(newID >= id_cnt){
+        id_cnt = newID + 1;
+    }
 }
 
 Feed::~Feed(){

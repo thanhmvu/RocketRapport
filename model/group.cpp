@@ -24,9 +24,18 @@ Group::Group(QString gName){
 Group::Group(int gID, int GrpAdminID, QString gName, bool newStatus, int newFeedID)
 {
     groupID = gID;
+    // update id_cnt if needed
+    if(gID >= id_cnt){
+        id_cnt = gID + 1;
+    }
+
     groupName = gName;
     isActive = newStatus;
     adminID = GrpAdminID;
+
+    ///////////////////////////////
+    /// Need to retrieve feedPost
+    ///////////////////////////////
     groupFeed = new Feed(newFeedID);
 }
 

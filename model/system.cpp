@@ -26,22 +26,12 @@ System::System(const QString &path)
 
     //Rebuild all groups
     retrieveAllGroups();
-    //Add each of the
-    for(int i=0; i<groups.size(); i++){ //Assign a list of integers showing which accounts are in each group for
-        retrieveAllUsersInGroup( groups.at(i) );
-    }
 
-    for(int i=0; i<groups.size(); i++){ //Assign a list of pointers showing which accounts are in each group for
-        addAccountsToGroup(groups.at(i));
-    }
+    //link groups to accounts
+    linkGroupAccount();
 
-
-    ////////////////////////////////////////////////////////////////////
-    /// rebuild all groups from the database
-    /// and a group needs to rebuild the feed and links to accounts
-    //////////////////////////////////////////////////////////////////
-
-    std::cout<< "New system created containing " << accounts.size() << " accounts." << std::endl;
+    std::cout<< "New system created containing " << accounts.size() << " accounts and "
+             << groups.size() << " groups." << std::endl;
     printAllIdCnt();
 
     html_path = "../index.html";
@@ -383,6 +373,9 @@ void System::retrieveAllAccounts(){
  * @brief System::retrieveAllGroups Method used to obtain all group objects that have info stored in DB
  */
 void System::retrieveAllGroups(){
+    //clear old groups
+    deleteAllGroups();
+    // rebuild all groups
     dbm->retrieveAllGroups(this);
 }
 
@@ -415,6 +408,21 @@ void System::printAllIdCnt(){
 }
 
 /**
+ * @brief System::linkGroupAccount add accounts to groups and group to account
+ */
+void System::linkGroupAccount(){
+    //Assign a list of integers showing which accounts are in each group for
+    for(int i=0; i<groups.size(); i++){
+        retrieveAllUsersInGroup( groups.at(i) );
+    }
+
+    //Assign a list of pointers showing which accounts are in each group for
+    for(int i=0; i<groups.size(); i++){
+        addAccountsToGroup(groups.at(i));
+    }
+}
+
+/**
  * @brief System::addAccountsToGroup Add all account pointers that have
  * @param group pointer to the group object we want to add acocounts to
  */
@@ -424,9 +432,12 @@ void System::addAccountsToGroup(Group *group){
     for(int i=0; i < IDList.size(); i++){
         for(auto const &ent : accounts){
 
-            if(IDList.at(i) == ent.second->getAccountID() ){ //is not adding account pointers
+            if(IDList.at(i) == ent.second->getAccountID() ){
                 Account* insertAc = ent.second;
+                // add the account to the group
                 group->addGroupMember(insertAc);
+                // add the group to this user
+                insertAc->joinGroup(group);
             }
 
         }
@@ -444,6 +455,16 @@ void System::deleteAllAccounts(){
     }
     accounts.clear();
     currentUser = nullptr;
+}
+
+/**
+ * @brief System::deleteAllGroups Delete every group located in the system memory
+ */
+void System::deleteAllGroups(){
+    while(!groups.empty()){
+        delete groups.back();
+        groups.pop_back();
+    }
 }
 
 /**
@@ -468,6 +489,8 @@ void System::refreshSystem(){
     ////////////////////////////////////////////////////////////////////
     /// retrieve all group but then need to link group to account
     //////////////////////////////////////////////////////////////////
+    //Rebuild all groups
+    retrieveAllGroups();
 }
 
 /**
