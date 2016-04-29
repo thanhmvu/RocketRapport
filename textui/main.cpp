@@ -49,8 +49,6 @@ int main(int argc, char *argv[])
         case 4: // Blog
             blog.displayScreen();
             blog.runScreen();
-            blog.changeScreens(false);
-            clear();
             break;
         case 5: // Tweet
             tweet.displayScreen();

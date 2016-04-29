@@ -29,6 +29,7 @@ Account::Account(DbManager *newdbm)
     age = 0;
     phoneNumber = 0;
     profileUsername = "";
+    blogTweetUsername = "";
 
     monthDeparted = 0;
     dayDeparted = 0;
@@ -68,6 +69,7 @@ Account::Account(QString usrName, DbManager *newdbm){
     age = 0;
     phoneNumber = 0;
     profileUsername = usrName.toStdString();
+    blogTweetUsername = usrName.toStdString();
 
     monthDeparted = 0;
     dayDeparted = 0;
@@ -114,6 +116,7 @@ Account::Account(int accID,     QString usrname,    QString pw,
     age = 0;
     phoneNumber = 0;
     profileUsername = usrname.toStdString();
+    blogTweetUsername = usrname.toStdString();
 
     monthDeparted = 0;
     dayDeparted = 0;
@@ -388,6 +391,7 @@ QString Account::getUsername() {
 void Account::setUsername(QString uName) {
     this->username = uName;
     this->profileUsername = uName.toStdString();
+    this->blogTweetUsername = uName.toStdString();
 }
 
 
@@ -938,6 +942,22 @@ int Account::getIndexOfProfile() {
  */
 void Account::setIndexOfProfile(int index) {
     this->indexOfProfile = index;
+}
+
+
+/**
+ * @brief Getter for the username of which blog/tweet we are displaying.
+ */
+std::string Account::getBlogTweetUsername() {
+    return this->blogTweetUsername;
+}
+
+
+/**
+ * @brief Setter for the blog tweet username.
+ */
+void Account::setBlogTweetUsername(std::string name) {
+    this->blogTweetUsername = name;
 }
 
 /**

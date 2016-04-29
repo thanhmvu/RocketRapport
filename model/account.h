@@ -51,6 +51,7 @@ private:
     int accountID;
     std::string profileUsername;
     int indexOfProfile;
+    std::string blogTweetUsername;
 
     // Private members specific to a current guest.
     // the account owns these objects
@@ -147,6 +148,7 @@ public:
     std::string getProfileUsername();
     int getIndexOfProfile();
     Chat * getChatByPartnerName(QString talking_to_usr_name);
+    std::string getBlogTweetUsername();
 
     System*     getSystem();
 
@@ -224,6 +226,7 @@ public:
      * @brief Setter for the profile username variable.
      */
     void setProfileUsername(std::string name);
+    void setBlogTweetUsername(std::string name);
     /**
      * @brief Setter for the index of profile.
      */

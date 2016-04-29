@@ -31,7 +31,11 @@ void ProfileUI::displayScreen() {
     mvprintw(16, 1, "Phone Number:");
     mvprintw(18, 1, "About Yourself:");
     mvprintw(21, (this->getCols()/2)-4, "Main Menu");
+    mvprintw(21, ((this->getCols()/2)/2)-7, "User's Blog");
+    mvprintw(21, (((this->getCols()/2)/2)+(this->getCols()/2))-5, "User's Tweets");
     mvprintw(this->getRows()-1, 7, "Up, Down - Navigate Fields;     Home - Select;     Type - Edit");
+
+    this->getSystem()->getCurrentUser()->setBlogTweetUsername(this->getSystem()->getCurrentUser()->getProfileUsername());
 
     refresh();
 }
@@ -117,6 +121,8 @@ void ProfileUI::runScreen() {
     pnx = 15+pnsize;
     ayx = 17+aysize;
     int mmy = 21, mmx = (this->getCols()/2)-5;
+    int uby = 21, ubx = ((this->getCols()/2)/2)-8;
+    int uty = 21, utx = (((this->getCols()/2)/2)+(this->getCols()/2))-6;
     int rowIndex = 0;
     int curY = 4;
     int curX = 13;
@@ -134,10 +140,10 @@ void ProfileUI::runScreen() {
             switch(rowIndex) {
             case 0:
                 curs_set(0);
-                move(mmy, mmx);
+                move(uty, utx);
                 printw(">");
-                move(mmy, mmx);
-                rowIndex = 8;
+                move(uty, utx);
+                rowIndex = 10;
                 break;
             case 1:
                 move(fny, fnx);
@@ -169,10 +175,26 @@ void ProfileUI::runScreen() {
                 break;
             case 8:
                 curs_set(1);
-                move(mmy, mmx);
+                move(uby, ubx);
                 printw(" ");
                 move(ayy, ayx);
                 rowIndex = 7;
+                break;
+            case 9:
+                curs_set(0);
+                printw(" ");
+                move(uby, ubx);
+                printw(">");
+                move(uby, ubx);
+                rowIndex = 8;
+                break;
+            case 10:
+                curs_set(0);
+                printw(" ");
+                move(mmy, mmx);
+                printw(">");
+                move(mmy, mmx);
+                rowIndex = 9;
                 break;
             }
             break;
@@ -208,14 +230,32 @@ void ProfileUI::runScreen() {
                 break;
             case 7:
                 curs_set(0);
-                move(mmy, mmx);
+                move(uby, ubx);
                 printw(">");
-                move(mmy, mmx);
+                move(uby, ubx);
                 rowIndex = 8;
                 break;
             case 8:
-                curs_set(1);
+                curs_set(0);
+                move(uby, ubx);
+                printw(" ");
                 move(mmy, mmx);
+                printw(">");
+                move(mmy, mmx);
+                rowIndex = 9;
+                break;
+            case 9:
+                curs_set(0);
+                move(mmy, mmx);
+                printw(" ");
+                move(uty, utx);
+                printw(">");
+                move(uty, utx);
+                rowIndex = 10;
+                break;
+            case 10:
+                curs_set(1);
+                move(uty, utx);
                 printw(" ");
                 move(fny, fnx);
                 rowIndex = 0;
@@ -356,15 +396,32 @@ void ProfileUI::runScreen() {
                 case 8:
                     move(curY, curX);
                     break;
+                case 9:
+                    move(curY, curX);
+                    break;
+                case 10:
+                    move(curY, curX);
+                    break;
                 }
             }
             break;
         case KEY_HOME:
-            if (rowIndex == 8) {
+            switch(rowIndex) {
+            case 8:
+                this->changeScreens(true);
+                this->screenNumber = 4;
+                break;
+            case 9:
                 this->changeScreens(true);
                 this->screenNumber = 1;
-            } else {
+                break;
+            case 10:
+                this->changeScreens(true);
+                this->screenNumber = 5;
+                break;
+            default:
                 move(curY, curX);
+                break;
             }
             break;
         default:
@@ -504,10 +561,29 @@ void ProfileUI::runScreen() {
                     break;
                 case 8:
                     move(curY, curX);
-                    printw(" ");
+                    printw(">");
+                    move(curY, curX);
+                    break;
+                case 9:
+                    move(curY, curX);
+                    printw(">");
+                    move(curY, curX);
+                    break;
+                case 10:
+                    move(curY, curX);
+                    printw(">");
                     move(curY, curX);
                     break;
                 }
+            }
+            if (rowIndex == 8 || rowIndex == 9 || rowIndex == 10) {
+                move(curY, curX);
+                printw(">");
+                move(curY, curX);
+            } else {
+                move(curY, curX);
+                printw(" ");
+                move(curY, curX);
             }
             break;
         }
