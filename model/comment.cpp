@@ -2,6 +2,9 @@
 
 int Comment::id_cnt = 0;
 
+/**
+ * @brief Comment::Comment Constructor for a new comment object
+ */
 Comment::Comment()
 {
     id = id_cnt;
@@ -9,8 +12,16 @@ Comment::Comment()
 
 }
 
+/**
+ * @brief Comment::getID getter method for obtaining the ID associated with the given comment
+ * @return
+ */
 int Comment::getID(){ return id;}
 
+/**
+ * @brief Comment::getText
+ * @return
+ */
 QString Comment::getText(){
     return text;
 }

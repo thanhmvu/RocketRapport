@@ -14,6 +14,11 @@ Blog::Blog(DbManager *newdbm)
 //    dbm->retrieveAllBlogPosts(this); //Retrieve all blog posts associated with this blog
 }
 
+/**
+ * @brief Blog::Blog Constructor used when adding blog posts from the database using information in the given DB
+ * @param BlogID ID of the new Blog we're creating
+ * @param newdbm Pointer to a dbm object used for storing and retrieving information
+ */
 Blog::Blog(int BlogID, DbManager *newdbm)
 {
     dbm = newdbm;

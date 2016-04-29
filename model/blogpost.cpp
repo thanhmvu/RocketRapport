@@ -10,9 +10,9 @@ int BlogPost::id_cnt = 0;
 
 /**
  * @brief BlogPost::BlogPost Standard constructor used for creating a new BlogPost object
- * @param BlogID
- * @param t
- * @param content
+ * @param BlogID ID of the blog this post belongs to
+ * @param t Time that this post was posted on
+ * @param content Text content to be attached to this blog post
  */
 BlogPost::BlogPost(int BlogID, QDateTime t, QString content){
     id = id_cnt;
@@ -24,7 +24,11 @@ BlogPost::BlogPost(int BlogID, QDateTime t, QString content){
 }
 
 /**
- * @brief constructor that is used explicitly for loading from database
+ * @brief BlogPost::BlogPost Constructor for a blog post retrieved from the database
+ * @param newID ID for the blog post retrieved from the database
+ * @param BlogID Blog ID that this blog post belongs to retrieved from the database
+ * @param t Time that this post was posed on - retrieved from the database
+ * @param content Text posted in the given blog post
  */
 BlogPost::BlogPost(int newID, int BlogID, QDateTime t, QString content){
     id = newID;
@@ -38,6 +42,9 @@ BlogPost::BlogPost(int newID, int BlogID, QDateTime t, QString content){
     text = content;
 }
 
+/**
+ * @brief BlogPost::getID Getter method for the Blog Post's ID
+ */
 int BlogPost::getID(){ return id; }
 
 //void BlogPost::setID(int newID){
@@ -49,24 +56,45 @@ int BlogPost::getID(){ return id; }
 //    }
 //}
 
+/**
+ * @brief BlogPost::getBlogID Getter methos used to retrieve the ID of the blog this blog post belongs to.
+ */
 int BlogPost::getBlogID(){ return blogID; }
 
+/**
+ * @brief BlogPost::setBlogID Change the ID of the blog that this blog post belongs to. Using this method changes the blog that this post belongs to
+ * @param newID
+ */
 void BlogPost::setBlogID(int newID){
     blogID = newID;
 }
 
+/**
+ * @brief BlogPost::setText Set the text that is included in this blog post
+ * @param new_text New text that we want to store in this blog post.
+ */
 void BlogPost::setText(QString new_text){
     text = new_text;
 }
 
+/**
+ * @brief BlogPost::setTimePosted Set the date that this blog post was posted on
+ * @param new_time
+ */
 void BlogPost::setTimePosted(QDateTime new_time){
     timePosted = new_time;
 }
 
+/**
+ * @brief BlogPost::getText Getter method that returns the text included in this blog post
+ */
 QString BlogPost::getText(){
     return text;
 }
 
+/**
+ * @brief BlogPost::getTimePosted Getter method for the time this blog post was added to the user's blog
+ */
 QDateTime BlogPost::getTimePosted(){
     return timePosted;
 }

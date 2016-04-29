@@ -2,6 +2,10 @@
 
 int Chat::id_cnt = 0;
 
+/**
+ * @brief Chat::Chat Constructor for a new Chat object
+ * @param newdbm Pointer to a database manager object that will be used for data storage and retrieval
+ */
 Chat::Chat(DbManager *newdbm)
 {
     dbm = newdbm; //Start by setting the local dbm object to the parameter dbm pointer
@@ -9,6 +13,11 @@ Chat::Chat(DbManager *newdbm)
     id_cnt++;
 }
 
+/**
+ * @brief Chat::Chat Constructor for a new Chat object
+ * @param partner Name of the user that the current user sends a message to
+ * @param newdbm Pointer to a dbm object that will be used for data storage and retrieval
+ */
 Chat::Chat(QString partner, DbManager *newdbm)
 {
     chatID = id_cnt;
@@ -20,6 +29,9 @@ Chat::Chat(QString partner, DbManager *newdbm)
 
 /**
  * @brief special constructor used for loading from the database
+ * @param newID ID for this chat object that is pulled from the database
+ * @param partner Name of the account the current user is sending a message to
+ * @param newdbm Pointer to a database manager object that will be used for data storage and retrieval
  */
 Chat::Chat(int newID, QString partner, DbManager *newdbm)
 {
@@ -33,6 +45,9 @@ Chat::Chat(int newID, QString partner, DbManager *newdbm)
     dbm = newdbm;
 }
 
+/**
+ * @brief Chat::~Chat Destructor for the chat object
+ */
 Chat::~Chat(){
     while(!messages.empty()){
         delete messages.back();
