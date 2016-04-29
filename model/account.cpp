@@ -124,6 +124,9 @@ Account::Account(int accID,     QString usrname,    QString pw,
     profileUsername = usrname.toStdString();
     blogTweetUsername = usrname.toStdString();
 
+    //Retrieve all of the information associated with a user's profile
+    dbm->retrieveAllProfileInfo(this);
+
     monthDeparted = 0;
     dayDeparted = 0;
     yearDeparted = 0;
@@ -413,7 +416,8 @@ QString Account::getPassword() {
  * @brief Setter for the user's password.
  */
 void Account::setPassword(QString pWord) {
-    this->password = pWord;
+    this->password = pWord;//Iterate through all accounts in available map
+
 }
 
 
