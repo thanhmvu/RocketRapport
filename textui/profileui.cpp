@@ -37,6 +37,14 @@ void ProfileUI::displayScreen() {
 }
 
 void ProfileUI::runScreen() {
+    int fny = 4, fnx = 13;
+    int lny = 6, lnx = 12;
+    int gy = 8, gx = 9;
+    int hay = 10, hax = 15;
+    int mrey = 12, mrex = 23;
+    int ay = 14, ax = 6;
+    int pny = 16, pnx = 15;
+    int ayy = 18, ayx = 17;
     int fnsize = 0;
     int lnsize = 0;
     int gsize = 0;
@@ -91,14 +99,23 @@ void ProfileUI::runScreen() {
         }
     }
 
-    int fny = 4, fnx = 13+fnsize;
-    int lny = 6, lnx = 12+lnsize;
-    int gy = 8, gx = 9+gsize;
-    int hay = 10, hax = 15+hasize;
-    int mrey = 12, mrex = 23+mresize;
-    int ay = 14, ax = 6+asize;
-    int pny = 16, pnx = 15+pnsize;
-    int ayy = 18, ayx = 17+aysize;
+    mvprintw(fny, fnx, fnss.str().c_str());
+    mvprintw(lny, lnx, lnss.str().c_str());
+    mvprintw(gy, gx, gss.str().c_str());
+    mvprintw(hay, hax, hass.str().c_str());
+    mvprintw(mrey, mrex, mress.str().c_str());
+    mvprintw(ay, ax, ass.str().c_str());
+    mvprintw(pny, pnx, pnss.str().c_str());
+    mvprintw(ayy, ayx, ayss.str().c_str());
+
+    fnx = 13+fnsize;
+    lnx = 12+lnsize;
+    gx = 9+gsize;
+    hax = 15+hasize;
+    mrex = 23+mresize;
+    ax = 6+asize;
+    pnx = 15+pnsize;
+    ayx = 17+aysize;
     int mmy = 21, mmx = (this->getCols()/2)-5;
     int rowIndex = 0;
     int curY = 4;
