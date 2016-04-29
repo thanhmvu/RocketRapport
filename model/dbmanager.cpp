@@ -669,7 +669,23 @@ void DbManager::retrieveAllUsersInGroup(Group *group){
 }
 
 void DbManager::retrieveAllProfileInfo(Account *user){
-
+    QSqlQuery query;
+    QString command = "SELECT * FROM profiles WHERE AccountID = ";
+    command += QString::number(user->getAccountID() );
+    query.prepare(command);
+    if(query.exec() ){
+        while(query.next() ){
+              user->setGender(query.value(1).toString() );
+              user->setAbout(query.value(2).toString() );
+              user->setAddress(query.value(3).toString() );
+              user->setMostRecentEmployer(query.value(4).toString() );
+              user->setAge(query.value(5).toInt() );
+        }
+    }
+    else{
+        qDebug() << "Issue accessing profile info: "
+                 << query.lastError();
+    }
 }
 
 bool DbManager::updateTable(const QVariant tableName, const QVariant columnToChange, const QVariant newColumnValue,
