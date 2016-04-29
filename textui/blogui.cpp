@@ -41,6 +41,11 @@ void BlogUI::runScreen() {
     std::stringstream npss;
     int rowIndex = 0;
     int curY = 5, curX = 1;
+    std::stringstream sstemp;
+    int lastXPos = npX-1;
+    int lastYPos = npY;
+    bool noMoreRoom = false;
+    bool canBackSpace = true;
 
     this->printFormerPosts();
 
@@ -135,7 +140,26 @@ void BlogUI::runScreen() {
         case KEY_BACKSPACE: // Backspace when typing
             switch(rowIndex) {
             case 0: // Deletes a character
-
+                if (canBackSpace && npY != 5 && npX != 1) {
+                    mvprintw(lastYPos, lastXPos, " ");
+                    std::string remove = ss.str();
+                    remove.erase(remove.size()-1, 1);
+                    ss.str("");
+                    ss << remove;
+                    move(lastYPos, lastXPos);
+                    npY = lastYPos;
+                    npX = lastXPos;
+                    lastXPos--;
+                    if (lastXPos == 0) {
+                        if (lastYPos != 5){
+                            lastXPos = this->getCols()-1;
+                            npY = lastYPos;
+                            lastYPos--;
+                        } else {
+                            canBackSpace = false;
+                        }
+                    }
+                }
                 break;
             case 1:
                 move(curY, curX);
@@ -151,7 +175,24 @@ void BlogUI::runScreen() {
         default: // Typing characters for a post
             switch(rowIndex) {
             case 0: // Types a character
-
+                if (!noMoreRoom) {
+                    char temp = (char)keyPress;
+                    ss << temp;
+                    sstemp << temp;
+                    mvprintw(npY, npX, sstemp.str().c_str());
+                    sstemp.str("");
+                    lastYPos = npY;
+                    lastXPos = npX;
+                    npX++;
+                    if (npX == this->getCols()-1) {
+                        if (npY != (this->getRows()/2)-2) {
+                            npX = 1;
+                            npY++;
+                        } else {
+                            noMoreRoom = true;
+                        }
+                    }
+                }
                 break;
             case 1:
                 move(curY, curX);
