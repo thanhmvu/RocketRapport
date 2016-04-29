@@ -24,6 +24,7 @@ public:
     void addPost(TweetPost* newPost);
     void createPost(TweetPost* newPost);
     void deletePost(TweetPost* oldPost);
+    void deleteAllPosts();
 
     std::vector<TweetPost*> getMyPosts();
 

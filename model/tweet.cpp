@@ -78,3 +78,13 @@ void Tweet::setID(int newID){
         id_cnt = newID + 1;
     }
 }
+
+/**
+ * @brief Tweet::deleteAllPosts Delete all posts found within the Tweet.
+ */
+void Tweet::deleteAllPosts(){
+    while(!myPosts.empty()){
+        delete myPosts.back();
+        myPosts.pop_back();
+    }
+}
