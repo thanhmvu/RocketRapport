@@ -31,13 +31,6 @@ public:
     Group(int gID, int GrpAdminID, QString gName, bool newStatus, int newFeedID);
     ~Group();
 
-    ////////////////////////////////////////////////////////////////////
-    /// Some methods may need to check:
-    ///     if an account is member of the group
-    ///     if an account is group admin
-    ///     if an account is system admin
-    //////////////////////////////////////////////////////////////////
-
 //    bool isMember(Account * caller);
 
 //    void updateFeed(Account* userPosted, TweetPost* latestPost);

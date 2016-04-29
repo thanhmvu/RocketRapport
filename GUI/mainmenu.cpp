@@ -145,14 +145,17 @@ void MainMenu::on_pushButton_launch_clicked()
 {
     // create new group
     QString gName = ui->lineEdit_groupname->text();
-    if(!main_system->createGroup(gName)){
+    Group * newGroup = main_system->createGroup(gName);
+    if( newGroup == nullptr){
         // username already exists.
         // show warning message and prompt for another username.
         ui->lineEdit_groupname->setText("WARNING: Group name already exists. Try again!");
     }else{
-        // add this user to group
-
-
+        // link group and user together
+        newGroup->addGroupMember(main_system->getCurrentUser());
+        main_system->getCurrentUser()->joinGroup(newGroup);
+        // store the group-user pair to database
+        main_system->pairGroupWithUser(newGroup,main_system->getCurrentUser());
 
         // successfully create group. open group screen
         // load content based on viewer
