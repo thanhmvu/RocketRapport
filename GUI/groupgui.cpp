@@ -48,6 +48,8 @@ void GroupGUI::loadGroup(QString groupname, QString viewer){
     if(this_group->isMember(curr_viewer)){
         ui->about_group->setVisible(false);
         ui->group_feed->setVisible(true);
+        ui->new_member_username->setVisible(true);
+        ui->instruction->setVisible(true);
 
         ui->pushButton_show_about->setVisible(true);
         ui->pushButton_newPost->setVisible(true);
@@ -56,6 +58,8 @@ void GroupGUI::loadGroup(QString groupname, QString viewer){
     else{
         ui->about_group->setVisible(true);
         ui->group_feed->setVisible(false);
+        ui->new_member_username->setVisible(false);
+        ui->instruction->setVisible(false);
 
         ui->pushButton_show_about->setVisible(false);
         ui->pushButton_newPost->setVisible(false);
@@ -164,5 +168,16 @@ void GroupGUI::on_pushButton_cancelPost_clicked()
 
 void GroupGUI::on_pushButton_add_member_clicked()
 {
-//    this_group->addGroupMember();
+    QString username = ui->new_member_username->text();
+    Account * newMember = main_menu->getSystem()->getAccountByUsername(username);
+    if( newMember != nullptr ){
+        // link group and account
+        this_group->addGroupMember(newMember);
+        // add the link to database
+        main_menu->getSystem()->pairGroupWithUser(this_group,newMember);
+
+        ui->new_member_username->setText("");
+    }else{
+        ui->new_member_username->setText("#404: User not found!");
+    }
 }

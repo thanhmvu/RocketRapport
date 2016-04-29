@@ -18,7 +18,7 @@
     <rect>
      <x>30</x>
      <y>20</y>
-     <width>311</width>
+     <width>251</width>
      <height>51</height>
     </rect>
    </property>
@@ -160,8 +160,8 @@ p, li { white-space: pre-wrap; }
   <widget class="QPushButton" name="pushButton_add_member">
    <property name="geometry">
     <rect>
-     <x>570</x>
-     <y>20</y>
+     <x>670</x>
+     <y>50</y>
      <width>101</width>
      <height>27</height>
     </rect>
@@ -176,42 +176,32 @@ p, li { white-space: pre-wrap; }
     <string>Add Member</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_savePost">
+  <widget class="QLineEdit" name="new_member_username">
    <property name="geometry">
     <rect>
-     <x>670</x>
+     <x>490</x>
      <y>50</y>
-     <width>101</width>
+     <width>161</width>
      <height>27</height>
     </rect>
-   </property>
-   <property name="sizePolicy">
-    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-     <horstretch>0</horstretch>
-     <verstretch>0</verstretch>
-    </sizepolicy>
-   </property>
-   <property name="text">
-    <string>Save</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_show_about">
+  <widget class="QLabel" name="instruction">
    <property name="geometry">
     <rect>
-     <x>670</x>
+     <x>490</x>
      <y>20</y>
-     <width>101</width>
-     <height>27</height>
+     <width>141</width>
+     <height>21</height>
     </rect>
    </property>
-   <property name="sizePolicy">
-    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-     <horstretch>0</horstretch>
-     <verstretch>0</verstretch>
-    </sizepolicy>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
    </property>
    <property name="text">
-    <string>About</string>
+    <string>Add new member:</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_mainmenu">
@@ -233,11 +223,11 @@ p, li { white-space: pre-wrap; }
     <string>Main Menu</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_cancelPost">
+  <widget class="QPushButton" name="pushButton_show_about">
    <property name="geometry">
     <rect>
-     <x>570</x>
-     <y>50</y>
+     <x>670</x>
+     <y>20</y>
      <width>101</width>
      <height>27</height>
     </rect>
@@ -249,7 +239,7 @@ p, li { white-space: pre-wrap; }
     </sizepolicy>
    </property>
    <property name="text">
-    <string>Cancel</string>
+    <string>About</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_newPost">
@@ -271,11 +261,54 @@ p, li { white-space: pre-wrap; }
     <string>New Post</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="pushButton_savePost">
+   <property name="geometry">
+    <rect>
+     <x>670</x>
+     <y>50</y>
+     <width>101</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="text">
+    <string>Save Post</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_cancelPost">
+   <property name="geometry">
+    <rect>
+     <x>670</x>
+     <y>20</y>
+     <width>101</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="text">
+    <string>Cancel Post</string>
+   </property>
+  </widget>
+  <zorder>pushButton_mainmenu</zorder>
   <zorder>layoutWidget</zorder>
   <zorder>layoutWidget</zorder>
   <zorder>layoutWidget_2</zorder>
   <zorder>label_groupname</zorder>
   <zorder>pushButton_add_member</zorder>
+  <zorder>new_member_username</zorder>
+  <zorder>instruction</zorder>
+  <zorder>pushButton_savePost</zorder>
+  <zorder>pushButton_cancelPost</zorder>
  </widget>
  <resources/>
  <connections/>
