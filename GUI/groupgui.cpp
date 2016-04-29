@@ -22,6 +22,11 @@ GroupGUI::GroupGUI(MainMenu* mm) :
 }
 
 void GroupGUI::init(){
+    // init posts section
+    posts_widget = new QWidget();
+    posts_layout = new QVBoxLayout();
+    posts_widget->setLayout(posts_layout);
+    ui->group_feed->setWidget(posts_widget);
 }
 
 void GroupGUI::loadGroup(QString groupname, QString viewer){
@@ -54,6 +59,42 @@ void GroupGUI::loadGroup(QString groupname, QString viewer){
         ui->pushButton_show_about->setVisible(false);
         ui->pushButton_newPost->setVisible(false);
     }
+
+    // load feed
+    loadGroupFeed();
+}
+
+void GroupGUI::loadGroupFeed(){
+    // refresh posts_layout
+    QLayoutItem *child;
+    while ((child = posts_layout->takeAt(0)) != 0) {
+        delete child;
+    }
+    delete posts_layout;
+    delete posts_widget;
+
+    posts_widget = new QWidget();
+    posts_layout = new QVBoxLayout();
+    posts_widget->setLayout(posts_layout);
+    ui->group_feed->setWidget(posts_widget);
+
+
+    // load blogs from database based on the blog owner
+    this_group->retrieveAllPosts();
+    std::vector<BlogPost*> blogPosts = this_group->getBlog()->getMyPosts();
+    for(BlogPost * post: blogPosts) {
+        displayPost(post);
+    }
+}
+
+void GroupGUI::displayPost(BlogPost * post){
+    QTextBrowser *browser = new QTextBrowser();
+    browser->setMinimumHeight(120);
+
+    QString content = post->getTimePosted().toString() + "\n" + "\n" + post->getText();
+    browser->setText(content);
+
+    posts_layout->addWidget(browser);
 }
 
 void GroupGUI::on_pushButton_mainmenu_clicked()
@@ -88,13 +129,26 @@ void GroupGUI::on_pushButton_show_about_clicked()
 
 void GroupGUI::on_pushButton_savePost_clicked()
 {
+    // set visibilities
     ui->new_post->setVisible(false);
     ui->group_feed->setVisible(true);
 
     ui->pushButton_savePost->setVisible(false);
     ui->pushButton_cancelPost->setVisible(false);
 
-    /// save the thing and display
+    // save the post
+    QString text = ui->new_post->toPlainText();
+    QDateTime time = QDateTime::currentDateTime();
+    int blogID = this_group->getBlog()->getBlogID();
+
+    // create new post object
+    BlogPost* post = new BlogPost(blogID,time,text);
+
+    // add new post to database
+    this_group->getBlog()->addPost(post);
+
+    // display to screen
+    displayPost(post);
 }
 
 void GroupGUI::on_pushButton_cancelPost_clicked()

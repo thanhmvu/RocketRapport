@@ -20,6 +20,10 @@ private:
     MainMenu* main_menu;
     Group * this_group;
     QString curr_viewer;
+    QWidget *posts_widget;
+    QVBoxLayout *posts_layout;
+    void loadGroupFeed();
+    void displayPost(BlogPost * post);
 
 public:
     explicit GroupGUI(QWidget *parent = 0);

@@ -65,6 +65,8 @@ public:
     bool setAboutGroup(QString aboutUs);
     QString getAboutGroup();
 
+    void retrieveAllPosts();
+
     // for debugging purpose
     static int getIdCnt(){ return id_cnt; };
 };

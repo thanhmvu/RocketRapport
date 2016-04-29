@@ -234,3 +234,13 @@ bool Group::isMember(QString user){
     }
     return false;
 }
+
+/**
+ * @brief Group::retrieveAllPosts() retrieves all group post from the database
+ */
+void Group::retrieveAllPosts(){
+    // clear old posts
+    groupBlog->deleteAllPosts();
+    // retrieve all posts
+    dbm->retrieveAllBlogPosts(groupBlog);
+}
