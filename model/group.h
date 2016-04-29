@@ -27,7 +27,7 @@ private:
     QString currentProject;
 
 public:
-    Group();
+    Group(QString gName);
     Group(int gID, int GrpAdminID, QString gName, bool newStatus, int newFeedID);
     ~Group();
 

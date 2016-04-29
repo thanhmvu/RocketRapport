@@ -46,6 +46,9 @@ private slots:
     void on_pushButton_signout_clicked();
     void openUserProfile();
     void openGroupScreen();
+    void on_pushButton_launch_clicked();
+    void on_pushButton_new_group_clicked();
+    void on_pushButton_cancel_clicked();
 };
 
 #endif // MAINMENU_H

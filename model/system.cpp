@@ -136,6 +136,28 @@ bool System::createAccount(QString username, QString password, QString firstname
     return success;
 }
 
+/**
+ * @brief create new group
+ *
+ * @return false if groupname is in use, true otherwise
+ */
+bool System::createGroup(QString gName) {
+    // check if group name is in use
+    for(Group* g: groups){
+        if(g->getGroupName().compare(gName) == 0){
+            //std::cout << "Group name already exists!" << std::endl;
+            return false;
+        }
+    }
+
+    // otherwise, create new group
+    Group* newGroup = new Group(gName);
+
+    // add account to group vector and the database
+    addGroup(newGroup);
+
+    return true;
+}
 
 /**
  * @brief Adds a group to the System's list of groups. Add to the dbManager's table titled "groups"
@@ -143,7 +165,7 @@ bool System::createAccount(QString username, QString password, QString firstname
  * Is used to add a new Group to the database.
  */
 void System::addGroup(Group* newGroup) {
-    this->getGroups().push_back(newGroup);
+    groups.push_back(newGroup);
     dbm->addGroup(newGroup->getID(),newGroup->getAdminID(),
                   newGroup->getIsActive(),newGroup->getGroupName(),newGroup->getFeed()->getFeedID() );
 }

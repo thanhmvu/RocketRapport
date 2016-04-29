@@ -5,12 +5,13 @@ int Group::id_cnt = 0;
 /**
  * @brief Group::Group Constructor used for creating a new group
  */
-Group::Group(){
+Group::Group(QString gName){
+    groupID = id_cnt;
+    id_cnt++;
+    groupName = gName;
 
     isActive = true;
     adminID = -1; //Store a default value
-    groupID = id_cnt;
-    id_cnt++;
     groupFeed = new Feed();
 }
 

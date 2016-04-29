@@ -61,6 +61,7 @@ public:
     bool login(QString username, QString password);
     bool createAccount(QString username, QString password,
                        QString firstname, QString lastname);
+    bool createGroup(QString gName);
     void addGroup(Group* newGroup);
     void insertGroup(Group* newGroup);
     void removeGroup(Group* oldGroup);

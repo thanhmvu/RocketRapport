@@ -31,6 +31,13 @@ void MainMenu::init(){
     chat_screen = new ChatGUI(this);
     group_screen = new GroupGUI(this);
 
+
+    // display create-group elements
+    ui->label_enter_gName->setVisible(false);
+    ui->lineEdit_groupname->setVisible(false);
+    ui->pushButton_launch->setVisible(false);
+    ui->pushButton_cancel->setVisible(false);
+
     reload();
 }
 
@@ -132,4 +139,56 @@ void MainMenu::on_pushButton_signout_clicked()
 {
     this->close();
     login_screen->show();
+}
+
+void MainMenu::on_pushButton_launch_clicked()
+{
+    // create new group
+    QString gName = ui->lineEdit_groupname->text();
+    if(!main_system->createGroup(gName)){
+        // username already exists.
+        // show warning message and prompt for another username.
+        ui->lineEdit_groupname->setText("WARNING: Group name already exists. Try again!");
+    }else{
+        // add this user to group
+
+
+
+        // successfully create group. open group screen
+        // load content based on viewer
+        group_screen->loadGroup(gName);
+
+        // clean new-groupname box
+        ui->lineEdit_groupname->setText("");
+
+        // reset visibility of create-group elements
+        ui->label_enter_gName->setVisible(false);
+        ui->lineEdit_groupname->setVisible(false);
+        ui->pushButton_launch->setVisible(false);
+        ui->pushButton_cancel->setVisible(false);
+
+        this->close();
+        group_screen->show();
+    }
+}
+
+void MainMenu::on_pushButton_new_group_clicked()
+{
+    ui->label_enter_gName->setVisible(true);
+    ui->lineEdit_groupname->setVisible(true);
+    ui->pushButton_launch->setVisible(true);
+    ui->pushButton_cancel->setVisible(true);
+}
+
+void MainMenu::on_pushButton_cancel_clicked()
+{
+    // clean new-groupname box
+    ui->lineEdit_groupname->setText("");
+
+    // reset visibility of create-group elements
+    ui->label_enter_gName->setVisible(false);
+    ui->lineEdit_groupname->setVisible(false);
+    ui->pushButton_launch->setVisible(false);
+    ui->pushButton_cancel->setVisible(false);
+
 }
