@@ -151,6 +151,9 @@ void GroupGUI::on_pushButton_savePost_clicked()
 
     // save the post
     QString text = ui->new_post->toPlainText();
+    QString writer_name = main_menu->getSystem()
+            ->getAccountByUsername(curr_viewer)->getFullName();
+    text += "\n \n-- " + writer_name + " --";
     QDateTime time = QDateTime::currentDateTime();
     int blogID = this_group->getBlog()->getBlogID();
 

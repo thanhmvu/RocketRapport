@@ -137,6 +137,7 @@ public:
     Scrapbook*      getMyScrapbook();
     QString     getFirstName();
     QString     getLastName();
+    QString     getFullName();
     QString     getGender();
     QString     getAbout();
     QString     getAddress();

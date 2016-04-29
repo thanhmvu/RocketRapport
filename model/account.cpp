@@ -479,6 +479,13 @@ QString Account::getLastName() {
     return this->lastName;
 }
 
+/**
+ * @brief Getter for the user's fullname.
+ */
+QString Account::getFullName() {
+    return (firstName +" "+ lastName);
+}
+
 
 /**
  * @brief Setter for the user's last name.
