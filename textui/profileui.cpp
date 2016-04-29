@@ -414,6 +414,7 @@ void ProfileUI::runScreen() {
             case 9:
                 this->changeScreens(true);
                 this->screenNumber = 1;
+                this->getSystem()->getCurrentUser()->setBlogTweetUsername(this->getSystem()->getCurrentUser()->getUsername().toStdString());
                 break;
             case 10:
                 this->changeScreens(true);
