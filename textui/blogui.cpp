@@ -34,10 +34,81 @@ void BlogUI::displayScreen() {
 }
 
 void BlogUI::runScreen() {
-    int npY = 5, npX = 0;
-    int fpY = (this->getRows()/2)+2, fpX = 0;
+    int npY = 5, npX = 1;
+    int fpY = (this->getRows()/2)+1, fpX = 1;
+    int mmY = this->getRows()-3, mmX = (this->getCols()/2)-5;
+    std::stringstream npss;
+    int rowIndex = 0;
+    int curY = 5, curX = 1;
 
-    getch();
+    curs_set(1);
+    move(npY, npX);
+    refresh();
+
+    int keyPress;
+    while(this->getChangeScreens() == false) {
+        getyx(stdscr, curY, curX);
+        keyPress = getch();
+        switch(keyPress) {
+        case KEY_UP: // Switch screen sections
+            switch(rowIndex) {
+            case 0:
+                curs_set(0);
+                move(mmY, mmX);
+                printw(">");
+                move(mmY, mmX);
+                rowIndex = 2;
+                break;
+            case 1:
+                move(npY, npX);
+                rowIndex = 0;
+                break;
+            case 2:
+                curs_set(1);
+                move(mmY, mmX);
+                printw(" ");
+                move(fpY, fpX);
+                rowIndex = 1;
+                break;
+            }
+            break;
+        case KEY_DOWN: // Switch screen sections
+            switch(rowIndex) {
+            case 0:
+                move(fpY, fpX);
+                rowIndex = 1;
+                break;
+            case 1:
+                curs_set(0);
+                move(mmY, mmX);
+                printw(">");
+                move(mmY, mmX);
+                rowIndex = 2;
+                break;
+            case 2:
+                curs_set(1);
+                move(mmY, mmX);
+                printw(" ");
+                move(npY, npX);
+                rowIndex = 0;
+                break;
+            }
+            break;
+        case KEY_LEFT: // Scroll former posts
+            break;
+        case KEY_RIGHT: // Scroll former posts
+            break;
+        case KEY_HOME: // Post/Select option
+            break;
+        case KEY_BACKSPACE: // Backspace when typing
+            break;
+        case '\n' :
+            move(curY, curX);
+            break;
+        default: // Typing characters for a post
+            break;
+        }
+    }
 
 
     this->getSystem()->getCurrentUser()->setBlogTweetUsername(this->getSystem()->getCurrentUser()->getUsername().toStdString());
