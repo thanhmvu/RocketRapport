@@ -100,12 +100,13 @@ bool DbManager::addGroup(const QVariant &GrpID  , const QVariant &GrpAdmnId,
 {
     bool success = false;
     QSqlQuery query;
-    query.prepare("INSERT INTO groups VALUES ( (:GrpID) , (:GrpAdmnId) , (:actStatus) , (:GrpName) , (:BlogID) )");
+    query.prepare("INSERT INTO groups VALUES ( (:GrpID) , (:GrpAdmnId) , (:actStatus) , (:GrpName) , (:BlogID), (:GrpInfo) )");
     query.bindValue(":GrpID",GrpID);
     query.bindValue(":GrpAdmnId",GrpAdmnId);
     query.bindValue(":actStatus",actStatus);
     query.bindValue(":GrpName",GrpName);
     query.bindValue(":BlogID",BlogID);
+    query.bindValue(":GrpInfo", GrpInfo);
 //    qDebug() << query.boundValue(0) << " " << query.boundValue(1) << " " << query.boundValue(2) <<
 //                " " << query.boundValue(3) << " " << query.boundValue(4);
     if(query.exec()){
@@ -611,7 +612,8 @@ void DbManager::retrieveAllGroups(System *newSystem){
            bool dbStatus = query.value(2).toBool();
            QString dbGrpname = query.value(3).toString();
            int dbBlogID = query.value(4).toInt();
-           Group *newGroup = new Group(dbGrpID,dbGrpAdmin,dbGrpname,dbStatus,dbBlogID,this);
+           QString groupDescription = query.value(5).toString();
+           Group *newGroup = new Group(dbGrpID,dbGrpAdmin,dbGrpname,dbStatus,dbBlogID,this, groupDescription);
            newSystem->insertGroup(newGroup);
        }
     }

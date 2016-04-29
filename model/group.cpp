@@ -24,7 +24,8 @@ Group::Group(QString gName, DbManager *newdbm){
  * @param newStatus
  */
 Group::Group(int gID, int GrpAdminID, QString gName,
-             bool newStatus, int newBlogID, DbManager *newdbm)
+             bool newStatus, int newBlogID, DbManager *newdbm,
+             QString groupDescription)
 {
     groupID = gID;
     // update id_cnt if needed
@@ -37,6 +38,7 @@ Group::Group(int gID, int GrpAdminID, QString gName,
     groupName = gName;
     isActive = newStatus;
     adminID = GrpAdminID;
+    aboutGroup = groupDescription;
 
     // retrieve all blog posts inside the constructor
     groupBlog = new Blog(newBlogID,dbm);

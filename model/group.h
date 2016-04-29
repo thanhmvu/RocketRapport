@@ -32,7 +32,7 @@ private:
 public:
     Group(QString gName, DbManager *newdbm);
     Group(int gID       , int GrpAdminID    , QString gName,
-          bool newStatus, int newBlogID     , DbManager *newdbm);
+          bool newStatus, int newBlogID     , DbManager *newdbm, QString groupDescription);
     ~Group();
 
     bool isMember(QString user);
