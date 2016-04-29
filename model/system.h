@@ -61,11 +61,11 @@ public:
     bool login(QString username, QString password);
     bool createAccount(QString username, QString password,
                        QString firstname, QString lastname);
-    bool createGroup(QString gName);
+    Group* createGroup(QString gName);
     void addGroup(Group* newGroup);
     void insertGroup(Group* newGroup);
     void removeGroup(Group* oldGroup);
-    void pairGroupWithUser(Group* group,Account* account);
+    bool pairGroupWithUser(Group* group,Account* account);
     void addAccount(Account* newAccount);
     void removeAccount(Account* oldAccount);
     bool usernameExist(QString username);

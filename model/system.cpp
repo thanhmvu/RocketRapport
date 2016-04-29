@@ -141,12 +141,12 @@ bool System::createAccount(QString username, QString password, QString firstname
  *
  * @return false if groupname is in use, true otherwise
  */
-bool System::createGroup(QString gName) {
+Group* System::createGroup(QString gName) {
     // check if group name is in use
     for(Group* g: groups){
         if(g->getGroupName().compare(gName) == 0){
             //std::cout << "Group name already exists!" << std::endl;
-            return false;
+            return nullptr;
         }
     }
 
@@ -156,7 +156,7 @@ bool System::createGroup(QString gName) {
     // add account to group vector and the database
     addGroup(newGroup);
 
-    return true;
+    return newGroup;
 }
 
 /**
@@ -197,8 +197,9 @@ void System::removeGroup(Group* oldGroup) {
  * @param group Group pointer we're passing in to obtain the group's ID
  * @param account Account pointer we're passing in to obtain the account's ID
  */
-void System::pairGroupWithUser(Group *group, Account *account){
+bool System::pairGroupWithUser(Group *group, Account *account){
     dbm->addGroupUserPair(group->getID(),account->getAccountID() );
+    return true;
 }
 
 
