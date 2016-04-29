@@ -263,7 +263,7 @@ bool DbManager::addBlogPost(const QVariant &blogPostID, const QVariant &blogID,
      query.bindValue(":timeDate",timeDate);
      query.bindValue(":text",text);
      if(query.exec()){
-         std::cout << "DbManager::addBlogPost exec(): true\n";
+//         std::cout << "DbManager::addBlogPost exec(): true\n";
          return true;
      }else{
          qDebug() << query.lastError();

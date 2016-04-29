@@ -122,11 +122,29 @@ void BlogUI::runScreen() {
         case KEY_HOME: // Post/Select option
             switch(rowIndex) {
             case 0: // User posts
-
-
-
-
-
+                if (this->getSystem()->getCurrentUser()->getBlogTweetUsername() == this->getSystem()->getCurrentUser()->getUsername().toStdString()) {
+                    for(const auto &acc: this->getSystem()->getAllAccounts()) {
+                        if (acc.first.toStdString() == this->getSystem()->getCurrentUser()->getBlogTweetUsername()) {
+                            BlogPost * post = new BlogPost(acc.second->getMyBlog()->getBlogID(), QDateTime::currentDateTime(), QString::fromStdString(ss.str()));
+                            acc.second->getMyBlog()->addPost(post);
+                        }
+                    }
+                    ss.str("");
+                    for (int i = 5; i < (this->getRows()/2)-1; i++) {
+                        for (int j = 0; j < this->getCols(); j++) {
+                            mvprintw(i, j, " ");
+                            refresh();
+                        }
+                    }
+                    npY = 5;
+                    npX = 1;
+                    lastXPos = npX-1;
+                    lastYPos = npY;
+                    noMoreRoom = false;
+                    canBackSpace = true;
+                    move(npY, npX);
+                    refresh();
+                }
                 break;
             case 1:
                 move(curY, curX);
@@ -140,23 +158,30 @@ void BlogUI::runScreen() {
         case KEY_BACKSPACE: // Backspace when typing
             switch(rowIndex) {
             case 0: // Deletes a character
-                if (canBackSpace && npY != 5 && npX != 1) {
-                    mvprintw(lastYPos, lastXPos, " ");
-                    std::string remove = ss.str();
-                    remove.erase(remove.size()-1, 1);
-                    ss.str("");
-                    ss << remove;
-                    move(lastYPos, lastXPos);
-                    npY = lastYPos;
-                    npX = lastXPos;
-                    lastXPos--;
-                    if (lastXPos == 0) {
-                        if (lastYPos != 5){
-                            lastXPos = this->getCols()-1;
-                            npY = lastYPos;
-                            lastYPos--;
-                        } else {
-                            canBackSpace = false;
+                if (this->getSystem()->getCurrentUser()->getBlogTweetUsername() == this->getSystem()->getCurrentUser()->getUsername().toStdString()) {
+                    if (npY == 5 && npX == 1) {
+                        canBackSpace = false;
+                    } else {
+                        canBackSpace = true;
+                    }
+                    if (canBackSpace) {
+                        mvprintw(lastYPos, lastXPos, " ");
+                        std::string remove = ss.str();
+                        remove.erase(remove.size()-1, 1);
+                        ss.str("");
+                        ss << remove;
+                        move(lastYPos, lastXPos);
+                        npY = lastYPos;
+                        npX = lastXPos;
+                        lastXPos--;
+                        if (lastXPos == 0) {
+                            if (lastYPos != 5){
+                                lastXPos = this->getCols()-1;
+                                npY = lastYPos;
+                                lastYPos--;
+                            } else {
+                                canBackSpace = false;
+                            }
                         }
                     }
                 }
@@ -175,21 +200,23 @@ void BlogUI::runScreen() {
         default: // Typing characters for a post
             switch(rowIndex) {
             case 0: // Types a character
-                if (!noMoreRoom) {
-                    char temp = (char)keyPress;
-                    ss << temp;
-                    sstemp << temp;
-                    mvprintw(npY, npX, sstemp.str().c_str());
-                    sstemp.str("");
-                    lastYPos = npY;
-                    lastXPos = npX;
-                    npX++;
-                    if (npX == this->getCols()-1) {
-                        if (npY != (this->getRows()/2)-2) {
-                            npX = 1;
-                            npY++;
-                        } else {
-                            noMoreRoom = true;
+                if (this->getSystem()->getCurrentUser()->getBlogTweetUsername() == this->getSystem()->getCurrentUser()->getUsername().toStdString()) {
+                    if (!noMoreRoom) {
+                        char temp = (char)keyPress;
+                        ss << temp;
+                        sstemp << temp;
+                        mvprintw(npY, npX, sstemp.str().c_str());
+                        sstemp.str("");
+                        lastYPos = npY;
+                        lastXPos = npX;
+                        npX++;
+                        if (npX == this->getCols()-1) {
+                            if (npY != (this->getRows()/2)-2) {
+                                npX = 1;
+                                npY++;
+                            } else {
+                                noMoreRoom = true;
+                            }
                         }
                     }
                 }

@@ -2,6 +2,7 @@
 #define BLOGUI_H
 #include <sstream>
 #include "screenui.h"
+#include "../model/blog.h"
 
 class BlogUI : public ScreenUI
 {
