@@ -96,6 +96,8 @@ public:
     void retrieveAllGroups(System *newSystem);
     void retrieveAllUsersInGroup(Group *group);
 
+    bool updateTable(const QVariant tableName, const QVariant columnToChange, const QVariant newColumnValue,
+                     const QVariant checkField, const QVariant checkFieldValue);
     bool rmAllAccounts();
     void deleteTable(const QVariant tableName);
 

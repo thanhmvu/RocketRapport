@@ -590,3 +590,28 @@ void DbManager::retrieveAllUsersInGroup(Group *group){
                  << query.lastError();
     }
 }
+
+bool DbManager::updateTable(const QVariant tableName, const QVariant columnToChange, const QVariant newColumnValue,
+                            const QVariant checkField, const QVariant checkFieldValue){
+    bool success = false;
+    QSqlQuery query;
+    QString command = "update ";
+    command += tableName.toString();
+    command += "set ";
+    command += columnToChange.toString();
+    command += "= ";
+    command += newColumnValue.toString();
+    command += " where ";
+    command += checkField.toString();
+    command += " = ";
+    command+= checkFieldValue.toString();
+    query.prepare(command);
+    if(query.exec()){
+        success = true;
+    }
+    else{
+        qDebug() << "Issue modifying table"
+                 << query.lastError();
+    }
+    return success;
+}

@@ -31,7 +31,7 @@ System::System(const QString &path)
         retrieveAllUsersInGroup( groups.at(i) );
     }
 
-    for(int i=0; i<groups.size(); i++){ //Assign a list of integers showing which accounts are in each group for
+    for(int i=0; i<groups.size(); i++){ //Assign a list of pointers showing which accounts are in each group for
         addAccountsToGroup(groups.at(i));
     }
 
