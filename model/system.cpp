@@ -43,6 +43,8 @@ System::System(const QString &path)
 
     std::cout<< "New system created containing " << accounts.size() << " accounts." << std::endl;
     printAllIdCnt();
+
+    html_path = "../index.html";
 }
 
 /**
@@ -443,4 +445,11 @@ void System::refreshSystem(){
     ////////////////////////////////////////////////////////////////////
     /// retrieve all group but then need to link group to account
     //////////////////////////////////////////////////////////////////
+}
+
+/**
+ * @brief System::getHtmlPath return the path of the html file
+ */
+std::string System::getHtmlPath(){
+    return html_path;
 }

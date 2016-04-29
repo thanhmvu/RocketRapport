@@ -6,6 +6,7 @@
 #include "bloggui.h"
 #include "tweetgui.h"
 #include "../model/account.h"
+#include <fstream>
 
 namespace Ui {
 class ProfileGUI;

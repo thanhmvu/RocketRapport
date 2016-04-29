@@ -32,6 +32,7 @@ private:
     bool gui;
     bool textUi;
     bool loggedIn;
+    std::string html_path;
 
     void openDatabase();
 
@@ -49,6 +50,7 @@ public:
     std::map <QString, Account*> getAllAccounts();
     DbManager* getDbm();   //Return the dbm the system is using
     int numberOfAccount();
+    std::string getHtmlPath();
 
     // setter
     void setCurrentUser(Account* cUser);

@@ -82,7 +82,7 @@ void ProfileGUI::on_pushButton_blog_clicked()
 
 void ProfileGUI::on_pushButton_tweet_clicked()
 {
-//    Account * current_user = main_menu->getSystem()->getCurrentUser();
+//    Account * current_user = main_menu->getSystem()-> getCurrentUser();
 //    // load content based on viewer
 //    tweet_screen->loadTweetView(QString::fromStdString(current_user->getUsername()));
 
@@ -90,18 +90,101 @@ void ProfileGUI::on_pushButton_tweet_clicked()
     tweet_screen->show();
 }
 
-void ProfileGUI::on_pushButton_scrapbook_clicked()
-{
-    ////////////////////////////////////////////////////////////////////
-    /// TODO: OPEN SCRAPBOOK AS HTML FILE
-    //////////////////////////////////////////////////////////////////
-}
 
 void ProfileGUI::on_pushButton_update_about_clicked()
 {
     ////////////////////////////////////////////////////////////////////
     /// Store new about to the database
     //////////////////////////////////////////////////////////////////
+}
+
+
+void ProfileGUI::on_pushButton_scrapbook_clicked()
+{
+    std::string path = main_menu->getSystem()->getHtmlPath();
+
+    const QString dateFormat = "h:m ap MMMM d yyyy";
+    std::ofstream scrapbookHTML;
+    scrapbookHTML.open(path, std::ios::out | std::ios::trunc);
+    scrapbookHTML   << "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">"
+                    << "<html xmlns=\"http://www.w3.org/1999/xhtml\">"
+                    << "<head>"
+                    << "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />"
+                    << "<link rel=\"stylesheet\" type=\"text/css\" href=\"anoceanofsky.css\" />"
+                    << "<title>"
+                    << owner->getUsername().toStdString()
+                    << "'s Scrapbook</title>"
+                    << "</head>"
+                    << "<body>"
+                    << "<div id=\"mainPicture\">"
+                    << "<div class=\"picture\">"
+                    << "<div id=\"headerTitle\">"
+                    << owner->getUsername().toStdString()
+                    << "'s Scrapbook</div>"
+                    << "</div>"
+                    << "</div>"
+                    << "<div class=\"contentBox\">"
+                    << "<div class=\"innerBox\">"
+                    << "<div class=\"contentTitle\">First Name</div>"
+                    << "<div class=\"contentText\"><p>"
+                    << owner->getFirstName().toStdString()
+                    << "</p><br /></div>"
+                    << "<div class=\"contentTitle\">Last Name</div>"
+                    << "<div class=\"contentText\"><p>"
+                    << owner->getLastName().toStdString()
+                    << "</p><br /></div>"
+                    << "<div class=\"contentTitle\">Gender</div>"
+                    << "<div class=\"contentText\"><p>"
+                    << owner->getGender().toStdString()
+                    << "</p><br /></div>"
+                    << "<div class=\"contentTitle\">Home Address</div>"
+                    << "<div class=\"contentText\"><p>"
+                    << owner->getAddress().toStdString()
+                    << "</p><br /></div>"
+                    << "<div class=\"contentTitle\">Most Recent Employer</div>"
+                    << "<div class=\"contentText\"><p>"
+                    << owner->getMostRecentEmployer().toStdString()
+                    << "</p><br /></div>"
+                    << "<div class=\"contentTitle\">Age</div>"
+                    << "<div class=\"contentText\"><p>"
+                    << owner->getAge()
+                    << "</p><br /></div>"
+                    << "<div class=\"contentTitle\">Phone Number</div>"
+                    << "<div class=\"contentText\"><p>"
+                    << owner->getPhoneNumber()
+                    << "</p><br /></div>"
+                    << "<div class=\"contentTitle\">About Yourself</div>"
+                    << "<div class=\"contentText\"><p>"
+                    << owner->getAbout().toStdString()
+                    << "</p><br /></div>"
+                    << "<div class=\"contentTitle\">Tweets</div>"
+                    << "<div class=\"contentText\"><p>";
+    for (int i = 0; i < owner->getMyTweet()->getMyPosts().size(); i++) {
+        std::string datetime = owner->getMyTweet()->getMyPosts()[i]->getTimePosted().toString(dateFormat).toStdString();
+        std::string text = owner->getMyTweet()->getMyPosts()[i]->getText().toStdString();
+        scrapbookHTML   << datetime
+                        << "<br />"
+                        << text
+                        << "<br /><br />";
+    }
+    scrapbookHTML   << "</p><br /></div>"
+                    << "<div class=\"contentTitle\">Blog</div>"
+                    << "<div class=\"contentText\"><p>";
+    for (int i = 0; i < owner->getMyBlog()->getMyPosts().size(); i++) {
+        std::string datetime = owner->getMyBlog()->getMyPosts()[i]->getTimePosted().toString(dateFormat).toStdString();
+        std::string text = owner->getMyBlog()->getMyPosts()[i]->getText().toStdString();
+        scrapbookHTML   << datetime
+                        << "<br />"
+                        << text
+                        << "<br /><br />";
+    }
+    scrapbookHTML   << "</p><br /></div>"
+                    << "</div>"
+                    << "</div>"
+                    << "</body>"
+                    << "</html>";
+    scrapbookHTML.close();
+    system("firefox ../index.html");
 }
 
 Account * ProfileGUI::getProfileOwner(){
