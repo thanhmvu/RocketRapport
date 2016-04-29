@@ -101,17 +101,22 @@
 //    test2->printAllRows("FirstName");
 //}
 
+//Add profile method seems to work
 TEST(DbManagerTest, testProfileAdd){
     DbManager *testDBM = new DbManager("./gProjectDB.db");
     testDBM->deleteTable("accounts");
     testDBM->deleteTable("profiles");
     testDBM->addUser(0,"a","a",0,0,0,"a","a");
     testDBM->addProfile(0,"Male","I'm a cool dude","1004 Middle of Nowhere","Julio's thongs for men",30);
-    //Add profile method seems to work
 }
 
 TEST(DbManagerTest, testProfileRetrieve){
     DbManager *testDBM = new DbManager("./gProjectDB.db");
     Account testAccount(0,"a","a",0,0,0,"a","a",testDBM); //Placing these values in the constructor should set off the line in the constructor that retrieves the accounts assoicated profile info.
     qDebug() << testAccount.getAbout() << " " << testAccount.getGender() << " " << testAccount.getMostRecentEmployer() << " " << testAccount.getAddress() << " " << testAccount.getAge();
+}
+
+TEST(DbManagerTest, testUpdateInfo){
+    DbManager *testDBM = new DbManager("./gProjectDB.db");
+    testDBM->updateTable("profiles","Gender","Female","AccountID",0);
 }

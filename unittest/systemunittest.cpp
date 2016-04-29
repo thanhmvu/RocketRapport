@@ -75,7 +75,7 @@
 //    testSys.addGroup(newGroup1);
 //}
 
-//TEST(SystemTest, testRetrieveGroups){
+TEST(SystemTest, testRetrieveGroups){
 //    System testSys("./gProjectDB.db");
 //    testSys.retrieveAllGroups();
 //    std::vector<Group*> lookList = testSys.getGroups();
@@ -85,9 +85,9 @@
 //    }
 //    DbManager *sysDB = testSys.getDbm();
 //    sysDB->deleteTable("groups");
-//}
+}
 
-//TEST(SystemTest, testAddGroupUserPair){
+TEST(SystemTest, testAddGroupUserPair){
 //    System sysTest("./gProjectDB.db");
 //    DbManager *sysDB = sysTest.getDbm();
 //    sysDB->deleteTable("groups");
@@ -95,22 +95,22 @@
 //    Group *testGroup = new Group(0,0,"New Group",1,0);
 //    Account *testAccount = new Account(0,"Johnny","Mike",0,0,0,"The","Gimp",sysDB);
 //    sysTest.pairGroupWithUser(testGroup,testAccount);
-//}
+}
 
 //Retrieve Group pair works, just need to find a way to combine the two
 TEST(SystemTest, testRetrieveGroupPairs){
-    System sysTest("./gProjectDB.db");
-    std::vector<Group*> lookList = sysTest.getGroups();
-    Group* check = lookList.at(0);
+//    System sysTest("./gProjectDB.db");
+//    std::vector<Group*> lookList = sysTest.getGroups();
+//    Group* check = lookList.at(0);
 
-    qDebug() << "First Group ID: " << check->getID();
-    std::vector<int> IDCheck = check->getGroupMemberIDs();
-    qDebug() << "Number of users in this group: " << IDCheck.size();
+//    qDebug() << "First Group ID: " << check->getID();
+//    std::vector<int> IDCheck = check->getGroupMemberIDs();
+//    qDebug() << "Number of users in this group: " << IDCheck.size();
 
-    for(int i=0; i< IDCheck.size(); i++){
-        qDebug() << IDCheck.at(i);
-    }
-    //The group should also contain 3 values in the groupMembers vector
-    ASSERT_EQ(check->getGroupMembers().size(),3);
+//    for(int i=0; i< IDCheck.size(); i++){
+//        qDebug() << IDCheck.at(i);
+//    }
+//    //The group should also contain 3 values in the groupMembers vector
+//    ASSERT_EQ(check->getGroupMembers().size(),3);
 
 }
