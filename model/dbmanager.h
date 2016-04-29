@@ -73,6 +73,9 @@ public:
                       const QVariant &TimeDate   , const QVariant &Text);
 
     bool addGroupUserPair(const QVariant GroupID, const QVariant UserID);
+    bool addProfile(const QVariant accountID, const QVariant Gender,
+                    const QVariant AbtYslf, const QVariant HmAddress,
+                    const QVariant MstRcntEmpl, const QVariant age);
 
 
 
@@ -100,6 +103,7 @@ public:
     void retrieveAllChats(Account *user);
     void retrieveAllGroups(System *newSystem);
     void retrieveAllUsersInGroup(Group *group);
+    void retrieveAllProfileInfo(System *newSystem);
 
     bool updateTable(const QVariant tableName, const QVariant columnToChange, const QVariant newColumnValue,
                      const QVariant checkField, const QVariant checkFieldValue);
