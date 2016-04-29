@@ -668,6 +668,10 @@ void DbManager::retrieveAllUsersInGroup(Group *group){
     }
 }
 
+void DbManager::retrieveAllProfileInfo(Account *user){
+
+}
+
 bool DbManager::updateTable(const QVariant tableName, const QVariant columnToChange, const QVariant newColumnValue,
                             const QVariant checkField, const QVariant checkFieldValue){
     bool success = false;

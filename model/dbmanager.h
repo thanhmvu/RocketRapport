@@ -103,7 +103,7 @@ public:
     void retrieveAllChats(Account *user);
     void retrieveAllGroups(System *newSystem);
     void retrieveAllUsersInGroup(Group *group);
-    void retrieveAllProfileInfo(System *newSystem);
+    void retrieveAllProfileInfo(Account *user);
 
     bool updateTable(const QVariant tableName, const QVariant columnToChange, const QVariant newColumnValue,
                      const QVariant checkField, const QVariant checkFieldValue);
