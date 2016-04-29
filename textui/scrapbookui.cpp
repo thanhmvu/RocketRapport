@@ -72,7 +72,36 @@ void ScrapbookUI::viewMyScrapbook(std::string path) {
                     << "<div class=\"contentBox\">"
                     << "<div class=\"innerBox\">"
                     << "<div class=\"contentTitle\">First Name</div>"
-                    << "<div class=\"contentText\"><p>";
+                    << "<div class=\"contentText\"><p>"
+                    << this->getSystem()->getCurrentUser()->getFirstName().toStdString()
+                    << "</p><br /></div>"
+                    << "<div class=\"contentTitle\">Last Name</div>"
+                    << "<div class=\"contentText\"><p>"
+                    << this->getSystem()->getCurrentUser()->getLastName().toStdString()
+                    << "</p><br /></div>"
+                    << "<div class=\"contentTitle\">Gender</div>"
+                    << "<div class=\"contentText\"><p>"
+                    << this->getSystem()->getCurrentUser()->getGender().toStdString()
+                    << "</p><br /></div>"
+                    << "<div class=\"contentTitle\">Home Address</div>"
+                    << "<div class=\"contentText\"><p>"
+                    << this->getSystem()->getCurrentUser()->getAddress().toStdString()
+                    << "</p><br /></div>"
+                    << "<div class=\"contentTitle\">Most Recent Employer</div>"
+                    << "<div class=\"contentText\"><p>"
+                    << this->getSystem()->getCurrentUser()->getMostRecentEmployer().toStdString()
+                    << "</p><br /></div>"
+                    << "<div class=\"contentTitle\">Age</div>"
+                    << "<div class=\"contentText\"><p>"
+                    << this->getSystem()->getCurrentUser()->getAge()
+                    << "</p><br /></div>"
+                    << "<div class=\"contentTitle\">Phone Number</div>"
+                    << "<div class=\"contentText\"><p>"
+                    << this->getSystem()->getCurrentUser()->getPhoneNumber()
+                    << "</p><br /></div>"
+                    << "<div class=\"contentTitle\">About Yourself</div>"
+                    << "<div class=\"contentText\"><p>"
+                    << this->getSystem()->getCurrentUser()->getAbout().toStdString();
     scrapbookHTML.close();
     system("firefox ../index.html");
 }
