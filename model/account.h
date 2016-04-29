@@ -87,8 +87,8 @@ public:
     void addChat(Chat* newChat);
     void insertChat(Chat* newChat);
     void removeChat(Chat* badChat);
-    void addFriend(Account* newFriend); //No code for this method
-    void removeFriend(Account* badFriend); //No code for this method
+//    void addFriend(Account* newFriend); //No code for this method
+//    void removeFriend(Account* badFriend); //No code for this method
     bool joinGroup(Group* newGroup);
     void leaveGroup(Group* badGroup);
 
@@ -148,33 +148,33 @@ public:
     void promoteToGroupAdmin();
 
     // Functions specific to a current guest.
-    void departRanch();
+//    void departRanch();
     Blog*   getMyBlog();
     Tweet*  getMyTweet();
 
     void setMyBlog(Blog* myBlog);
     void setMyTweet(Tweet* myTweet);
-    void setMonthDeparted(int month);
-    void setDayDeparted(int day);
-    void setYearDeparted(int year);
+//    void setMonthDeparted(int month);
+//    void setDayDeparted(int day);
+//    void setYearDeparted(int year);
 
     // Functions specific to a past guest.
-    std::vector<QString> getProjectsWorkedOn();
-    void addProject(QString projectName);
-    void removeProject(QString projectName);
+//    std::vector<QString> getProjectsWorkedOn();
+//    void addProject(QString projectName);
+//    void removeProject(QString projectName);
 
-    int getMonthDeparted();
-    int getDayDeparted();
-    int getYearDeparted();
+//    int getMonthDeparted();
+//    int getDayDeparted();
+//    int getYearDeparted();
 
     // Functions specific to a system admin.
-    void addGroup(Group* newGroup);
-    void addAccount(Account* newAccount, QString username, QString firstName, QString lastName);
-    void deleteGroup(Group* oldGroup);
-    void deleteAccount(Account* oldAccount);
-    void deleteBlogPost(Blog* targetBlog, BlogPost* badPost);
-    void deleteTweetPost(Tweet* targetTweet, TweetPost* badPost);
-    void deleteScrapbookPost(Scrapbook* targetScrapbook, ScrapbookPost* badPost);
+//    void addGroup(Group* newGroup);
+//    void addAccount(Account* newAccount, QString username, QString firstName, QString lastName);
+//    void deleteGroup(Group* oldGroup);
+//    void deleteAccount(Account* oldAccount);
+//    void deleteBlogPost(Blog* targetBlog, BlogPost* badPost);
+//    void deleteTweetPost(Tweet* targetTweet, TweetPost* badPost);
+//    void deleteScrapbookPost(Scrapbook* targetScrapbook, ScrapbookPost* badPost);
 
     // Funtions for testing
     static int getIdCnt(){ return id_cnt; };

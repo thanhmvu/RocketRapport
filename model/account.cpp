@@ -314,25 +314,25 @@ void Account::removeChat(Chat* badChat) {
 }
 
 
-/**
- * @brief Adds a new friend to the user's friend list.
- */
-void Account::addFriend(Account* newFriend) {
-    this->getFriendList().push_back(newFriend);
-}
+///**
+// * @brief Adds a new friend to the user's friend list.
+// */
+//void Account::addFriend(Account* newFriend) {
+//    this->getFriendList().push_back(newFriend);
+//}
 
 
-/**
- * @brief Removes a friend from the user's friend list.
- */
-void Account::removeFriend(Account* badFriend) {
-    for (unsigned i = 0; i < this->getFriendList().size(); i++) {
-        if (&(*badFriend) == &(*(this->getFriendList()[i]))) {
-            this->getFriendList().erase(this->getFriendList().begin() + i);
-            break;
-        }
-    }
-}
+///**
+// * @brief Removes a friend from the user's friend list.
+// */
+//void Account::removeFriend(Account* badFriend) {
+//    for (unsigned i = 0; i < this->getFriendList().size(); i++) {
+//        if (&(*badFriend) == &(*(this->getFriendList()[i]))) {
+//            this->getFriendList().erase(this->getFriendList().begin() + i);
+//            break;
+//        }
+//    }
+//}
 
 
 /**
@@ -626,22 +626,22 @@ void Account::setProfileUsername(std::string name) {
 
 // CURRENT GUEST
 
-/**
- * @brief Sets the depart boolen to true indicating that the user is leaving the ranch.
- */
-void Account::departRanch() {
-    if (this->getIsCurrentGuest() == true) {
-        this->promoteToPastGuest();
+///**
+// * @brief Sets the depart boolen to true indicating that the user is leaving the ranch.
+// */
+//void Account::departRanch() {
+//    if (this->getIsCurrentGuest() == true) {
+//        this->promoteToPastGuest();
 
-        time_t currentTime;
-        struct tm *localTime;
-        time(&currentTime);
-        localTime = localtime(&currentTime);
-        this->setDayDeparted(localTime->tm_mday);
-        this->setMonthDeparted(localTime->tm_mon + 1);
-        this->setYearDeparted(localTime->tm_year + 1900);
-    }
-}
+//        time_t currentTime;
+//        struct tm *localTime;
+//        time(&currentTime);
+//        localTime = localtime(&currentTime);
+//        this->setDayDeparted(localTime->tm_mday);
+//        this->setMonthDeparted(localTime->tm_mon + 1);
+//        this->setYearDeparted(localTime->tm_year + 1900);
+//    }
+//}
 
 
 /**
@@ -686,181 +686,181 @@ void Account::setMyTweet(Tweet* myTweet) {
 }
 
 
-/**
- * @brief Setter for the current guest's month departed from the ranch.
- */
-void Account::setMonthDeparted(int month) {
-    if (this->getIsCurrentGuest() == true) {
-        this->monthDeparted = month;
-    }
-}
+///**
+// * @brief Setter for the current guest's month departed from the ranch.
+// */
+//void Account::setMonthDeparted(int month) {
+//    if (this->getIsCurrentGuest() == true) {
+//        this->monthDeparted = month;
+//    }
+//}
 
 
-/**
- * @brief Setter for the current guest's day departed from the ranch.
- */
-void Account::setDayDeparted(int day) {
-    if (this->getIsCurrentGuest() == true) {
-        this->dayDeparted = day;
-    }
-}
+///**
+// * @brief Setter for the current guest's day departed from the ranch.
+// */
+//void Account::setDayDeparted(int day) {
+//    if (this->getIsCurrentGuest() == true) {
+//        this->dayDeparted = day;
+//    }
+//}
 
 
-/**
- * @brief Setter for the current guest's year departed from the ranch.
- */
-void Account::setYearDeparted(int year) {
-    if (this->getIsCurrentGuest() == true) {
-        this->yearDeparted = year;
-    }
-}
+///**
+// * @brief Setter for the current guest's year departed from the ranch.
+// */
+//void Account::setYearDeparted(int year) {
+//    if (this->getIsCurrentGuest() == true) {
+//        this->yearDeparted = year;
+//    }
+//}
 
-// PAST GUEST
+//// PAST GUEST
 
-/**
- * @brief Getter for the past guest's list of projects worked on.
- */
-std::vector<QString> Account::getProjectsWorkedOn() {
-    if (this->getIsPastGuest() == true) {
-        return this->projectsWorkedOn;
-    }else{
-        std::vector<QString> empty_vector;
-        return empty_vector;
-    }
-}
-
-
-/**
- * @brief Adds a project to the past guest's list of projects.
- */
-void Account::addProject(QString projectName) {
-    if (this->getIsPastGuest() == true) {
-        this->getProjectsWorkedOn().push_back(projectName);
-    }
-}
+///**
+// * @brief Getter for the past guest's list of projects worked on.
+// */
+//std::vector<QString> Account::getProjectsWorkedOn() {
+//    if (this->getIsPastGuest() == true) {
+//        return this->projectsWorkedOn;
+//    }else{
+//        std::vector<QString> empty_vector;
+//        return empty_vector;
+//    }
+//}
 
 
-/**
- * @brief Adds a project to the past guest's list of projects.
- */
-void Account::removeProject(QString projectName) {
-    if (this->getIsPastGuest() == true) {
-        for (unsigned i = 0; i < this->getProjectsWorkedOn().size(); i++) {
-            if (projectName == this->getProjectsWorkedOn()[i]) {
-                this->getProjectsWorkedOn().erase(this->getProjectsWorkedOn().begin() + i);
-                break;
-            }
-        }
-    }
-}
+///**
+// * @brief Adds a project to the past guest's list of projects.
+// */
+//void Account::addProject(QString projectName) {
+//    if (this->getIsPastGuest() == true) {
+//        this->getProjectsWorkedOn().push_back(projectName);
+//    }
+//}
 
 
-/**
- * @brief Getter for the past guest's month departed from the ranch.
- */
-int Account::getMonthDeparted() {
-    if (this->getIsPastGuest() == true) {
-        return this->monthDeparted;
-    }
-    return 0;
-}
+///**
+// * @brief Adds a project to the past guest's list of projects.
+// */
+//void Account::removeProject(QString projectName) {
+//    if (this->getIsPastGuest() == true) {
+//        for (unsigned i = 0; i < this->getProjectsWorkedOn().size(); i++) {
+//            if (projectName == this->getProjectsWorkedOn()[i]) {
+//                this->getProjectsWorkedOn().erase(this->getProjectsWorkedOn().begin() + i);
+//                break;
+//            }
+//        }
+//    }
+//}
 
 
-/**
- * @brief Getter for the past guest's day departed from the ranch.
- */
-int Account::getDayDeparted() {
-    if (this->getIsPastGuest() == true) {
-        return this->dayDeparted;
-    }
-    return 0;
-}
+///**
+// * @brief Getter for the past guest's month departed from the ranch.
+// */
+//int Account::getMonthDeparted() {
+//    if (this->getIsPastGuest() == true) {
+//        return this->monthDeparted;
+//    }
+//    return 0;
+//}
 
 
-/**
- * @brief Getter for the past guest's year departed from the ranch.
- */
-int Account::getYearDeparted() {
-    if (this->getIsPastGuest() == true) {
-        return this->yearDeparted;
-    }
-    return 0;
-}
-
-// SYSTEM ADMIN
-
-/**
- * @brief Adds a group to the System's list of groups.
- */
-void Account::addGroup(Group* newGroup) {
-    if (this->getIsSystemAdmin() == true) {
-        this->getSystem()->addGroup(newGroup);
-    }
-}
+///**
+// * @brief Getter for the past guest's day departed from the ranch.
+// */
+//int Account::getDayDeparted() {
+//    if (this->getIsPastGuest() == true) {
+//        return this->dayDeparted;
+//    }
+//    return 0;
+//}
 
 
-/**
- * @brief Removes a group from the System's list of groups.
- */
-void Account::deleteGroup(Group* oldGroup) {
-    if (this->getIsSystemAdmin() == true) {
-        this->getSystem()->removeGroup(oldGroup);
-    }
-}
+///**
+// * @brief Getter for the past guest's year departed from the ranch.
+// */
+//int Account::getYearDeparted() {
+//    if (this->getIsPastGuest() == true) {
+//        return this->yearDeparted;
+//    }
+//    return 0;
+//}
+
+//// SYSTEM ADMIN
+
+///**
+// * @brief Adds a group to the System's list of groups.
+// */
+//void Account::addGroup(Group* newGroup) {
+//    if (this->getIsSystemAdmin() == true) {
+//        this->getSystem()->addGroup(newGroup);
+//    }
+//}
 
 
-/**
- * @brief Adds an account to the System's list of accounts.
- */
-void Account::addAccount(Account* newAccount, QString username, QString firstName, QString lastName) {
-    if (this->getIsSystemAdmin() == true) {
-        (*newAccount).setFirstName(firstName);
-        (*newAccount).setLastName(lastName);
-        (*newAccount).setUsername(username);
-
-        this->getSystem()->addAccount(newAccount);
-    }
-}
+///**
+// * @brief Removes a group from the System's list of groups.
+// */
+//void Account::deleteGroup(Group* oldGroup) {
+//    if (this->getIsSystemAdmin() == true) {
+//        this->getSystem()->removeGroup(oldGroup);
+//    }
+//}
 
 
-/**
- * @brief Removes an account from the System's list of accounts.
- */
-void Account::deleteAccount(Account* oldAccount) {
-    if (this->getIsSystemAdmin() == true) {
-        this->getSystem()->removeAccount(oldAccount);
-    }
-}
+///**
+// * @brief Adds an account to the System's list of accounts.
+// */
+//void Account::addAccount(Account* newAccount, QString username, QString firstName, QString lastName) {
+//    if (this->getIsSystemAdmin() == true) {
+//        (*newAccount).setFirstName(firstName);
+//        (*newAccount).setLastName(lastName);
+//        (*newAccount).setUsername(username);
+
+//        this->getSystem()->addAccount(newAccount);
+//    }
+//}
 
 
-/**
- * @brief Removes a blog post from the Blog in question.
- */
-void Account::deleteBlogPost(Blog* targetBlog, BlogPost* badPost) {
-    if (this->getIsSystemAdmin() == true) {
-        (*targetBlog).deletePost(badPost);
-    }
-}
+///**
+// * @brief Removes an account from the System's list of accounts.
+// */
+//void Account::deleteAccount(Account* oldAccount) {
+//    if (this->getIsSystemAdmin() == true) {
+//        this->getSystem()->removeAccount(oldAccount);
+//    }
+//}
 
 
-/**
- * @brief Removes a tweet post from the Tweet in question.
- */
-void Account::deleteTweetPost(Tweet* targetTweet, TweetPost* badPost) {
-    if (this->getIsSystemAdmin() == true) {
-        (*targetTweet).deletePost(badPost);
-    }
-}
+///**
+// * @brief Removes a blog post from the Blog in question.
+// */
+//void Account::deleteBlogPost(Blog* targetBlog, BlogPost* badPost) {
+//    if (this->getIsSystemAdmin() == true) {
+//        (*targetBlog).deletePost(badPost);
+//    }
+//}
 
 
-/**
- * @brief Removes a scracpbook post from the Scrapbook in question.
- */
-void Account::deleteScrapbookPost(Scrapbook* targetScrapbook, ScrapbookPost* badPost) {
-    if (this->getIsSystemAdmin() == true) {
-        (*targetScrapbook).deletePost(badPost);
-    }
-}
+///**
+// * @brief Removes a tweet post from the Tweet in question.
+// */
+//void Account::deleteTweetPost(Tweet* targetTweet, TweetPost* badPost) {
+//    if (this->getIsSystemAdmin() == true) {
+//        (*targetTweet).deletePost(badPost);
+//    }
+//}
+
+
+///**
+// * @brief Removes a scracpbook post from the Scrapbook in question.
+// */
+//void Account::deleteScrapbookPost(Scrapbook* targetScrapbook, ScrapbookPost* badPost) {
+//    if (this->getIsSystemAdmin() == true) {
+//        (*targetScrapbook).deletePost(badPost);
+//    }
+//}
 
 
 /**
