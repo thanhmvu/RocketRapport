@@ -45,6 +45,8 @@ void ProfileGUI::on_pushButton_back_to_menu_clicked()
 }
 
 void ProfileGUI::loadProfile(QString ownername, QString viewer){
+    // may have to load profile from database in case users edit their info
+
     this->owner = main_menu->getSystem()->getAccountByUsername(ownername);
     this->curr_viewer = viewer;
 
@@ -56,7 +58,7 @@ void ProfileGUI::loadProfile(QString ownername, QString viewer){
     ui->label_username->setText(owner->getUsername());
 
     // display about-you section
-    ui->about_section->setText("About me:\n" + owner->getAbout());
+    ui->about_section->setText(owner->getAbout());
 
     // Check if current user is the owner of the profile;
     if(owner->getUsername().compare(viewer) == 0){
@@ -99,8 +101,9 @@ void ProfileGUI::on_pushButton_update_about_clicked()
     // change the system
     owner->setAbout(new_about);
     // change the database
-//    main_menu->getSystem()->getDbm()->updateTable(
-//                "profiles", "AbtYslf", new_about, )
+    main_menu->getSystem()->getDbm()->updateTable(
+                "profiles", "AbtYslf", new_about,
+                "AccountID",owner->getAccountID());
 
 }
 

@@ -41,7 +41,7 @@ void GroupGUI::loadGroup(QString groupname, QString viewer){
     ui->label_groupname->setText(groupname);
 
     // display about-group section
-    ui->about_group->setText("About us:\n" + this_group->getAboutGroup());
+    ui->about_group->setText(this_group->getAboutGroup());
 
     // set festures' visibility
     ui->new_post->setVisible(false);

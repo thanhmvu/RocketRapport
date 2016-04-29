@@ -694,11 +694,11 @@ bool DbManager::updateTable(const QVariant tableName, const QVariant columnToCha
     QSqlQuery query;
     QString command = "update ";
     command += tableName.toString();
-    command += "set ";
+    command += " set ";
     command += columnToChange.toString();
-    command += "= ";
+    command += "= '";
     command += newColumnValue.toString();
-    command += " where ";
+    command += "' where ";
     command += checkField.toString();
     command += " = ";
     command+= checkFieldValue.toString();
