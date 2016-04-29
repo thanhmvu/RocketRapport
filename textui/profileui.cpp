@@ -31,7 +31,7 @@ void ProfileUI::displayScreen() {
     mvprintw(16, 1, "Phone Number:");
     mvprintw(18, 1, "About Yourself:");
     mvprintw(21, (this->getCols()/2)-4, "Main Menu");
-    mvprintw(this->getRows()-1, 8, "Up, Down - Navigate Fields;           Backspace - Select/Edit");
+    mvprintw(this->getRows()-1, 7, "Up, Down - Navigate Fields;     Home - Select;     Type - Edit");
 
     refresh();
 }
@@ -61,10 +61,10 @@ void ProfileUI::runScreen() {
     std::stringstream ass;
     std::stringstream pnss;
     std::stringstream ayss;
+    std::stringstream sstemp;
 
     for(const auto &acc: this->getSystem()->getAllAccounts()) {
         if (acc.first.toStdString() == this->getSystem()->getCurrentUser()->getProfileUsername()) {
-            std::stringstream sstemp;
             std::string tempString;
 
             fnss << acc.second->getFirstName().toStdString();
@@ -230,6 +230,18 @@ void ProfileUI::runScreen() {
                 // User can edit
                 switch(rowIndex) {
                 case 0:
+                    if ((fnx-13) > 0) {
+                        fnx--;
+                        mvprintw(fny, fnx, " ");
+                        move(fny, fnx);
+                        std::string remove = fnss.str();
+                        remove.erase(remove.size()-1, 1);
+                        fnss.str("");
+                        fnss << remove;
+                        this->getSystem()->getCurrentUser()->setFirstName(QString::fromStdString(fnss.str()));
+                    } else {
+                        move(curY, curX);
+                    }
                     break;
                 case 1:
                     break;
@@ -261,6 +273,39 @@ void ProfileUI::runScreen() {
         default:
             if (this->getSystem()->getCurrentUser()->getUsername().toStdString() == this->getSystem()->getCurrentUser()->getProfileUsername()) {
                 // User can edit
+                char temp = (char)keyPress;
+                switch(rowIndex) {
+                case 0:
+                    if (fnx < this->getCols()-1) {
+                        fnss << temp;
+                        sstemp << temp;
+                        mvprintw(fny, fnx, sstemp.str().c_str());
+                        sstemp.str("");
+                        this->getSystem()->getCurrentUser()->setFirstName(QString::fromStdString(fnss.str()));
+                        fnx++;
+                    } else {
+                        move(curY, curX);
+                        printw(" ");
+                        move(curY, curX);
+                    }
+                    break;
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    break;
+                case 6:
+                    break;
+                case 7:
+                    break;
+                case 8:
+                    break;
+                }
             }
             break;
         }
