@@ -256,6 +256,8 @@ void System::setCurrentUser(Account* cUser) {
  * @return a copy of current account map (with pointers to actual accounts)
  */
 std::map<QString, Account*> System::getAllAccounts() {
+    accounts.clear();
+    dbm->retrieveAllAccounts(accounts);
     return this->accounts;
 }
 

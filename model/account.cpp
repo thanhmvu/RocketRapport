@@ -136,9 +136,17 @@ Account::Account(int accID,     QString usrname,    QString pw,
     myBlog = new Blog(blogID, dbm);     // retrieve all blog posts inside the constructor
     myTweet = new Tweet(tweetID, dbm);   // retrieve all tweets inside the constructor
 
+    while(!myChats.empty()){
+        delete myChats.back();
+        myChats.pop_back();
+    }
     // rebuild all chats
     retrieveAllChats();
 
+    while(!messages.empty()){
+        delete messages.back();
+        messages.pop_back();
+    }
     // rebuild all messages
     retrieveAllMessages();
 
