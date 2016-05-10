@@ -23,9 +23,9 @@ void GroupUI::displayScreen() {
     mvprintw(this->getRows()-1, 5, " Up, Down - Navigate List;                    Backspace - View Group Feed");
 
     int j = 5;
-    for(const auto &acc: this->getSystem()->getAllAccounts()) {
+    for (int i = 0; i < this->getSystem()->getGroups().size(); i++) {
         if (j < this->getRows()-5) {
-            std::string uName = acc.first.toStdString();
+            std::string uName = this->getSystem()->getGroups()[i]->getGroupName().toStdString();
             ss << uName;
             move(j, (this->getCols()/2)-10);
             addnstr(ss.str().c_str(), (this->getCols()-(this->getCols()/2)-10));
@@ -64,17 +64,15 @@ void GroupUI::runScreen() {
                     mvprintw(i, (this->getCols()/2)-10, "                         ");
                 }
                 int j = 5;
-                int k = 0;
-                for(const auto &acc: this->getSystem()->getAllAccounts()) {
-                    if (j < this->getRows()-6 && k >= (this->getMenuIndex() - this->getAccountIndex())) {
-                        std::string uName = acc.first.toStdString();
+                for (int i = 0; i < this->getSystem()->getGroups().size(); i++) {
+                    if (j < this->getRows()-6 && i >= (this->getMenuIndex() - this->getAccountIndex())) {
+                        std::string uName = this->getSystem()->getGroups()[i]->getGroupName().toStdString();
                         ss << uName;
                         move(j, (this->getCols()/2)-10);
                         addnstr(ss.str().c_str(), (this->getCols()-(this->getCols()/2)-10));
                         ss.str("");
                         j++;
                     }
-                    k++;
                 }
             }
             break;
@@ -83,9 +81,9 @@ void GroupUI::runScreen() {
             printw(" ");
             refresh();
             move(curY, curX);
-            if (this->getMenuIndex() < this->getSystem()->getAllAccounts().size()-1) {
+            if (this->getMenuIndex() < this->getSystem()->getGroups().size()-1) {
                 this->setMenuIndex(this->getMenuIndex()+1);
-                if (this->getAccountIndex() < this->getSystem()->getAllAccounts().size()-1) {
+                if (this->getAccountIndex() < this->getSystem()->getGroups().size()-1) {
                     if (this->getAccountIndex() < (this->getRows()-6)-5 ) {
                         mvprintw(5+(this->getAccountIndex()), (this->getCols()/2)-11, " ");
                         this->setAccountIndex(this->getAccountIndex()+1);
@@ -97,18 +95,15 @@ void GroupUI::runScreen() {
                     mvprintw(i, (this->getCols()/2)-10, "                         ");
                 }
                 int j = 5;
-                int k = 0;
-                for(const auto &acc: this->getSystem()->getAllAccounts()) {
-                    if (j < this->getRows()-5 && k >= (this->getMenuIndex() - this->getAccountIndex())) {
-                        std::string uName = acc.first.toStdString();
+                for (int i = 0; i < this->getSystem()->getGroups().size(); i++) {
+                    if (j < this->getRows()-5 && i >= (this->getMenuIndex() - this->getAccountIndex())) {
+                        std::string uName = this->getSystem()->getGroups()[i]->getGroupName().toStdString();
                         ss << uName;
                         move(j, (this->getCols()/2)-10);
                         addnstr(ss.str().c_str(), (this->getCols()-(this->getCols()/2)-10));
                         ss.str("");
                         j++;
-                        refresh();
                     }
-                    k++;
                 }
             }
             break;
@@ -118,20 +113,22 @@ void GroupUI::runScreen() {
             refresh();
             move(curY, curX);
             if (curY != (this->getRows()-3)) {
-                int k = 0;
-                for(const auto &acc: this->getSystem()->getAllAccounts()) {
-                    if (k == this->getMenuIndex()) {
+//                int k = 0;
+//                for(const auto &acc: this->getSystem()->getAllAccounts()) {
+//                    if (k == this->getMenuIndex()) {
 
-                        // Group selection logic
-                    }
-                    k++;
-                }
+//                        // Group selection logic
+//                    }
+//                    k++;
+//                }
             } else {
                 this->changeScreens(true);
                 this->screenNumber = 1;
             }
             break;
         case KEY_HOME:
+            move(curY, curX-1);
+            printw(" ");
             move(mmY, mmX);
             printw(">");
             move(mmY, mmX);
