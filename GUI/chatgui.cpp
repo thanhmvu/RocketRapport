@@ -198,8 +198,10 @@ void ChatGUI::autoUpdate(){
 void ChatGUI::on_pushButton_send_mess_clicked()
 {
     if(talking_to_user != nullptr){
+        // this 2 lines prevent the app from crashing?
         this->curr_user->getMyChats();
         talking_to_user->getMyChats();
+
         // obtain info from the screen
         QString text = ui->input_message->toPlainText();
         QDateTime time = QDateTime::currentDateTime();
