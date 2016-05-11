@@ -34,7 +34,7 @@ System::System(const QString &path)
              << groups.size() << " groups." << std::endl;
     printAllIdCnt();
 
-    html_path = "../index.html";
+    html_path = "../scrapbook/index.html";
 }
 
 /**
