@@ -1,0 +1,34 @@
+#============================================================================
+# To generate Doxygen file
+#============================================================================
+
+Type in terminal these commands:
+
+> cd <working-copy-dir>
+> cd docs
+> doxygen Doxyfile
+> xdg-open html/index.html
+
+The documentation for all class can be found in different tabs.
+If there is no tab or documentation, check in the docs/Doxyfile 
+whether the INPUT is correct, as followed:
+
+INPUT                  = ../model ../GUI ../textui
+
+
+
+#============================================================================
+# To run the app with TextUI
+#============================================================================
+
+
+
+
+
+#============================================================================
+# To run the app with GUI
+#============================================================================
+
+
+
+
