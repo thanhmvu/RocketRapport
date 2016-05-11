@@ -112,21 +112,9 @@ public:
     void leaveGroup(Group* badGroup);
 
     // getters
-    /**
-     * @brief Getter for the current guest boolean.
-     */
     bool    getIsCurrentGuest();
-    /**
-     * @brief Getter for the past guest boolean.
-     */
     bool    getIsPastGuest();
-    /**
-     * @brief Getter for the system admin boolean.
-     */
     bool    getIsSystemAdmin();
-    /**
-     * @brief Getter for the group admin boolean.
-     */
     bool    getIsGroupAdmin();
 
     int     getAge();
@@ -144,6 +132,7 @@ public:
     QString     getProfilePicture();
     QString     getMostRecentEmployer();
     std::vector<Chat*>      getMyChats();
+    std::vector<Chat*>      getChatVector();
     std::vector<Account*>   getFriendList();
     std::vector<Group*>     getGroups();
     std::string getProfileUsername();

@@ -318,11 +318,14 @@ void Account::insertChat(Chat *newChat){
 
 /**
  * @brief Removes the specified chat from the list of the user's chats.
+ *
+ * No Database involved yet
  */
 void Account::removeChat(Chat* badChat) {
-    for (unsigned i = 0; i < this->getMyChats().size(); i++) {
-        if (&(*badChat) == &(*(this->getMyChats()[i]))) {
-            this->getMyChats().erase(this->getMyChats().begin() + i);
+    // does not remove from the database
+    for (unsigned i = 0; i < myChats.size(); i++) {
+        if (badChat->getChatID() == myChats[i]->getChatID()) {
+            myChats.erase(myChats.begin() + i);
             break;
         }
     }
@@ -378,11 +381,14 @@ bool Account::joinGroup(Group* newGroup) {
 
 /**
  * @brief Removes a group from the user's list of joined groups.
+ *
+ * No database involved yet
  */
 void Account::leaveGroup(Group* badGroup) {
-    for (unsigned i = 0; i < this->getGroups().size(); i++) {
-        if (&(*badGroup) == &(*(this->getGroups()[i]))) {
-            this->getGroups().erase(this->getGroups().begin() + i);
+    // does not remove from the database
+    for (unsigned i = 0; i < groups.size(); i++) {
+        if (badGroup->getID() == groups[i]->getID()) {
+            groups.erase(groups.begin() + i);
             break;
         }
     }
@@ -441,7 +447,7 @@ void Account::setMyScrapbook(Scrapbook* sBook) {
 
 
 /**
- * @brief Getter for the user's list of chats.
+ * @brief Getter for the user's list of chats. Update from the database
  */
 std::vector<Chat*> Account::getMyChats() {
     // delete all chats and reload from databases
@@ -450,6 +456,13 @@ std::vector<Chat*> Account::getMyChats() {
         myChats.pop_back();
     }
     dbm->retrieveAllChats(this);
+    return myChats;
+}
+
+/**
+ * @brief Getter for the user's list of chats. No database involved
+ */
+std::vector<Chat*> Account::getChatVector() {
     return myChats;
 }
 

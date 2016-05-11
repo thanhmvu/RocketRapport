@@ -13,13 +13,7 @@
  * Add/Remove Friend
  * Join/Leave Group
  *
- * Depart Ranch
- *
- * Add/Remove Project
- *
  * Add/Delete Account
- *
- * Add/Remove Member
  *
  * */
 
@@ -82,4 +76,81 @@ TEST(AccountTest, testAddChats){
     }
 }
 
+TEST(AccountTest, testInsertChat){
+    DbManager testDbm("./gProjectDB.db");
+    Account testAccount(&testDbm);
 
+    Chat* newChat = new Chat(1,"Beth",&testDbm);
+    testAccount.insertChat(newChat);
+
+    EXPECT_EQ(testAccount.getChatVector()[0]->getChatID(), newChat->getChatID());
+
+    Chat* newChat2 = new Chat(2,"Tom",&testDbm);
+    testAccount.insertChat(newChat2);
+
+    EXPECT_EQ(testAccount.getChatVector()[1]->getChatID(), newChat2->getChatID());
+}
+
+
+TEST(AccountTest, removeChat){
+    DbManager testDbm("./gProjectDB.db");
+    Account testAccount(&testDbm);
+
+    Chat* newChat = new Chat(1,"Beth",&testDbm);
+    testAccount.insertChat(newChat);
+    EXPECT_EQ(testAccount.getChatVector()[0]->getChatID(), newChat->getChatID());
+
+    Chat* newChat2 = new Chat(2,"Tom",&testDbm);
+    testAccount.insertChat(newChat2);
+    EXPECT_EQ(testAccount.getChatVector().size(), 2);
+
+    testAccount.removeChat(newChat);
+    EXPECT_EQ(testAccount.getChatVector().size(), 1);
+}
+
+
+TEST(AccountTest, getChatByPartnerName){
+    DbManager testDbm("./gProjectDB.db");
+    Account testAccount(&testDbm);
+
+    Chat* newChat = new Chat(1,"Beth",&testDbm);
+    testAccount.insertChat(newChat);
+
+    EXPECT_EQ(testAccount.getChatByPartnerName("Beth")->getChatID(), newChat->getChatID());
+
+    Chat* newChat2 = new Chat(2,"Tom",&testDbm);
+    testAccount.insertChat(newChat2);
+
+    EXPECT_EQ(testAccount.getChatByPartnerName("Tom")->getChatID(), newChat2->getChatID());
+}
+
+TEST(AccountTest, joinGroup){
+    DbManager testDbm("./gProjectDB.db");
+    Account testAccount(&testDbm);
+
+    Group * g = new Group("Group A", &testDbm);
+    testAccount.joinGroup(g);
+    EXPECT_EQ(testAccount.getGroups()[0]->getID(), g->getID());
+
+    Group * g2 = new Group("Group B", &testDbm);
+    testAccount.joinGroup(g2);
+    EXPECT_EQ(testAccount.getGroups()[1]->getID(), g2->getID());
+}
+
+TEST(AccountTest, leaveGroup){
+    DbManager testDbm("./gProjectDB.db");
+    Account testAccount(&testDbm);
+
+    Group * g = new Group("Group A", &testDbm);
+    testAccount.joinGroup(g);
+    Group * g2 = new Group("Group B", &testDbm);
+    testAccount.joinGroup(g2);
+
+    EXPECT_EQ(testAccount.getGroups()[0]->getID(), g->getID());
+    EXPECT_EQ(testAccount.getGroups()[1]->getID(), g2->getID());
+
+    testAccount.leaveGroup(g);
+    EXPECT_EQ(testAccount.getGroups().size(),1);
+    testAccount.leaveGroup(g2);
+    EXPECT_EQ(testAccount.getGroups().size(),0);
+}
