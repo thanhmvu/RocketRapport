@@ -4,7 +4,7 @@
 
 
 /**
- * @brief default constructor that we don't reall use in this project
+ * @brief ChatGUI::ChatGUI default constructor that is reall used in this project
  */
 ChatGUI::ChatGUI(QWidget *parent) :
     QWidget(parent),
@@ -14,7 +14,8 @@ ChatGUI::ChatGUI(QWidget *parent) :
 }
 
 /**
- * @brief constructor that is actually used
+ * @brief ChatGUI::ChatGUI class constructor that is actually used
+ * @param mm a pointer to the main_menu object
  */
 ChatGUI::ChatGUI(MainMenu * mm) :
     ui(new Ui::ChatGUI)
@@ -33,11 +34,11 @@ ChatGUI::ChatGUI(MainMenu * mm) :
     // constantly refresh chat screen
     timer = new QTimer();
     connect(timer, SIGNAL(timeout()),this,SLOT(refreshChatScreen()));
-    timer->start(300);
+    timer->start(500);
 }
 
 /**
- * @brief
+ * @brief ChatGUI::~ChatGUI class destructor
  */
 ChatGUI::~ChatGUI()
 {
@@ -49,7 +50,9 @@ ChatGUI::~ChatGUI()
 }
 
 /**
- * @brief
+ * @brief ChatGUI::refreshChatScreen method that reload all elements of this chatGUI object
+ *
+ * This method should be called constantly in order to update new message
  */
 void ChatGUI::refreshChatScreen(){
     if(isDisplaying){
@@ -98,7 +101,7 @@ void ChatGUI::refreshChatScreen(){
 }
 
 /**
- * @brief display the accounts as list of buttons
+ * @brief ChatGUI::updateUserList method that displays the accounts as list of buttons to the screen
  */
 void ChatGUI::updateUserList(){
 
@@ -117,7 +120,7 @@ void ChatGUI::updateUserList(){
 }
 
 /**
- * @brief
+ * @brief ChatGUI::clearUserBox method that deletes all buttons in UserList
  */
 void ChatGUI::clearUserBox(){
     while(!userList.empty()){
@@ -127,7 +130,7 @@ void ChatGUI::clearUserBox(){
 }
 
 /**
- * @brief
+ * @brief ChatGUI::openChat method called when user clicks a chat button to open a chat
  */
 void ChatGUI::openChat(){
     // update the talking-to user
@@ -147,7 +150,7 @@ void ChatGUI::openChat(){
 }
 
 /**
- * @brief
+ * @brief ChatGUI::displayCurrentChat method that displays the content of the currently open chat if there is any
  */
 void ChatGUI::displayCurrentChat(){
     if(curr_user != nullptr && talking_to_user != nullptr && newMessFromTalkToUser){
@@ -170,23 +173,6 @@ void ChatGUI::displayCurrentChat(){
     }
 }
 
-/**
- * @brief
- */
-void ChatGUI::autoUpdate(){
-    ////////////////////////////////////////////////////////////////////
-    /// SOME HOW UPDATE THE MESS CONSTANTLY
-    /// and notice the user
-    //////////////////////////////////////////////////////////////////
-
-    // retrieve all accounts from the database
-
-
-    // check all users to see if receive new mess from anybody
-
-    // check the current displayed chatmate to see if he/she sends new mess
-
-}
 
 /**
  * @brief This method stores new mess to db
@@ -198,7 +184,7 @@ void ChatGUI::autoUpdate(){
 void ChatGUI::on_pushButton_send_mess_clicked()
 {
     if(talking_to_user != nullptr){
-        // this 2 lines prevent the app from crashing?
+        // make sure the 2 chats are up-to-date
         this->curr_user->getMyChats();
         talking_to_user->getMyChats();
 
@@ -235,7 +221,7 @@ void ChatGUI::on_pushButton_send_mess_clicked()
 }
 
 /**
- * @brief
+ * @brief ChatGUI::on_pushButton_main_menu_clicked method called when click the main_menu button
  */
 void ChatGUI::on_pushButton_main_menu_clicked()
 {

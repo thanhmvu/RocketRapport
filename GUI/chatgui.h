@@ -15,7 +15,6 @@ class ChatGUI;
 }
 
 class MainMenu;
-//class Account;
 
 class ChatGUI : public QWidget
 {
@@ -25,7 +24,6 @@ public:
     explicit ChatGUI(QWidget *parent = 0);
     ChatGUI(MainMenu * mm);
     ~ChatGUI();
-    void autoUpdate();
     void setIsDisplaying(bool state);
 
 private slots:

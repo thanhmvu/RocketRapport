@@ -29,6 +29,9 @@ INPUT                  = ../model ../GUI ../textui
 # To run the app with GUI
 #============================================================================
 
-
+Chat Screen:
+- If a new account is just created, you won't see it in the user list in chat.
+Need to go back to main menu for the app to reload the new account
+- 
 
 
