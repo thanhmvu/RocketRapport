@@ -21,9 +21,11 @@ void ScrapbookUI::displayScreen() {
  * @brief Loops through this method while the user is on this screen.
  */
 void ScrapbookUI::runScreen() {
+    std::string html_path = this->getSystem()->getHtmlPath();
+
     curs_set(0);
     int curY = (this->getRows()/2)+1, curX = (this->getCols()/2)-6;
-    this->viewMyScrapbook("../index.html");
+    this->viewMyScrapbook(html_path);
     int keyPress;
     while (this->getChangeScreens() == false) {
         getyx(stdscr, curY, curX);
@@ -131,5 +133,6 @@ void ScrapbookUI::viewMyScrapbook(std::string path) {
                     << "</body>"
                     << "</html>";
     scrapbookHTML.close();
-    system("firefox ../index.html");
+    std::string command = "firefox "+path;
+    system(command.c_str());
 }

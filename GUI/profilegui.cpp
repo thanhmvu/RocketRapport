@@ -193,7 +193,8 @@ void ProfileGUI::on_pushButton_scrapbook_clicked()
                     << "</body>"
                     << "</html>";
     scrapbookHTML.close();
-    system("firefox ../index.html");
+    std::string command = "firefox "+path;
+    system(command.c_str());
 }
 
 Account * ProfileGUI::getProfileOwner(){
