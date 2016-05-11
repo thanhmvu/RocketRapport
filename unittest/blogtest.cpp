@@ -7,14 +7,6 @@
 #include <vector>
 
 
-
-///////////////////////////////////////////////////////////////////////////////////
-/// maybe we should create seperate .db file for unit test
-/// since the blogPosts from unit test may mess up with retrieveAllBlogPosts
-/// ??
-///////////////////////////////////////////////////////////////////////////////////
-//It looks like the blog is working. Onto the Tweet!
-
 TEST(BlogTest, testAddBlogPost){
     DbManager dbmTest("./gProjectDB.db");
     dbmTest.deleteTable("blogPosts");
@@ -68,3 +60,18 @@ TEST(BlogTest, testDeleteAllPost){
     ASSERT_EQ(testBlog.getMyPosts().size(),0);
 }
 
+TEST(BlogTest, deletePost){
+    DbManager dbmTest("./gProjectDB.db");
+    dbmTest.deleteTable("blogPosts");
+    Blog testB(&dbmTest);
+
+    QDateTime *newDateTime = new QDateTime;
+    QDate newDate(2016,5,23);
+    newDateTime->setDate(newDate);
+
+    BlogPost *newBP1 = new BlogPost(3,*newDateTime,"MOM'S SPAGHETTI");
+    testB.addPost(newBP1);
+    testB.deletePost(newBP1);
+
+    ASSERT_EQ(testB.getMyPosts().size(),0);
+}
