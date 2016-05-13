@@ -21,6 +21,98 @@ INPUT                  = ../model ../GUI ../textui
 # To run the app with TextUI
 #============================================================================
 
+Below are directions on how to navigate and use the TextUI.
+
+Login Screen
+	Controls:
+		Up, Down, Left, Right - Navigate the Menu
+		Home - Select Option
+	Sign Up
+		Type a first name into the corresponding field
+		Type a last name into the corresponding field
+		Type a unique username into the corresponding field
+		Type a password to accompany your username into the corresponding field.
+		While selecting the “Sign In” option press Home to Sign In.
+		If the username is already taken the program will ask you to try signing up again.
+	Log In
+		Type a valid username into the corresponding field.
+		Type the matching password that accompanies the username you entered into the corresponding field.
+		While selecting the “Log In” option press Home to Log In.
+		If the username does not exist or the password does not match the given username the program will prompt the user to try logging in again or to alternatively sign up.
+
+Main Menu Screen
+	Controls:
+		Up, Down - Navigate the Menu
+		BackSpace - Select an Option
+
+Messaging Screen
+	Controls:
+	The Messaging screen is unique because it is split into four sections that each serve their own purpose and have unique controls. The indicator that you are interacting with a certain section is a “!” in the top right corner of that section. The sections are as follows:
+		Account List (Top Left):
+			Up, Down - Navigate List of Users
+			BackSpace - Select User to Chat with (also switches to the Chat History section)
+			Home - View User Profile (switches to the Profile screen for the selected user)
+			End - Switch section (switches to Chat History section)
+		Chat History (Top Right):
+			Up, Down - Scroll through previous messages
+			End - Switch section (switches to the Send Message section)
+		Send Message (Bottom Right):
+			Type Character - Types a character into the send message box, ready to be sent.
+			BackSpace - Deletes the last typed character.
+			Home - Sends the message to the user and clears the input box.
+		Menus (Bottom Left):
+			Up, Down - Navigate Menu
+			Home - Select Option
+
+User Profile Screen
+	Controls:
+		Up, Down - Navigate Menu Options
+		Type Characters - Edits the corresponding field
+		BackSpace - Deletes the latest character of the corresponding field
+		Home - Select an Option
+	Editing a Profile Field:
+		Simply typing or backspacing will edit the corresponding profile field. There is no submission required.
+
+Blog Screen
+	Controls:
+	The Blog screen is split into three sections as listed below:
+		New Post:
+			Up, Down - Navigate sections of the screen
+			Type Characters - Types a character to the screen ready to be posted to the user’s blog
+			BackSpace - Deletes the last character typed to the screen
+			Home - Submits the post to the user’s blog and clear the section.
+		Former Posts:
+			Up, Down - Navigate sections of the screen
+			Left, Right - Scroll through former posts of the user’s blog.
+		Main Menu:
+			Home - Select Option
+
+Tweet Screen
+	Controls:
+	The Tweet screen is split into three sections as listed below:
+		New Post:
+			Up, Down - Navigate sections of the screen
+			Type Characters - Types a character to the screen ready to be posted to the user’s blog
+			BackSpace - Deletes the last character typed to the screen
+			Home - Submits the post to the user’s tweets and clear the section.
+		Former Posts:
+			Up, Down - Navigate sections of the screen
+			Left, Right - Scroll through former posts of the user’s tweets.
+		Main Menu:
+			Home - Select Option
+
+Scrapbook Screen
+	Controls:
+		BackSpace - Select Option
+
+Groups Screen
+	Controls:
+	The Groups screen is split into two sections as listed below:
+		Group List:
+			Up, Down - Navigate groups
+			Home - Switch to the Menu section
+		Menu:
+			Home - Select Option
 
 
 
