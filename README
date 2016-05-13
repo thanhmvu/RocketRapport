@@ -29,9 +29,34 @@ INPUT                  = ../model ../GUI ../textui
 # To run the app with GUI
 #============================================================================
 
-Chat Screen:
-- If a new account is just created, you won't see it in the user list in chat.
-Need to go back to main menu for the app to reload the new account
-- 
+# To start Rocket Rapport's GUI, open the project code in Qt Creator and run GUI project
+
+# Log in if you already have an account. Sign in otherwise.
+
+# Below is the specifications and notes for each screen/ view.
+
+# Main Menu:
+	- Create new group: 
+		+ Type in name of the new group to create and click launch.
+		+ New created group can be found in Group List.
+	- User List: 
+		+ List of all Rocket Rapport's users. 
+		+ Click at specific users to open their profile (see below).
+	- Group List: 
+		+ List of all Rocket Rapport's groups.
+		+ Click at specific groups to open their page (see below).
+				
+# Profile: 
+	- If you are the owner, you can free edit the "Personal Info" section. However, your changes will not be stored until you click "Update About."
+
+# Chat:
+	- Chat has a list of all RR's users on the left.
+	- Click at each user to start messaging.
+	- Chat has a notification panel in the top left corner for new messages. However, at current stage, it only shows noti for a split second.
+	- If a new account is just created, you won't see it in the user list in chat. You will need to go back to main menu for the app to reload the new account
+
+# Group: 
+	- If you are not a member of the group, you can only see the member list and the about section.
+	- If you are a member of, you can post to group feed, see the about section, or add a new member.
 
 
