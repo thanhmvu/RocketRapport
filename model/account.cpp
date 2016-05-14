@@ -93,6 +93,14 @@ Account::Account(QString usrName, DbManager *newdbm){
  * This contructor give all controls to the user
  * Thus, one possible risk is duplicate ID
  * Each of the parameters represents a field present in the accounts table of the program
+ * @param accID the account ID
+ * @param usrname the username
+ * @param pwd the password
+ * @param scrpBkID the ID of the scrapbook
+ * @param tweetID
+ * @param firstname
+ * @param lastname
+ * @param newdbm a pointer to the database manager object
  */
 Account::Account(int accID,     QString usrname,    QString pw,
                 int scrpBkID,   int blogID,         int tweetID,
@@ -158,6 +166,7 @@ Account::~Account(){
 
 /**
  * @brief Getter for the current guest boolean.
+ * @return isCurrentGuest
  */
 bool Account::getIsCurrentGuest() {
     return this->isCurrentGuest;
@@ -174,6 +183,7 @@ bool Account::getIsPastGuest() {
 
 /**
  * @brief Getter for the system admin boolean.
+ * @return isSystemAdmin
  */
 bool Account::getIsSystemAdmin() {
     return this->isSystemAdmin;

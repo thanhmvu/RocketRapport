@@ -3,17 +3,17 @@
 #include "../model/account.h"
 #include "../model/feed.h"
 #include "../model/group.h"
-//I want to test that the different methods in the system class can call their respective scripts
-//These tests are giving me trouble right now, so I'm commenting them out for the time being
+
+
 /**
  * @brief TEST This test should be able to store the Accounts into the database, which can be retrieved in another session.
  */
-//TEST(SystemTest, testAddUser){
-//    system("pwd");
-//    System *one = new System("./testDb.db");
-//    one->createAccount("hSwizzle79","Oblivion0722&","Jefferey","Pfaffmann");
-//    EXPECT_FALSE(one->createAccount("hSwizzle79","Oblivion0722&","Jefferey","Pfaffmann"));
-//}
+TEST(SystemTest, testAddUser){
+    system("pwd");
+    System *one = new System("./testDb.db");
+    one->createAccount("hSwizzle79","Oblivion0722&","Jefferey","Pfaffmann");
+    EXPECT_FALSE(one->createAccount("hSwizzle79","Oblivion0722&","Jefferey","Pfaffmann"));
+}
 
 /**
  * @brief TEST Closing the current program session, destroying the system, and starting a new system should grant the new system access to  the same information
@@ -30,8 +30,8 @@
 //    EXPECT_EQ("c", (accounts["c"]->getFirstName()));
 //    EXPECT_EQ("c", (accounts["c"]->getLastName()));
 //    EXPECT_EQ(2, (accounts["c"]->getAccountID()));
-////    EXPECT_EQ(2, (accounts["c"]->getMyBlog()->getBlogID()));
-////    EXPECT_EQ(2, (accounts["c"]->getMyTweet()->getTweetID()));
+//    EXPECT_EQ(2, (accounts["c"]->getMyBlog()->getBlogID()));
+//    EXPECT_EQ(2, (accounts["c"]->getMyTweet()->getTweetID()));
 //}
 
 ////Now, test the login system, because it seems to be giving us troubles
@@ -59,48 +59,48 @@
 //    EXPECT_EQ(true, sys.usernameExist("user2"));
 //}
 
-//TEST(SystemTest, testAddGroup){
-//    system("pwd");
-//    System testSys("./gProjectDB.db");
-//    DbManager *sysDB = testSys.getDbm();
-//    sysDB->deleteTable("groups");
-//    Group *newGroup = new Group();
-//    newGroup->setGroupName("First Group");
-//    newGroup->setStatus(1);
-//    Group *newGroup1 = new Group();
-//    newGroup1->setGroupName("Second Group");
-//    newGroup1->setStatus(1);
+TEST(SystemTest, testAddGroup){
+    system("pwd");
+    System testSys("./gProjectDB.db");
+    DbManager *sysDB = testSys.getDbm();
+    sysDB->deleteTable("groups");
+    Group *newGroup = new Group("a",sysDB);
+    newGroup->setGroupName("First Group");
+    newGroup->setStatus(1);
+    Group *newGroup1 = new Group("b",sysDB);
+    newGroup1->setGroupName("Second Group");
+    newGroup1->setStatus(1);
 
-//    testSys.addGroup(newGroup);
-//    testSys.addGroup(newGroup1);
-//}
+    testSys.addGroup(newGroup);
+    testSys.addGroup(newGroup1);
+}
 
 TEST(SystemTest, testRetrieveGroups){
-//    System testSys("./gProjectDB.db");
-//    testSys.retrieveAllGroups();
-//    std::vector<Group*> lookList = testSys.getGroups();
-//    for(int i =0; i < lookList.size(); i++){
-//        Group *check = lookList.at(i);
-//        qDebug() << check->getID() << ": " << check->getGroupName();
-//    }
-//    DbManager *sysDB = testSys.getDbm();
-//    sysDB->deleteTable("groups");
+    System testSys("./gProjectDB.db");
+    testSys.retrieveAllGroups();
+    std::vector<Group*> lookList = testSys.getGroups();
+    for(int i =0; i < lookList.size(); i++){
+        Group *check = lookList.at(i);
+        qDebug() << check->getID() << ": " << check->getGroupName();
+    }
+    DbManager *sysDB = testSys.getDbm();
+    sysDB->deleteTable("groups");
 }
 
 TEST(SystemTest, testAddGroupUserPair){
-//    System sysTest("./gProjectDB.db");
-//    DbManager *sysDB = sysTest.getDbm();
-//    sysDB->deleteTable("groups");
-//    sysDB->deleteTable("accounts");
-//    Group *testGroup = new Group(0,0,"New Group",1,0);
-//    Account *testAccount = new Account(0,"Johnny","Mike",0,0,0,"The","Gimp",sysDB);
-//    sysTest.pairGroupWithUser(testGroup,testAccount);
+    System sysTest("./gProjectDB.db");
+    DbManager *sysDB = sysTest.getDbm();
+    sysDB->deleteTable("groups");
+    sysDB->deleteTable("accounts");
+    Group *testGroup = new Group(0,0,"New Group",true,0,sysDB,"about us");
+    Account *testAccount = new Account(0,"Johnny","Mike",0,0,0,"The","Gimp",sysDB);
+    sysTest.pairGroupWithUser(testGroup,testAccount);
 }
 
-//Retrieve Group pair works, just need to find a way to combine the two
+
 TEST(SystemTest, testRetrieveGroupPairs){
-//    System sysTest("./gProjectDB.db");
-//    std::vector<Group*> lookList = sysTest.getGroups();
+    System sysTest("./gProjectDB.db");
+    std::vector<Group*> lookList = sysTest.getGroups();
 //    Group* check = lookList.at(0);
 
 //    qDebug() << "First Group ID: " << check->getID();
