@@ -75,3 +75,30 @@ TEST(TweetTest, deletePost){
 
 //    ASSERT_EQ(testB.getMyPosts().size(),0);
 }
+
+TEST(TweetTest, getIdCnt){
+    Tweet b1(nullptr);
+    ASSERT_EQ(b1.getTweetID() + 1 , b1.getIdCnt());
+    Tweet b2(nullptr);
+    Tweet b3(nullptr);
+    ASSERT_EQ(b1.getTweetID() + 3 , b1.getIdCnt());
+    ASSERT_EQ(b3.getTweetID() + 1 , b1.getIdCnt());
+}
+
+
+TEST(TweetTest, setTweetID){
+    Tweet b1(nullptr);
+    b1.setID(100);
+    ASSERT_EQ(b1.getTweetID(),100);
+    b1.setID(200);
+    ASSERT_EQ(b1.getTweetID(),200);
+    b1.setID(300);
+    b1.setID(400);
+    ASSERT_EQ(b1.getTweetID(),400);
+
+    Tweet b2(nullptr);
+    b2.setID(100);
+    ASSERT_EQ(b2.getTweetID(),100);
+    b2.setID(200);
+    ASSERT_EQ(b2.getTweetID(),200);
+}

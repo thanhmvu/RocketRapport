@@ -26,6 +26,7 @@ public:
     void addMessage(Message *newMessage);
     void sendMessage(Message * newMessage);
     std::vector<Message *> getMessages();
+    std::vector<Message *> getMessageVector();
     QString getTalkingToUser();
     void setTalkingToUser(QString name);
 //    void setChatID(int newID);

@@ -83,6 +83,8 @@ void Chat::sendMessage(Message *newMessage) {
 
 /**
  * @brief Gets the vector of messages.
+ *
+ * pulls from the database
  */
 std::vector<Message*> Chat::getMessages(){
     //Delete all messages from the local memory
@@ -92,6 +94,15 @@ std::vector<Message*> Chat::getMessages(){
     }
     //Retrieve all messages from the database
     dbm->retrieveAllMessages(this);
+    return messages;
+}
+
+/**
+ * @brief Gets the vector of messages.
+ *
+ * no database
+ */
+std::vector<Message*> Chat::getMessageVector(){
     return messages;
 }
 

@@ -154,3 +154,12 @@ TEST(AccountTest, leaveGroup){
     testAccount.leaveGroup(g2);
     EXPECT_EQ(testAccount.getGroups().size(),0);
 }
+
+TEST(AccountTest, getIdCnt){
+    Account b1(nullptr);
+    ASSERT_EQ(b1.getAccountID() + 1 , b1.getIdCnt());
+    Account b2(nullptr);
+    Account b3(nullptr);
+    ASSERT_EQ(b1.getAccountID() + 3 , b1.getIdCnt());
+    ASSERT_EQ(b3.getAccountID() + 1 , b1.getIdCnt());
+}
