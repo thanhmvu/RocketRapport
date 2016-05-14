@@ -62,7 +62,7 @@ Messaging Screen
 			Home - Sends the message to the user and clears the input box.
 		Menus (Bottom Left):
 			Up, Down - Navigate Menu
-			Home - Select Option
+			BackSpace - Select Option
 
 User Profile Screen
 	Controls:
