@@ -1,8 +1,22 @@
-#============================================================================
-# To generate Doxygen file
-#============================================================================
+#=========================================================================================================
+# About Rocket Rapport
+#=========================================================================================================
 
-Type in terminal these commands:
+Rocket Rapport is a simple communication platform created as a group project for CS205 - Software Engineering. The software supports blogging, tweeting, instant messaging, and group interaction. Its targeted clients was a community of engineers from a rocket ranch. We designed the program using MVC model and URL diagrams, then implemented it using C++, SQLite,Qt Creator, and Subversion.
+
+# Spring 2016
+# Team Average Joes
+# Thanh Vu, Michael Teddick, Andrew Ortiz
+# CS 205 Software Engineering
+# Lafayette College
+
+
+
+#=========================================================================================================
+# Doxygen
+#=========================================================================================================
+
+# To generate Doxygen file, type in terminal the following commands:
 
 > cd <working-copy-dir>
 > cd docs
@@ -13,17 +27,19 @@ The documentation for all class can be found in different tabs.
 If there is no tab or documentation, check in the docs/Doxyfile 
 whether the INPUT is correct, as followed:
 
-INPUT                  = ../model ../GUI ../textui
+INPUT       = ../model ../GUI ../textui
 
 
 
-#============================================================================
-# To run the app with TextUI
-#============================================================================
+#=========================================================================================================
+# TextUI
+#=========================================================================================================
 
-Below are directions on how to navigate and use the TextUI.
+# To use TextUI, open the project in Qt Creator and click run [TextUI].
 
-Login Screen
+# To navigate and use the TextUI:
+
+# Login Screen
 	Controls:
 		Up, Down, Left, Right - Navigate the Menu
 		Home - Select Option
@@ -40,12 +56,12 @@ Login Screen
 		While selecting the “Log In” option press Home to Log In.
 		If the username does not exist or the password does not match the given username the program will prompt the user to try logging in again or to alternatively sign up.
 
-Main Menu Screen
+# Main Menu Screen
 	Controls:
 		Up, Down - Navigate the Menu
 		BackSpace - Select an Option
 
-Messaging Screen
+# Messaging Screen
 	Controls:
 	The Messaging screen is unique because it is split into four sections that each serve their own purpose and have unique controls. The indicator that you are interacting with a certain section is a “!” in the top right corner of that section. The sections are as follows:
 		Account List (Top Left):
@@ -64,7 +80,7 @@ Messaging Screen
 			Up, Down - Navigate Menu
 			BackSpace - Select Option
 
-User Profile Screen
+# User Profile Screen
 	Controls:
 		Up, Down - Navigate Menu Options
 		Type Characters - Edits the corresponding field
@@ -73,7 +89,7 @@ User Profile Screen
 	Editing a Profile Field:
 		Simply typing or backspacing will edit the corresponding profile field. There is no submission required.
 
-Blog Screen
+# Blog Screen
 	Controls:
 	The Blog screen is split into three sections as listed below:
 		New Post:
@@ -87,7 +103,7 @@ Blog Screen
 		Main Menu:
 			Home - Select Option
 
-Tweet Screen
+# Tweet Screen
 	Controls:
 	The Tweet screen is split into three sections as listed below:
 		New Post:
@@ -101,11 +117,11 @@ Tweet Screen
 		Main Menu:
 			Home - Select Option
 
-Scrapbook Screen
+# Scrapbook Screen
 	Controls:
 		BackSpace - Select Option
 
-Groups Screen
+# Groups Screen
 	Controls:
 	The Groups screen is split into two sections as listed below:
 		Group List:
@@ -117,11 +133,11 @@ Groups Screen
 
 
 
-#============================================================================
-# To run the app with GUI
-#============================================================================
+#=========================================================================================================
+# GUI
+#=========================================================================================================
 
-# To start Rocket Rapport's GUI, open the project code in Qt Creator and run GUI project
+# Open the project in Qt Creator and run the GUI.
 
 # Log in if you already have an account. Sign in otherwise.
 
@@ -144,7 +160,7 @@ Groups Screen
 # Chat:
 	- Chat has a list of all RR's users on the left.
 	- Click at each user to start messaging.
-	- Chat has a notification panel in the top left corner for new messages. However, at current stage, it only shows noti for a split second.
+	- Chat has a notification panel in the top left corner for new messages. However, at current stage, it only shows notification for a split second.
 	- If a new account is just created, you won't see it in the user list in chat. You will need to go back to main menu for the app to reload the new account
 
 # Group: 
